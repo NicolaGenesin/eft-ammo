@@ -1,17 +1,271 @@
 import React, { useState, useEffect } from 'react';
 import Head from "next/head";
-import { Tooltip, Divider, Flex, Center, Text, Image, Box, Input } from '@chakra-ui/react'
+import { useBreakpointValue } from '@chakra-ui/react'
+import { Tooltip, Divider, Flex, Center, Text, Image, Box, Input, VStack, Spacer, HStack } from '@chakra-ui/react'
 import { InfoOutlineIcon } from '@chakra-ui/icons'
 import getResults from '../utils/getResults';
 import getColor from '../utils/getColor';
 import headers from '../utils/headers';
 import Legenda from '../components/legenda';
 
+const MobileView = ({ category, allAmmosForCategory }) => {
+    return (
+        <Box bg='#333'>
+            <Flex >
+                <Center h='64px'>
+                    <Text
+                        w='100%'
+                        fontWeight='bold'
+                        fontSize='2xl'
+                        px='8px'
+                        style={{
+                            whiteSpace: 'nowrap'
+                        }}>
+                        {category}
+                    </Text>
+                </Center>
+            </Flex>
+            <Flex color='white' direction='column'>
+                {
+                    allAmmosForCategory.map(ammo => {
+                        return (
+                            <Box bg='#3C3C3C' mb='12px' p='8px'>
+                                <HStack>
+                                    <Center>
+                                        <Image
+                                            boxSize='48px'
+                                            objectFit='cover'
+                                            src={`./images/${category}@${ammo.name}.png`}
+                                            alt={ammo.name}
+                                            fallbackSrc={`./images/fallback.png`}
+                                        />
+                                    </Center>
+                                    <Center>
+                                        <Text
+                                            fontSize='sm'
+                                            fontWeight='semibold'
+                                            ml="8px">
+                                            {ammo.name.toUpperCase()}
+                                        </Text>
+                                    </Center>
+                                </HStack>
+                                <HStack mt='8px' fontSize='xs' justify='space-around'>
+                                    <VStack spacing='0'>
+                                        <Center bg='#232314' p='2px'>
+                                            DMG
+                                        </Center>
+                                        <Center bg='#4E4E4C' w='100%'>
+                                            {ammo.damage}
+                                        </Center>
+                                    </VStack>
+                                    <VStack spacing='0'>
+                                        <Center bg='#232314' p='2px'>
+                                            PEN VALUE
+                                        </Center>
+                                        <Center bg='#4E4E4C' w='100%'>
+                                            {ammo.penValue}
+                                        </Center>
+                                    </VStack>
+                                    <VStack spacing='0'>
+                                        <Center bg='#232314' p='2px'>
+                                            ARMOR DMG
+                                        </Center>
+                                        <Center bg='#4E4E4C' w='100%'>
+                                            {ammo.armorDamage}
+                                        </Center>
+                                    </VStack>
+                                    <VStack spacing='0'>
+                                        <Center bg='#232314' p='2px'>
+                                            FRAG %
+                                        </Center>
+                                        <Center bg='#4E4E4C' w='100%'>
+                                            {ammo.fragChange}
+                                        </Center>
+                                    </VStack>
+                                </HStack>
+                                <HStack mt='8px' fontSize='xs' justify='space-around'>
+                                    <VStack spacing='0' w='100%'>
+                                        <Center bg='#232314' w='100%' p='1px'>
+                                            C1
+                                        </Center>
+                                        <Center bg={getColor(ammo.class1)} color='black' w='100%'>
+                                            {ammo.class1}
+                                        </Center>
+                                    </VStack>
+                                    <VStack spacing='0' w='100%'>
+                                        <Center bg='#232314' w='100%' p='1px'>
+                                            C2
+                                        </Center>
+                                        <Center bg={getColor(ammo.class2)} color='black' w='100%'>
+                                            {ammo.class2}
+                                        </Center>
+                                    </VStack>
+                                    <VStack spacing='0' w='100%'>
+                                        <Center bg='#232314' w='100%' p='1px'>
+                                            C3
+                                        </Center>
+                                        <Center bg={getColor(ammo.class3)} color='black' w='100%'>
+                                            {ammo.class3}
+                                        </Center>
+                                    </VStack>
+                                    <VStack spacing='0' w='100%'>
+                                        <Center bg='#232314' w='100%' p='1px'>
+                                            C4
+                                        </Center>
+                                        <Center bg={getColor(ammo.class4)} color='black' w='100%'>
+                                            {ammo.class4}
+                                        </Center>
+                                    </VStack>
+                                    <VStack spacing='0' w='100%'>
+                                        <Center bg='#232314' w='100%' p='1px'>
+                                            C5
+                                        </Center>
+                                        <Center bg={getColor(ammo.class5)} color='black' w='100%'>
+                                            {ammo.class5}
+                                        </Center>
+                                    </VStack>
+                                    <VStack spacing='0' w='100%'>
+                                        <Center bg='#232314' w='100%' p='1px'>
+                                            C6
+                                        </Center>
+                                        <Center bg={getColor(ammo.class6)} color='black' w='100%'>
+                                            {ammo.class6}
+                                        </Center>
+                                    </VStack>
+                                </HStack>
+                            </Box>
+                        )
+                    })
+                }
+            </Flex>
+        </Box>
+    )
+}
+
+const DesktopView = ({ category, allAmmosForCategory }) => {
+    return (
+        <>
+            <Flex>
+                <Center bg='#333' h='64px'>
+                    <Text
+                        fontWeight='bold'
+                        minW='300px'
+                        fontSize='2xl'
+                        px='8px'
+                        style={{
+                            whiteSpace: 'nowrap'
+                        }}>
+                        {key}
+                    </Text>
+                </Center>
+                {
+                    headers.map(header => {
+                        return (
+                            <Center
+                                flex={header.toLowerCase().includes('class') ? '0.5' : '1'}
+                                bg='#272712'>
+                                <Text
+                                    fontWeight='semibold'
+                                    fontSize='xs'
+                                >
+                                    {header.toUpperCase()}
+                                </Text>
+                            </Center>
+                        )
+                    })
+                }
+            </Flex>
+            {
+                allAmmosForCategory.map(ammo => {
+                    let toolTipLabel = undefined
+
+                    if (ammo.note) {
+                        toolTipLabel = ammo.note
+                    } else if (ammo.secondNote) {
+                        toolTipLabel = ammo.secondNote
+                    } else if (ammo.note && ammo.secondNote) {
+                        toolTipLabel = `${ammo.note} ${ammo.secondNote}`
+                    }
+
+                    return (
+                        <>
+                            <Flex
+                                fontSize='xs'
+                                fontWeight='normal'
+                                bg='#585856'
+                            >
+                                <Flex minW="300px" bg='#454545' py='2px'>
+                                    <Center>
+                                        <Image
+                                            ml='8px'
+                                            boxSize='48px'
+                                            objectFit='cover'
+                                            src={`./images/${category}@${ammo.name}.png`}
+                                            alt={ammo.name}
+                                            fallbackSrc={`./images/fallback.png`}
+                                        />
+                                    </Center>
+                                    <Center>
+                                        <Text
+                                            fontSize='xs'
+                                            fontWeight='semibold'
+                                            ml="8px">
+                                            {ammo.name.toUpperCase()}
+                                        </Text>
+                                        {toolTipLabel &&
+                                            <Tooltip bg='#272712' label={toolTipLabel}>
+                                                <InfoOutlineIcon ml='8px' />
+                                            </Tooltip>
+                                        }
+                                    </Center>
+                                </Flex>
+                                <Center flex='1' >
+                                    <Text fontSize='md' color='white'>{ammo.damage}</Text>
+                                </Center>
+                                <Center flex='1' >
+                                    <Text fontSize='md' color='white'>{ammo.penValue}</Text>
+                                </Center>
+                                <Center flex='1' >
+                                    <Text fontSize='md' color='white'>{ammo.armorDamage}</Text>
+                                </Center>
+                                <Center flex='1'>
+                                    <Text fontSize='md' color='white'>{ammo.fragChange}</Text>
+                                </Center>
+                                <Center flex='0.5' bg={getColor(ammo.class1)}>
+                                    <Text fontSize='md' color='black'>{ammo.class1}</Text>
+                                </Center>
+                                <Center flex='0.5' bg={getColor(ammo.class2)}>
+                                    <Text fontSize='md' color='black'>{ammo.class2}</Text>
+                                </Center>
+                                <Center flex='0.5' bg={getColor(ammo.class3)}>
+                                    <Text fontSize='md' color='black'>{ammo.class3}</Text>
+                                </Center>
+                                <Center flex='0.5' bg={getColor(ammo.class4)}>
+                                    <Text fontSize='md' color='black'>{ammo.class4}</Text>
+                                </Center>
+                                <Center flex='0.5' bg={getColor(ammo.class5)}>
+                                    <Text fontSize='md' color='black'>{ammo.class5}</Text>
+                                </Center>
+                                <Center flex='0.5' bg={getColor(ammo.class6)}>
+                                    <Text fontSize='md' color='black'>{ammo.class6}</Text>
+                                </Center>
+                            </Flex>
+                            <Divider bg='red.500' />
+                        </>
+                    )
+                })
+            }
+        </>
+    )
+}
+
 const App = () => {
     const [componentState, setComponentState] = useState({
         currentSearch: '',
         results: {}
     });
+
+    const isMobile = useBreakpointValue({ base: true, md: false })
 
     useEffect(() => {
         getResults()
@@ -75,7 +329,7 @@ const App = () => {
                 <link rel="icon" href="/favicon.ico" />
             </Head>
 
-            <Center>
+            {/* <Center>
                 <Text
                     color='white'
                     fontWeight='bold'
@@ -84,15 +338,15 @@ const App = () => {
                 >
                     NoFoodAfterMidnight's Quick Reference Sheet
                 </Text>
-            </Center>
+            </Center> */}
 
-            <Center>
+            {/* <Center>
                 <Flex pt='24px' w='50%'>
                     <Legenda />
                 </Flex>
-            </Center>
+            </Center> */}
 
-            <Center py='64px'>
+            {/* <Center py='64px'>
                 <Input
                     w='50%'
                     bg="#fff"
@@ -109,10 +363,10 @@ const App = () => {
                         })
                     }}
                 />
-            </Center>
+            </Center> */}
             {
                 keysFilteredByWeaponName.map(key => {
-                    const allAmmosForKey = componentState.results[key]
+                    const allAmmosForCategory = componentState.results[key]
 
                     return (
                         <Box
@@ -123,115 +377,11 @@ const App = () => {
                             border="12px solid"
                             borderColor="#333"
                         >
-                            <Flex>
-                                <Center bg='#333' h='64px'>
-                                    <Text
-                                        fontWeight='bold'
-                                        minW='300px'
-                                        fontSize='2xl'
-                                        px='8px'
-                                        style={{
-                                            whiteSpace: 'nowrap'
-                                        }}>
-                                        {key}
-                                    </Text>
-                                </Center>
-                                {
-                                    headers.map(header => {
-                                        return (
-                                            <Center
-                                                flex={header.toLowerCase().includes('class') ? '0.5' : '1'}
-                                                bg='#272712'>
-                                                <Text
-                                                    fontWeight='semibold'
-                                                    fontSize='xs'
-                                                >
-                                                    {header.toUpperCase()}
-                                                </Text>
-                                            </Center>
-                                        )
-                                    })
-                                }
-                            </Flex>
                             {
-                                allAmmosForKey.map(ammo => {
-                                    let toolTipLabel = undefined
-
-                                    if (ammo.note) {
-                                        toolTipLabel = ammo.note
-                                    } else if (ammo.secondNote) {
-                                        toolTipLabel = ammo.secondNote
-                                    } else if (ammo.note && ammo.secondNote) {
-                                        toolTipLabel = `${ammo.note} ${ammo.secondNote}`
-                                    }
-
-                                    return (
-                                        <>
-                                            <Flex
-                                                fontSize='xs'
-                                                fontWeight='normal'
-                                                bg='#585856'
-                                            >
-                                                <Flex minW="300px" bg='#454545' py='2px'>
-                                                    <Center>
-                                                        <Image
-                                                            ml='8px'
-                                                            boxSize='48px'
-                                                            objectFit='cover'
-                                                            src={`./images/${key}@${ammo.name}.png`}
-                                                            alt={ammo.name}
-                                                            fallbackSrc={`./images/fallback.png`}
-                                                        />
-                                                    </Center>
-                                                    <Center>
-                                                        <Text
-                                                            fontSize='xs'
-                                                            fontWeight='semibold'
-                                                            ml="8px">
-                                                            {ammo.name.toUpperCase()}
-                                                        </Text>
-                                                        {toolTipLabel &&
-                                                            <Tooltip bg='#272712' label={toolTipLabel}>
-                                                                <InfoOutlineIcon ml='8px' />
-                                                            </Tooltip>
-                                                        }
-                                                    </Center>
-                                                </Flex>
-                                                <Center flex='1' >
-                                                    <Text fontSize='md' color='white'>{ammo.damage}</Text>
-                                                </Center>
-                                                <Center flex='1' >
-                                                    <Text fontSize='md' color='white'>{ammo.penValue}</Text>
-                                                </Center>
-                                                <Center flex='1' >
-                                                    <Text fontSize='md' color='white'>{ammo.armorDamage}</Text>
-                                                </Center>
-                                                <Center flex='1'>
-                                                    <Text fontSize='md' color='white'>{ammo.fragChange}</Text>
-                                                </Center>
-                                                <Center flex='0.5' bg={getColor(ammo.class1)}>
-                                                    <Text fontSize='md' color='black'>{ammo.class1}</Text>
-                                                </Center>
-                                                <Center flex='0.5' bg={getColor(ammo.class2)}>
-                                                    <Text fontSize='md' color='black'>{ammo.class2}</Text>
-                                                </Center>
-                                                <Center flex='0.5' bg={getColor(ammo.class3)}>
-                                                    <Text fontSize='md' color='black'>{ammo.class3}</Text>
-                                                </Center>
-                                                <Center flex='0.5' bg={getColor(ammo.class4)}>
-                                                    <Text fontSize='md' color='black'>{ammo.class4}</Text>
-                                                </Center>
-                                                <Center flex='0.5' bg={getColor(ammo.class5)}>
-                                                    <Text fontSize='md' color='black'>{ammo.class5}</Text>
-                                                </Center>
-                                                <Center flex='0.5' bg={getColor(ammo.class6)}>
-                                                    <Text fontSize='md' color='black'>{ammo.class6}</Text>
-                                                </Center>
-                                            </Flex>
-                                            <Divider bg='red.500' />
-                                        </>
-                                    )
-                                })
+                                isMobile ?
+                                    <MobileView category={key} allAmmosForCategory={allAmmosForCategory} />
+                                    :
+                                    <DesktopView category={key} allAmmosForCategory={allAmmosForCategory} />
                             }
                         </Box>
                     )

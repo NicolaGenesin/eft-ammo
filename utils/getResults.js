@@ -1,5 +1,5 @@
 const getResults = async () => {
-  const results = fetch("http://localhost:3005/", {
+  const results = fetch("/api/data", {
     "method": "GET",
   });
 

@@ -1,8 +1,8 @@
 const headers = [
     'Damage',
-    'Penetration Value',
-    'Armor Damage (%)',
-    'Frag. Chance',
+    'Pen Value',
+    'Armor Dmg',
+    'Frag %',
     'Class 1',
     'Class 2',
     'Class 3',
