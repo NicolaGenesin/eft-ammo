@@ -58,32 +58,32 @@ const MobileRow = ({ category, allAmmosForCategory }) => {
                                         </Center>
                                     </HStack>
                                     <HStack mt='8px' fontSize='xs' justify='space-around'>
-                                        <VStack spacing='0'>
-                                            <Center bg='#232314' p='2px'>
+                                        <VStack spacing='0' w='100%'>
+                                            <Center bg='#232314' p='2px' w='100%'>
                                                 DMG
                                             </Center>
                                             <Center bg='#4E4E4C' w='100%'>
                                                 {ammo.damage}
                                             </Center>
                                         </VStack>
-                                        <VStack spacing='0'>
-                                            <Center bg='#232314' p='2px'>
+                                        <VStack spacing='0' w='100%'>
+                                            <Center bg='#232314' p='2px' w='100%'>
                                                 PEN VALUE
                                             </Center>
                                             <Center bg='#4E4E4C' w='100%'>
                                                 {ammo.penValue}
                                             </Center>
                                         </VStack>
-                                        <VStack spacing='0'>
-                                            <Center bg='#232314' p='2px'>
+                                        <VStack spacing='0' w='100%'>
+                                            <Center bg='#232314' p='2px' w='100%'>
                                                 ARMOR DMG
                                             </Center>
                                             <Center bg='#4E4E4C' w='100%'>
                                                 {ammo.armorDamage}
                                             </Center>
                                         </VStack>
-                                        <VStack spacing='0'>
-                                            <Center bg='#232314' p='2px'>
+                                        <VStack spacing='0' w='100%'>
+                                            <Center bg='#232314' p='2px' w='100%'>
                                                 FRAG %
                                             </Center>
                                             <Center bg='#4E4E4C' w='100%'>

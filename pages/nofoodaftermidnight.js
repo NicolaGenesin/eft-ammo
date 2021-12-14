@@ -1,11 +1,14 @@
 import React, { useState, useEffect } from 'react';
 import Head from "next/head";
-import { useBreakpointValue } from '@chakra-ui/react'
+import { useBreakpointValue, VStack } from '@chakra-ui/react'
 import { Accordion, AccordionItem, Flex, Center, Text, Box, Input, } from '@chakra-ui/react'
 import getResults from '../utils/getResults';
 import Legenda from '../components/Legenda';
 import MobileRow from '../components/MobileRow';
 import DesktopRow from '../components/DesktopRow';
+import { SocialButton } from "../components/SmallFooterWithSocial";
+import { FaTwitch } from 'react-icons/fa';
+
 
 const App = () => {
     const [componentState, setComponentState] = useState({
@@ -77,21 +80,31 @@ const App = () => {
                 <link rel="icon" href="/favicon.ico" />
             </Head>
 
-            <Center>
-                <Text
-                    textAlign='center'
-                    color='white'
-                    fontWeight='bold'
-                    fontSize={['xl', '4xl']}
-                    my='24px'
-                >
-                    NoFoodAfterMidnight's Quick Reference Sheet
-                </Text>
+            <Center mb='24px'>
+                <VStack>
+                    <Text
+                        textAlign='center'
+                        color='white'
+                        fontWeight='bold'
+                        fontSize={['xl', '3xl']}
+                        mt='24px'
+                        as='h1'
+                    >
+                        NoFoodAfterMidnight's Quick Reference Sheet
+                    </Text>
+                    <SocialButton
+                        size={16}
+                        label={'Twitch'}
+                        href={'https://www.twitch.tv/nofoodaftermidnight/'}
+                    >
+                        <FaTwitch size={32} />
+                    </SocialButton>
+                </VStack>
             </Center>
 
             <Center>
                 <Flex pt='24px'>
-                    <Legenda />
+                    <Legenda isDesktop={!isMobile} />
                 </Flex>
             </Center>
 
@@ -146,7 +159,7 @@ const App = () => {
             <style jsx global>{`
                 html,
                 body {
-                    background-image: url("./pattern.jpeg") !important;
+                    background: #222 !important;
 
                     height: 100%;
                     width: 100%;
