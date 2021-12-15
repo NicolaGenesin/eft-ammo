@@ -24,6 +24,9 @@ const getResults = async () => {
 
         if (rawData[0] !== '') {
             currentKey = rawData[0]
+
+            console.log(currentKey)
+
             results[currentKey] = [row._rawData]
         } else {
             results[currentKey].push(row._rawData)
@@ -34,8 +37,6 @@ const getResults = async () => {
 }
 
 const handler = async (req, res) => {
-    console.log('Endpoint called')
-
     res.status(200).json(await getResults())
 }
 
