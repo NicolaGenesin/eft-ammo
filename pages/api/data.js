@@ -37,6 +37,7 @@ const getResults = async () => {
 }
 
 const handler = async (req, res) => {
+    res.setHeader('Cache-Control', 's-maxage=60, stale-while-revalidate-120');
     res.status(200).json(await getResults())
 }
 
