@@ -36,9 +36,15 @@ const getResults = async () => {
     return results
 }
 
+let results = {}
+
+getResults().then(x => {
+    results = x
+})
+
 const handler = async (req, res) => {
     res.setHeader('Cache-Control', 's-maxage=600, stale-while-revalidate-1200')
-    res.status(200).json(await getResults())
+    res.status(200).json(results)
 }
 
 export default handler
