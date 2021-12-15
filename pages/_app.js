@@ -1,21 +1,20 @@
 import * as React from "react";
 import { ChakraProvider, extendTheme } from "@chakra-ui/react";
-import "@fontsource/montserrat"
+import "@fontsource/montserrat";
 import { SmallFooterWithSocial } from "../components/SmallFooterWithSocial";
 
-
 const theme = extendTheme({
-    fonts: {
-        heading: 'Montserrat',
-        body: 'Montserrat',
-    },
+  fonts: {
+    heading: "Montserrat",
+    body: "Montserrat",
+  },
 });
 
 const App = ({ Component, pageProps }) => (
-    <ChakraProvider theme={theme}>
-        <Component {...pageProps} />
-        <SmallFooterWithSocial />
-    </ChakraProvider>
+  <ChakraProvider theme={theme}>
+    <Component {...pageProps} />
+    <SmallFooterWithSocial />
+  </ChakraProvider>
 );
 
 export default App;

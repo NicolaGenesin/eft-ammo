@@ -1,9 +1,9 @@
 const getResults = async () => {
   const results = fetch("/api/data", {
-    "method": "GET",
+    method: "GET",
   });
 
-  return results
-}
+  return results;
+};
 
-export default getResults
+export default getResults;
