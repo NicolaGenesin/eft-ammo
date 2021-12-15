@@ -1,6 +1,6 @@
 import * as React from "react";
 import { ChakraProvider, extendTheme } from "@chakra-ui/react";
-import '@fontsource/Montserrat'
+import "@fontsource/montserrat"
 import { SmallFooterWithSocial } from "../components/SmallFooterWithSocial";
 
 
