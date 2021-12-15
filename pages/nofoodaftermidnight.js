@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import Head from "next/head";
-import { useBreakpointValue, VStack } from '@chakra-ui/react'
+import { HStack, useBreakpointValue, VStack } from '@chakra-ui/react'
 import { Accordion, AccordionItem, Flex, Center, Text, Box, Input, } from '@chakra-ui/react'
 import getResults from '../utils/getResults';
 import Legenda from '../components/Legenda';
@@ -92,13 +92,27 @@ const App = () => {
                     >
                         NoFoodAfterMidnight's Quick Reference Sheet
                     </Text>
-                    <SocialButton
-                        size={16}
-                        label={'Twitch'}
-                        href={'https://www.twitch.tv/nofoodaftermidnight/'}
+                    <HStack mt='24px'
                     >
-                        <FaTwitch size={32} />
-                    </SocialButton>
+                        <Center>
+                            <Text
+                                textAlign='center'
+                                color='white'
+                                fontWeight='bold'
+                                fontSize={['lg', '2xl']}
+                                as='h1'
+                            >
+                                <a href="https://www.twitch.tv/nofoodaftermidnight/">Watch his stream here</a>
+                            </Text>
+                        </Center>
+                        <SocialButton
+                            size={16}
+                            label={'Twitch'}
+                            href={'https://www.twitch.tv/nofoodaftermidnight/'}
+                        >
+                            <FaTwitch size={32} />
+                        </SocialButton>
+                    </HStack>
                 </VStack>
             </Center>
 
