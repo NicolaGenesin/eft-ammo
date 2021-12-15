@@ -25,8 +25,6 @@ const getResults = async () => {
         if (rawData[0] !== '') {
             currentKey = rawData[0]
 
-            console.log(currentKey)
-
             results[currentKey] = [row._rawData]
         } else {
             results[currentKey].push(row._rawData)
@@ -37,6 +35,8 @@ const getResults = async () => {
 }
 
 const handler = async (req, res) => {
+    console.log('[API] api/data GET - called')
+
     res.setHeader('Cache-Control', 's-maxage=900, stale-while-revalidate');
     res.status(200).json(await getResults())
 }
