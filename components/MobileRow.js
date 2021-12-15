@@ -57,7 +57,9 @@ const MobileRow = ({ category, allAmmosForCategory }) => {
                                             </Text>
                                         </Center>
                                     </HStack>
-                                    <HStack mt='8px' fontSize='xs' justify='space-around'>
+                                    <HStack mt='8px' fontSize='xs' justify='space-around' style={{
+                                        whiteSpace: 'nowrap'
+                                    }}>
                                         <VStack spacing='0' w='100%'>
                                             <Center bg='#232314' p='2px' w='100%'>
                                                 DMG
@@ -68,7 +70,7 @@ const MobileRow = ({ category, allAmmosForCategory }) => {
                                         </VStack>
                                         <VStack spacing='0' w='100%'>
                                             <Center bg='#232314' p='2px' w='100%'>
-                                                PEN VALUE
+                                                PEN VAL
                                             </Center>
                                             <Center bg='#4E4E4C' w='100%'>
                                                 {ammo.penValue}
