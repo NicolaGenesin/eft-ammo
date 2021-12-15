@@ -1,10 +1,11 @@
 const { GoogleSpreadsheet } = require('google-spreadsheet');
-const creds = require('../../config/private-key.json');
-
-const doc = new GoogleSpreadsheet('1jjWcIue0_PCsbLQAiL5VrIulPK8SzM5jjiCMx9zUuvE');
+const doc = new GoogleSpreadsheet(process.env.NEXT_TARGET_SHEET);
 
 const getResults = async () => {
-    await doc.useServiceAccountAuth(creds);
+    await doc.useServiceAccountAuth({
+        client_email: process.env.NEXT_GOOGLE_CLIENT_EMAIL,
+        private_key: process.env.NEXT_GOOGLE_PRIVATE_KEY,
+    });
     await doc.loadInfo(); // loads document properties and worksheets
 
     const sheet = doc.sheetsByIndex[0]; // or use doc.sheetsById[id] or doc.sheetsByTitle[title]
