@@ -16,47 +16,17 @@ import MobileRow from "../components/MobileRow";
 import DesktopRow from "../components/DesktopRow";
 import { SocialButton } from "../components/SmallFooterWithSocial";
 import { FaTwitch } from "react-icons/fa";
+import fallback from "../utils/fallback";
 
-const App = () => {
+const App = ({ results, isFallback }) => {
   const [componentState, setComponentState] = useState({
     currentSearch: "",
-    results: {},
+    results,
   });
 
+  console.log("isFallback", isFallback);
+
   const isMobile = useBreakpointValue({ base: true, md: false });
-
-  useEffect(() => {
-    getResults()
-      .then((response) => response.json())
-      .then((json) => {
-        const results = {};
-
-        Object.keys(json).map((key) => {
-          results[key] = json[key].map((ammoSpecs) => {
-            return {
-              name: ammoSpecs[1],
-              damage: ammoSpecs[3],
-              penValue: ammoSpecs[4],
-              armorDamage: ammoSpecs[5],
-              fragChange: ammoSpecs[6],
-              class1: ammoSpecs[7],
-              class2: ammoSpecs[8],
-              class3: ammoSpecs[9],
-              class4: ammoSpecs[10],
-              class5: ammoSpecs[11],
-              class6: ammoSpecs[12],
-              note: ammoSpecs[13],
-              secondNote: ammoSpecs[14],
-            };
-          });
-        });
-
-        setComponentState({
-          results,
-        });
-      });
-  }, []);
-
   const keys = Object.keys(componentState.results);
   let keysFilteredByWeaponName = keys;
 
@@ -202,5 +172,31 @@ const App = () => {
     </Box>
   );
 };
+
+export async function getStaticProps() {
+  let results;
+  let isFallback = false;
+
+  try {
+    results = await (await getResults()).json();
+  } catch (error) {
+    results = fallback;
+    isFallback = true;
+
+    console.log("\n\n\n******************************");
+    console.log(
+      "\nWarning - Issue with API or not reachable, using fallback\n"
+    );
+    console.log("******************************\n\n\n");
+  }
+
+  return {
+    props: {
+      results,
+      isFallback,
+    },
+    revalidate: 900,
+  };
+}
 
 export default App;

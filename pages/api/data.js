@@ -50,7 +50,29 @@ const handler = async (req, res) => {
     results = fallback;
   }
 
-  res.status(200).json(results);
+  const json = {};
+
+  Object.keys(results).map((key) => {
+    json[key] = results[key].map((ammoSpecs) => {
+      return {
+        name: ammoSpecs[1],
+        damage: ammoSpecs[3],
+        penValue: ammoSpecs[4],
+        armorDamage: ammoSpecs[5],
+        fragChange: ammoSpecs[6],
+        class1: ammoSpecs[7],
+        class2: ammoSpecs[8],
+        class3: ammoSpecs[9],
+        class4: ammoSpecs[10],
+        class5: ammoSpecs[11],
+        class6: ammoSpecs[12],
+        note: ammoSpecs[13],
+        secondNote: ammoSpecs[14],
+      };
+    });
+  });
+
+  res.status(200).json(json);
 };
 
 export default handler;
