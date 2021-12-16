@@ -35,9 +35,9 @@ const MobileRow = ({ category, allAmmosForCategory }) => {
       </AccordionButton>
       <AccordionPanel pt={4} px={0}>
         <Flex color="white" direction="column">
-          {allAmmosForCategory.map((ammo) => {
+          {allAmmosForCategory.map((ammo, index) => {
             return (
-              <Box bg="#3C3C3C" mb="12px" p="8px">
+              <Box key={`allAmmos-${index}`} bg="#3C3C3C" mb="12px" p="8px">
                 <HStack>
                   <Center>
                     <Image

@@ -20,11 +20,12 @@ const DesktopRow = ({ category, allAmmosForCategory }) => {
             {category}
           </Text>
         </Center>
-        {headers.map((header) => {
+        {headers.map((header, index) => {
           return (
             <Center
               flex={header.toLowerCase().includes("class") ? "0.5" : "1"}
               bg="#272712"
+              key={`header-${index}`}
             >
               <Text fontWeight="semibold" fontSize="xs">
                 {header.toUpperCase()}
@@ -33,7 +34,7 @@ const DesktopRow = ({ category, allAmmosForCategory }) => {
           );
         })}
       </Flex>
-      {allAmmosForCategory.map((ammo) => {
+      {allAmmosForCategory.map((ammo, index) => {
         let toolTipLabel = undefined;
 
         if (ammo.note) {
@@ -45,7 +46,7 @@ const DesktopRow = ({ category, allAmmosForCategory }) => {
         }
 
         return (
-          <>
+          <div key={`ammo-${index}`}>
             <Flex fontSize="xs" fontWeight="normal" bg="#585856">
               <Flex minW="300px" bg="#454545" py="2px">
                 <Center>
@@ -121,7 +122,7 @@ const DesktopRow = ({ category, allAmmosForCategory }) => {
               </Center>
             </Flex>
             <Divider bg="red.500" />
-          </>
+          </div>
         );
       })}
     </>

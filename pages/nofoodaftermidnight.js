@@ -124,11 +124,12 @@ const App = ({ results, isFallback }) => {
         />
       </Center>
       <Accordion defaultIndex={[0]} allowMultiple>
-        {keysFilteredByWeaponName.map((key) => {
+        {keysFilteredByWeaponName.map((key, index) => {
           const allAmmosForCategory = componentState.results[key];
 
           return (
             <Box
+              key={`allAmmos-${index}`}
               color="white"
               mx="24px"
               mb="24px"
