@@ -1,4 +1,5 @@
 const { GoogleSpreadsheet } = require("google-spreadsheet");
+const fallback = require("./fallback").default;
 const doc = new GoogleSpreadsheet(process.env.NEXT_TARGET_SHEET);
 
 const getResults = async () => {
@@ -38,7 +39,18 @@ const handler = async (req, res) => {
   console.log("[API] api/data GET - called");
 
   res.setHeader("Cache-Control", "s-maxage=900, stale-while-revalidate");
-  res.status(200).json(await getResults());
+
+  let results;
+
+  try {
+    results = await getResults();
+  } catch (error) {
+    console.log("[API] api/data GET - WARNING - Using fallback");
+
+    results = fallback;
+  }
+
+  res.status(200).json(results);
 };
 
 export default handler;
