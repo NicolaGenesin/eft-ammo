@@ -17,11 +17,13 @@ import DesktopRow from "../components/DesktopRow";
 import { SocialButton } from "../components/SmallFooterWithSocial";
 import { FaTwitch } from "react-icons/fa";
 import fallback from "../utils/fallback";
+import { TwitchEmbed } from "react-twitch-embed";
 
 const App = ({ results, isFallback }) => {
   const [componentState, setComponentState] = useState({
     currentSearch: "",
     results,
+    embed: null,
   });
 
   console.log("isFallback", isFallback);
@@ -53,6 +55,24 @@ const App = ({ results, isFallback }) => {
       });
     });
   }
+
+  useEffect(() => {
+    setComponentState({
+      ...componentState,
+      embed: (
+        <TwitchEmbed
+          style={{ width: "100%", height: "100%" }}
+          channel={"nofoodaftermidnight"}
+          id={"nofoodaftermidnight"}
+          key={"nofoodaftermidnight"}
+          theme="dark"
+          autoplay
+          withChat={false}
+          muted={true}
+        />
+      ),
+    });
+  }, []);
 
   return (
     <Box pt="24px">
@@ -154,6 +174,28 @@ const App = ({ results, isFallback }) => {
           );
         })}
       </Accordion>
+      <Center>
+        <Box
+          w={["375px", "450px", "600px"]}
+          h={["300px", "400px", "400px"]}
+          pt="48px"
+          pb="64px"
+        >
+          <Text
+            textAlign="center"
+            color="white"
+            fontWeight="bold"
+            fontSize={["lg", "2xl"]}
+            as="h2"
+            mb="8px"
+          >
+            <a href="https://www.twitch.tv/nofoodaftermidnight/">
+              Watch NoFoodAfterMidnight's stream here:
+            </a>
+          </Text>
+          {componentState.embed}
+        </Box>
+      </Center>
       <style jsx global>{`
         html,
         body {
