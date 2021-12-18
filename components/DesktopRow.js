@@ -3,11 +3,21 @@ import { InfoOutlineIcon } from "@chakra-ui/icons";
 import getColor from "../utils/getColor";
 import headers from "../utils/headers";
 
-const DesktopRow = ({ category, allAmmosForCategory }) => {
+const DesktopRow = ({ category, allAmmosForCategory, minimalView }) => {
+  let maxCellWidth;
+  let maxCellHeight = "64px";
+
+  if (minimalView) {
+    maxCellWidth = "110px";
+    maxCellHeight = "32px";
+  }
+
+  console.log(maxCellWidth);
+
   return (
     <>
       <Flex>
-        <Center bg="#333" h="64px">
+        <Center bg="#333" h={maxCellHeight}>
           <Text
             fontWeight="bold"
             minW="300px"
@@ -26,6 +36,7 @@ const DesktopRow = ({ category, allAmmosForCategory }) => {
               flex={header.toLowerCase().includes("class") ? "0.5" : "1"}
               bg="#272712"
               key={`header-${index}`}
+              maxW={maxCellWidth}
             >
               <Text fontWeight="semibold" fontSize="xs">
                 {header.toUpperCase()}
@@ -52,7 +63,7 @@ const DesktopRow = ({ category, allAmmosForCategory }) => {
                 <Center>
                   <Image
                     ml="8px"
-                    boxSize="48px"
+                    boxSize={maxCellHeight}
                     objectFit="cover"
                     src={`./images/${category}@${ammo.name}.png`}
                     alt={ammo.name}
@@ -70,52 +81,52 @@ const DesktopRow = ({ category, allAmmosForCategory }) => {
                   )}
                 </Center>
               </Flex>
-              <Center flex="1">
+              <Center flex="1" maxW={maxCellWidth}>
                 <Text fontSize="md" color="white">
                   {ammo.damage}
                 </Text>
               </Center>
-              <Center flex="1">
+              <Center flex="1" maxW={maxCellWidth}>
                 <Text fontSize="md" color="white">
                   {ammo.penValue}
                 </Text>
               </Center>
-              <Center flex="1">
+              <Center flex="1" maxW={maxCellWidth}>
                 <Text fontSize="md" color="white">
                   {ammo.armorDamage}
                 </Text>
               </Center>
-              <Center flex="1">
+              <Center flex="1" maxW={maxCellWidth}>
                 <Text fontSize="md" color="white">
                   {ammo.fragChange}
                 </Text>
               </Center>
-              <Center flex="0.5" bg={getColor(ammo.class1)}>
+              <Center flex="0.5" bg={getColor(ammo.class1)} maxW={maxCellWidth}>
                 <Text fontSize="md" color="black">
                   {ammo.class1}
                 </Text>
               </Center>
-              <Center flex="0.5" bg={getColor(ammo.class2)}>
+              <Center flex="0.5" bg={getColor(ammo.class2)} maxW={maxCellWidth}>
                 <Text fontSize="md" color="black">
                   {ammo.class2}
                 </Text>
               </Center>
-              <Center flex="0.5" bg={getColor(ammo.class3)}>
+              <Center flex="0.5" bg={getColor(ammo.class3)} maxW={maxCellWidth}>
                 <Text fontSize="md" color="black">
                   {ammo.class3}
                 </Text>
               </Center>
-              <Center flex="0.5" bg={getColor(ammo.class4)}>
+              <Center flex="0.5" bg={getColor(ammo.class4)} maxW={maxCellWidth}>
                 <Text fontSize="md" color="black">
                   {ammo.class4}
                 </Text>
               </Center>
-              <Center flex="0.5" bg={getColor(ammo.class5)}>
+              <Center flex="0.5" bg={getColor(ammo.class5)} maxW={maxCellWidth}>
                 <Text fontSize="md" color="black">
                   {ammo.class5}
                 </Text>
               </Center>
-              <Center flex="0.5" bg={getColor(ammo.class6)}>
+              <Center flex="0.5" bg={getColor(ammo.class6)} maxW={maxCellWidth}>
                 <Text fontSize="md" color="black">
                   {ammo.class6}
                 </Text>

@@ -9,6 +9,7 @@ import {
   Text,
   Box,
   Input,
+  Checkbox,
 } from "@chakra-ui/react";
 import getResults from "../utils/getResults";
 import Legenda from "../components/Legenda";
@@ -22,6 +23,7 @@ const App = ({ results, isFallback }) => {
   const [componentState, setComponentState] = useState({
     currentSearch: "",
     results,
+    minimalView: false,
   });
 
   console.log("isFallback", isFallback);
@@ -123,6 +125,21 @@ const App = ({ results, isFallback }) => {
           }}
         />
       </Center>
+      {!isMobile && (
+        <Checkbox
+          m="24px"
+          fontWeight="bold"
+          onChange={(e) =>
+            setComponentState({
+              ...componentState,
+              minimalView: !componentState.minimalView,
+            })
+          }
+          color={"white"}
+        >
+          Minimal Table View
+        </Checkbox>
+      )}
       <Accordion defaultIndex={[0]} allowMultiple>
         {keysFilteredByWeaponName.map((key, index) => {
           const allAmmosForCategory = componentState.results[key];
@@ -148,6 +165,7 @@ const App = ({ results, isFallback }) => {
                 <DesktopRow
                   category={key}
                   allAmmosForCategory={allAmmosForCategory}
+                  minimalView={componentState.minimalView}
                 />
               )}
             </Box>
