@@ -6,7 +6,9 @@ import {
   Text,
   useColorModeValue,
   VisuallyHidden,
+  Link,
 } from "@chakra-ui/react";
+import { ExternalLinkIcon } from "@chakra-ui/icons";
 import { FaTwitter, FaTwitch } from "react-icons/fa";
 
 const SocialButton = ({ children, label, href, size }) => {
@@ -45,6 +47,10 @@ const SmallFooterWithSocial = () => {
       >
         <Text>
           © {new Date().getFullYear()} NoFoodAfterMidnight - All rights reserved
+          -{" "}
+          <Link href="https://www.twitch.tv/filodreamz" color="teal.200">
+            Made with ❤️ by filodreamz <ExternalLinkIcon mx="2px" />
+          </Link>
         </Text>
         <Stack direction={"row"} spacing={6}>
           <SocialButton label={"Twitter"} href={"https://twitter.com/food_eft"}>
