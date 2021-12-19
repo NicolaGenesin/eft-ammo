@@ -36,6 +36,14 @@ const MobileRow = ({ category, allAmmosForCategory }) => {
       <AccordionPanel pt={4} px={0}>
         <Flex color="white" direction="column">
           {allAmmosForCategory.map((ammo, index) => {
+            let src = `./images/${category}@${ammo.name}.png`;
+
+            if (ammo.name.includes("Poleva-6u")) {
+              // TODO real spaghetti, fix this
+
+              src = `./images/${category}@Poleva-6.png`;
+            }
+
             return (
               <Box key={`allAmmos-${index}`} bg="#3C3C3C" mb="12px" p="8px">
                 <HStack>
@@ -43,7 +51,7 @@ const MobileRow = ({ category, allAmmosForCategory }) => {
                     <Image
                       boxSize="48px"
                       objectFit="cover"
-                      src={`./images/${category}@${ammo.name}.png`}
+                      src={src}
                       alt={ammo.name}
                       fallbackSrc={`./images/fallback.png`}
                     />

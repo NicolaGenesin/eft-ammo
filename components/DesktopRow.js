@@ -53,6 +53,14 @@ const DesktopRow = ({ category, allAmmosForCategory, minimalView }) => {
           toolTipLabel = `${ammo.note} ${ammo.secondNote}`;
         }
 
+        let src = `./images/${category}@${ammo.name}.png`;
+
+        if (ammo.name.includes("Poleva-6u")) {
+          // TODO real spaghetti, fix this
+
+          src = `./images/${category}@Poleva-6.png`;
+        }
+
         return (
           <div key={`ammo-${index}`}>
             <Flex fontSize="xs" fontWeight="normal" bg="#585856">
@@ -62,7 +70,7 @@ const DesktopRow = ({ category, allAmmosForCategory, minimalView }) => {
                     ml="8px"
                     boxSize={maxCellHeight}
                     objectFit="cover"
-                    src={`./images/${category}@${ammo.name}.png`}
+                    src={src}
                     alt={ammo.name}
                     fallbackSrc={`./images/fallback.png`}
                   />
