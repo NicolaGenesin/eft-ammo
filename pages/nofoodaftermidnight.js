@@ -187,8 +187,8 @@ const App = ({ results, isFallback }) => {
           _placeholder={{ color: "#333", textAlign: "center" }}
           onChange={(e) => {
             setComponentState({
+              ...componentState,
               currentSearch: e.target.value,
-              results: componentState.results,
             });
           }}
         />
