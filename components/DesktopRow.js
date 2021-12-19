@@ -4,11 +4,9 @@ import getColor from "../utils/getColor";
 import headers from "../utils/headers";
 
 const DesktopRow = ({ category, allAmmosForCategory, minimalView }) => {
-  let maxCellWidth;
   let maxCellHeight = "48px";
 
   if (minimalView) {
-    maxCellWidth = "110px";
     maxCellHeight = "28px";
   }
 
