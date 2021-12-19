@@ -23,7 +23,7 @@ const App = ({ results, isFallback }) => {
   const [componentState, setComponentState] = useState({
     currentSearch: "",
     results,
-    minimalView: false,
+    minimalView: true,
   });
 
   console.log("isFallback", isFallback);
@@ -55,6 +55,74 @@ const App = ({ results, isFallback }) => {
       });
     });
   }
+
+  const Mobile = () => (
+    <>
+      <Accordion textAlign="center" defaultIndex={[0]} allowMultiple>
+        {keysFilteredByWeaponName.map((key, index) => {
+          const allAmmosForCategory = componentState.results[key];
+
+          return (
+            <Box
+              key={`allAmmos-${index}`}
+              color="white"
+              mx="24px"
+              mb="24px"
+              rounded="sm"
+              border="12px solid"
+              borderColor="#333"
+              bg="#333"
+            >
+              <AccordionItem>
+                <MobileRow
+                  category={key}
+                  allAmmosForCategory={allAmmosForCategory}
+                />
+              </AccordionItem>
+            </Box>
+          );
+        })}
+      </Accordion>
+    </>
+  );
+
+  const Desktop = () => (
+    <>
+      <Center>
+        <VStack
+          w={
+            componentState.minimalView
+              ? ["100%", "100%", "100%", "100%", "85%", "75%"]
+              : "100%"
+          }
+        >
+          {keysFilteredByWeaponName.map((key, index) => {
+            const allAmmosForCategory = componentState.results[key];
+
+            return (
+              <Box
+                key={`allAmmos-${index}`}
+                color="white"
+                mx="24px"
+                mb="24px"
+                rounded="sm"
+                border="12px solid"
+                borderColor="#333"
+                bg="#333"
+                w="100%"
+              >
+                <DesktopRow
+                  category={key}
+                  allAmmosForCategory={allAmmosForCategory}
+                  minimalView={componentState.minimalView}
+                />
+              </Box>
+            );
+          })}
+        </VStack>
+      </Center>
+    </>
+  );
 
   return (
     <Box pt="24px">
@@ -126,52 +194,25 @@ const App = ({ results, isFallback }) => {
         />
       </Center>
       {!isMobile && (
-        <Checkbox
-          m="24px"
-          fontWeight="bold"
-          onChange={(e) =>
-            setComponentState({
-              ...componentState,
-              minimalView: !componentState.minimalView,
-            })
-          }
-          color={"white"}
-        >
-          Minimal Table View
-        </Checkbox>
+        <Center>
+          <Checkbox
+            m="24px"
+            fontWeight="bold"
+            size="sm"
+            onChange={(e) =>
+              setComponentState({
+                ...componentState,
+                minimalView: !componentState.minimalView,
+              })
+            }
+            color={"white"}
+            isChecked={componentState.minimalView}
+          >
+            Minimal Table View
+          </Checkbox>
+        </Center>
       )}
-      <Accordion defaultIndex={[0]} allowMultiple>
-        {keysFilteredByWeaponName.map((key, index) => {
-          const allAmmosForCategory = componentState.results[key];
-
-          return (
-            <Box
-              key={`allAmmos-${index}`}
-              color="white"
-              mx="24px"
-              mb="24px"
-              rounded="sm"
-              border="12px solid"
-              borderColor="#333"
-            >
-              {isMobile ? (
-                <AccordionItem>
-                  <MobileRow
-                    category={key}
-                    allAmmosForCategory={allAmmosForCategory}
-                  />
-                </AccordionItem>
-              ) : (
-                <DesktopRow
-                  category={key}
-                  allAmmosForCategory={allAmmosForCategory}
-                  minimalView={componentState.minimalView}
-                />
-              )}
-            </Box>
-          );
-        })}
-      </Accordion>
+      {isMobile ? <Mobile /> : <Desktop />}
       <style jsx global>{`
         html,
         body {

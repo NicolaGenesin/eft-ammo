@@ -5,24 +5,24 @@ import headers from "../utils/headers";
 
 const DesktopRow = ({ category, allAmmosForCategory, minimalView }) => {
   let maxCellWidth;
-  let maxCellHeight = "64px";
+  let maxCellHeight = "48px";
 
   if (minimalView) {
     maxCellWidth = "110px";
-    maxCellHeight = "32px";
+    maxCellHeight = "28px";
   }
-
-  console.log(maxCellWidth);
 
   return (
     <>
       <Flex>
         <Center bg="#333" h={maxCellHeight}>
           <Text
+            textAlign="left"
             fontWeight="bold"
             minW="300px"
             fontSize="2xl"
             px="8px"
+            pb="8px"
             style={{
               whiteSpace: "nowrap",
             }}
@@ -36,9 +36,8 @@ const DesktopRow = ({ category, allAmmosForCategory, minimalView }) => {
               flex={header.toLowerCase().includes("class") ? "0.5" : "1"}
               bg="#272712"
               key={`header-${index}`}
-              maxW={maxCellWidth}
             >
-              <Text fontWeight="semibold" fontSize="xs">
+              <Text fontWeight="semibold" fontSize="xs" textAlign="center">
                 {header.toUpperCase()}
               </Text>
             </Center>
@@ -81,58 +80,58 @@ const DesktopRow = ({ category, allAmmosForCategory, minimalView }) => {
                   )}
                 </Center>
               </Flex>
-              <Center flex="1" maxW={maxCellWidth}>
+              <Center flex="1">
                 <Text fontSize="md" color="white">
                   {ammo.damage}
                 </Text>
               </Center>
-              <Center flex="1" maxW={maxCellWidth}>
+              <Center flex="1">
                 <Text fontSize="md" color="white">
                   {ammo.penValue}
                 </Text>
               </Center>
-              <Center flex="1" maxW={maxCellWidth}>
+              <Center flex="1">
                 <Text fontSize="md" color="white">
                   {ammo.armorDamage}
                 </Text>
               </Center>
-              <Center flex="1" maxW={maxCellWidth}>
+              <Center flex="1">
                 <Text fontSize="md" color="white">
                   {ammo.fragChange}
                 </Text>
               </Center>
-              <Center flex="0.5" bg={getColor(ammo.class1)} maxW={maxCellWidth}>
+              <Center flex="0.5" bg={getColor(ammo.class1)}>
                 <Text fontSize="md" color="black">
                   {ammo.class1}
                 </Text>
               </Center>
-              <Center flex="0.5" bg={getColor(ammo.class2)} maxW={maxCellWidth}>
+              <Center flex="0.5" bg={getColor(ammo.class2)}>
                 <Text fontSize="md" color="black">
                   {ammo.class2}
                 </Text>
               </Center>
-              <Center flex="0.5" bg={getColor(ammo.class3)} maxW={maxCellWidth}>
+              <Center flex="0.5" bg={getColor(ammo.class3)}>
                 <Text fontSize="md" color="black">
                   {ammo.class3}
                 </Text>
               </Center>
-              <Center flex="0.5" bg={getColor(ammo.class4)} maxW={maxCellWidth}>
+              <Center flex="0.5" bg={getColor(ammo.class4)}>
                 <Text fontSize="md" color="black">
                   {ammo.class4}
                 </Text>
               </Center>
-              <Center flex="0.5" bg={getColor(ammo.class5)} maxW={maxCellWidth}>
+              <Center flex="0.5" bg={getColor(ammo.class5)}>
                 <Text fontSize="md" color="black">
                   {ammo.class5}
                 </Text>
               </Center>
-              <Center flex="0.5" bg={getColor(ammo.class6)} maxW={maxCellWidth}>
+              <Center flex="0.5" bg={getColor(ammo.class6)}>
                 <Text fontSize="md" color="black">
                   {ammo.class6}
                 </Text>
               </Center>
             </Flex>
-            <Divider bg="red.500" />
+            <Divider />
           </div>
         );
       })}
