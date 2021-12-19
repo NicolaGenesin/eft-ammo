@@ -3,16 +3,24 @@ import { InfoOutlineIcon } from "@chakra-ui/icons";
 import getColor from "../utils/getColor";
 import headers from "../utils/headers";
 
-const DesktopRow = ({ category, allAmmosForCategory }) => {
+const DesktopRow = ({ category, allAmmosForCategory, minimalView }) => {
+  let maxCellHeight = "48px";
+
+  if (minimalView) {
+    maxCellHeight = "28px";
+  }
+
   return (
     <>
       <Flex>
-        <Center bg="#333" h="64px">
+        <Center bg="#333" h={maxCellHeight}>
           <Text
+            textAlign="left"
             fontWeight="bold"
             minW="300px"
             fontSize="2xl"
             px="8px"
+            pb="8px"
             style={{
               whiteSpace: "nowrap",
             }}
@@ -27,7 +35,7 @@ const DesktopRow = ({ category, allAmmosForCategory }) => {
               bg="#272712"
               key={`header-${index}`}
             >
-              <Text fontWeight="semibold" fontSize="xs">
+              <Text fontWeight="semibold" fontSize="xs" textAlign="center">
                 {header.toUpperCase()}
               </Text>
             </Center>
@@ -52,7 +60,7 @@ const DesktopRow = ({ category, allAmmosForCategory }) => {
                 <Center>
                   <Image
                     ml="8px"
-                    boxSize="48px"
+                    boxSize={maxCellHeight}
                     objectFit="cover"
                     src={`./images/${category}@${ammo.name}.png`}
                     alt={ammo.name}
@@ -121,7 +129,7 @@ const DesktopRow = ({ category, allAmmosForCategory }) => {
                 </Text>
               </Center>
             </Flex>
-            <Divider bg="red.500" />
+            <Divider />
           </div>
         );
       })}
