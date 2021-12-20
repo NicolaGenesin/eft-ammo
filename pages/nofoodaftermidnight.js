@@ -33,8 +33,9 @@ const App = ({ results, isFallback }) => {
   let keysFilteredByWeaponName = keys;
 
   if (componentState.currentSearch && componentState.currentSearch.length) {
-    keysFilteredByWeaponName = keys.filter((weaponName) =>
-      weaponName
+    keysFilteredByWeaponName = keys.filter((categoryName) =>
+      categoryName
+        .replaceAll(".", "")
         .toLowerCase()
         .includes(componentState.currentSearch.toLowerCase())
     );
@@ -45,6 +46,7 @@ const App = ({ results, isFallback }) => {
       weapon.forEach((ammo) => {
         if (
           ammo.name
+            .replaceAll(".", "")
             .toLowerCase()
             .includes(componentState.currentSearch.toLowerCase())
         ) {
