@@ -47,9 +47,17 @@ const SmallFooterWithSocial = () => {
       >
         <Text>
           © {new Date().getFullYear()} NoFoodAfterMidnight - All rights reserved
-          -{" "}
+          |{" "}
           <Link href="https://www.twitch.tv/filodreamz" color="teal.200">
             Made with ❤️ by filodreamz <ExternalLinkIcon mx="2px" />
+          </Link>
+          ,{" "}
+          <Link
+            href="https://docs.google.com/spreadsheets/d/1jjWcIue0_PCsbLQAiL5VrIulPK8SzM5jjiCMx9zUuvE/htmlview#"
+            color="teal.200"
+          >
+            data fetched from NoFAM
+            <ExternalLinkIcon mx="2px" />
           </Link>
         </Text>
         <Stack direction={"row"} spacing={6}>
