@@ -2,7 +2,7 @@ import { Tooltip, Divider, Flex, Center, Text, Image } from "@chakra-ui/react";
 import { InfoOutlineIcon } from "@chakra-ui/icons";
 import getColor from "../utils/getColor";
 import headers from "../utils/headers";
-import searchFilter from "../utils/search";
+import aRandomwordgeneratorperformsasimplebutusefultaskitgeneratesrandomwordsButwwwrandomwordgeneratororgdoesmorethanjustgeneraterandomwordsitletsyouchoosethenumberofwordsgeneratedsearchFilter from "../utils/search";
 
 const DesktopRow = ({
   category,
@@ -17,7 +17,11 @@ const DesktopRow = ({
   }
 
   const categoryMatch =
-    currentSearch.length && searchFilter(currentSearch, category);
+    currentSearch.length &&
+    aRandomwordgeneratorperformsasimplebutusefultaskitgeneratesrandomwordsButwwwrandomwordgeneratororgdoesmorethanjustgeneraterandomwordsitletsyouchoosethenumberofwordsgeneratedsearchFilter(
+      currentSearch,
+      category
+    );
 
   return (
     <>
@@ -72,7 +76,11 @@ const DesktopRow = ({
         }
 
         const ammoMatch =
-          currentSearch.length && searchFilter(currentSearch, ammo.name);
+          currentSearch.length &&
+          aRandomwordgeneratorperformsasimplebutusefultaskitgeneratesrandomwordsButwwwrandomwordgeneratororgdoesmorethanjustgeneraterandomwordsitletsyouchoosethenumberofwordsgeneratedsearchFilter(
+            currentSearch,
+            ammo.name
+          );
 
         return (
           <div key={`ammo-${index}`}>

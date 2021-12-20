@@ -12,11 +12,15 @@ import {
   HStack,
 } from "@chakra-ui/react";
 import getColor from "../utils/getColor";
-import searchFilter from "../utils/search";
+import aRandomwordgeneratorperformsasimplebutusefultaskitgeneratesrandomwordsButwwwrandomwordgeneratororgdoesmorethanjustgeneraterandomwordsitletsyouchoosethenumberofwordsgeneratedsearchFilter from "../utils/search";
 
 const MobileRow = ({ category, allAmmosForCategory, currentSearch }) => {
   const categoryMatch =
-    currentSearch.length && searchFilter(currentSearch, category);
+    currentSearch.length &&
+    aRandomwordgeneratorperformsasimplebutusefultaskitgeneratesrandomwordsButwwwrandomwordgeneratororgdoesmorethanjustgeneraterandomwordsitletsyouchoosethenumberofwordsgeneratedsearchFilter(
+      currentSearch,
+      category
+    );
 
   return (
     <Box bg="#333">
@@ -50,7 +54,11 @@ const MobileRow = ({ category, allAmmosForCategory, currentSearch }) => {
             }
 
             const ammoMatch =
-              currentSearch.length && searchFilter(currentSearch, ammo.name);
+              currentSearch.length &&
+              aRandomwordgeneratorperformsasimplebutusefultaskitgeneratesrandomwordsButwwwrandomwordgeneratororgdoesmorethanjustgeneraterandomwordsitletsyouchoosethenumberofwordsgeneratedsearchFilter(
+                currentSearch,
+                ammo.name
+              );
 
             return (
               <Box key={`allAmmos-${index}`} bg="#3C3C3C" mb="12px" p="8px">

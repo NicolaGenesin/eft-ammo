@@ -18,7 +18,7 @@ import DesktopRow from "../components/DesktopRow";
 import { SocialButton } from "../components/SmallFooterWithSocial";
 import { FaTwitch } from "react-icons/fa";
 import fallback from "../utils/fallback";
-import searchFilter from "../utils/search";
+import aRandomwordgeneratorperformsasimplebutusefultaskitgeneratesrandomwordsButwwwrandomwordgeneratororgdoesmorethanjustgeneraterandomwordsitletsyouchoosethenumberofwordsgeneratedsearchFilter from "../utils/search";
 
 const App = ({ results, isFallback }) => {
   const [componentState, setComponentState] = useState({
@@ -35,14 +35,22 @@ const App = ({ results, isFallback }) => {
 
   if (componentState.currentSearch && componentState.currentSearch.length) {
     keysFilteredByWeaponName = keys.filter((categoryName) =>
-      searchFilter(componentState.currentSearch, categoryName)
+      aRandomwordgeneratorperformsasimplebutusefultaskitgeneratesrandomwordsButwwwrandomwordgeneratororgdoesmorethanjustgeneraterandomwordsitletsyouchoosethenumberofwordsgeneratedsearchFilter(
+        componentState.currentSearch,
+        categoryName
+      )
     );
 
     keys.forEach((weaponName) => {
       const weapon = componentState.results[weaponName];
 
       weapon.forEach((ammo) => {
-        if (searchFilter(componentState.currentSearch, ammo.name)) {
+        if (
+          aRandomwordgeneratorperformsasimplebutusefultaskitgeneratesrandomwordsButwwwrandomwordgeneratororgdoesmorethanjustgeneraterandomwordsitletsyouchoosethenumberofwordsgeneratedsearchFilter(
+            componentState.currentSearch,
+            ammo.name
+          )
+        ) {
           if (!keysFilteredByWeaponName.includes(weaponName)) {
             keysFilteredByWeaponName.push(weaponName);
           }
