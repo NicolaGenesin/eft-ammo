@@ -132,7 +132,7 @@ const App = ({ results, isFallback }) => {
   return (
     <Box pt="24px">
       <Head>
-        <title>NoFoodAfterMidnight's EFT Ammo and Armor Charts</title>
+        <title>EFT | Ammo and Armor Charts</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
@@ -146,7 +146,7 @@ const App = ({ results, isFallback }) => {
             mt="24px"
             as="h1"
           >
-            NoFoodAfterMidnight's Quick Reference Sheet
+            NoFoodAfterMidnight's EFT Ammo and Armor Charts
           </Text>
           <HStack mt="24px">
             <Center>
