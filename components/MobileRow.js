@@ -12,8 +12,12 @@ import {
   HStack,
 } from "@chakra-ui/react";
 import getColor from "../utils/getColor";
+import searchFilter from "../utils/search";
 
-const MobileRow = ({ category, allAmmosForCategory }) => {
+const MobileRow = ({ category, allAmmosForCategory, currentSearch }) => {
+  const categoryMatch =
+    currentSearch.length && searchFilter(currentSearch, category);
+
   return (
     <Box bg="#333">
       <AccordionButton>
@@ -26,6 +30,7 @@ const MobileRow = ({ category, allAmmosForCategory }) => {
             style={{
               whiteSpace: "nowrap",
             }}
+            bg={categoryMatch ? "blue.600" : ""}
           >
             {category}
           </Text>
@@ -44,6 +49,9 @@ const MobileRow = ({ category, allAmmosForCategory }) => {
               src = `./images/${category}@Poleva-6.png`;
             }
 
+            const ammoMatch =
+              currentSearch.length && searchFilter(currentSearch, ammo.name);
+
             return (
               <Box key={`allAmmos-${index}`} bg="#3C3C3C" mb="12px" p="8px">
                 <HStack>
@@ -57,7 +65,12 @@ const MobileRow = ({ category, allAmmosForCategory }) => {
                     />
                   </Center>
                   <Center>
-                    <Text fontSize="sm" fontWeight="semibold" ml="8px">
+                    <Text
+                      bg={ammoMatch ? "blue.600" : ""}
+                      fontSize="sm"
+                      fontWeight="semibold"
+                      ml="8px"
+                    >
                       {ammo.name.toUpperCase()}
                     </Text>
                   </Center>

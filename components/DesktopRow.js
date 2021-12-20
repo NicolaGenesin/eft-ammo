@@ -2,13 +2,22 @@ import { Tooltip, Divider, Flex, Center, Text, Image } from "@chakra-ui/react";
 import { InfoOutlineIcon } from "@chakra-ui/icons";
 import getColor from "../utils/getColor";
 import headers from "../utils/headers";
+import searchFilter from "../utils/search";
 
-const DesktopRow = ({ category, allAmmosForCategory, minimalView }) => {
+const DesktopRow = ({
+  category,
+  allAmmosForCategory,
+  minimalView,
+  currentSearch,
+}) => {
   let maxCellHeight = "48px";
 
   if (minimalView) {
     maxCellHeight = "28px";
   }
+
+  const categoryMatch =
+    currentSearch.length && searchFilter(currentSearch, category);
 
   return (
     <>
@@ -20,10 +29,11 @@ const DesktopRow = ({ category, allAmmosForCategory, minimalView }) => {
             minW="300px"
             fontSize="2xl"
             px="8px"
-            pb="8px"
+            py="8px"
             style={{
               whiteSpace: "nowrap",
             }}
+            bg={categoryMatch ? "blue.600" : ""}
           >
             {category}
           </Text>
@@ -61,6 +71,9 @@ const DesktopRow = ({ category, allAmmosForCategory, minimalView }) => {
           src = `./images/${category}@Poleva-6.png`;
         }
 
+        const ammoMatch =
+          currentSearch.length && searchFilter(currentSearch, ammo.name);
+
         return (
           <div key={`ammo-${index}`}>
             <Flex fontSize="xs" fontWeight="normal" bg="#585856">
@@ -76,7 +89,12 @@ const DesktopRow = ({ category, allAmmosForCategory, minimalView }) => {
                   />
                 </Center>
                 <Center>
-                  <Text fontSize="xs" fontWeight="semibold" ml="8px">
+                  <Text
+                    bg={ammoMatch ? "blue.600" : ""}
+                    fontSize="xs"
+                    fontWeight="semibold"
+                    ml="8px"
+                  >
                     {ammo.name.toUpperCase()}
                   </Text>
                   {toolTipLabel && (

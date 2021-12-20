@@ -18,6 +18,7 @@ import DesktopRow from "../components/DesktopRow";
 import { SocialButton } from "../components/SmallFooterWithSocial";
 import { FaTwitch } from "react-icons/fa";
 import fallback from "../utils/fallback";
+import searchFilter from "../utils/search";
 
 const App = ({ results, isFallback }) => {
   const [componentState, setComponentState] = useState({
@@ -34,22 +35,14 @@ const App = ({ results, isFallback }) => {
 
   if (componentState.currentSearch && componentState.currentSearch.length) {
     keysFilteredByWeaponName = keys.filter((categoryName) =>
-      categoryName
-        .replaceAll(".", "")
-        .toLowerCase()
-        .includes(componentState.currentSearch.toLowerCase())
+      searchFilter(componentState.currentSearch, categoryName)
     );
 
     keys.forEach((weaponName) => {
       const weapon = componentState.results[weaponName];
 
       weapon.forEach((ammo) => {
-        if (
-          ammo.name
-            .replaceAll(".", "")
-            .toLowerCase()
-            .includes(componentState.currentSearch.toLowerCase())
-        ) {
+        if (searchFilter(componentState.currentSearch, ammo.name)) {
           if (!keysFilteredByWeaponName.includes(weaponName)) {
             keysFilteredByWeaponName.push(weaponName);
           }
@@ -79,6 +72,7 @@ const App = ({ results, isFallback }) => {
                 <MobileRow
                   category={key}
                   allAmmosForCategory={allAmmosForCategory}
+                  currentSearch={componentState.currentSearch}
                 />
               </AccordionItem>
             </Box>
@@ -117,6 +111,7 @@ const App = ({ results, isFallback }) => {
                   category={key}
                   allAmmosForCategory={allAmmosForCategory}
                   minimalView={componentState.minimalView}
+                  currentSearch={componentState.currentSearch}
                 />
               </Box>
             );
