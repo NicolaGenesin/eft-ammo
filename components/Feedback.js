@@ -18,7 +18,7 @@ const Feedback = () => {
       right="0"
       boxShadow="md"
       borderRadius="0 0 0 5px"
-      bg="#ea6b0a"
+      bg="purple"
       color="white"
       fontWeight="bold"
       p="4px 6px"

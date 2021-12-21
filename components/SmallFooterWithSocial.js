@@ -46,17 +46,29 @@ const SmallFooterWithSocial = () => {
         align={{ base: "center", md: "center" }}
       >
         <Text>
-          © {new Date().getFullYear()} NoFoodAfterMidnight - All rights reserved
-          |{" "}
+          © {new Date().getFullYear()}{" "}
+          <span
+            style={{
+              backgroundImage:
+                "linear-gradient(120deg, purple 0%, purple 100%)",
+              backgroundRepeat: "no-repeat",
+              backgroundSize: "100% 0.4em",
+              backgroundPosition: "0 88%",
+              transition: "background-size 0.25s ease-in",
+            }}
+          >
+            NoFoodAfterMidnight
+          </span>{" "}
+          - All rights reserved |{" "}
           <Link href="https://www.twitch.tv/filodreamz" color="teal.200">
             Made with ❤️ by filodreamz <ExternalLinkIcon mx="2px" />
           </Link>
-          ,{" "}
+          -{" "}
           <Link
             href="https://docs.google.com/spreadsheets/d/1jjWcIue0_PCsbLQAiL5VrIulPK8SzM5jjiCMx9zUuvE/htmlview#"
             color="teal.200"
           >
-            data fetched from NoFAM
+            data maintained by NoFAM
             <ExternalLinkIcon mx="2px" />
           </Link>
         </Text>

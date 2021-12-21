@@ -23,7 +23,7 @@ const MobileRow = ({ category, allAmmosForCategory, currentSearch }) => {
     );
 
   return (
-    <Box bg="#333">
+    <Box>
       <AccordionButton>
         <Center h="64px">
           <Text
@@ -61,7 +61,7 @@ const MobileRow = ({ category, allAmmosForCategory, currentSearch }) => {
               );
 
             return (
-              <Box key={`allAmmos-${index}`} bg="#3C3C3C" mb="12px" p="8px">
+              <Box key={`allAmmos-${index}`} bg="vulcan.800" mb="12px" p="8px">
                 <HStack>
                   <Center>
                     <Image

@@ -9,6 +9,16 @@ const theme = extendTheme({
     heading: "Montserrat",
     body: "Montserrat",
   },
+  colors: {
+    vulcan: {
+      500: "#adb5bd",
+      600: "#6c757d",
+      700: "#495057",
+      800: "#343a40",
+      900: "#212529",
+      1000: "#15171a",
+    },
+  },
 });
 
 const App = ({ Component, pageProps }) => (

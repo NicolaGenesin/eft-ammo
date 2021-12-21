@@ -26,14 +26,13 @@ const DesktopRow = ({
   return (
     <>
       <Flex>
-        <Center bg="#333" h={maxCellHeight}>
+        <Center h={maxCellHeight} mb="4px">
           <Text
             textAlign="left"
             fontWeight="bold"
             minW="300px"
-            fontSize="2xl"
+            fontSize="xl"
             px="8px"
-            py="8px"
             style={{
               whiteSpace: "nowrap",
             }}
@@ -46,7 +45,7 @@ const DesktopRow = ({
           return (
             <Center
               flex={header.toLowerCase().includes("class") ? "0.5" : "1"}
-              bg="#272712"
+              bg="vulcan.800"
               key={`header-${index}`}
             >
               <Text fontWeight="semibold" fontSize="xs" textAlign="center">
@@ -84,8 +83,8 @@ const DesktopRow = ({
 
         return (
           <div key={`ammo-${index}`}>
-            <Flex fontSize="xs" fontWeight="normal" bg="#585856">
-              <Flex minW="300px" bg="#454545" py="2px">
+            <Flex fontSize="xs" fontWeight="normal">
+              <Flex minW="300px" bg="vulcan.800" py="2px">
                 <Center>
                   <Image
                     ml="8px"
@@ -163,7 +162,7 @@ const DesktopRow = ({
                 </Text>
               </Center>
             </Flex>
-            <Divider />
+            <Divider style={{ opacity: "0.2" }} />
           </div>
         );
       })}
