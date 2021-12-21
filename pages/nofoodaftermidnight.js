@@ -260,7 +260,7 @@ const App = ({ results, isFallback }) => {
       <style jsx global>{`
         html,
         body {
-          background: #15171a !important;
+          background: #131313 !important;
 
           height: 100%;
           width: 100%;
