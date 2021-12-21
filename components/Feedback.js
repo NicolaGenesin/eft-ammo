@@ -14,14 +14,14 @@ const Feedback = () => {
       w="auto"
       maxW="350px"
       position="fixed"
-      top="0"
+      bottom="0"
       right="0"
       boxShadow="md"
-      borderRadius="0 0 0 5px"
+      borderRadius="5px 0 0 0"
       bg="purple"
       color="#ebece8"
       fontWeight="bold"
-      p="4px 6px"
+      p="4px 4px"
     >
       {!isButtonClicked ? (
         <Text
@@ -31,7 +31,7 @@ const Feedback = () => {
             setIsButtonClicked(!isButtonClicked);
           }}
         >
-          Feedback? 👀
+          👀
         </Text>
       ) : (
         <Box p="6px 4px">
