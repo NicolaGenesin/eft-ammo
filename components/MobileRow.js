@@ -43,7 +43,7 @@ const MobileRow = ({ category, allAmmosForCategory, currentSearch }) => {
         <AccordionIcon />
       </AccordionButton>
       <AccordionPanel pt={4} px={0}>
-        <Flex color="white" direction="column">
+        <Flex color="#ebece8" direction="column">
           {allAmmosForCategory.map((ammo, index) => {
             let src = `./images/${category}@${ammo.name}.png`;
 

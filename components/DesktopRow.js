@@ -112,22 +112,22 @@ const DesktopRow = ({
                 </Center>
               </Flex>
               <Center flex="1">
-                <Text fontSize="md" color="white">
+                <Text fontSize="md" color="#ebece8">
                   {ammo.damage}
                 </Text>
               </Center>
               <Center flex="1">
-                <Text fontSize="md" color="white">
+                <Text fontSize="md" color="#ebece8">
                   {ammo.penValue}
                 </Text>
               </Center>
               <Center flex="1">
-                <Text fontSize="md" color="white">
+                <Text fontSize="md" color="#ebece8">
                   {ammo.armorDamage}
                 </Text>
               </Center>
               <Center flex="1">
-                <Text fontSize="md" color="white">
+                <Text fontSize="md" color="#ebece8">
                   {ammo.fragChange}
                 </Text>
               </Center>

@@ -14,7 +14,7 @@ import { FaTwitter, FaTwitch } from "react-icons/fa";
 const SocialButton = ({ children, label, href, size }) => {
   return (
     <chakra.button
-      bg="white"
+      bg="#ebece8"
       color="black"
       rounded={"full"}
       w={size || 8}
@@ -35,7 +35,7 @@ const SocialButton = ({ children, label, href, size }) => {
 
 const SmallFooterWithSocial = () => {
   return (
-    <Box color="white">
+    <Box color="#ebece8">
       <Container
         as={Stack}
         maxW={"6xl"}

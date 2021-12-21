@@ -19,7 +19,7 @@ const Feedback = () => {
       boxShadow="md"
       borderRadius="0 0 0 5px"
       bg="purple"
-      color="white"
+      color="#ebece8"
       fontWeight="bold"
       p="4px 6px"
     >

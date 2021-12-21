@@ -68,7 +68,7 @@ const App = ({ results, isFallback }) => {
           return (
             <Box
               key={`allAmmos-${index}`}
-              color="white"
+              color="#ebece8"
               mx="8px"
               mb="24px"
               rounded="sm"
@@ -106,7 +106,7 @@ const App = ({ results, isFallback }) => {
             return (
               <Box
                 key={`allAmmos-${index}`}
-                color="white"
+                color="#ebece8"
                 mx="24px"
                 mb="24px"
                 rounded="sm"
@@ -140,7 +140,7 @@ const App = ({ results, isFallback }) => {
         <VStack>
           <Text
             textAlign="center"
-            color="white"
+            color="#ebece8"
             fontWeight="bold"
             fontSize={["xl", "3xl"]}
             mt="24px"
@@ -148,14 +148,14 @@ const App = ({ results, isFallback }) => {
           >
             Escape from Tarkov Ammo and Armor Charts
           </Text>
-          <Text color="white" fontSize="sm">
+          <Text color="#ebece8" fontSize="sm">
             Updated for v0.12.12
           </Text>
           <HStack>
             <Center>
               <Text
                 textAlign="center"
-                color="white"
+                color="#ebece8"
                 fontWeight="bold"
                 fontSize={["lg", "2xl"]}
                 as="h1"
@@ -249,7 +249,7 @@ const App = ({ results, isFallback }) => {
                 minimalView: !componentState.minimalView,
               })
             }
-            color={"white"}
+            color={"#ebece8"}
             isChecked={componentState.minimalView}
           >
             Minimal Table View
