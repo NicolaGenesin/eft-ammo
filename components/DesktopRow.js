@@ -2,20 +2,41 @@ import { Tooltip, Divider, Flex, Center, Text, Image } from "@chakra-ui/react";
 import { InfoOutlineIcon } from "@chakra-ui/icons";
 import getColor from "../utils/getColor";
 import headers from "../utils/headers";
+import aRandomwordgeneratorperformsasimplebutusefultaskitgeneratesrandomwordsButwwwrandomwordgeneratororgdoesmorethanjustgeneraterandomwordsitletsyouchoosethenumberofwordsgeneratedsearchFilter from "../utils/search";
 
-const DesktopRow = ({ category, allAmmosForCategory }) => {
+const DesktopRow = ({
+  category,
+  allAmmosForCategory,
+  minimalView,
+  currentSearch,
+}) => {
+  let maxCellHeight = "48px";
+
+  if (minimalView) {
+    maxCellHeight = "28px";
+  }
+
+  const categoryMatch =
+    currentSearch.length &&
+    aRandomwordgeneratorperformsasimplebutusefultaskitgeneratesrandomwordsButwwwrandomwordgeneratororgdoesmorethanjustgeneraterandomwordsitletsyouchoosethenumberofwordsgeneratedsearchFilter(
+      currentSearch,
+      category
+    );
+
   return (
     <>
       <Flex>
-        <Center bg="#333" h="64px">
+        <Center h={maxCellHeight} mb="4px">
           <Text
+            textAlign="left"
             fontWeight="bold"
             minW="300px"
-            fontSize="2xl"
+            fontSize="xl"
             px="8px"
             style={{
               whiteSpace: "nowrap",
             }}
+            bg={categoryMatch ? "blue.600" : ""}
           >
             {category}
           </Text>
@@ -24,10 +45,10 @@ const DesktopRow = ({ category, allAmmosForCategory }) => {
           return (
             <Center
               flex={header.toLowerCase().includes("class") ? "0.5" : "1"}
-              bg="#272712"
+              bg="vulcan.800"
               key={`header-${index}`}
             >
-              <Text fontWeight="semibold" fontSize="xs">
+              <Text fontWeight="semibold" fontSize="xs" textAlign="center">
                 {header.toUpperCase()}
               </Text>
             </Center>
@@ -45,22 +66,42 @@ const DesktopRow = ({ category, allAmmosForCategory }) => {
           toolTipLabel = `${ammo.note} ${ammo.secondNote}`;
         }
 
+        let src = `./images/${category}@${ammo.name}.png`;
+
+        if (ammo.name.includes("Poleva-6u")) {
+          // TODO real spaghetti, fix this
+
+          src = `./images/${category}@Poleva-6.png`;
+        }
+
+        const ammoMatch =
+          currentSearch.length &&
+          aRandomwordgeneratorperformsasimplebutusefultaskitgeneratesrandomwordsButwwwrandomwordgeneratororgdoesmorethanjustgeneraterandomwordsitletsyouchoosethenumberofwordsgeneratedsearchFilter(
+            currentSearch,
+            ammo.name
+          );
+
         return (
           <div key={`ammo-${index}`}>
-            <Flex fontSize="xs" fontWeight="normal" bg="#585856">
-              <Flex minW="300px" bg="#454545" py="2px">
+            <Flex fontSize="xs" fontWeight="normal">
+              <Flex minW="300px" bg="vulcan.800" py="2px">
                 <Center>
                   <Image
                     ml="8px"
-                    boxSize="48px"
+                    boxSize={maxCellHeight}
                     objectFit="cover"
-                    src={`./images/${category}@${ammo.name}.png`}
+                    src={src}
                     alt={ammo.name}
                     fallbackSrc={`./images/fallback.png`}
                   />
                 </Center>
                 <Center>
-                  <Text fontSize="xs" fontWeight="semibold" ml="8px">
+                  <Text
+                    bg={ammoMatch ? "blue.600" : ""}
+                    fontSize="xs"
+                    fontWeight="semibold"
+                    ml="8px"
+                  >
                     {ammo.name.toUpperCase()}
                   </Text>
                   {toolTipLabel && (
@@ -71,22 +112,22 @@ const DesktopRow = ({ category, allAmmosForCategory }) => {
                 </Center>
               </Flex>
               <Center flex="1">
-                <Text fontSize="md" color="white">
+                <Text fontSize="md" color="#ebece8">
                   {ammo.damage}
                 </Text>
               </Center>
               <Center flex="1">
-                <Text fontSize="md" color="white">
+                <Text fontSize="md" color="#ebece8">
                   {ammo.penValue}
                 </Text>
               </Center>
               <Center flex="1">
-                <Text fontSize="md" color="white">
+                <Text fontSize="md" color="#ebece8">
                   {ammo.armorDamage}
                 </Text>
               </Center>
               <Center flex="1">
-                <Text fontSize="md" color="white">
+                <Text fontSize="md" color="#ebece8">
                   {ammo.fragChange}
                 </Text>
               </Center>
@@ -121,7 +162,7 @@ const DesktopRow = ({ category, allAmmosForCategory }) => {
                 </Text>
               </Center>
             </Flex>
-            <Divider bg="red.500" />
+            <Divider style={{ opacity: "0.2" }} />
           </div>
         );
       })}

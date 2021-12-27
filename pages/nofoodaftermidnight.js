@@ -9,6 +9,7 @@ import {
   Text,
   Box,
   Input,
+  Checkbox,
 } from "@chakra-ui/react";
 import getResults from "../utils/getResults";
 import Legenda from "../components/Legenda";
@@ -17,12 +18,14 @@ import DesktopRow from "../components/DesktopRow";
 import { SocialButton } from "../components/SmallFooterWithSocial";
 import { FaTwitch } from "react-icons/fa";
 import fallback from "../utils/fallback";
+import aRandomwordgeneratorperformsasimplebutusefultaskitgeneratesrandomwordsButwwwrandomwordgeneratororgdoesmorethanjustgeneraterandomwordsitletsyouchoosethenumberofwordsgeneratedsearchFilter from "../utils/search";
 import { TwitchEmbed } from "react-twitch-embed";
 
 const App = ({ results, isFallback }) => {
   const [componentState, setComponentState] = useState({
     currentSearch: "",
     results,
+    minimalView: true,
     embed: null,
   });
 
@@ -33,10 +36,11 @@ const App = ({ results, isFallback }) => {
   let keysFilteredByWeaponName = keys;
 
   if (componentState.currentSearch && componentState.currentSearch.length) {
-    keysFilteredByWeaponName = keys.filter((weaponName) =>
-      weaponName
-        .toLowerCase()
-        .includes(componentState.currentSearch.toLowerCase())
+    keysFilteredByWeaponName = keys.filter((categoryName) =>
+      aRandomwordgeneratorperformsasimplebutusefultaskitgeneratesrandomwordsButwwwrandomwordgeneratororgdoesmorethanjustgeneraterandomwordsitletsyouchoosethenumberofwordsgeneratedsearchFilter(
+        componentState.currentSearch,
+        categoryName
+      )
     );
 
     keys.forEach((weaponName) => {
@@ -44,9 +48,10 @@ const App = ({ results, isFallback }) => {
 
       weapon.forEach((ammo) => {
         if (
-          ammo.name
-            .toLowerCase()
-            .includes(componentState.currentSearch.toLowerCase())
+          aRandomwordgeneratorperformsasimplebutusefultaskitgeneratesrandomwordsButwwwrandomwordgeneratororgdoesmorethanjustgeneraterandomwordsitletsyouchoosethenumberofwordsgeneratedsearchFilter(
+            componentState.currentSearch,
+            ammo.name
+          )
         ) {
           if (!keysFilteredByWeaponName.includes(weaponName)) {
             keysFilteredByWeaponName.push(weaponName);
@@ -74,10 +79,80 @@ const App = ({ results, isFallback }) => {
     });
   }, []);
 
+  const Mobile = () => (
+    <>
+      <Accordion textAlign="center" defaultIndex={[0]} allowMultiple>
+        {keysFilteredByWeaponName.map((key, index) => {
+          const allAmmosForCategory = componentState.results[key];
+
+          return (
+            <Box
+              key={`allAmmos-${index}`}
+              color="#ebece8"
+              mx="8px"
+              mb="24px"
+              rounded="sm"
+              border="12px solid"
+              borderColor="vulcan.900"
+              bg="vulcan.900"
+            >
+              <AccordionItem>
+                <MobileRow
+                  category={key}
+                  allAmmosForCategory={allAmmosForCategory}
+                  currentSearch={componentState.currentSearch}
+                />
+              </AccordionItem>
+            </Box>
+          );
+        })}
+      </Accordion>
+    </>
+  );
+
+  const Desktop = () => (
+    <>
+      <Center>
+        <VStack
+          w={
+            componentState.minimalView
+              ? ["100%", "100%", "100%", "100%", "85%", "75%"]
+              : "100%"
+          }
+        >
+          {keysFilteredByWeaponName.map((key, index) => {
+            const allAmmosForCategory = componentState.results[key];
+
+            return (
+              <Box
+                key={`allAmmos-${index}`}
+                color="#ebece8"
+                mx="24px"
+                mb="24px"
+                rounded="sm"
+                border="12px solid"
+                borderColor="vulcan.900"
+                bg="vulcan.900"
+                w="100%"
+              >
+                <DesktopRow
+                  category={key}
+                  allAmmosForCategory={allAmmosForCategory}
+                  minimalView={componentState.minimalView}
+                  currentSearch={componentState.currentSearch}
+                />
+              </Box>
+            );
+          })}
+        </VStack>
+      </Center>
+    </>
+  );
+
   return (
-    <Box pt="24px">
+    <Box py="48px">
       <Head>
-        <title>NoFoodAfterMidnight's EFT Ammo and Armor Charts</title>
+        <title>EFT | Ammo and Armor Charts</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
@@ -85,41 +160,80 @@ const App = ({ results, isFallback }) => {
         <VStack>
           <Text
             textAlign="center"
-            color="white"
+            color="#ebece8"
             fontWeight="bold"
             fontSize={["xl", "3xl"]}
             mt="24px"
             as="h1"
           >
-            NoFoodAfterMidnight's Quick Reference Sheet
+            Escape from Tarkov Ammo and Armor Charts
           </Text>
-          <HStack mt="24px">
+          <Text color="#ebece8" fontSize="sm">
+            Updated for v0.12.12
+          </Text>
+          <HStack>
             <Center>
               <Text
                 textAlign="center"
-                color="white"
+                color="#ebece8"
                 fontWeight="bold"
                 fontSize={["lg", "2xl"]}
                 as="h1"
               >
                 <a href="https://www.twitch.tv/nofoodaftermidnight/">
-                  Watch his stream here
+                  by{" "}
+                  <span
+                    style={{
+                      backgroundImage:
+                        "linear-gradient(120deg, purple 0%, purple 100%)",
+                      backgroundRepeat: "no-repeat",
+                      backgroundSize: "100% 0.4em",
+                      backgroundPosition: "0 88%",
+                      transition: "background-size 0.25s ease-in",
+                    }}
+                  >
+                    NoFoodAfterMidnight
+                  </span>{" "}
+                  | watch his stream{" "}
+                  <span
+                    style={{
+                      backgroundImage:
+                        "linear-gradient(120deg, purple 0%, purple 100%)",
+                      backgroundRepeat: "no-repeat",
+                      backgroundSize: "100% 0.4em",
+                      backgroundPosition: "0 88%",
+                      transition: "background-size 0.25s ease-in",
+                    }}
+                  >
+                    here
+                  </span>
                 </a>
               </Text>
             </Center>
+            {!isMobile && (
+              <SocialButton
+                size={16}
+                label={"Twitch"}
+                href={"https://www.twitch.tv/nofoodaftermidnight/"}
+              >
+                <FaTwitch color="purple" size={32} />
+              </SocialButton>
+            )}
+          </HStack>
+          {isMobile && (
             <SocialButton
-              size={16}
+              size={12}
               label={"Twitch"}
               href={"https://www.twitch.tv/nofoodaftermidnight/"}
             >
-              <FaTwitch size={32} />
+              <FaTwitch color="purple" size={24} />
             </SocialButton>
-          </HStack>
+          )}
         </VStack>
       </Center>
 
       <Center>
-        <Flex pt="24px">
+        <Flex pt="24px" px="8px" w={["100%", "75%"]}>
           <Legenda isDesktop={!isMobile} />
         </Flex>
       </Center>
@@ -137,44 +251,33 @@ const App = ({ results, isFallback }) => {
           _placeholder={{ color: "#333", textAlign: "center" }}
           onChange={(e) => {
             setComponentState({
+              ...componentState,
               currentSearch: e.target.value,
-              results: componentState.results,
             });
           }}
         />
       </Center>
-      <Accordion defaultIndex={[0]} allowMultiple>
-        {keysFilteredByWeaponName.map((key, index) => {
-          const allAmmosForCategory = componentState.results[key];
-
-          return (
-            <Box
-              key={`allAmmos-${index}`}
-              color="white"
-              mx="24px"
-              mb="24px"
-              rounded="sm"
-              border="12px solid"
-              borderColor="#333"
-            >
-              {isMobile ? (
-                <AccordionItem>
-                  <MobileRow
-                    category={key}
-                    allAmmosForCategory={allAmmosForCategory}
-                  />
-                </AccordionItem>
-              ) : (
-                <DesktopRow
-                  category={key}
-                  allAmmosForCategory={allAmmosForCategory}
-                />
-              )}
-            </Box>
-          );
-        })}
-      </Accordion>
-      <Center>
+      {!isMobile && (
+        <Center>
+          <Checkbox
+            m="24px"
+            fontWeight="bold"
+            size="sm"
+            onChange={(e) =>
+              setComponentState({
+                ...componentState,
+                minimalView: !componentState.minimalView,
+              })
+            }
+            color={"#ebece8"}
+            isChecked={componentState.minimalView}
+          >
+            Minimal Table View
+          </Checkbox>
+        </Center>
+      )}
+      {isMobile ? <Mobile /> : <Desktop />}
+            <Center>
         <Box
           w={["375px", "450px", "600px"]}
           h={["300px", "400px", "400px"]}
@@ -199,7 +302,7 @@ const App = ({ results, isFallback }) => {
       <style jsx global>{`
         html,
         body {
-          background: #222 !important;
+          background: #131313 !important;
 
           height: 100%;
           width: 100%;

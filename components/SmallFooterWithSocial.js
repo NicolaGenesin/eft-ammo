@@ -6,13 +6,15 @@ import {
   Text,
   useColorModeValue,
   VisuallyHidden,
+  Link,
 } from "@chakra-ui/react";
+import { ExternalLinkIcon } from "@chakra-ui/icons";
 import { FaTwitter, FaTwitch } from "react-icons/fa";
 
 const SocialButton = ({ children, label, href, size }) => {
   return (
     <chakra.button
-      bg="white"
+      bg="#ebece8"
       color="black"
       rounded={"full"}
       w={size || 8}
@@ -33,7 +35,7 @@ const SocialButton = ({ children, label, href, size }) => {
 
 const SmallFooterWithSocial = () => {
   return (
-    <Box color="white">
+    <Box color="#ebece8">
       <Container
         as={Stack}
         maxW={"6xl"}
@@ -44,7 +46,31 @@ const SmallFooterWithSocial = () => {
         align={{ base: "center", md: "center" }}
       >
         <Text>
-          © {new Date().getFullYear()} NoFoodAfterMidnight - All rights reserved
+          © {new Date().getFullYear()}{" "}
+          <span
+            style={{
+              backgroundImage:
+                "linear-gradient(120deg, purple 0%, purple 100%)",
+              backgroundRepeat: "no-repeat",
+              backgroundSize: "100% 0.4em",
+              backgroundPosition: "0 88%",
+              transition: "background-size 0.25s ease-in",
+            }}
+          >
+            NoFoodAfterMidnight
+          </span>{" "}
+          - All rights reserved |{" "}
+          <Link href="https://www.twitch.tv/filodreamz" color="teal.200">
+            Made with ❤️ by filodreamz <ExternalLinkIcon mx="2px" />
+          </Link>
+          -{" "}
+          <Link
+            href="https://docs.google.com/spreadsheets/d/1jjWcIue0_PCsbLQAiL5VrIulPK8SzM5jjiCMx9zUuvE/htmlview#"
+            color="teal.200"
+          >
+            data maintained by NoFAM
+            <ExternalLinkIcon mx="2px" />
+          </Link>
         </Text>
         <Stack direction={"row"} spacing={6}>
           <SocialButton label={"Twitter"} href={"https://twitter.com/food_eft"}>

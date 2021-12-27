@@ -12,10 +12,18 @@ import {
   HStack,
 } from "@chakra-ui/react";
 import getColor from "../utils/getColor";
+import aRandomwordgeneratorperformsasimplebutusefultaskitgeneratesrandomwordsButwwwrandomwordgeneratororgdoesmorethanjustgeneraterandomwordsitletsyouchoosethenumberofwordsgeneratedsearchFilter from "../utils/search";
 
-const MobileRow = ({ category, allAmmosForCategory }) => {
+const MobileRow = ({ category, allAmmosForCategory, currentSearch }) => {
+  const categoryMatch =
+    currentSearch.length &&
+    aRandomwordgeneratorperformsasimplebutusefultaskitgeneratesrandomwordsButwwwrandomwordgeneratororgdoesmorethanjustgeneraterandomwordsitletsyouchoosethenumberofwordsgeneratedsearchFilter(
+      currentSearch,
+      category
+    );
+
   return (
-    <Box bg="#333">
+    <Box>
       <AccordionButton>
         <Center h="64px">
           <Text
@@ -26,6 +34,7 @@ const MobileRow = ({ category, allAmmosForCategory }) => {
             style={{
               whiteSpace: "nowrap",
             }}
+            bg={categoryMatch ? "blue.600" : ""}
           >
             {category}
           </Text>
@@ -34,22 +43,42 @@ const MobileRow = ({ category, allAmmosForCategory }) => {
         <AccordionIcon />
       </AccordionButton>
       <AccordionPanel pt={4} px={0}>
-        <Flex color="white" direction="column">
+        <Flex color="#ebece8" direction="column">
           {allAmmosForCategory.map((ammo, index) => {
+            let src = `./images/${category}@${ammo.name}.png`;
+
+            if (ammo.name.includes("Poleva-6u")) {
+              // TODO real spaghetti, fix this
+
+              src = `./images/${category}@Poleva-6.png`;
+            }
+
+            const ammoMatch =
+              currentSearch.length &&
+              aRandomwordgeneratorperformsasimplebutusefultaskitgeneratesrandomwordsButwwwrandomwordgeneratororgdoesmorethanjustgeneraterandomwordsitletsyouchoosethenumberofwordsgeneratedsearchFilter(
+                currentSearch,
+                ammo.name
+              );
+
             return (
-              <Box key={`allAmmos-${index}`} bg="#3C3C3C" mb="12px" p="8px">
+              <Box key={`allAmmos-${index}`} bg="vulcan.800" mb="12px" p="8px">
                 <HStack>
                   <Center>
                     <Image
                       boxSize="48px"
                       objectFit="cover"
-                      src={`./images/${category}@${ammo.name}.png`}
+                      src={src}
                       alt={ammo.name}
                       fallbackSrc={`./images/fallback.png`}
                     />
                   </Center>
                   <Center>
-                    <Text fontSize="sm" fontWeight="semibold" ml="8px">
+                    <Text
+                      bg={ammoMatch ? "blue.600" : ""}
+                      fontSize="sm"
+                      fontWeight="semibold"
+                      ml="8px"
+                    >
                       {ammo.name.toUpperCase()}
                     </Text>
                   </Center>
