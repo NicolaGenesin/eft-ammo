@@ -277,7 +277,7 @@ const App = ({ results, isFallback }) => {
         </Center>
       )}
       {isMobile ? <Mobile /> : <Desktop />}
-            <Center>
+      <Center>
         <Box
           w={["375px", "450px", "600px"]}
           h={["300px", "400px", "400px"]}
