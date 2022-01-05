@@ -68,6 +68,7 @@ const handler = async (req, res) => {
         class6: ammoSpecs[12],
         note: ammoSpecs[13],
         secondNote: ammoSpecs[14],
+        category: key,
       };
     });
   });

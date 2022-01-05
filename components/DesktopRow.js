@@ -1,4 +1,12 @@
-import { Tooltip, Divider, Flex, Center, Text, Image } from "@chakra-ui/react";
+import {
+  Tooltip,
+  Divider,
+  Flex,
+  Center,
+  Text,
+  Image,
+  Checkbox,
+} from "@chakra-ui/react";
 import { InfoOutlineIcon } from "@chakra-ui/icons";
 import getColor from "../utils/getColor";
 import headers from "../utils/headers";
@@ -9,6 +17,8 @@ const DesktopRow = ({
   allAmmosForCategory,
   minimalView,
   currentSearch,
+  selectCallback,
+  selectedAmmos,
 }) => {
   let maxCellHeight = "48px";
 
@@ -66,12 +76,12 @@ const DesktopRow = ({
           toolTipLabel = `${ammo.note} ${ammo.secondNote}`;
         }
 
-        let src = `./images/${category}@${ammo.name}.png`;
+        let src = `./images/${ammo.category}@${ammo.name}.png`;
 
         if (ammo.name.includes("Poleva-6u")) {
           // TODO real spaghetti, fix this
 
-          src = `./images/${category}@Poleva-6.png`;
+          src = `./images/${ammo.category}@Poleva-6.png`;
         }
 
         const ammoMatch =
@@ -85,6 +95,19 @@ const DesktopRow = ({
           <div key={`ammo-${index}`}>
             <Flex fontSize="xs" fontWeight="normal">
               <Flex minW="300px" bg="vulcan.800" py="2px">
+                {selectCallback && (
+                  <Checkbox
+                    colorScheme="purple"
+                    size="lg"
+                    ml="8px"
+                    isChecked={selectedAmmos.find(
+                      (item) => item.name === ammo.name
+                    )}
+                    onChange={(e) => {
+                      selectCallback(ammo, e.target.checked);
+                    }}
+                  />
+                )}
                 <Center>
                   <Image
                     ml="8px"

@@ -20,6 +20,8 @@ import { FaTwitch } from "react-icons/fa";
 import fallback from "../utils/fallback";
 import aRandomwordgeneratorperformsasimplebutusefultaskitgeneratesrandomwordsButwwwrandomwordgeneratororgdoesmorethanjustgeneraterandomwordsitletsyouchoosethenumberofwordsgeneratedsearchFilter from "../utils/search";
 import { TwitchEmbed } from "react-twitch-embed";
+import CompareButton from "../components/CompareButton";
+import CompareModal from "../components/CompareModal";
 
 const App = ({ results, isFallback }) => {
   const [componentState, setComponentState] = useState({
@@ -27,6 +29,8 @@ const App = ({ results, isFallback }) => {
     results,
     minimalView: true,
     embed: null,
+    selectedAmmos: [], // each element is an ammo object
+    showModal: false,
   });
 
   console.log("isFallback", isFallback);
@@ -140,6 +144,29 @@ const App = ({ results, isFallback }) => {
                   allAmmosForCategory={allAmmosForCategory}
                   minimalView={componentState.minimalView}
                   currentSearch={componentState.currentSearch}
+                  selectedAmmos={componentState.selectedAmmos}
+                  selectCallback={(ammo, newCheckboxValue) => {
+                    let newSelectedRows = [...componentState.selectedAmmos];
+
+                    if (newCheckboxValue) {
+                      if (
+                        !componentState.selectedAmmos.find(
+                          (row) => row.name === ammo.name
+                        )
+                      ) {
+                        newSelectedRows.push(ammo);
+                      }
+                    } else {
+                      newSelectedRows = componentState.selectedAmmos.filter(
+                        (row) => row.name !== ammo.name
+                      );
+                    }
+
+                    setComponentState({
+                      ...componentState,
+                      selectedAmmos: newSelectedRows,
+                    });
+                  }}
                 />
               </Box>
             );
@@ -192,7 +219,27 @@ const App = ({ results, isFallback }) => {
           content="http://eft-ammo.com/assets/og-01.jpg"
         />
       </Head>
-
+      {componentState.selectedAmmos.length && (
+        <CompareButton
+          showModal={() => {
+            setComponentState({
+              ...componentState,
+              showModal: true,
+            });
+          }}
+        />
+      )}
+      {componentState.showModal && (
+        <CompareModal
+          selectedAmmos={componentState.selectedAmmos}
+          onClose={() => {
+            setComponentState({
+              ...componentState,
+              showModal: false,
+            });
+          }}
+        />
+      )}
       <Center mb="24px">
         <VStack>
           <Text
