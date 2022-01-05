@@ -69,7 +69,6 @@ const MobileRow = ({ category, allAmmosForCategory, currentSearch }) => {
                       objectFit="cover"
                       src={src}
                       alt={ammo.name}
-                      fallbackSrc={`./images/fallback.png`}
                     />
                   </Center>
                   <Center>
