@@ -11,6 +11,7 @@ import { InfoOutlineIcon } from "@chakra-ui/icons";
 import getColor from "../utils/getColor";
 import headers from "../utils/headers";
 import aRandomwordgeneratorperformsasimplebutusefultaskitgeneratesrandomwordsButwwwrandomwordgeneratororgdoesmorethanjustgeneraterandomwordsitletsyouchoosethenumberofwordsgeneratedsearchFilter from "../utils/search";
+import { useMemo } from "react";
 
 const DesktopRow = ({
   category,
@@ -91,6 +92,12 @@ const DesktopRow = ({
             ammo.name
           );
 
+          const checked = useMemo(() => selectedAmmos.find(
+            (item) =>
+              item.name === ammo.name &&
+              item.category === ammo.category),
+          [ammo]);
+
         return (
           <div key={`ammo-${index}`}>
             <Flex fontSize="xs" fontWeight="normal">
@@ -100,11 +107,7 @@ const DesktopRow = ({
                     colorScheme="purple"
                     size="lg"
                     ml="8px"
-                    isChecked={selectedAmmos.find(
-                      (item) =>
-                        item.name === ammo.name &&
-                        item.category === ammo.category
-                    )}
+                    isChecked={checked}
                     onChange={(e) => {
                       selectCallback(ammo, e.target.checked);
                     }}

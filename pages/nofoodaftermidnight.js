@@ -23,6 +23,83 @@ import { TwitchEmbed } from "react-twitch-embed";
 import CompareButton from "../components/CompareButton";
 import CompareModal from "../components/CompareModal";
 
+const DesktopTable = ({ componentState, keysFilteredByWeaponName, setComponentState }) => (
+  <>
+    <Center>
+      <VStack
+        w={
+          componentState.minimalView
+            ? ["100%", "100%", "100%", "100%", "85%", "75%"]
+            : "100%"
+        }
+      >
+        {keysFilteredByWeaponName.map((key, index) => {
+          const allAmmosForCategory = componentState.results[key];
+
+          return (
+            <Box
+              key={`allAmmos-${key}`}
+              color="#ebece8"
+              mx="24px"
+              mb="24px"
+              rounded="sm"
+              border="12px solid"
+              borderColor="vulcan.900"
+              bg="vulcan.900"
+              w="100%"
+            >
+              <DesktopRow
+                category={key}
+                allAmmosForCategory={allAmmosForCategory}
+                minimalView={componentState.minimalView}
+                currentSearch={componentState.currentSearch}
+                selectedAmmos={componentState.selectedAmmos}
+                selectCallback={(ammo, newCheckboxValue) => {
+                  let newSelectedRows = [...componentState.selectedAmmos];
+
+                  if (newCheckboxValue) {
+                    if (
+                      !componentState.selectedAmmos.find(
+                        (row) =>
+                          row.name === ammo.name &&
+                          row.category === ammo.category
+                      )
+                    ) {
+                      newSelectedRows.push(ammo);
+                    }
+                  } else {
+                    const index = componentState.selectedAmmos.findIndex(
+                      (row) =>
+                        row.name === ammo.name &&
+                        row.category === ammo.category
+                    );
+
+                    if (index !== -1) {
+                      newSelectedRows = newSelectedRows
+                        .slice(0, index)
+                        .concat(
+                          newSelectedRows.slice(
+                            index + 1,
+                            newSelectedRows.length
+                          )
+                        );
+                    }
+                  }
+
+                  setComponentState({
+                    ...componentState,
+                    selectedAmmos: newSelectedRows,
+                  });
+                }}
+              />
+            </Box>
+          );
+        })}
+      </VStack>
+    </Center>
+  </>
+);
+
 const App = ({ results, isFallback }) => {
   const [componentState, setComponentState] = useState({
     currentSearch: "",
@@ -114,82 +191,6 @@ const App = ({ results, isFallback }) => {
     </>
   );
 
-  const DesktopTable = () => (
-    <>
-      <Center>
-        <VStack
-          w={
-            componentState.minimalView
-              ? ["100%", "100%", "100%", "100%", "85%", "75%"]
-              : "100%"
-          }
-        >
-          {keysFilteredByWeaponName.map((key, index) => {
-            const allAmmosForCategory = componentState.results[key];
-
-            return (
-              <Box
-                key={`allAmmos-${index}`}
-                color="#ebece8"
-                mx="24px"
-                mb="24px"
-                rounded="sm"
-                border="12px solid"
-                borderColor="vulcan.900"
-                bg="vulcan.900"
-                w="100%"
-              >
-                <DesktopRow
-                  category={key}
-                  allAmmosForCategory={allAmmosForCategory}
-                  minimalView={componentState.minimalView}
-                  currentSearch={componentState.currentSearch}
-                  selectedAmmos={componentState.selectedAmmos}
-                  selectCallback={(ammo, newCheckboxValue) => {
-                    let newSelectedRows = [...componentState.selectedAmmos];
-
-                    if (newCheckboxValue) {
-                      if (
-                        !componentState.selectedAmmos.find(
-                          (row) =>
-                            row.name === ammo.name &&
-                            row.category === ammo.category
-                        )
-                      ) {
-                        newSelectedRows.push(ammo);
-                      }
-                    } else {
-                      const index = componentState.selectedAmmos.findIndex(
-                        (row) =>
-                          row.name === ammo.name &&
-                          row.category === ammo.category
-                      );
-
-                      if (index !== -1) {
-                        newSelectedRows = newSelectedRows
-                          .slice(0, index)
-                          .concat(
-                            newSelectedRows.slice(
-                              index + 1,
-                              newSelectedRows.length
-                            )
-                          );
-                      }
-                    }
-
-                    setComponentState({
-                      ...componentState,
-                      selectedAmmos: newSelectedRows,
-                    });
-                  }}
-                />
-              </Box>
-            );
-          })}
-        </VStack>
-      </Center>
-    </>
-  );
 
   return (
     <Box py="48px">
@@ -375,7 +376,7 @@ const App = ({ results, isFallback }) => {
           </Checkbox>
         </Center>
       )}
-      {isMobile ? <MobileTable /> : <DesktopTable />}
+      {isMobile ? <MobileTable /> : <DesktopTable componentState={componentState} keysFilteredByWeaponName={keysFilteredByWeaponName} setComponentState={setComponentState} />}
       <Center>
         <Box
           w={["375px", "450px", "600px"]}
