@@ -83,7 +83,7 @@ const App = ({ results, isFallback }) => {
     });
   }, []);
 
-  const Mobile = () => (
+  const MobileTable = () => (
     <>
       <Accordion textAlign="center" defaultIndex={[0]} allowMultiple>
         {keysFilteredByWeaponName.map((key, index) => {
@@ -114,7 +114,7 @@ const App = ({ results, isFallback }) => {
     </>
   );
 
-  const Desktop = () => (
+  const DesktopTable = () => (
     <>
       <Center>
         <VStack
@@ -375,7 +375,7 @@ const App = ({ results, isFallback }) => {
           </Checkbox>
         </Center>
       )}
-      {isMobile ? <Mobile /> : <Desktop />}
+      {isMobile ? <MobileTable /> : <DesktopTable />}
       <Center>
         <Box
           w={["375px", "450px", "600px"]}
