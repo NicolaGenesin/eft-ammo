@@ -22,6 +22,7 @@ import aRandomwordgeneratorperformsasimplebutusefultaskitgeneratesrandomwordsBut
 import { TwitchEmbed } from "react-twitch-embed";
 import CompareButton from "../components/CompareButton";
 import CompareModal from "../components/CompareModal";
+import AmmoChart from "../components/AmmoChart";
 
 const App = ({ results, isFallback }) => {
   const [componentState, setComponentState] = useState({
@@ -234,6 +235,9 @@ const App = ({ results, isFallback }) => {
           content="http://eft-ammo.com/assets/og-01.jpg"
         />
       </Head>
+      <Box h="100vh">
+        <AmmoChart results={results} />
+      </Box>
       {componentState.selectedAmmos.length && (
         <CompareButton
           showModal={() => {
