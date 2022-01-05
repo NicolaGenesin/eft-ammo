@@ -154,6 +154,43 @@ const App = ({ results, isFallback }) => {
       <Head>
         <title>EFT | Ammo and Armor Charts</title>
         <link rel="icon" href="/favicon.ico" />
+
+        <meta
+          name="description"
+          content="Escape from Tarkov Ammo and Armor Charts created by NoFoodAfterMidnight 🙌"
+        />
+
+        {/* <!-- Google / Search Engine Tags --> */}
+        <meta itemProp="name" content="eft-ammo.com 🎮" />
+        <meta
+          itemProp="description"
+          content="Escape from Tarkov Ammo and Armor Charts created by NoFoodAfterMidnight 🙌"
+        />
+        <meta itemProp="image" content="http://eft-ammo.com/assets/og-01.jpg" />
+
+        {/* <!-- Facebook Meta Tags --> */}
+        <meta property="og:url" content="https://eft-ammo.com/" />
+        <meta property="og:type" content="website" />
+        <meta property="og:title" content="eft-ammo.com 🎮" />
+        <meta
+          property="og:description"
+          content="Escape from Tarkov Ammo and Armor Charts created by NoFoodAfterMidnight 🙌"
+        />
+        <meta name="og:image" content="http://eft-ammo.com/assets/og-01.jpg" />
+
+        {/* <!-- Twitter Meta Tags --> */}
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta property="twitter:domain" content="eft-ammo.com" />
+        <meta property="twitter:url" content="https://eft-ammo.com/" />
+        <meta name="twitter:title" content="eft-ammo.com 🎮" />
+        <meta
+          name="twitter:description"
+          content="Escape from Tarkov Ammo and Armor Charts created by NoFoodAfterMidnight 🙌"
+        />
+        <meta
+          name="twitter:image"
+          content="http://eft-ammo.com/assets/og-01.jpg"
+        />
       </Head>
 
       <Center mb="24px">
