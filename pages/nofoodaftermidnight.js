@@ -151,15 +151,30 @@ const App = ({ results, isFallback }) => {
                     if (newCheckboxValue) {
                       if (
                         !componentState.selectedAmmos.find(
-                          (row) => row.name === ammo.name
+                          (row) =>
+                            row.name === ammo.name &&
+                            row.category === ammo.category
                         )
                       ) {
                         newSelectedRows.push(ammo);
                       }
                     } else {
-                      newSelectedRows = componentState.selectedAmmos.filter(
-                        (row) => row.name !== ammo.name
+                      const index = componentState.selectedAmmos.findIndex(
+                        (row) =>
+                          row.name === ammo.name &&
+                          row.category === ammo.category
                       );
+
+                      if (index !== -1) {
+                        newSelectedRows = newSelectedRows
+                          .slice(0, index)
+                          .concat(
+                            newSelectedRows.slice(
+                              index + 1,
+                              newSelectedRows.length
+                            )
+                          );
+                      }
                     }
 
                     setComponentState({

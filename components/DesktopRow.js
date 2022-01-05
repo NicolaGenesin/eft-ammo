@@ -101,7 +101,9 @@ const DesktopRow = ({
                     size="lg"
                     ml="8px"
                     isChecked={selectedAmmos.find(
-                      (item) => item.name === ammo.name
+                      (item) =>
+                        item.name === ammo.name &&
+                        item.category === ammo.category
                     )}
                     onChange={(e) => {
                       selectCallback(ammo, e.target.checked);
