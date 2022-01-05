@@ -71,9 +71,9 @@ const App = ({ results, isFallback }) => {
       embed: (
         <TwitchEmbed
           style={{ width: "100%", height: "100%" }}
-          channel={"filodreamz"}
-          id={"filodreamz"}
-          key={"filodreamz"}
+          channel={"nofoodaftermidnight"}
+          id={"nofoodaftermidnight"}
+          key={"nofoodaftermidnight"}
           theme="dark"
           autoplay
           withChat={false}
@@ -391,8 +391,8 @@ const App = ({ results, isFallback }) => {
             as="h2"
             mb="8px"
           >
-            <a href="https://www.twitch.tv/filodreamz/">
-              Watch Filodreamz's stream here:
+            <a href="https://www.twitch.tv/nofoodaftermidnight/">
+              Watch NoFoodAfterMidnight's stream here:
             </a>
           </Text>
           {componentState.embed}
