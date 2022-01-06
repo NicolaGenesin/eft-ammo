@@ -234,7 +234,7 @@ const App = ({ results, isFallback }) => {
           content="http://eft-ammo.com/assets/og-01.jpg"
         />
       </Head>
-      {componentState.selectedAmmos.length && (
+      {componentState.selectedAmmos.length > 0 && (
         <CompareButton
           showModal={() => {
             setComponentState({
