@@ -127,6 +127,7 @@ export default function AmmoChart({ results }) {
         return {
           x: ammo.damage,
           y: ammo.penValue,
+          name: ammo.name,
         };
       }),
       pointRadius: 8,
@@ -153,16 +154,8 @@ export default function AmmoChart({ results }) {
           tooltip: {
             usePointStyle: true,
             callbacks: {
-              label: function (tooltipItem, x) {
-                var label = x.labels[tooltipItem.index];
-                return (
-                  label +
-                  ": (" +
-                  tooltipItem.xLabel +
-                  ", " +
-                  tooltipItem.yLabel +
-                  ")"
-                );
+              label: (context) => {
+                return `${context.dataset.label} - ${context.raw.name}`;
               },
             },
           },
