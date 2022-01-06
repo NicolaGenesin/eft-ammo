@@ -1,5 +1,5 @@
 import React from "react";
-import Chart from "chart.js";
+import Chart from "chart.js/auto";
 import { Box } from "@chakra-ui/react";
 
 const pointStyles = [
@@ -149,24 +149,32 @@ export default function AmmoChart({ results }) {
       data,
       options: {
         responsive: true,
-        tooltips: {
-          callbacks: {
-            label: function (tooltipItem, data) {
-              var label = data.labels[tooltipItem.index];
-              return (
-                label +
-                ": (" +
-                tooltipItem.xLabel +
-                ", " +
-                tooltipItem.yLabel +
-                ")"
-              );
+        plugins: {
+          tooltip: {
+            usePointStyle: true,
+            callbacks: {
+              label: function (tooltipItem, x) {
+                var label = x.labels[tooltipItem.index];
+                return (
+                  label +
+                  ": (" +
+                  tooltipItem.xLabel +
+                  ", " +
+                  tooltipItem.yLabel +
+                  ")"
+                );
+              },
             },
           },
-        },
-        legend: {
-          labels: {
-            usePointStyle: true,
+          legend: {
+            position: "top",
+            labels: {
+              usePointStyle: true,
+            },
+          },
+          title: {
+            display: true,
+            text: "Chart.js Scatter Multi Axis Chart",
           },
         },
         scales: {
@@ -174,7 +182,7 @@ export default function AmmoChart({ results }) {
             type: "linear", // only linear but allow scale type registration. This allows extensions to exist solely for log scale for instance
             position: "left",
             ticks: {
-              color: "rgba(255, 255, 255, 1)",
+              color: "#ff00ff",
             },
           },
           y2: {
@@ -182,7 +190,7 @@ export default function AmmoChart({ results }) {
             position: "right",
             reverse: true,
             ticks: {
-              color: "rgba(255, 255, 255, 1)",
+              color: "#ff00ff",
             },
             grid: {
               drawOnChartArea: false, // only want the grid lines for one axis to show up
@@ -191,8 +199,7 @@ export default function AmmoChart({ results }) {
         },
       },
     };
-    const ctx = document.getElementById("line-chart").getContext("2d");
-    new Chart(ctx, config);
+    const myChart = new Chart(document.getElementById("line-chart"), config);
   }, []);
   return (
     <Box>
