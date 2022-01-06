@@ -1,6 +1,10 @@
 import React from "react";
 import Chart from "chart.js/auto";
-import { Box } from "@chakra-ui/react";
+import ChartDataLabels from "chartjs-plugin-datalabels";
+import { Box, Button } from "@chakra-ui/react";
+
+Chart.register(ChartDataLabels);
+const defaultLegendClickHandler = Chart.defaults.plugins.legend.onClick;
 
 const pointStyles = [
   {
@@ -108,7 +112,7 @@ const stringToColor = (str) => {
 };
 
 export default function AmmoChart({ results }) {
-  console.log(results);
+  let myChart;
 
   const data = { datasets: [], labels: [] };
 
@@ -121,8 +125,6 @@ export default function AmmoChart({ results }) {
     const item = {
       label: category,
       pointStyle: style.pointStyle,
-      borderColor: stringToColor(category),
-      backgroundColor: stringToColor(category),
       data: ammosForCategory.map((ammo) => {
         return {
           x: ammo.damage,
@@ -151,11 +153,32 @@ export default function AmmoChart({ results }) {
       options: {
         responsive: true,
         plugins: {
+          datalabels: {
+            align: "end",
+            anchor: "end",
+            color: function (context) {
+              // if (context.dataset.borderColor) {
+              //   return context.dataset.borderColor;
+              // }
+              // return context.dataset.backgroundColor;
+              return "#ffffff";
+            },
+            font: function (context) {
+              var w = context.chart.width;
+              return {
+                size: w < 512 ? 12 : 14,
+                // weight: "bold",
+              };
+            },
+            formatter: function (value, context) {
+              return value.name;
+            },
+          },
           tooltip: {
             usePointStyle: true,
             callbacks: {
               label: (context) => {
-                return `${context.dataset.label} - ${context.raw.name}`;
+                return context.raw.name;
               },
             },
           },
@@ -163,11 +186,89 @@ export default function AmmoChart({ results }) {
             position: "top",
             labels: {
               usePointStyle: true,
+              generateLabels: (chart) => {
+                const datasets = chart.data.datasets;
+                const {
+                  labels: { usePointStyle, pointStyle, textAlign, color },
+                } = chart.legend.options;
+
+                const legendItems = chart
+                  ._getSortedDatasetMetas()
+                  .map((meta) => {
+                    const style = meta.controller.getStyle(
+                      usePointStyle ? 0 : undefined
+                    );
+
+                    return {
+                      text: datasets[meta.index].label,
+                      fillStyle: style.backgroundColor,
+                      fontColor: color,
+                      hidden: !meta.visible,
+                      lineCap: style.borderCapStyle,
+                      lineDash: style.borderDash,
+                      lineDashOffset: style.borderDashOffset,
+                      lineJoin: style.borderJoinStyle,
+                      strokeStyle: style.borderColor,
+                      pointStyle: pointStyle || style.pointStyle,
+                      rotation: style.rotation,
+                      textAlign: textAlign || style.textAlign,
+                      datasetIndex: meta.index,
+                    };
+                  });
+
+                legendItems.push({
+                  text:
+                    !chart.legend.hideAll ||
+                    typeof chart.legend.hideAll === "undefined"
+                      ? "Hide All"
+                      : "Show All",
+                  fontColor: color,
+                  fillStyle: "turquoise", // Box color
+                  strokeStyle: "turquoise", // LineCollor around box
+                });
+
+                return legendItems;
+              },
+            },
+            onClick: (evt, legendItem, legend) => {
+              const type = legend.chart.config.type;
+              let allLegendItemsState = [];
+
+              if (
+                legendItem.text === "Hide All" ||
+                legendItem.text === "Show All"
+              ) {
+                if (typeof legend.hideAll === "undefined") {
+                  legend.hideAll = false;
+                }
+
+                legend.chart.data.datasets.forEach((dataset, i) => {
+                  legend.chart.setDatasetVisibility(i, legend.hideAll);
+                });
+
+                legend.hideAll = !legend.hideAll;
+                legend.chart.update();
+
+                return;
+              }
+
+              defaultLegendClickHandler(evt, legendItem, legend);
+
+              allLegendItemsState = legend.chart.data.datasets.map(
+                (e, i) => legend.chart.getDatasetMeta(i).hidden
+              );
+
+              if (allLegendItemsState.every((el) => !el)) {
+                legend.hideAll = false;
+                legend.chart.update();
+              } else if (allLegendItemsState.every((el) => el)) {
+                legend.hideAll = true;
+                legend.chart.update();
+              }
             },
           },
           title: {
-            display: true,
-            text: "Chart.js Scatter Multi Axis Chart",
+            display: false,
           },
         },
         scales: {
@@ -181,7 +282,7 @@ export default function AmmoChart({ results }) {
           y2: {
             type: "linear", // only linear but allow scale type registration. This allows extensions to exist solely for log scale for instance
             position: "right",
-            reverse: true,
+            reverse: false,
             ticks: {
               color: "#ff00ff",
             },
@@ -192,7 +293,8 @@ export default function AmmoChart({ results }) {
         },
       },
     };
-    const myChart = new Chart(document.getElementById("line-chart"), config);
+
+    myChart = new Chart(document.getElementById("line-chart"), config);
   }, []);
   return (
     <Box>
