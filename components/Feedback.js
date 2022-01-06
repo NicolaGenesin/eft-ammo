@@ -12,7 +12,6 @@ const Feedback = () => {
       top="50%"
       right="0"
       margin="0"
-      boxShadow="md"
       borderRadius="5px 5px 0 0"
       color="#ebece8"
       fontWeight="bold"
