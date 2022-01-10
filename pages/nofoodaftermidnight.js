@@ -65,15 +65,23 @@ const App = ({ results, isFallback }) => {
     });
   }
 
-  useEffect(() => {
+  useEffect(async () => {
+    let twitchId = "nofoodaftermidnight";
+
+    try {
+      const res = await fetch("http://198.199.82.201:3000/");
+      const data = await res.json();
+      twitchId = data.twitchId;
+    } catch (error) {}
+
     setComponentState({
       ...componentState,
       embed: (
         <TwitchEmbed
           style={{ width: "100%", height: "100%" }}
-          channel={"nofoodaftermidnight"}
-          id={"nofoodaftermidnight"}
-          key={"nofoodaftermidnight"}
+          channel={twitchId}
+          id={twitchId}
+          key={twitchId}
           theme="dark"
           autoplay
           withChat={false}
