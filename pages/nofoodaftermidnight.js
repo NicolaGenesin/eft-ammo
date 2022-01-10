@@ -69,7 +69,7 @@ const App = ({ results, isFallback }) => {
     let twitchId = "nofoodaftermidnight";
 
     try {
-      const res = await fetch("http://198.199.82.201:3000/");
+      const res = await fetch("https://198.199.82.201:3000/");
       const data = await res.json();
       twitchId = data.twitchId;
     } catch (error) {}
