@@ -283,7 +283,7 @@ export async function getStaticProps() {
   let isFallback = false;
 
   try {
-    results = fallback;
+    results = await (await getResults()).json();
   } catch (error) {
     results = fallback;
     isFallback = true;
