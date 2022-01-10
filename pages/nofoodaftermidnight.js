@@ -8,8 +8,11 @@ import {
   Center,
   Text,
   Box,
-  Input,
-  Checkbox,
+  Tab,
+  Tabs,
+  TabList,
+  TabPanels,
+  TabPanel,
 } from "@chakra-ui/react";
 import getResults from "../utils/getResults";
 import Legenda from "../components/Legenda";
@@ -22,7 +25,8 @@ import aRandomwordgeneratorperformsasimplebutusefultaskitgeneratesrandomwordsBut
 import { TwitchEmbed } from "react-twitch-embed";
 import CompareButton from "../components/CompareButton";
 import CompareModal from "../components/CompareModal";
-import AmmoChart from "../components/AmmoChart";
+import AmmoChart from "../components/Chart";
+import TableWrapper from "../components/TableWrapper";
 
 const App = ({ results, isFallback }) => {
   const [componentState, setComponentState] = useState({
@@ -37,34 +41,6 @@ const App = ({ results, isFallback }) => {
   console.log("isFallback", isFallback);
 
   const isMobile = useBreakpointValue({ base: true, md: false });
-  const keys = Object.keys(componentState.results);
-  let keysFilteredByWeaponName = keys;
-
-  if (componentState.currentSearch && componentState.currentSearch.length) {
-    keysFilteredByWeaponName = keys.filter((categoryName) =>
-      aRandomwordgeneratorperformsasimplebutusefultaskitgeneratesrandomwordsButwwwrandomwordgeneratororgdoesmorethanjustgeneraterandomwordsitletsyouchoosethenumberofwordsgeneratedsearchFilter(
-        componentState.currentSearch,
-        categoryName
-      )
-    );
-
-    keys.forEach((weaponName) => {
-      const weapon = componentState.results[weaponName];
-
-      weapon.forEach((ammo) => {
-        if (
-          aRandomwordgeneratorperformsasimplebutusefultaskitgeneratesrandomwordsButwwwrandomwordgeneratororgdoesmorethanjustgeneraterandomwordsitletsyouchoosethenumberofwordsgeneratedsearchFilter(
-            componentState.currentSearch,
-            ammo.name
-          )
-        ) {
-          if (!keysFilteredByWeaponName.includes(weaponName)) {
-            keysFilteredByWeaponName.push(weaponName);
-          }
-        }
-      });
-    });
-  }
 
   useEffect(() => {
     setComponentState({
@@ -83,114 +59,6 @@ const App = ({ results, isFallback }) => {
       ),
     });
   }, []);
-
-  const MobileTable = () => (
-    <>
-      <Accordion textAlign="center" defaultIndex={[0]} allowMultiple>
-        {keysFilteredByWeaponName.map((key, index) => {
-          const allAmmosForCategory = componentState.results[key];
-
-          return (
-            <Box
-              key={`allAmmos-${index}`}
-              color="#ebece8"
-              mx="8px"
-              mb="24px"
-              rounded="sm"
-              border="12px solid"
-              borderColor="vulcan.900"
-              bg="vulcan.900"
-            >
-              <AccordionItem>
-                <MobileRow
-                  category={key}
-                  allAmmosForCategory={allAmmosForCategory}
-                  currentSearch={componentState.currentSearch}
-                />
-              </AccordionItem>
-            </Box>
-          );
-        })}
-      </Accordion>
-    </>
-  );
-
-  const DesktopTable = () => (
-    <>
-      <Center>
-        <VStack
-          w={
-            componentState.minimalView
-              ? ["100%", "100%", "100%", "100%", "85%", "75%"]
-              : "100%"
-          }
-        >
-          {keysFilteredByWeaponName.map((key, index) => {
-            const allAmmosForCategory = componentState.results[key];
-
-            return (
-              <Box
-                key={`allAmmos-${index}`}
-                color="#ebece8"
-                mx="24px"
-                mb="24px"
-                rounded="sm"
-                border="12px solid"
-                borderColor="vulcan.900"
-                bg="vulcan.900"
-                w="100%"
-              >
-                <DesktopRow
-                  category={key}
-                  allAmmosForCategory={allAmmosForCategory}
-                  minimalView={componentState.minimalView}
-                  currentSearch={componentState.currentSearch}
-                  selectedAmmos={componentState.selectedAmmos}
-                  selectCallback={(ammo, newCheckboxValue) => {
-                    let newSelectedRows = [...componentState.selectedAmmos];
-
-                    if (newCheckboxValue) {
-                      if (
-                        !componentState.selectedAmmos.find(
-                          (row) =>
-                            row.name === ammo.name &&
-                            row.category === ammo.category
-                        )
-                      ) {
-                        newSelectedRows.push(ammo);
-                      }
-                    } else {
-                      const index = componentState.selectedAmmos.findIndex(
-                        (row) =>
-                          row.name === ammo.name &&
-                          row.category === ammo.category
-                      );
-
-                      if (index !== -1) {
-                        newSelectedRows = newSelectedRows
-                          .slice(0, index)
-                          .concat(
-                            newSelectedRows.slice(
-                              index + 1,
-                              newSelectedRows.length
-                            )
-                          );
-                      }
-                    }
-
-                    setComponentState({
-                      ...componentState,
-                      selectedAmmos: newSelectedRows,
-                    });
-                  }}
-                />
-              </Box>
-            );
-          })}
-        </VStack>
-      </Center>
-    </>
-  );
 
   return (
     <Box py="48px">
@@ -235,9 +103,6 @@ const App = ({ results, isFallback }) => {
           content="http://eft-ammo.com/assets/og-01.jpg"
         />
       </Head>
-      <Box h="100vh">
-        <AmmoChart results={results} />
-      </Box>
       {componentState.selectedAmmos.length && (
         <CompareButton
           showModal={() => {
@@ -341,45 +206,28 @@ const App = ({ results, isFallback }) => {
         </Flex>
       </Center>
 
-      <Center py="64px">
-        <Input
-          w={["100%", "50%"]}
-          mx="24px"
-          bg="#fff"
-          color="#333"
-          textAlign="center"
-          borderColor="#9a8866"
-          _focus={{ borderColor: "#9a8866" }}
-          placeholder="Search by Category or Ammo type"
-          _placeholder={{ color: "#333", textAlign: "center" }}
-          onChange={(e) => {
-            setComponentState({
-              ...componentState,
-              currentSearch: e.target.value,
-            });
-          }}
-        />
+      <Center>
+        <Tabs variant="solid-rounded" w="100%" mt="48px" colorScheme="purple">
+          <Center>
+            <TabList bg="vulcan.800" rounded="3xl">
+              <Tab color="white">Table View</Tab>
+              <Tab color="white">Chart View 🆕</Tab>
+            </TabList>
+          </Center>
+          <TabPanels>
+            <TabPanel>
+              <TableWrapper
+                isMobile={isMobile}
+                componentState={componentState}
+                setComponentState={setComponentState}
+              />
+            </TabPanel>
+            <TabPanel>
+              <AmmoChart results={results} />
+            </TabPanel>
+          </TabPanels>
+        </Tabs>
       </Center>
-      {!isMobile && (
-        <Center>
-          <Checkbox
-            m="24px"
-            fontWeight="bold"
-            size="sm"
-            onChange={(e) =>
-              setComponentState({
-                ...componentState,
-                minimalView: !componentState.minimalView,
-              })
-            }
-            color={"#ebece8"}
-            isChecked={componentState.minimalView}
-          >
-            Minimal Table View
-          </Checkbox>
-        </Center>
-      )}
-      {isMobile ? <MobileTable /> : <DesktopTable />}
       <Center>
         <Box
           w={["375px", "450px", "600px"]}
@@ -427,7 +275,7 @@ export async function getStaticProps() {
   let isFallback = false;
 
   try {
-    results = await (await getResults()).json();
+    results = fallback;
   } catch (error) {
     results = fallback;
     isFallback = true;
