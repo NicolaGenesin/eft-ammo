@@ -174,25 +174,6 @@ const TableWrapper = ({ isMobile, componentState, setComponentState }) => {
           }}
         />
       </Center>
-      {!isMobile && (
-        <Center>
-          <Checkbox
-            m="24px"
-            fontWeight="bold"
-            size="sm"
-            onChange={(e) =>
-              setComponentState({
-                ...componentState,
-                minimalView: !componentState.minimalView,
-              })
-            }
-            color={"#ebece8"}
-            isChecked={componentState.minimalView}
-          >
-            Minimal Table View
-          </Checkbox>
-        </Center>
-      )}
       {isMobile ? (
         <MobileTable
           componentState={componentState}
