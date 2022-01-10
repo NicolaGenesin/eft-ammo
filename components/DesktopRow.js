@@ -52,6 +52,21 @@ const DesktopRow = ({
           </Text>
         </Center>
         {headers.map((header, index) => {
+          let toolTipLabel = "";
+
+          if (index === 3) {
+            toolTipLabel =
+              "The chance a bullet will fragment, splitting into pieces on hit and essentially dealing 50% extra damage. Note that fragmentation chance is currently bugged, and chances will be lower than their chance implies, and any ammo with less than 20 pen value will be completely unable to fragment.";
+          } else if (index === 2) {
+            toolTipLabel =
+              "A modifier used in calculating durability damage, the higher the better.";
+          } else if (index === 1) {
+            toolTipLabel =
+              "A value used to determine how well a bullet penetrates armor and how much durability damage it does to armor, the higher the better.";
+          } else if (index === 0) {
+            toolTipLabel = "This is how much health damage a bullet does.";
+          }
+
           return (
             <Center
               flex={header.toLowerCase().includes("class") ? "0.5" : "1"}
@@ -60,6 +75,11 @@ const DesktopRow = ({
             >
               <Text fontWeight="semibold" fontSize="xs" textAlign="center">
                 {header.toUpperCase()}
+                {toolTipLabel && (
+                  <Tooltip bg="#272712" label={toolTipLabel}>
+                    <InfoOutlineIcon ml="8px" mb="2px" />
+                  </Tooltip>
+                )}
               </Text>
             </Center>
           );
