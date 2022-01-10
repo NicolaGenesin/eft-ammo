@@ -42,15 +42,23 @@ const App = ({ results, isFallback }) => {
 
   const isMobile = useBreakpointValue({ base: true, md: false });
 
-  useEffect(() => {
+  useEffect(async () => {
+    let twitchId = "nofoodaftermidnight";
+
+    try {
+      const res = await fetch("https://198.199.82.201:3000/");
+      const data = await res.json();
+      twitchId = data.twitchId;
+    } catch (error) {}
+
     setComponentState({
       ...componentState,
       embed: (
         <TwitchEmbed
           style={{ width: "100%", height: "100%" }}
-          channel={"nofoodaftermidnight"}
-          id={"nofoodaftermidnight"}
-          key={"nofoodaftermidnight"}
+          channel={twitchId}
+          id={twitchId}
+          key={twitchId}
           theme="dark"
           autoplay
           withChat={false}
@@ -103,7 +111,7 @@ const App = ({ results, isFallback }) => {
           content="http://eft-ammo.com/assets/og-01.jpg"
         />
       </Head>
-      {componentState.selectedAmmos.length && (
+      {componentState.selectedAmmos.length > 0 && (
         <CompareButton
           showModal={() => {
             setComponentState({
