@@ -42,33 +42,33 @@ const App = ({ results, isFallback }) => {
 
   const isMobile = useBreakpointValue({ base: true, md: false });
 
-  // useEffect(async () => {
-  //   let twitchId = "nofoodaftermidnight";
+  useEffect(async () => {
+    let twitchId = "nofoodaftermidnight";
 
-  //   try {
-  //     const res = await fetch(
-  //       "https://eft-ammo-embed-j5r9q.ondigitalocean.app/"
-  //     );
-  //     const data = await res.json();
-  //     twitchId = data.twitchId;
-  //   } catch (error) {}
+    try {
+      const res = await fetch(
+        "https://eft-ammo-embed-j5r9q.ondigitalocean.app/"
+      );
+      const data = await res.json();
+      twitchId = data.twitchId;
+    } catch (error) {}
 
-  //   setComponentState({
-  //     ...componentState,
-  //     embed: (
-  //       <TwitchEmbed
-  //         style={{ width: "100%", height: "100%" }}
-  //         channel={twitchId}
-  //         id={twitchId}
-  //         key={twitchId}
-  //         theme="dark"
-  //         autoplay
-  //         withChat={false}
-  //         muted={true}
-  //       />
-  //     ),
-  //   });
-  // }, []);
+    setComponentState({
+      ...componentState,
+      embed: (
+        <TwitchEmbed
+          style={{ width: "100%", height: "100%" }}
+          channel={twitchId}
+          id={twitchId}
+          key={twitchId}
+          theme="dark"
+          autoplay
+          withChat={false}
+          muted={true}
+        />
+      ),
+    });
+  }, []);
 
   return (
     <Box py="48px">
