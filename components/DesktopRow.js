@@ -96,12 +96,12 @@ const DesktopRow = ({
           toolTipLabel = `${ammo.note} ${ammo.secondNote}`;
         }
 
-        let src = `./images/${category}@${ammo.name}.png`;
+        let src = `./images/${category}@${ammo.name}.webp`;
 
         if (ammo.name.includes("Poleva-6u")) {
           // TODO real spaghetti, fix this
 
-          src = `./images/${category}@Poleva-6.png`;
+          src = `./images/${category}@Poleva-6.webp`;
         }
 
         const ammoMatch =
