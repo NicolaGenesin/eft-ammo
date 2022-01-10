@@ -46,7 +46,9 @@ const App = ({ results, isFallback }) => {
     let twitchId = "nofoodaftermidnight";
 
     try {
-      const res = await fetch("https://198.199.82.201:3000/");
+      const res = await fetch(
+        "https://eft-ammo-embed-j5r9q.ondigitalocean.app/"
+      );
       const data = await res.json();
       twitchId = data.twitchId;
     } catch (error) {}
