@@ -16,7 +16,7 @@ Chart.register(ChartDataLabels);
 Chart.register(annotationPlugin);
 const defaultLegendClickHandler = Chart.defaults.plugins.legend.onClick;
 
-const lineLabelBackgroundColour = "green";
+const lineLabelBackgroundColour = "#70b035";
 const annotations = [];
 
 annotations.push({
@@ -43,9 +43,11 @@ for (let index = 1; index < 7; index++) {
     borderColor: "#383932",
     value: index * 10,
     label: {
+      borderRadius: 0,
       rotation: "auto",
       position: "end",
       content: `CLASS ${index}`,
+      color: "black",
       enabled: true,
       backgroundColor: lineLabelBackgroundColour,
     },
@@ -61,9 +63,11 @@ annotations.push({
   value: 35,
   borderDash: [8, 8],
   label: {
+    borderRadius: 0,
     rotation: "auto",
     content: "HEAD",
     position: "start",
+    color: "black",
     enabled: true,
     backgroundColor: lineLabelBackgroundColour,
   },
@@ -78,9 +82,11 @@ annotations.push({
   value: 75,
   borderDash: [8, 8],
   label: {
+    borderRadius: 0,
     rotation: "auto",
     content: "CHEST",
     position: "start",
+    color: "black",
     enabled: true,
     backgroundColor: lineLabelBackgroundColour,
   },
@@ -416,6 +422,7 @@ export default function AmmoChart({ results }) {
           legend: {
             position: "top",
             labels: {
+              padding: 20,
               usePointStyle: true,
               generateLabels: (chart) => {
                 const datasets = chart.data.datasets;
