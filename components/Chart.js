@@ -29,7 +29,7 @@ annotations.push({
     color: "rgba(50, 50, 50, 0.2)",
     content: "NoFAM",
     font: {
-      size: (ctx) => ctx.chart.chartArea.height / 2,
+      size: (ctx) => ctx.chart.chartArea.height / 3,
     },
     position: "center",
   },
