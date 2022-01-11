@@ -76,7 +76,7 @@ annotations.push({
   scaleID: "x",
   borderWidth: 1,
   borderColor: "green",
-  value: 75,
+  value: 85,
   borderDash: [8, 8],
   label: {
     borderRadius: 0,
@@ -518,6 +518,8 @@ export default function AmmoChart({ results }) {
               text: "PENETRATION",
               color: "white",
             },
+            max: 90,
+            min: 0,
           },
           y2: {
             type: "linear", // only linear but allow scale type registration. This allows extensions to exist solely for log scale for instance
