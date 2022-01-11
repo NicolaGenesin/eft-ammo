@@ -113,6 +113,11 @@ const DesktopRow = ({
             ammo.name
           );
 
+        const isChecked =
+          selectedAmmos.find(
+            (item) => item.name === ammo.name && item.category === ammo.category
+          ) !== undefined;
+
         return (
           <div key={`ammo-${index}`}>
             <Flex fontSize="md" fontWeight="normal">
@@ -122,11 +127,7 @@ const DesktopRow = ({
                     colorScheme="purple"
                     size="lg"
                     ml="8px"
-                    isChecked={selectedAmmos.find(
-                      (item) =>
-                        item.name === ammo.name &&
-                        item.category === ammo.category
-                    )}
+                    isChecked={isChecked}
                     onChange={(e) => {
                       selectCallback(ammo, e.target.checked);
                     }}
