@@ -25,8 +25,8 @@ import aRandomwordgeneratorperformsasimplebutusefultaskitgeneratesrandomwordsBut
 import { TwitchEmbed } from "react-twitch-embed";
 import CompareButton from "../components/CompareButton";
 import CompareModal from "../components/CompareModal";
-import AmmoChart from "../components/Chart";
 import TableWrapper from "../components/TableWrapper";
+import ChartWrapper from "../components/ChartWrapper";
 
 const App = ({ results, isFallback }) => {
   const [componentState, setComponentState] = useState({
@@ -233,7 +233,7 @@ const App = ({ results, isFallback }) => {
               />
             </TabPanel>
             <TabPanel>
-              <AmmoChart results={results} />
+              <ChartWrapper results={results} />
             </TabPanel>
           </TabPanels>
         </Tabs>
