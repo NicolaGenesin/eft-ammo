@@ -98,13 +98,16 @@ const DesktopRow = ({
           toolTipLabel = `${ammo.note} ${ammo.secondNote}`;
         }
 
-        let src = `./images/${category || ammo.category}@${ammo.name}.webp`;
+        let imagePath = `${category || ammo.category}@${ammo.name}`;
 
         if (ammo.name.includes("Poleva-6u")) {
           // TODO real spaghetti, fix this
 
-          src = `./images/${category || ammo.category}@Poleva-6.webp`;
+          imagePath = `${category || ammo.category}@Poleva-6`;
         }
+
+        const imageURL = `./images/${imagePath}.webp`;
+        const fallbackImageURL = `./images-fallback/${imagePath}.jpeg`;
 
         const ammoMatch =
           currentSearch.length &&
@@ -133,16 +136,20 @@ const DesktopRow = ({
                     }}
                   />
                 )}
-                <img
-                  style={{
-                    marginLeft: "8px",
-                    objectFit: "cover",
-                  }}
-                  width={maxCellHeight}
-                  height={maxCellHeight}
-                  src={src}
-                  alt={ammo.name}
-                />
+                <picture>
+                  <source srcset={imageURL} type="image/webp" />
+                  <source srcset={fallbackImageURL} type="image/jpeg" />
+                  <img
+                    style={{
+                      marginLeft: "8px",
+                      objectFit: "cover",
+                    }}
+                    width={maxCellHeight}
+                    height={maxCellHeight}
+                    src={fallbackImageURL}
+                    alt={ammo.name}
+                  />
+                </picture>
                 <Center
                   bg={ammoMatch ? "blue.600" : ""}
                   fontSize="xs"
