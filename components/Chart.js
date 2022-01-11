@@ -9,9 +9,6 @@ import getColor from "../utils/getColor";
 Chart.defaults.font.size = 14;
 Chart.defaults.font.weight = "bold";
 Chart.defaults.font.family = "Montserrat";
-
-console.log(Chart.defaults.font);
-
 Chart.register(ChartDataLabels);
 Chart.register(annotationPlugin);
 const defaultLegendClickHandler = Chart.defaults.plugins.legend.onClick;
