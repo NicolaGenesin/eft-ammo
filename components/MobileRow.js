@@ -63,23 +63,22 @@ const MobileRow = ({ category, allAmmosForCategory, currentSearch }) => {
             return (
               <Box key={`allAmmos-${index}`} bg="vulcan.800" mb="12px" p="8px">
                 <HStack>
-                  <Center>
-                    <Image
-                      boxSize="48px"
-                      objectFit="cover"
-                      src={src}
-                      alt={ammo.name}
-                    />
-                  </Center>
-                  <Center>
-                    <Text
-                      bg={ammoMatch ? "blue.600" : ""}
-                      fontSize="sm"
-                      fontWeight="semibold"
-                      ml="8px"
-                    >
-                      {ammo.name.toUpperCase()}
-                    </Text>
+                  <img
+                    style={{
+                      objectFit: "cover",
+                    }}
+                    width="48px"
+                    height="48px"
+                    src={src}
+                    alt={ammo.name}
+                  />
+                  <Center
+                    bg={ammoMatch ? "blue.600" : ""}
+                    fontSize="sm"
+                    fontWeight="semibold"
+                    ml="8px"
+                  >
+                    {ammo.name.toUpperCase()}
                   </Center>
                 </HStack>
                 <HStack
