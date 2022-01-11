@@ -132,10 +132,13 @@ const DesktopRow = ({
                     }}
                   />
                 )}
-                <Image
-                  ml="8px"
-                  boxSize={maxCellHeight}
-                  objectFit="cover"
+                <img
+                  style={{
+                    marginLeft: "8px",
+                    objectFit: "cover",
+                  }}
+                  width={maxCellHeight}
+                  height={maxCellHeight}
                   src={src}
                   alt={ammo.name}
                 />
