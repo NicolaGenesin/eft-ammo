@@ -33,8 +33,8 @@ const MobileTable = ({ componentState, keysFilteredByWeaponName }) => (
                 bg="vulcan.900"
               >
                 {inView && (
-                  <Fade in={true} color="tomato">
-                    <AccordionItem>
+                  <Fade in={true}>
+                    <AccordionItem border="none">
                       <MobileRow
                         category={key}
                         allAmmosForCategory={allAmmosForCategory}
