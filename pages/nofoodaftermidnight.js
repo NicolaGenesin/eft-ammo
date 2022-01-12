@@ -74,7 +74,7 @@ const App = ({ results, isFallback }) => {
           />
         ),
       });
-    }, 5000);
+    }, 1000);
   }, []);
 
   return (
