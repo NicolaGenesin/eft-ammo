@@ -150,6 +150,7 @@ const DesktopRow = ({
                     height={maxCellHeight}
                     src={encodeURIComponent(fallbackImageURL)}
                     alt={ammo.name}
+                    loading="lazy"
                   />
                 </picture>
                 <Center

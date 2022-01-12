@@ -80,6 +80,7 @@ const MobileRow = ({ category, allAmmosForCategory, currentSearch }) => {
                       height="48px"
                       src={encodeURIComponent(fallbackImageURL)}
                       alt={ammo.name}
+                      loading="lazy"
                     />
                   </picture>
                   <Center
