@@ -138,7 +138,7 @@ const DesktopRow = ({
                 )}
                 <picture>
                   <source
-                    srcset={encodeURIComponent(imageURL)}
+                    srcSet={encodeURIComponent(imageURL)}
                     type="image/webp"
                   />
                   <img
