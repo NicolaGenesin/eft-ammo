@@ -19,24 +19,33 @@ const MobileTable = ({ componentState, keysFilteredByWeaponName }) => (
         const allAmmosForCategory = componentState.results[key];
 
         return (
-          <Box
-            key={`allAmmos-${index}`}
-            color="#ebece8"
-            mx="8px"
-            mb="24px"
-            rounded="sm"
-            border="12px solid"
-            borderColor="vulcan.900"
-            bg="vulcan.900"
-          >
-            <AccordionItem>
-              <MobileRow
-                category={key}
-                allAmmosForCategory={allAmmosForCategory}
-                currentSearch={componentState.currentSearch}
-              />
-            </AccordionItem>
-          </Box>
+          <InView triggerOnce={true} key={`inView-${index}`}>
+            {({ inView, ref }) => (
+              <Box
+                ref={ref}
+                key={`allAmmos-${index}`}
+                color="#ebece8"
+                mx="8px"
+                mb="24px"
+                rounded="sm"
+                border="12px solid"
+                borderColor="vulcan.900"
+                bg="vulcan.900"
+              >
+                {inView && (
+                  <Fade in={true} color="tomato">
+                    <AccordionItem>
+                      <MobileRow
+                        category={key}
+                        allAmmosForCategory={allAmmosForCategory}
+                        currentSearch={componentState.currentSearch}
+                      />
+                    </AccordionItem>
+                  </Fade>
+                )}
+              </Box>
+            )}
+          </InView>
         );
       })}
     </Accordion>
@@ -62,7 +71,7 @@ const DesktopTable = ({
             const allAmmosForCategory = componentState.results[key];
 
             return (
-              <InView triggerOnce={true}>
+              <InView triggerOnce={true} key={`inView-${index}`}>
                 {({ inView, ref }) => (
                   <Box
                     ref={ref}
