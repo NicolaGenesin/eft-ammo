@@ -287,12 +287,12 @@ const App = ({ results, isFallback }) => {
   );
 };
 
-export async function getServerSideProps(context) {
+export async function getStaticProps() {
   let results;
   let isFallback = false;
 
   try {
-    results = fallback;
+    results = await (await getResults()).json();
   } catch (error) {
     results = fallback;
     isFallback = true;
@@ -309,7 +309,7 @@ export async function getServerSideProps(context) {
       results,
       isFallback,
     },
-    // revalidate: 900,
+    revalidate: 900,
   };
 }
 
