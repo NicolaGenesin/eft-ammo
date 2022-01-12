@@ -137,8 +137,10 @@ const DesktopRow = ({
                   />
                 )}
                 <picture>
-                  <source srcset={imageURL} type="image/webp" />
-                  <source srcset={fallbackImageURL} type="image/jpeg" />
+                  <source
+                    srcset={encodeURIComponent(imageURL)}
+                    type="image/webp"
+                  />
                   <img
                     style={{
                       marginLeft: "8px",
@@ -146,7 +148,7 @@ const DesktopRow = ({
                     }}
                     width={maxCellHeight}
                     height={maxCellHeight}
-                    src={fallbackImageURL}
+                    src={encodeURIComponent(fallbackImageURL)}
                     alt={ammo.name}
                   />
                 </picture>

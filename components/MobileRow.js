@@ -67,8 +67,10 @@ const MobileRow = ({ category, allAmmosForCategory, currentSearch }) => {
               <Box key={`allAmmos-${index}`} bg="vulcan.800" mb="12px" p="8px">
                 <HStack>
                   <picture>
-                    <source srcset={imageURL} type="image/webp" />
-                    <source srcset={fallbackImageURL} type="image/jpeg" />
+                    <source
+                      srcset={encodeURIComponent(imageURL)}
+                      type="image/webp"
+                    />
                     <img
                       style={{
                         marginLeft: "8px",
@@ -76,7 +78,7 @@ const MobileRow = ({ category, allAmmosForCategory, currentSearch }) => {
                       }}
                       width="48px"
                       height="48px"
-                      src={fallbackImageURL}
+                      src={encodeURIComponent(fallbackImageURL)}
                       alt={ammo.name}
                     />
                   </picture>
