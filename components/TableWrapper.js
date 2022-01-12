@@ -12,6 +12,7 @@ import {
 import DesktopRow from "./DesktopRow";
 import MobileRow from "./MobileRow";
 import aRandomwordgeneratorperformsasimplebutusefultaskitgeneratesrandomwordsButwwwrandomwordgeneratororgdoesmorethanjustgeneraterandomwordsitletsyouchoosethenumberofwordsgeneratedsearchFilter from "../utils/search";
+import { InView } from "react-intersection-observer";
 
 const MobileTable = ({ componentState, keysFilteredByWeaponName }) => (
   <>
@@ -48,81 +49,96 @@ const DesktopTable = ({
   componentState,
   setComponentState,
   keysFilteredByWeaponName,
-}) => (
-  <>
-    <Center>
-      <VStack
-        w={
-          componentState.minimalView
-            ? ["100%", "100%", "100%", "100%", "85%", "75%"]
-            : "100%"
-        }
-      >
-        {keysFilteredByWeaponName.map((key, index) => {
-          const allAmmosForCategory = componentState.results[key];
+}) => {
+  return (
+    <>
+      <Center>
+        <VStack
+          w={
+            componentState.minimalView
+              ? ["100%", "100%", "100%", "100%", "85%", "75%"]
+              : "100%"
+          }
+        >
+          {keysFilteredByWeaponName.map((key, index) => {
+            const allAmmosForCategory = componentState.results[key];
 
-          return (
-            <Box
-              key={`allAmmos-${index}`}
-              color="#ebece8"
-              mx="24px"
-              mb="24px"
-              rounded="sm"
-              border="12px solid"
-              borderColor="vulcan.900"
-              bg="vulcan.900"
-              w="100%"
-            >
-              <DesktopRow
-                category={key}
-                allAmmosForCategory={allAmmosForCategory}
-                minimalView={componentState.minimalView}
-                currentSearch={componentState.currentSearch}
-                selectedAmmos={componentState.selectedAmmos}
-                selectCallback={(ammo, newCheckboxValue) => {
-                  let newSelectedRows = [...componentState.selectedAmmos];
+            return (
+              <InView triggerOnce={true}>
+                {({ inView, ref, entry }) => (
+                  <Box
+                    ref={ref}
+                    id="hello"
+                    key={`allAmmos-${index}`}
+                    color="#ebece8"
+                    mx="24px"
+                    mb="24px"
+                    rounded="sm"
+                    border="12px solid"
+                    borderColor="vulcan.900"
+                    bg="vulcan.900"
+                    w="100%"
+                    id={inView ? "yes" : "no"}
+                  >
+                    {inView && (
+                      <DesktopRow
+                        category={key}
+                        allAmmosForCategory={allAmmosForCategory}
+                        minimalView={componentState.minimalView}
+                        currentSearch={componentState.currentSearch}
+                        selectedAmmos={componentState.selectedAmmos}
+                        selectCallback={(ammo, newCheckboxValue) => {
+                          let newSelectedRows = [
+                            ...componentState.selectedAmmos,
+                          ];
 
-                  if (newCheckboxValue) {
-                    if (
-                      !componentState.selectedAmmos.find(
-                        (row) =>
-                          row.name === ammo.name &&
-                          row.category === ammo.category
-                      )
-                    ) {
-                      newSelectedRows.push(ammo);
-                    }
-                  } else {
-                    const index = componentState.selectedAmmos.findIndex(
-                      (row) =>
-                        row.name === ammo.name && row.category === ammo.category
-                    );
+                          if (newCheckboxValue) {
+                            if (
+                              !componentState.selectedAmmos.find(
+                                (row) =>
+                                  row.name === ammo.name &&
+                                  row.category === ammo.category
+                              )
+                            ) {
+                              newSelectedRows.push(ammo);
+                            }
+                          } else {
+                            const index =
+                              componentState.selectedAmmos.findIndex(
+                                (row) =>
+                                  row.name === ammo.name &&
+                                  row.category === ammo.category
+                              );
 
-                    if (index !== -1) {
-                      newSelectedRows = newSelectedRows
-                        .slice(0, index)
-                        .concat(
-                          newSelectedRows.slice(
-                            index + 1,
-                            newSelectedRows.length
-                          )
-                        );
-                    }
-                  }
+                            if (index !== -1) {
+                              newSelectedRows = newSelectedRows
+                                .slice(0, index)
+                                .concat(
+                                  newSelectedRows.slice(
+                                    index + 1,
+                                    newSelectedRows.length
+                                  )
+                                );
+                            }
+                          }
 
-                  setComponentState({
-                    ...componentState,
-                    selectedAmmos: newSelectedRows,
-                  });
-                }}
-              />
-            </Box>
-          );
-        })}
-      </VStack>
-    </Center>
-  </>
-);
+                          setComponentState({
+                            ...componentState,
+                            selectedAmmos: newSelectedRows,
+                          });
+                        }}
+                      />
+                    )}
+                  </Box>
+                )}
+              </InView>
+            );
+          })}
+        </VStack>
+      </Center>
+    </>
+  );
+};
 
 const TableWrapper = ({ isMobile, componentState, setComponentState }) => {
   const keys = Object.keys(componentState.results);
@@ -155,39 +171,35 @@ const TableWrapper = ({ isMobile, componentState, setComponentState }) => {
   }
 
   return (
-    <>
-      <Center py="64px">
-        <Input
-          w={["100%", "50%"]}
-          mx="24px"
-          bg="#fff"
-          color="#333"
-          textAlign="center"
-          borderColor="#9a8866"
-          _focus={{ borderColor: "#9a8866" }}
-          placeholder="Search by Category or Ammo type"
-          _placeholder={{ color: "#333", textAlign: "center" }}
-          onChange={(e) => {
-            setComponentState({
-              ...componentState,
-              currentSearch: e.target.value,
-            });
-          }}
-        />
-      </Center>
-      {isMobile ? (
-        <MobileTable
-          componentState={componentState}
-          keysFilteredByWeaponName={keysFilteredByWeaponName}
-        />
-      ) : (
+    <div id="test">
+      <Box>
+        <Center py="64px">
+          <Input
+            w={["100%", "50%"]}
+            mx="24px"
+            bg="#fff"
+            color="#333"
+            textAlign="center"
+            borderColor="#9a8866"
+            _focus={{ borderColor: "#9a8866" }}
+            placeholder="Search by Category or Ammo type"
+            _placeholder={{ color: "#333", textAlign: "center" }}
+            onChange={(e) => {
+              setComponentState({
+                ...componentState,
+                currentSearch: e.target.value,
+              });
+            }}
+          />
+        </Center>
+
         <DesktopTable
           componentState={componentState}
           setComponentState={setComponentState}
           keysFilteredByWeaponName={keysFilteredByWeaponName}
         />
-      )}
-    </>
+      </Box>
+    </div>
   );
 };
 
