@@ -45,13 +45,16 @@ const MobileRow = ({ category, allAmmosForCategory, currentSearch }) => {
       <AccordionPanel pt={4} px={0}>
         <Flex color="#ebece8" direction="column">
           {allAmmosForCategory.map((ammo, index) => {
-            let src = `./images/${category}@${ammo.name}.webp`;
+            let imagePath = `${category}@${ammo.name}`;
 
             if (ammo.name.includes("Poleva-6u")) {
               // TODO real spaghetti, fix this
 
-              src = `./images/${category}@Poleva-6.webp`;
+              imagePath = `${category}@Poleva-6.webp`;
             }
+
+            const imageURL = `/images/${imagePath}.webp`;
+            const fallbackImageURL = `/images-fallback/${imagePath}.jpeg`;
 
             const ammoMatch =
               currentSearch.length &&
@@ -63,15 +66,22 @@ const MobileRow = ({ category, allAmmosForCategory, currentSearch }) => {
             return (
               <Box key={`allAmmos-${index}`} bg="vulcan.800" mb="12px" p="8px">
                 <HStack>
-                  <img
-                    style={{
-                      objectFit: "cover",
-                    }}
-                    width="48px"
-                    height="48px"
-                    src={src}
-                    alt={ammo.name}
-                  />
+                  <picture>
+                    <source
+                      srcset={encodeURIComponent(imageURL)}
+                      type="image/webp"
+                    />
+                    <img
+                      style={{
+                        marginLeft: "8px",
+                        objectFit: "cover",
+                      }}
+                      width="48px"
+                      height="48px"
+                      src={encodeURIComponent(fallbackImageURL)}
+                      alt={ammo.name}
+                    />
+                  </picture>
                   <Center
                     bg={ammoMatch ? "blue.600" : ""}
                     fontSize="sm"
