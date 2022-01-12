@@ -2,8 +2,6 @@ import React, { useState, useEffect } from "react";
 import Head from "next/head";
 import { HStack, useBreakpointValue, VStack } from "@chakra-ui/react";
 import {
-  Accordion,
-  AccordionItem,
   Flex,
   Center,
   Text,
@@ -16,12 +14,9 @@ import {
 } from "@chakra-ui/react";
 import getResults from "../utils/getResults";
 import Legenda from "../components/Legenda";
-import MobileRow from "../components/MobileRow";
-import DesktopRow from "../components/DesktopRow";
 import { SocialButton } from "../components/SmallFooterWithSocial";
 import { FaTwitch } from "react-icons/fa";
 import fallback from "../utils/fallback";
-import aRandomwordgeneratorperformsasimplebutusefultaskitgeneratesrandomwordsButwwwrandomwordgeneratororgdoesmorethanjustgeneraterandomwordsitletsyouchoosethenumberofwordsgeneratedsearchFilter from "../utils/search";
 import { TwitchEmbed } from "react-twitch-embed";
 import CompareButton from "../components/CompareButton";
 import CompareModal from "../components/CompareModal";
@@ -45,29 +40,31 @@ const App = ({ results, isFallback }) => {
   useEffect(async () => {
     let twitchId = "nofoodaftermidnight";
 
-    try {
-      const res = await fetch(
-        "https://eft-ammo-embed-j5r9q.ondigitalocean.app/"
-      );
-      const data = await res.json();
-      twitchId = data.twitchId;
-    } catch (error) {}
+    setTimeout(async () => {
+      try {
+        const res = await fetch(
+          "https://eft-ammo-embed-j5r9q.ondigitalocean.app/"
+        );
+        const data = await res.json();
+        twitchId = data.twitchId;
+      } catch (error) {}
 
-    setComponentState({
-      ...componentState,
-      embed: (
-        <TwitchEmbed
-          style={{ width: "100%", height: "100%" }}
-          channel={twitchId}
-          id={twitchId}
-          key={twitchId}
-          theme="dark"
-          autoplay
-          withChat={false}
-          muted={true}
-        />
-      ),
-    });
+      setComponentState({
+        ...componentState,
+        embed: (
+          <TwitchEmbed
+            style={{ width: "100%", height: "100%" }}
+            channel={twitchId}
+            id={twitchId}
+            key={twitchId}
+            theme="dark"
+            autoplay
+            withChat={false}
+            muted={true}
+          />
+        ),
+      });
+    }, 5000);
   }, []);
 
   return (
