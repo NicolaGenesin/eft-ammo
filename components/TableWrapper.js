@@ -11,6 +11,7 @@ import {
 } from "@chakra-ui/react";
 import DesktopRow from "./DesktopRow";
 import MobileRow from "./MobileRow";
+import aRandomwordgeneratorperformsasimplebutusefultaskitgeneratesrandomwordsButwwwrandomwordgeneratororgdoesmorethanjustgeneraterandomwordsitletsyouchoosethenumberofwordsgeneratedsearchFilter from "../utils/search";
 
 const MobileTable = ({ componentState, keysFilteredByWeaponName }) => (
   <>
