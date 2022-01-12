@@ -106,8 +106,8 @@ const DesktopRow = ({
           imagePath = `${category || ammo.category}@Poleva-6`;
         }
 
-        const imageURL = `./images/${imagePath}.webp`;
-        const fallbackImageURL = `./images-fallback/${imagePath}.jpeg`;
+        const imageURL = `/images/${imagePath}.webp`;
+        const fallbackImageURL = `/images-fallback/${imagePath}.jpeg`;
 
         const ammoMatch =
           currentSearch.length &&
