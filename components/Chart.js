@@ -583,7 +583,7 @@ export default function AmmoChart({ results, classDefeated }) {
   }, [classDefeated]);
   return (
     <Center>
-      <Box w={["100%", "75%"]} mt="48px" h={["900px"]}>
+      <Box w={["100%", "75%"]} mt="48px" h={["900px"]} style={{ zIndex: 1 }}>
         <canvas id="line-chart" />
       </Box>
     </Center>
