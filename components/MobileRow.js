@@ -53,8 +53,8 @@ const MobileRow = ({ category, allAmmosForCategory, currentSearch }) => {
               imagePath = `${category}@Poleva-6.webp`;
             }
 
-            const imageURL = `./images/${imagePath}.webp`;
-            const fallbackImageURL = `./images-fallback/${imagePath}.jpeg`;
+            const imageURL = `/images/${imagePath}.webp`;
+            const fallbackImageURL = `/images-fallback/${imagePath}.jpeg`;
 
             const ammoMatch =
               currentSearch.length &&
