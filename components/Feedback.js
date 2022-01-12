@@ -9,7 +9,7 @@ const Feedback = () => {
   return (
     <Box
       position="fixed"
-      bottom="3%"
+      bottom="6%"
       right="0"
       margin="0"
       borderRadius="5px 5px 0 0"
