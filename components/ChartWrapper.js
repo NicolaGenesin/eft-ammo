@@ -16,7 +16,7 @@ const ChartWrapper = ({ results }) => {
             .map((_, i) => 0 + i)
             .map((index) => {
               return (
-                <WrapItem>
+                <WrapItem key={`wrap-item-${index}`}>
                   <Button
                     size={"sm"}
                     colorScheme={index === 0 ? "red" : "purple"}
