@@ -5,6 +5,7 @@ import {
   Input,
   Accordion,
   AccordionItem,
+  Fade,
 } from "@chakra-ui/react";
 import DesktopRow from "./DesktopRow";
 import MobileRow from "./MobileRow";
@@ -76,53 +77,55 @@ const DesktopTable = ({
                     w="100%"
                   >
                     {inView && (
-                      <DesktopRow
-                        category={key}
-                        allAmmosForCategory={allAmmosForCategory}
-                        minimalView={componentState.minimalView}
-                        currentSearch={componentState.currentSearch}
-                        selectedAmmos={componentState.selectedAmmos}
-                        selectCallback={(ammo, newCheckboxValue) => {
-                          let newSelectedRows = [
-                            ...componentState.selectedAmmos,
-                          ];
+                      <Fade in={true}>
+                        <DesktopRow
+                          category={key}
+                          allAmmosForCategory={allAmmosForCategory}
+                          minimalView={componentState.minimalView}
+                          currentSearch={componentState.currentSearch}
+                          selectedAmmos={componentState.selectedAmmos}
+                          selectCallback={(ammo, newCheckboxValue) => {
+                            let newSelectedRows = [
+                              ...componentState.selectedAmmos,
+                            ];
 
-                          if (newCheckboxValue) {
-                            if (
-                              !componentState.selectedAmmos.find(
-                                (row) =>
-                                  row.name === ammo.name &&
-                                  row.category === ammo.category
-                              )
-                            ) {
-                              newSelectedRows.push(ammo);
-                            }
-                          } else {
-                            const index =
-                              componentState.selectedAmmos.findIndex(
-                                (row) =>
-                                  row.name === ammo.name &&
-                                  row.category === ammo.category
-                              );
-
-                            if (index !== -1) {
-                              newSelectedRows = newSelectedRows
-                                .slice(0, index)
-                                .concat(
-                                  newSelectedRows.slice(
-                                    index + 1,
-                                    newSelectedRows.length
-                                  )
+                            if (newCheckboxValue) {
+                              if (
+                                !componentState.selectedAmmos.find(
+                                  (row) =>
+                                    row.name === ammo.name &&
+                                    row.category === ammo.category
+                                )
+                              ) {
+                                newSelectedRows.push(ammo);
+                              }
+                            } else {
+                              const index =
+                                componentState.selectedAmmos.findIndex(
+                                  (row) =>
+                                    row.name === ammo.name &&
+                                    row.category === ammo.category
                                 );
-                            }
-                          }
 
-                          setComponentState({
-                            ...componentState,
-                            selectedAmmos: newSelectedRows,
-                          });
-                        }}
-                      />
+                              if (index !== -1) {
+                                newSelectedRows = newSelectedRows
+                                  .slice(0, index)
+                                  .concat(
+                                    newSelectedRows.slice(
+                                      index + 1,
+                                      newSelectedRows.length
+                                    )
+                                  );
+                              }
+                            }
+
+                            setComponentState({
+                              ...componentState,
+                              selectedAmmos: newSelectedRows,
+                            });
+                          }}
+                        />
+                      </Fade>
                     )}
                   </Box>
                 )}
