@@ -11,6 +11,7 @@ import {
   TabList,
   TabPanels,
   TabPanel,
+  Skeleton,
 } from "@chakra-ui/react";
 import getResults from "../utils/getResults";
 import Legenda from "../components/Legenda";
@@ -28,7 +29,16 @@ const App = ({ results, isFallback }) => {
     currentSearch: "",
     results,
     minimalView: true,
-    embed: null,
+    embed: (
+      <Center color="white">
+        <Box w={["375px", "450px", "600px"]}>
+          <Skeleton h="300px" />
+          <Center p="8px">
+            <Text fontSize="sm">Loading Stream...</Text>
+          </Center>
+        </Box>
+      </Center>
+    ),
     selectedAmmos: [], // each element is an ammo object
     showModal: false,
   });
