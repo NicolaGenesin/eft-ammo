@@ -1,9 +1,6 @@
-import React, { useState } from "react";
 import {
   Box,
-  Text,
   VStack,
-  Checkbox,
   Center,
   Input,
   Accordion,
@@ -65,10 +62,9 @@ const DesktopTable = ({
 
             return (
               <InView triggerOnce={true}>
-                {({ inView, ref, entry }) => (
+                {({ inView, ref }) => (
                   <Box
                     ref={ref}
-                    id="hello"
                     key={`allAmmos-${index}`}
                     color="#ebece8"
                     mx="24px"
@@ -78,7 +74,6 @@ const DesktopTable = ({
                     borderColor="vulcan.900"
                     bg="vulcan.900"
                     w="100%"
-                    id={inView ? "yes" : "no"}
                   >
                     {inView && (
                       <DesktopRow
