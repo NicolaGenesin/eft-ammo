@@ -171,35 +171,39 @@ const TableWrapper = ({ isMobile, componentState, setComponentState }) => {
   }
 
   return (
-    <div id="test">
-      <Box>
-        <Center py="64px">
-          <Input
-            w={["100%", "50%"]}
-            mx="24px"
-            bg="#fff"
-            color="#333"
-            textAlign="center"
-            borderColor="#9a8866"
-            _focus={{ borderColor: "#9a8866" }}
-            placeholder="Search by Category or Ammo type"
-            _placeholder={{ color: "#333", textAlign: "center" }}
-            onChange={(e) => {
-              setComponentState({
-                ...componentState,
-                currentSearch: e.target.value,
-              });
-            }}
-          />
-        </Center>
-
+    <>
+      <Center py="64px">
+        <Input
+          w={["100%", "50%"]}
+          mx="24px"
+          bg="#fff"
+          color="#333"
+          textAlign="center"
+          borderColor="#9a8866"
+          _focus={{ borderColor: "#9a8866" }}
+          placeholder="Search by Category or Ammo type"
+          _placeholder={{ color: "#333", textAlign: "center" }}
+          onChange={(e) => {
+            setComponentState({
+              ...componentState,
+              currentSearch: e.target.value,
+            });
+          }}
+        />
+      </Center>
+      {isMobile ? (
+        <MobileTable
+          componentState={componentState}
+          keysFilteredByWeaponName={keysFilteredByWeaponName}
+        />
+      ) : (
         <DesktopTable
           componentState={componentState}
           setComponentState={setComponentState}
           keysFilteredByWeaponName={keysFilteredByWeaponName}
         />
-      </Box>
-    </div>
+      )}
+    </>
   );
 };
 
