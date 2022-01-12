@@ -3,8 +3,6 @@ import {
   Divider,
   Flex,
   Center,
-  Text,
-  Image,
   Checkbox,
   Box,
 } from "@chakra-ui/react";
