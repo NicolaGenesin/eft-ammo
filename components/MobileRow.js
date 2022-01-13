@@ -50,7 +50,7 @@ const MobileRow = ({ category, allAmmosForCategory, currentSearch }) => {
             if (ammo.name.includes("Poleva-6u")) {
               // TODO real spaghetti, fix this
 
-              imagePath = `${category}@Poleva-6.webp`;
+              imagePath = `${category}@Poleva-6`;
             }
 
             const imageURL = `/images/${imagePath}.webp`;
