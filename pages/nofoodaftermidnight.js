@@ -224,11 +224,21 @@ const App = ({ results, isFallback }) => {
       </Center>
 
       <Center>
-        <Tabs variant="solid-rounded" w="100%" mt="48px" colorScheme="teal">
+        <Tabs variant="unstyled" w="100%" mt="48px" size="lg">
           <Center>
-            <TabList bg="vulcan.800" rounded="3xl">
-              <Tab color="tarkovYellow.100">Table View</Tab>
-              <Tab color="tarkovYellow.100">Chart View 🆕</Tab>
+            <TabList bg="vulcan.800">
+              <Tab
+                color="tarkovYellow.100"
+                _selected={{ color: "white", bg: "teal" }}
+              >
+                Table View
+              </Tab>
+              <Tab
+                color="tarkovYellow.100"
+                _selected={{ color: "white", bg: "teal" }}
+              >
+                ⚠️ Chart View 🆕
+              </Tab>
             </TabList>
           </Center>
           <TabPanels>
