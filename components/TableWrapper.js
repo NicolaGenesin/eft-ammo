@@ -188,6 +188,7 @@ const TableWrapper = ({ isMobile, componentState, setComponentState }) => {
           color="tarkovYellow.100"
           textAlign="center"
           borderColor="#dbc59c"
+          borderRadius="0"
           _focus={{ borderColor: "#dbc59c" }}
           placeholder="Search by Category or Ammo type"
           _placeholder={{ color: "tarkovYellow.100", textAlign: "center" }}
