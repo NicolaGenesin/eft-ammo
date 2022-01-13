@@ -20,6 +20,7 @@ class MyDocument extends Document {
             async
             src="https://cdnjs.cloudflare.com/ajax/libs/autotrack/2.4.1/autotrack.js"
           />
+          <link rel="stylesheet" type="text/css" href="/fonts/style.css" />
           <script
             dangerouslySetInnerHTML={{
               __html: `

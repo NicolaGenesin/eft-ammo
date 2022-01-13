@@ -1,18 +1,21 @@
 import * as React from "react";
 import { ChakraProvider, extendTheme } from "@chakra-ui/react";
-import "@fontsource/montserrat";
 import { SmallFooterWithSocial } from "../components/SmallFooterWithSocial";
 import Feedback from "../components/Feedback";
 
 const theme = extendTheme({
   fonts: {
-    heading: "Montserrat",
-    body: "Montserrat",
+    heading: "Bender Regular",
+    body: "Bender Regular",
   },
   colors: {
     vulcan: {
       800: "#383932",
-      900: "#282827",
+      900: "#1f1f1e",
+    },
+    tarkovYellow: {
+      100: "#dbc59c",
+      // 100: "#dbc59c", real yellow used
     },
   },
 });

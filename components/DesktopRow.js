@@ -125,7 +125,8 @@ const DesktopRow = ({
               <Flex minW="300px" bg="vulcan.800" py="2px">
                 {selectCallback && (
                   <Checkbox
-                    colorScheme="purple"
+                    borderColor="tarkovYellow.100"
+                    colorScheme="teal"
                     size="lg"
                     ml="8px"
                     isChecked={isChecked}
@@ -165,16 +166,16 @@ const DesktopRow = ({
                   )}
                 </Center>
               </Flex>
-              <Center flex="1" color="#ebece8">
+              <Center flex="1" color="tarkovYellow.100">
                 {ammo.damage}
               </Center>
-              <Center flex="1" color="#ebece8">
+              <Center flex="1" color="tarkovYellow.100">
                 {ammo.penValue}
               </Center>
-              <Center flex="1" color="#ebece8">
+              <Center flex="1" color="tarkovYellow.100">
                 {ammo.armorDamage}
               </Center>
-              <Center flex="1" color="#ebece8">
+              <Center flex="1" color="tarkovYellow.100">
                 {ammo.fragChange}
               </Center>
               <Center flex="0.5" bg={getColor(ammo.class1)} color="black">

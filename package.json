@@ -10,7 +10,6 @@
     "@chakra-ui/react": "^1.7.3",
     "@emotion/react": "^11.7.1",
     "@emotion/styled": "^11.6.0",
-    "@fontsource/montserrat": "^4.5.1",
     "chart.js": "^3.7.0",
     "chartjs-plugin-annotation": "^1.2.2",
     "chartjs-plugin-datalabels": "^2.0.0",

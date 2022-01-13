@@ -14,8 +14,7 @@ import { FaTwitter, FaTwitch } from "react-icons/fa";
 const SocialButton = ({ children, label, href, size }) => {
   return (
     <chakra.button
-      bg="#ebece8"
-      color="black"
+      bg="white"
       rounded={"full"}
       w={size || 8}
       h={size || 8}
@@ -35,7 +34,7 @@ const SocialButton = ({ children, label, href, size }) => {
 
 const SmallFooterWithSocial = () => {
   return (
-    <Box color="#ebece8">
+    <Box color="tarkovYellow.100">
       <Container
         as={Stack}
         maxW={"6xl"}
@@ -50,7 +49,7 @@ const SmallFooterWithSocial = () => {
           <span
             style={{
               backgroundImage:
-                "linear-gradient(120deg, purple 0%, purple 100%)",
+                "linear-gradient(120deg, #1D4044 0%, #1D4044 100%)",
               backgroundRepeat: "no-repeat",
               backgroundSize: "100% 0.4em",
               backgroundPosition: "0 88%",
@@ -60,27 +59,24 @@ const SmallFooterWithSocial = () => {
             NoFoodAfterMidnight
           </span>{" "}
           - All rights reserved |{" "}
-          <Link href="https://www.twitch.tv/filodreamz" color="teal.200">
+          <Link href="https://www.twitch.tv/filodreamz">
             Made with ❤️ by filodreamz <ExternalLinkIcon mx="2px" />
           </Link>
           -{" "}
-          <Link
-            href="https://docs.google.com/spreadsheets/d/1jjWcIue0_PCsbLQAiL5VrIulPK8SzM5jjiCMx9zUuvE/htmlview#"
-            color="teal.200"
-          >
+          <Link href="https://docs.google.com/spreadsheets/d/1jjWcIue0_PCsbLQAiL5VrIulPK8SzM5jjiCMx9zUuvE/htmlview#">
             data maintained by NoFAM
             <ExternalLinkIcon mx="2px" />
           </Link>
         </Text>
         <Stack direction={"row"} spacing={6}>
           <SocialButton label={"Twitter"} href={"https://twitter.com/food_eft"}>
-            <FaTwitter />
+            <FaTwitter color="teal" />
           </SocialButton>
           <SocialButton
             label={"Twitch"}
             href={"https://www.twitch.tv/nofoodaftermidnight/"}
           >
-            <FaTwitch />
+            <FaTwitch color="teal" />
           </SocialButton>
         </Stack>
       </Container>

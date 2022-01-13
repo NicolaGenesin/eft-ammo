@@ -12,25 +12,32 @@ import getColor from "../utils/getColor";
 
 const Legenda = ({ isDesktop }) => {
   return (
-    <Table variant="unstyled" size="sm" bg="vulcan.900" color="#ebece8">
-      <TableCaption color="#ebece8">
+    <Table
+      variant="unstyled"
+      size="sm"
+      bg="vulcan.900"
+      color="tarkovYellow.100"
+    >
+      <TableCaption color="tarkovYellow.100">
         Note this is just a comparison guideline on what you should use and not
         always exactly representative of it's true # of shots performance
         against armor.
       </TableCaption>
       <Thead>
         <Tr>
-          <Th bg="vulcan.800" color="#ebece8">
+          <Th bg="vulcan.800" color="tarkovYellow.100">
             Value
           </Th>
-          <Th bg="vulcan.800" color="#ebece8">
+          <Th bg="vulcan.800" color="tarkovYellow.100">
             Effectiveness
           </Th>
-          <Th bg="vulcan.800" color="#ebece8">
-            Avg Shots Stopped By Armor Before Killing
+          <Th bg="vulcan.800" color="tarkovYellow.100">
+            Avg Shots Stopped By
+            <br />
+            Armor Before Killing
           </Th>
           {isDesktop && (
-            <Th bg="vulcan.800" color="#ebece8">
+            <Th bg="vulcan.800" color="tarkovYellow.100">
               Description
             </Th>
           )}

@@ -30,7 +30,7 @@ const App = ({ results, isFallback }) => {
     results,
     minimalView: true,
     embed: (
-      <Center color="white">
+      <Center color="tarkovYellow.100">
         <Box w={["375px", "450px", "600px"]}>
           <Skeleton h="300px" />
           <Center p="8px">
@@ -145,7 +145,7 @@ const App = ({ results, isFallback }) => {
         <VStack>
           <Text
             textAlign="center"
-            color="#ebece8"
+            color="tarkovYellow.100"
             fontWeight="bold"
             fontSize={["xl", "3xl"]}
             mt="24px"
@@ -153,14 +153,14 @@ const App = ({ results, isFallback }) => {
           >
             Escape from Tarkov Ammo and Armor Charts
           </Text>
-          <Text color="#ebece8" fontSize="sm">
+          <Text color="tarkovYellow.100" fontSize="sm">
             Updated for v0.12.12
           </Text>
           <HStack>
             <Center>
               <Text
                 textAlign="center"
-                color="#ebece8"
+                color="tarkovYellow.100"
                 fontWeight="bold"
                 fontSize={["lg", "2xl"]}
                 as="h1"
@@ -170,7 +170,7 @@ const App = ({ results, isFallback }) => {
                   <span
                     style={{
                       backgroundImage:
-                        "linear-gradient(120deg, purple 0%, purple 100%)",
+                        "linear-gradient(120deg, #1D4044 0%, #1D4044 100%)",
                       backgroundRepeat: "no-repeat",
                       backgroundSize: "100% 0.4em",
                       backgroundPosition: "0 88%",
@@ -183,7 +183,7 @@ const App = ({ results, isFallback }) => {
                   <span
                     style={{
                       backgroundImage:
-                        "linear-gradient(120deg, purple 0%, purple 100%)",
+                        "linear-gradient(120deg, #1D4044 0%, #1D4044 100%)",
                       backgroundRepeat: "no-repeat",
                       backgroundSize: "100% 0.4em",
                       backgroundPosition: "0 88%",
@@ -201,7 +201,7 @@ const App = ({ results, isFallback }) => {
                 label={"Twitch"}
                 href={"https://www.twitch.tv/nofoodaftermidnight/"}
               >
-                <FaTwitch color="purple" size={32} />
+                <FaTwitch color="teal" size={32} />
               </SocialButton>
             )}
           </HStack>
@@ -211,7 +211,7 @@ const App = ({ results, isFallback }) => {
               label={"Twitch"}
               href={"https://www.twitch.tv/nofoodaftermidnight/"}
             >
-              <FaTwitch color="purple" size={24} />
+              <FaTwitch color="teal" size={24} />
             </SocialButton>
           )}
         </VStack>
@@ -224,11 +224,21 @@ const App = ({ results, isFallback }) => {
       </Center>
 
       <Center>
-        <Tabs variant="solid-rounded" w="100%" mt="48px" colorScheme="purple">
+        <Tabs variant="unstyled" w="100%" mt="48px" size="lg">
           <Center>
-            <TabList bg="vulcan.800" rounded="3xl">
-              <Tab color="white">Table View</Tab>
-              <Tab color="white">Chart View 🆕</Tab>
+            <TabList bg="vulcan.800">
+              <Tab
+                color="tarkovYellow.100"
+                _selected={{ color: "white", bg: "teal" }}
+              >
+                Table View
+              </Tab>
+              <Tab
+                color="tarkovYellow.100"
+                _selected={{ color: "white", bg: "teal" }}
+              >
+                ⚠️ Chart View 🆕
+              </Tab>
             </TabList>
           </Center>
           <TabPanels>
@@ -254,7 +264,7 @@ const App = ({ results, isFallback }) => {
         >
           <Text
             textAlign="center"
-            color="white"
+            color="tarkovYellow.100"
             fontWeight="bold"
             fontSize={["lg", "2xl"]}
             as="h2"

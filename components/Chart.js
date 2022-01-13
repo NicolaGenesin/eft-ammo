@@ -8,7 +8,8 @@ import getColor from "../utils/getColor";
 
 Chart.defaults.font.size = 14;
 Chart.defaults.font.weight = "bold";
-Chart.defaults.font.family = "Montserrat";
+Chart.defaults.font.family = "Bender Regular";
+Chart.defaults.color = "#dbc59c";
 Chart.register(ChartDataLabels);
 Chart.register(annotationPlugin);
 const defaultLegendClickHandler = Chart.defaults.plugins.legend.onClick;
@@ -97,7 +98,7 @@ const getOrCreateTooltip = (chart) => {
     tooltipEl = document.createElement("div");
     tooltipEl.style.background = "rgba(0, 0, 0, 0.7)";
     tooltipEl.style.borderRadius = "3px";
-    tooltipEl.style.color = "white";
+    tooltipEl.style.color = "#dbc59c";
     tooltipEl.style.opacity = 1;
     tooltipEl.style.pointerEvents = "none";
     tooltipEl.style.position = "absolute";
@@ -417,11 +418,7 @@ export default function AmmoChart({ results, classDefeated }) {
               align: "end",
               anchor: "end",
               color: function (context) {
-                // if (context.dataset.borderColor) {
-                //   return context.dataset.borderColor;
-                // }
-                // return context.dataset.backgroundColor;
-                return "#ffffff";
+                return "#dbc59c";
               },
               font: function (context) {
                 var w = context.chart.width;
@@ -540,12 +537,12 @@ export default function AmmoChart({ results, classDefeated }) {
               type: "linear", // only linear but allow scale type registration. This allows extensions to exist solely for log scale for instance
               position: "left",
               ticks: {
-                color: "white",
+                color: "#dbc59c",
               },
               title: {
                 display: true,
                 text: "PENETRATION",
-                color: "white",
+                color: "#dbc59c",
               },
               max: 90,
               min: 0,
@@ -566,10 +563,10 @@ export default function AmmoChart({ results, classDefeated }) {
               title: {
                 display: true,
                 text: "DAMAGE",
-                color: "white",
+                color: "#dbc59c",
               },
               ticks: {
-                color: "white",
+                color: "#dbc59c",
               },
               suggestedMin: 30,
               suggestedMin: 80,

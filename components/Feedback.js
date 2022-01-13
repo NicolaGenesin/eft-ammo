@@ -13,7 +13,7 @@ const Feedback = () => {
       right="0"
       margin="0"
       borderRadius="5px 5px 0 0"
-      color="#ebece8"
+      color="tarkovYellow.100"
       fontWeight="bold"
     >
       {!isButtonClicked ? (
@@ -30,7 +30,7 @@ const Feedback = () => {
           👀 Feedback
         </Text>
       ) : (
-        <Box p="12px" bg="purple">
+        <Box p="12px" bg="teal">
           <HStack mb="16px">
             <Text fontWeight="semibold">Bugs? 🐛 Feedback? Ideas? 👇</Text>
             <Spacer />
