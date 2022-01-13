@@ -1,0 +1,13 @@
+@font-face {
+  font-family: "Bender Regular";
+  font-style: normal;
+  font-weight: normal;
+  src: local("Bender Regular"), url("Bender.woff") format("woff");
+}
+/* 
+@font-face {
+  font-family: "Bender Light";
+  font-style: normal;
+  font-weight: normal;
+  src: local("Bender Light"), url("Bender-Light.woff") format("woff");
+} */

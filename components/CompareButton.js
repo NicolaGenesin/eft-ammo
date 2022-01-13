@@ -12,7 +12,7 @@ const CompareButton = ({ showModal }) => {
       mb="24px"
       fontWeight="bold"
     >
-      <Button size="lg" onClick={showModal} colorScheme="purple">
+      <Button size="lg" onClick={showModal} colorScheme="teal">
         <HStack>
           <Text>Compare Ammunitions</Text>
           <MdCompareArrows />

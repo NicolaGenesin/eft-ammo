@@ -19,7 +19,7 @@ const ChartWrapper = ({ results }) => {
                 <WrapItem key={`wrap-item-${index}`}>
                   <Button
                     size={"sm"}
-                    colorScheme={index === 0 ? "red" : "purple"}
+                    colorScheme={index === 0 ? "red" : "teal"}
                     onClick={() => {
                       setState({
                         ...state,

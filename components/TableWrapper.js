@@ -24,7 +24,7 @@ const MobileTable = ({ componentState, keysFilteredByWeaponName }) => (
               <Box
                 ref={ref}
                 key={`allAmmos-${index}`}
-                color="#ebece8"
+                color="tarkovYellow.100"
                 mx="8px"
                 mb="24px"
                 rounded="sm"
@@ -76,7 +76,7 @@ const DesktopTable = ({
                   <Box
                     ref={ref}
                     key={`allAmmos-${index}`}
-                    color="#ebece8"
+                    color="tarkovYellow.100"
                     mx="24px"
                     mb="24px"
                     rounded="sm"
@@ -182,14 +182,15 @@ const TableWrapper = ({ isMobile, componentState, setComponentState }) => {
       <Center py="64px">
         <Input
           w={["100%", "50%"]}
+          maxW="400px"
           mx="24px"
-          bg="#fff"
-          color="#333"
+          bg="vulcan.900"
+          color="tarkovYellow.100"
           textAlign="center"
-          borderColor="#9a8866"
-          _focus={{ borderColor: "#9a8866" }}
+          borderColor="#dbc59c"
+          _focus={{ borderColor: "#dbc59c" }}
           placeholder="Search by Category or Ammo type"
-          _placeholder={{ color: "#333", textAlign: "center" }}
+          _placeholder={{ color: "tarkovYellow.100", textAlign: "center" }}
           onChange={(e) => {
             setComponentState({
               ...componentState,

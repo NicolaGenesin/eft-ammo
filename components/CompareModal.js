@@ -16,7 +16,7 @@ const CompareModal = ({ selectedAmmos, onClose }) => {
     <>
       <Modal isOpen={true} onClose={onClose} size="6xl">
         <ModalOverlay />
-        <ModalContent bg="vulcan.900" color="white">
+        <ModalContent bg="vulcan.900" color="tarkovYellow.100">
           <ModalHeader>Selected Ammunitions:</ModalHeader>
           <ModalCloseButton />
           <ModalBody>
@@ -29,7 +29,7 @@ const CompareModal = ({ selectedAmmos, onClose }) => {
             />
           </ModalBody>
           <ModalFooter>
-            <Button colorScheme="purple" onClick={onClose}>
+            <Button colorScheme="teal" onClick={onClose}>
               Close
             </Button>
           </ModalFooter>

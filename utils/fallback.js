@@ -730,7 +730,7 @@ const fallback = {
       class5: "0",
       class6: "0",
       note: "",
-      secondNote: "Green Tracer",
+      secondNote: "blue Tracer",
     },
     {
       name: "PST gzh",
