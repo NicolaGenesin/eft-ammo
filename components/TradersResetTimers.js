@@ -13,7 +13,13 @@ import Countdown from "react-countdown";
 
 const Renderer = (props) => {
   if (props.completed) {
-    return <span>Restock right now</span>;
+    return (
+      <Text textAlign={"center"}>
+        Restock
+        <br />
+        right now
+      </Text>
+    );
   }
 
   return (
