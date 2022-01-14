@@ -49,7 +49,7 @@ const SmallFooterWithSocial = () => {
           <span
             style={{
               backgroundImage:
-                "linear-gradient(120deg, #1D4044 0%, #1D4044 100%)",
+                "linear-gradient(120deg, #a15422 0%, #a15422 100%)",
               backgroundRepeat: "no-repeat",
               backgroundSize: "100% 0.4em",
               backgroundPosition: "0 88%",
@@ -70,13 +70,13 @@ const SmallFooterWithSocial = () => {
         </Text>
         <Stack direction={"row"} spacing={6}>
           <SocialButton label={"Twitter"} href={"https://twitter.com/food_eft"}>
-            <FaTwitter color="teal" />
+            <FaTwitter color="orange" />
           </SocialButton>
           <SocialButton
             label={"Twitch"}
             href={"https://www.twitch.tv/nofoodaftermidnight/"}
           >
-            <FaTwitch color="teal" />
+            <FaTwitch color="orange" />
           </SocialButton>
         </Stack>
       </Container>

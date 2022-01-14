@@ -30,7 +30,7 @@ const Feedback = () => {
           👀 Feedback
         </Text>
       ) : (
-        <Box p="12px" bg="teal">
+        <Box p="12px" bg="orange">
           <HStack mb="16px">
             <Text fontWeight="semibold">Bugs? 🐛 Feedback? Ideas? 👇</Text>
             <Spacer />

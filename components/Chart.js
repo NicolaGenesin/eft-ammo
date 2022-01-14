@@ -587,6 +587,8 @@ export default function AmmoChart({ results, classDefeated }) {
         height="700px"
         overflow="auto"
         style={{ zIndex: 1 }}
+        bg="vulcan.900"
+        p="8px"
       >
         <canvas id="line-chart" />
       </Box>

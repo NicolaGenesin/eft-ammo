@@ -131,36 +131,17 @@ const App = ({ results, isFallback }) => {
           updateStyles={{
             background: "url(/parallax.jpg)",
             backgroundPositionY: "50%",
-            transform: "scale(1.2)",
-            position: "absolute",
-            filter: "blur(4px) brightness(35%)",
+            transform: "scale(1.5)",
+            position: "fixed",
+            filter: "blur(4px) brightness(50%)",
+            opacity: "0.3",
             backgroundSize: "cover",
             width: "100%",
             height: "100vh",
             backfaceVisibility: "hidden",
+            resetOnLeave: true,
           }}
         />
-        {componentState.selectedAmmos.length > 0 && (
-          <CompareButton
-            showModal={() => {
-              setComponentState({
-                ...componentState,
-                showModal: true,
-              });
-            }}
-          />
-        )}
-        {componentState.showModal && (
-          <CompareModal
-            selectedAmmos={componentState.selectedAmmos}
-            onClose={() => {
-              setComponentState({
-                ...componentState,
-                showModal: false,
-              });
-            }}
-          />
-        )}
         <Box py="48px">
           <Center mb="24px">
             <VStack>
@@ -191,7 +172,7 @@ const App = ({ results, isFallback }) => {
                       <span
                         style={{
                           backgroundImage:
-                            "linear-gradient(120deg, #1D4044 0%, #1D4044 100%)",
+                            "linear-gradient(120deg, #a15422 0%, #a15422 100%)",
                           backgroundRepeat: "no-repeat",
                           backgroundSize: "100% 0.4em",
                           backgroundPosition: "0 88%",
@@ -204,7 +185,7 @@ const App = ({ results, isFallback }) => {
                       <span
                         style={{
                           backgroundImage:
-                            "linear-gradient(120deg, #1D4044 0%, #1D4044 100%)",
+                            "linear-gradient(120deg, #a15422 0%, #a15422 100%)",
                           backgroundRepeat: "no-repeat",
                           backgroundSize: "100% 0.4em",
                           backgroundPosition: "0 88%",
@@ -222,7 +203,7 @@ const App = ({ results, isFallback }) => {
                     label={"Twitch"}
                     href={"https://www.twitch.tv/nofoodaftermidnight/"}
                   >
-                    <FaTwitch color="teal" size={32} />
+                    <FaTwitch color="#a15422" size={32} />
                   </SocialButton>
                 )}
               </HStack>
@@ -232,7 +213,7 @@ const App = ({ results, isFallback }) => {
                   label={"Twitch"}
                   href={"https://www.twitch.tv/nofoodaftermidnight/"}
                 >
-                  <FaTwitch color="teal" size={24} />
+                  <FaTwitch color="orange" size={24} />
                 </SocialButton>
               )}
             </VStack>
@@ -249,14 +230,16 @@ const App = ({ results, isFallback }) => {
               <Center>
                 <TabList bg="vulcan.800">
                   <Tab
+                    fontWeight="bold"
                     color="tarkovYellow.100"
-                    _selected={{ color: "white", bg: "teal" }}
+                    _selected={{ color: "black", bg: "orange.500" }}
                   >
                     Table View
                   </Tab>
                   <Tab
+                    fontWeight="bold"
                     color="tarkovYellow.100"
-                    _selected={{ color: "white", bg: "teal" }}
+                    _selected={{ color: "black", bg: "orange.500" }}
                   >
                     ⚠️ Chart View 🆕
                   </Tab>
@@ -300,6 +283,27 @@ const App = ({ results, isFallback }) => {
           </Center>
         </Box>
       </MouseParallaxContainer>
+      {componentState.selectedAmmos.length > 0 && (
+        <CompareButton
+          showModal={() => {
+            setComponentState({
+              ...componentState,
+              showModal: true,
+            });
+          }}
+        />
+      )}
+      {componentState.showModal && (
+        <CompareModal
+          selectedAmmos={componentState.selectedAmmos}
+          onClose={() => {
+            setComponentState({
+              ...componentState,
+              showModal: false,
+            });
+          }}
+        />
+      )}
       <style jsx global>{`
         html,
         body {

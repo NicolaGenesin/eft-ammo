@@ -29,7 +29,7 @@ const CompareModal = ({ selectedAmmos, onClose }) => {
             />
           </ModalBody>
           <ModalFooter>
-            <Button colorScheme="teal" onClick={onClose}>
+            <Button colorScheme="orange" onClick={onClose}>
               Close
             </Button>
           </ModalFooter>
