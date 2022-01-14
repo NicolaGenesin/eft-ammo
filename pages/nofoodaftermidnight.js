@@ -27,6 +27,7 @@ import {
   MouseParallaxContainer,
   MouseParallaxChild,
 } from "react-parallax-mouse";
+import TradersResetTimers from "../components/TradersResetTimers";
 
 const App = ({ results, isFallback }) => {
   const [componentState, setComponentState] = useState({
@@ -206,6 +207,8 @@ const App = ({ results, isFallback }) => {
             <Legenda isDesktop={!isMobile} />
           </Flex>
         </Center>
+
+        <TradersResetTimers />
 
         <Center>
           <Tabs variant="unstyled" w="100%" mt="48px" size="lg">
