@@ -134,7 +134,7 @@ const App = ({ results, isFallback }) => {
             transform: "scale(1.5)",
             position: "fixed",
             filter: "blur(4px) brightness(50%)",
-            opacity: "0.3",
+            opacity: "0.1",
             backgroundSize: "cover",
             width: "100%",
             height: "100vh",
