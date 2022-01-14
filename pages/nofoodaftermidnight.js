@@ -23,6 +23,10 @@ import CompareButton from "../components/CompareButton";
 import CompareModal from "../components/CompareModal";
 import TableWrapper from "../components/TableWrapper";
 import ChartWrapper from "../components/ChartWrapper";
+import {
+  MouseParallaxContainer,
+  MouseParallaxChild,
+} from "react-parallax-mouse";
 
 const App = ({ results, isFallback }) => {
   const [componentState, setComponentState] = useState({
@@ -78,7 +82,7 @@ const App = ({ results, isFallback }) => {
   }, []);
 
   return (
-    <Box py="48px">
+    <Box>
       <Head>
         <title>EFT | Ammo and Armor Charts</title>
         <link rel="icon" href="/favicon.ico" />
@@ -120,163 +124,182 @@ const App = ({ results, isFallback }) => {
           content="http://eft-ammo.com/assets/og-01.jpg"
         />
       </Head>
-      {componentState.selectedAmmos.length > 0 && (
-        <CompareButton
-          showModal={() => {
-            setComponentState({
-              ...componentState,
-              showModal: true,
-            });
+      <MouseParallaxContainer>
+        <MouseParallaxChild
+          factorX={0.03}
+          factorY={0.05}
+          updateStyles={{
+            background: "url(/parallax.jpg)",
+            backgroundPositionY: "50%",
+            transform: "scale(1.2)",
+            position: "absolute",
+            filter: "blur(4px) brightness(35%)",
+            backgroundSize: "cover",
+            width: "100%",
+            height: "100vh",
+            backfaceVisibility: "hidden",
           }}
         />
-      )}
-      {componentState.showModal && (
-        <CompareModal
-          selectedAmmos={componentState.selectedAmmos}
-          onClose={() => {
-            setComponentState({
-              ...componentState,
-              showModal: false,
-            });
-          }}
-        />
-      )}
-      <Center mb="24px">
-        <VStack>
-          <Text
-            textAlign="center"
-            color="tarkovYellow.100"
-            fontWeight="bold"
-            fontSize={["xl", "3xl"]}
-            mt="24px"
-            as="h1"
-          >
-            Escape from Tarkov Ammo and Armor Charts
-          </Text>
-          <Text color="tarkovYellow.100" fontSize="sm">
-            Updated for v0.12.12
-          </Text>
-          <HStack>
-            <Center>
+        {componentState.selectedAmmos.length > 0 && (
+          <CompareButton
+            showModal={() => {
+              setComponentState({
+                ...componentState,
+                showModal: true,
+              });
+            }}
+          />
+        )}
+        {componentState.showModal && (
+          <CompareModal
+            selectedAmmos={componentState.selectedAmmos}
+            onClose={() => {
+              setComponentState({
+                ...componentState,
+                showModal: false,
+              });
+            }}
+          />
+        )}
+        <Box py="48px">
+          <Center mb="24px">
+            <VStack>
+              <Text
+                textAlign="center"
+                color="tarkovYellow.100"
+                fontWeight="bold"
+                fontSize={["xl", "3xl"]}
+                mt="24px"
+                as="h1"
+              >
+                Escape from Tarkov Ammo and Armor Charts
+              </Text>
+              <Text color="tarkovYellow.100" fontSize="sm">
+                Updated for v0.12.12
+              </Text>
+              <HStack>
+                <Center>
+                  <Text
+                    textAlign="center"
+                    color="tarkovYellow.100"
+                    fontWeight="bold"
+                    fontSize={["lg", "2xl"]}
+                    as="h1"
+                  >
+                    <a href="https://www.twitch.tv/nofoodaftermidnight/">
+                      by{" "}
+                      <span
+                        style={{
+                          backgroundImage:
+                            "linear-gradient(120deg, #1D4044 0%, #1D4044 100%)",
+                          backgroundRepeat: "no-repeat",
+                          backgroundSize: "100% 0.4em",
+                          backgroundPosition: "0 88%",
+                          transition: "background-size 0.25s ease-in",
+                        }}
+                      >
+                        NoFoodAfterMidnight
+                      </span>{" "}
+                      | watch his stream{" "}
+                      <span
+                        style={{
+                          backgroundImage:
+                            "linear-gradient(120deg, #1D4044 0%, #1D4044 100%)",
+                          backgroundRepeat: "no-repeat",
+                          backgroundSize: "100% 0.4em",
+                          backgroundPosition: "0 88%",
+                          transition: "background-size 0.25s ease-in",
+                        }}
+                      >
+                        here
+                      </span>
+                    </a>
+                  </Text>
+                </Center>
+                {!isMobile && (
+                  <SocialButton
+                    size={16}
+                    label={"Twitch"}
+                    href={"https://www.twitch.tv/nofoodaftermidnight/"}
+                  >
+                    <FaTwitch color="teal" size={32} />
+                  </SocialButton>
+                )}
+              </HStack>
+              {isMobile && (
+                <SocialButton
+                  size={12}
+                  label={"Twitch"}
+                  href={"https://www.twitch.tv/nofoodaftermidnight/"}
+                >
+                  <FaTwitch color="teal" size={24} />
+                </SocialButton>
+              )}
+            </VStack>
+          </Center>
+
+          <Center>
+            <Flex pt="24px" px="8px" w={["100%", "75%"]}>
+              <Legenda isDesktop={!isMobile} />
+            </Flex>
+          </Center>
+
+          <Center>
+            <Tabs variant="unstyled" w="100%" mt="48px" size="lg">
+              <Center>
+                <TabList bg="vulcan.800">
+                  <Tab
+                    color="tarkovYellow.100"
+                    _selected={{ color: "white", bg: "teal" }}
+                  >
+                    Table View
+                  </Tab>
+                  <Tab
+                    color="tarkovYellow.100"
+                    _selected={{ color: "white", bg: "teal" }}
+                  >
+                    ⚠️ Chart View 🆕
+                  </Tab>
+                </TabList>
+              </Center>
+              <TabPanels>
+                <TabPanel>
+                  <TableWrapper
+                    isMobile={isMobile}
+                    componentState={componentState}
+                    setComponentState={setComponentState}
+                  />
+                </TabPanel>
+                <TabPanel>
+                  <ChartWrapper results={results} />
+                </TabPanel>
+              </TabPanels>
+            </Tabs>
+          </Center>
+          <Center>
+            <Box
+              w={["375px", "450px", "600px"]}
+              h={["300px", "400px", "400px"]}
+              pt="48px"
+              pb="64px"
+            >
               <Text
                 textAlign="center"
                 color="tarkovYellow.100"
                 fontWeight="bold"
                 fontSize={["lg", "2xl"]}
-                as="h1"
+                as="h2"
+                mb="8px"
               >
                 <a href="https://www.twitch.tv/nofoodaftermidnight/">
-                  by{" "}
-                  <span
-                    style={{
-                      backgroundImage:
-                        "linear-gradient(120deg, #1D4044 0%, #1D4044 100%)",
-                      backgroundRepeat: "no-repeat",
-                      backgroundSize: "100% 0.4em",
-                      backgroundPosition: "0 88%",
-                      transition: "background-size 0.25s ease-in",
-                    }}
-                  >
-                    NoFoodAfterMidnight
-                  </span>{" "}
-                  | watch his stream{" "}
-                  <span
-                    style={{
-                      backgroundImage:
-                        "linear-gradient(120deg, #1D4044 0%, #1D4044 100%)",
-                      backgroundRepeat: "no-repeat",
-                      backgroundSize: "100% 0.4em",
-                      backgroundPosition: "0 88%",
-                      transition: "background-size 0.25s ease-in",
-                    }}
-                  >
-                    here
-                  </span>
+                  Watch NoFoodAfterMidnight's stream here:
                 </a>
               </Text>
-            </Center>
-            {!isMobile && (
-              <SocialButton
-                size={16}
-                label={"Twitch"}
-                href={"https://www.twitch.tv/nofoodaftermidnight/"}
-              >
-                <FaTwitch color="teal" size={32} />
-              </SocialButton>
-            )}
-          </HStack>
-          {isMobile && (
-            <SocialButton
-              size={12}
-              label={"Twitch"}
-              href={"https://www.twitch.tv/nofoodaftermidnight/"}
-            >
-              <FaTwitch color="teal" size={24} />
-            </SocialButton>
-          )}
-        </VStack>
-      </Center>
-
-      <Center>
-        <Flex pt="24px" px="8px" w={["100%", "75%"]}>
-          <Legenda isDesktop={!isMobile} />
-        </Flex>
-      </Center>
-
-      <Center>
-        <Tabs variant="unstyled" w="100%" mt="48px" size="lg">
-          <Center>
-            <TabList bg="vulcan.800">
-              <Tab
-                color="tarkovYellow.100"
-                _selected={{ color: "white", bg: "teal" }}
-              >
-                Table View
-              </Tab>
-              <Tab
-                color="tarkovYellow.100"
-                _selected={{ color: "white", bg: "teal" }}
-              >
-                ⚠️ Chart View 🆕
-              </Tab>
-            </TabList>
+              {componentState.embed}
+            </Box>
           </Center>
-          <TabPanels>
-            <TabPanel>
-              <TableWrapper
-                isMobile={isMobile}
-                componentState={componentState}
-                setComponentState={setComponentState}
-              />
-            </TabPanel>
-            <TabPanel>
-              <ChartWrapper results={results} />
-            </TabPanel>
-          </TabPanels>
-        </Tabs>
-      </Center>
-      <Center>
-        <Box
-          w={["375px", "450px", "600px"]}
-          h={["300px", "400px", "400px"]}
-          pt="48px"
-          pb="64px"
-        >
-          <Text
-            textAlign="center"
-            color="tarkovYellow.100"
-            fontWeight="bold"
-            fontSize={["lg", "2xl"]}
-            as="h2"
-            mb="8px"
-          >
-            <a href="https://www.twitch.tv/nofoodaftermidnight/">
-              Watch NoFoodAfterMidnight's stream here:
-            </a>
-          </Text>
-          {componentState.embed}
         </Box>
-      </Center>
+      </MouseParallaxContainer>
       <style jsx global>{`
         html,
         body {
