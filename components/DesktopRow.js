@@ -126,7 +126,7 @@ const DesktopRow = ({
                 {selectCallback && (
                   <Checkbox
                     borderColor="tarkovYellow.100"
-                    colorScheme="teal"
+                    colorScheme="orange"
                     size="lg"
                     ml="8px"
                     isChecked={isChecked}
