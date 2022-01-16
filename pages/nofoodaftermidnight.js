@@ -208,8 +208,6 @@ const App = ({ results, isFallback }) => {
           </Flex>
         </Center>
 
-        <TradersResetTimers />
-
         <Center>
           <Tabs variant="unstyled" w="100%" mt="48px" size="lg">
             <Center>
@@ -244,6 +242,9 @@ const App = ({ results, isFallback }) => {
             </TabPanels>
           </Tabs>
         </Center>
+
+        <TradersResetTimers />
+
         <Center>
           <Box
             w={["375px", "450px", "600px"]}
