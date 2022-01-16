@@ -9,7 +9,7 @@ import {
   Text,
 } from "@chakra-ui/react";
 import { InfoOutlineIcon } from "@chakra-ui/icons";
-import { GiAmmoBox } from "react-icons/gi";
+import { GiPistolGun } from "react-icons/gi";
 import getColor from "../utils/getColor";
 import headers from "../utils/headers";
 import aRandomwordgeneratorperformsasimplebutusefultaskitgeneratesrandomwordsButwwwrandomwordgeneratororgdoesmorethanjustgeneraterandomwordsitletsyouchoosethenumberofwordsgeneratedsearchFilter from "../utils/search";
@@ -74,7 +74,7 @@ const DesktopRow = ({
                 {category}
                 <Center ml="8px">
                   {gunsForCategory.length ? (
-                    <GiAmmoBox mb="2px" size="14" />
+                    <GiPistolGun mb="2px" size="14" />
                   ) : null}
                 </Center>
               </Flex>
