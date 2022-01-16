@@ -7,6 +7,7 @@ import {
   VStack,
   HStack,
   Center,
+  Link,
 } from "@chakra-ui/react";
 import { useQuery } from "react-query";
 import Countdown from "react-countdown";
@@ -14,7 +15,7 @@ import Countdown from "react-countdown";
 const Renderer = (props) => {
   if (props.completed) {
     return (
-      <Text textAlign={"center"}>
+      <Text textAlign="center" fontSize="sm">
         Restock
         <br />
         right now
@@ -24,7 +25,7 @@ const Renderer = (props) => {
 
   return (
     <>
-      <Text textAlign={"center"}>
+      <Text textAlign="center" fontSize="sm">
         Restock in
         <br />
         {props.formatted.hours}:{props.formatted.minutes}:
@@ -65,48 +66,54 @@ const TradersResetTimers = ({ trader }) => {
 
   return (
     <Center py="24px">
-      <Wrap
-        bg="vulcan.900"
-        p="16px"
-        justify="center"
-        align="center"
-        spacing="30px"
-      >
-        {data.data &&
-          data.data.traderResetTimes.map((resetTime) => {
-            return (
-              <WrapItem color="tarkovYellow.100">
-                <VStack>
-                  <picture>
-                    {/* <source
-                        srcSet={encodeURIComponent(imageURL)}
-                        type="image/webp"
-                    /> */}
-                    <img
-                      style={{
-                        objectFit: "cover",
-                      }}
-                      width={"64px"}
-                      height={"64px"}
-                      src={encodeURIComponent(
-                        `/traders/${resetTime.name}.jpeg`
-                      )}
-                      alt={resetTime.name}
-                      loading="lazy"
+      <VStack bg="vulcan.900" pb="8px" pt="16px" px="16px" mx="24px">
+        <Wrap justify="center" align="center" spacing="30px">
+          {data.data &&
+            data.data.traderResetTimes.map((resetTime) => {
+              return (
+                <WrapItem color="tarkovYellow.100">
+                  <VStack>
+                    <picture>
+                      {/* <source
+                            srcSet={encodeURIComponent(imageURL)}
+                            type="image/webp"
+                        /> */}
+                      <img
+                        style={{
+                          objectFit: "cover",
+                        }}
+                        width={"56px"}
+                        height={"56px"}
+                        src={encodeURIComponent(
+                          `/traders/${resetTime.name}.jpeg`
+                        )}
+                        alt={resetTime.name}
+                        loading="lazy"
+                      />
+                    </picture>
+                    <Text
+                      textTransform="capitalize"
+                      fontSize="sm"
+                      fontWeight="bold"
+                    >
+                      {resetTime.name}
+                    </Text>
+                    <Countdown
+                      date={resetTime.resetTimestamp}
+                      renderer={Renderer}
                     />
-                  </picture>
-                  <Text textTransform={"capitalize"} fontWeight={"bold"}>
-                    {resetTime.name}
-                  </Text>
-                  <Countdown
-                    date={resetTime.resetTimestamp}
-                    renderer={Renderer}
-                  />
-                </VStack>
-              </WrapItem>
-            );
-          })}
-      </Wrap>
+                  </VStack>
+                </WrapItem>
+              );
+            })}
+        </Wrap>
+        <Text w="100%" color="tarkovYellow.100" fontSize="xs" textAlign="right">
+          Note: Timers data gently provided by Kokarn from{" "}
+          <Link textDecorationLine="underline" href="https://tarkov-tools.com">
+            tarkov-tools
+          </Link>
+        </Text>
+      </VStack>
     </Center>
   );
 };
