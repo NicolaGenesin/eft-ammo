@@ -108,7 +108,7 @@ const TradersResetTimers = ({ trader }) => {
             })}
         </Wrap>
         <Text w="100%" color="tarkovYellow.100" fontSize="xs" textAlign="right">
-          Note: Timers data gently provided by Kokarn from{" "}
+          Note: Currently in Beta. Timers data gently provided by Kokarn from{" "}
           <Link textDecorationLine="underline" href="https://tarkov-tools.com">
             tarkov-tools
           </Link>
