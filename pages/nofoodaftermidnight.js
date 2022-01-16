@@ -27,6 +27,7 @@ import {
   MouseParallaxContainer,
   MouseParallaxChild,
 } from "react-parallax-mouse";
+import TradersResetTimers from "../components/TradersResetTimers";
 
 const App = ({ results, isFallback }) => {
   const [componentState, setComponentState] = useState({
@@ -241,6 +242,9 @@ const App = ({ results, isFallback }) => {
             </TabPanels>
           </Tabs>
         </Center>
+
+        <TradersResetTimers />
+
         <Center>
           <Box
             w={["375px", "450px", "600px"]}

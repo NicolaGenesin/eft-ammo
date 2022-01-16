@@ -1,7 +1,10 @@
 import * as React from "react";
 import { ChakraProvider, extendTheme } from "@chakra-ui/react";
+import { QueryClient, QueryClientProvider, useQuery } from "react-query";
 import { SmallFooterWithSocial } from "../components/SmallFooterWithSocial";
 import Feedback from "../components/Feedback";
+
+const queryClient = new QueryClient();
 
 const theme = extendTheme({
   fonts: {
@@ -22,9 +25,11 @@ const theme = extendTheme({
 
 const App = ({ Component, pageProps }) => (
   <ChakraProvider theme={theme}>
-    <Component {...pageProps} />
-    <SmallFooterWithSocial />
-    <Feedback />
+    <QueryClientProvider client={queryClient}>
+      <Component {...pageProps} />
+      <SmallFooterWithSocial />
+      <Feedback />
+    </QueryClientProvider>
   </ChakraProvider>
 );
 
