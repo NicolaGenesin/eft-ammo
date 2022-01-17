@@ -5,11 +5,15 @@ import {
   Center,
   Checkbox,
   Box,
+  VStack,
+  Text,
 } from "@chakra-ui/react";
 import { InfoOutlineIcon } from "@chakra-ui/icons";
+import { GiPistolGun } from "react-icons/gi";
 import getColor from "../utils/getColor";
 import headers from "../utils/headers";
 import aRandomwordgeneratorperformsasimplebutusefultaskitgeneratesrandomwordsButwwwrandomwordgeneratororgdoesmorethanjustgeneraterandomwordsitletsyouchoosethenumberofwordsgeneratedsearchFilter from "../utils/search";
+import gunsData from "../utils/gunsData";
 
 const DesktopRow = ({
   category,
@@ -32,6 +36,12 @@ const DesktopRow = ({
       category
     );
 
+  const gunsForCategory = gunsData.guns
+    .filter((gun) => gun.category === gunsData.categoriesMapping[category])
+    .map((gun) => {
+      return <Text fontSize="xs">■ {gun.name}</Text>;
+    });
+
   return (
     <>
       <Flex>
@@ -48,7 +58,28 @@ const DesktopRow = ({
           }}
           bg={categoryMatch ? "blue.600" : ""}
         >
-          {category}
+          {
+            <Tooltip
+              bg="#272712"
+              label={
+                gunsForCategory.length ? (
+                  <VStack py="8px" px="4px" align="left">
+                    <Text fontWeight="bold">Used by</Text>
+                    {gunsForCategory}
+                  </VStack>
+                ) : null
+              }
+            >
+              <Flex>
+                {category}
+                <Center ml="8px">
+                  {gunsForCategory.length ? (
+                    <GiPistolGun mb="2px" size="14" />
+                  ) : null}
+                </Center>
+              </Flex>
+            </Tooltip>
+          }
         </Box>
         {headers.map((header, index) => {
           let toolTipLabel = "";
