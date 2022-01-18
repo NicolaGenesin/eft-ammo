@@ -69,9 +69,9 @@ const TradersResetTimers = ({ trader }) => {
       <VStack bg="vulcan.900" pb="8px" pt="16px" px="16px" mx="24px">
         <Wrap justify="center" align="center" spacing="30px">
           {data.data &&
-            data.data.traderResetTimes.map((resetTime) => {
+            data.data.traderResetTimes.map((resetTime, index) => {
               return (
-                <WrapItem color="tarkovYellow.100">
+                <WrapItem color="tarkovYellow.100" key={`timer-${index}`}>
                   <VStack>
                     <picture>
                       {/* <source
