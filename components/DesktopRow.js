@@ -9,7 +9,7 @@ import {
   Text,
 } from "@chakra-ui/react";
 import { InfoOutlineIcon } from "@chakra-ui/icons";
-import { GiPistolGun } from "react-icons/gi";
+import { GiAk47 } from "react-icons/gi";
 import { TiArrowSortedDown, TiArrowSortedUp } from "react-icons/ti";
 import getColor from "../utils/getColor";
 import headers from "../utils/headers";
@@ -99,7 +99,7 @@ const DesktopRow = ({
                 {category}
                 <Center ml="8px">
                   {gunsForCategory.length ? (
-                    <GiPistolGun mb="2px" size="14" />
+                    <GiAk47 mb="2px" size="20" />
                   ) : null}
                 </Center>
               </Flex>
