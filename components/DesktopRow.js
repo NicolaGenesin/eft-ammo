@@ -121,6 +121,8 @@ const DesktopRow = ({
               "A value used to determine how well a bullet penetrates armor and how much durability damage it does to armor, the higher the better.";
           } else if (index === 0) {
             toolTipLabel = "This is how much health damage a bullet does.";
+          } else {
+            toolTipLabel = `Bullet effectiveness against armor ${headerLabel}`;
           }
 
           return (
