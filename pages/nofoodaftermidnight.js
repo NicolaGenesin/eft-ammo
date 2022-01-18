@@ -24,10 +24,6 @@ import CompareButton from "../components/CompareButton";
 import CompareModal from "../components/CompareModal";
 import TableWrapper from "../components/TableWrapper";
 import ChartWrapper from "../components/ChartWrapper";
-import {
-  MouseParallaxContainer,
-  MouseParallaxChild,
-} from "react-parallax-mouse";
 import TradersResetTimers from "../components/TradersResetTimers";
 
 const App = ({ results, isFallback }) => {

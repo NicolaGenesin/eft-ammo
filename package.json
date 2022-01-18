@@ -21,7 +21,6 @@
     "react-dom": "17.0.2",
     "react-icons": "^4.3.1",
     "react-intersection-observer": "^8.33.1",
-    "react-parallax-mouse": "github:NicolaGenesin/react-parallax-mouse",
     "react-query": "^3.34.8",
     "react-twitch-embed": "^2.1.0"
   },
