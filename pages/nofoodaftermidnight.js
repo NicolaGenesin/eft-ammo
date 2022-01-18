@@ -289,22 +289,6 @@ const App = ({ results, isFallback }) => {
           }}
         />
       )}
-      <style jsx global>{`
-        html,
-        body {
-          background: #131313 !important;
-
-          height: 100%;
-          width: 100%;
-
-          background-position: center;
-          background-size: cover;
-        }
-
-        * {
-          box-sizing: border-box;
-        }
-      `}</style>
     </Box>
   );
 };

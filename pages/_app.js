@@ -1,5 +1,5 @@
 import * as React from "react";
-import { ChakraProvider, extendTheme } from "@chakra-ui/react";
+import { Box, ChakraProvider, extendTheme } from "@chakra-ui/react";
 import { QueryClient, QueryClientProvider, useQuery } from "react-query";
 import { SmallFooterWithSocial } from "../components/SmallFooterWithSocial";
 import Feedback from "../components/Feedback";
@@ -15,6 +15,7 @@ const theme = extendTheme({
     vulcan: {
       800: "#383932",
       900: "#1f1f1e",
+      1000: "#131313",
     },
     tarkovYellow: {
       100: "#dbc59c",
@@ -26,9 +27,22 @@ const theme = extendTheme({
 const App = ({ Component, pageProps }) => (
   <ChakraProvider theme={theme}>
     <QueryClientProvider client={queryClient}>
-      <Component {...pageProps} />
-      <SmallFooterWithSocial />
-      <Feedback />
+      <Box bg="vulcan.1000">
+        <Component {...pageProps} />
+        <SmallFooterWithSocial />
+        <Feedback />
+      </Box>
+      <style jsx global>{`
+        html,
+        body {
+          height: 100%;
+          width: 100%;
+        }
+
+        * {
+          box-sizing: border-box;
+        }
+      `}</style>
     </QueryClientProvider>
   </ChakraProvider>
 );
