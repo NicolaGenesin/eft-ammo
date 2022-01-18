@@ -70,7 +70,7 @@ const fallback = {
       class4: "5",
       class5: "5",
       class6: "5",
-      note: "8 Darts, the armor damage is pretty high per dart and with 8 total darts, it destroys armor very quickly",
+      note: "8 Darts, the armor damage is pretty high per dart and with 8 total darts, it destroys armor very quickly. Because it has less than 20 pen, even though it has a 100% fragment chance, it can't fragment. This is true of all ammo under 20 pen",
     },
   ],
   "12 Gauge Slugs": [
@@ -86,7 +86,6 @@ const fallback = {
       class4: "0",
       class5: "0",
       class6: "0",
-      note: "Because it has less than 20 pen, even though it has a 100% fragment chance, it can't fragment",
     },
     {
       name: "Superformance HP Slug",
@@ -100,7 +99,6 @@ const fallback = {
       class4: "0",
       class5: "0",
       class6: "0",
-      note: "^ This is true of all ammo under 20 pen",
     },
     {
       name: "Grizzly 40 Slug",
