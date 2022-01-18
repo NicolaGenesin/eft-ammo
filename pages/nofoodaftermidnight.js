@@ -200,11 +200,20 @@ const App = ({ results, isFallback }) => {
         </Center>
 
         <Center>
-          <Button colorScheme="orange" borderRadius="0" color="black" size="lg">
-            <Link href="https://forms.gle/ToTmLYiWoxuGsM2R6" isExternal={true}>
+          <Link
+            href="https://forms.gle/ToTmLYiWoxuGsM2R6"
+            isExternal={true}
+            style={{ textDecoration: "none" }}
+          >
+            <Button
+              colorScheme="orange"
+              borderRadius="0"
+              color="black"
+              size="lg"
+            >
               🛠️ Feedback or Ideas? 🛠️
-            </Link>
-          </Button>
+            </Button>
+          </Link>
         </Center>
 
         <Center>
