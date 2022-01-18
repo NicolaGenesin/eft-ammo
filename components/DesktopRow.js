@@ -9,7 +9,8 @@ import {
   Text,
 } from "@chakra-ui/react";
 import { InfoOutlineIcon } from "@chakra-ui/icons";
-import { GiPistolGun } from "react-icons/gi";
+import { GiAk47 } from "react-icons/gi";
+import { TiArrowSortedDown, TiArrowSortedUp } from "react-icons/ti";
 import getColor from "../utils/getColor";
 import headers from "../utils/headers";
 import aRandomwordgeneratorperformsasimplebutusefultaskitgeneratesrandomwordsButwwwrandomwordgeneratororgdoesmorethanjustgeneraterandomwordsitletsyouchoosethenumberofwordsgeneratedsearchFilter from "../utils/search";
@@ -20,6 +21,8 @@ const DesktopRow = ({
   allAmmosForCategory,
   minimalView,
   currentSearch,
+  tableState,
+  setTableState,
   selectCallback,
   selectedAmmos,
 }) => {
@@ -38,9 +41,31 @@ const DesktopRow = ({
 
   const gunsForCategory = gunsData.guns
     .filter((gun) => gun.category === gunsData.categoriesMapping[category])
-    .map((gun) => {
-      return <Text fontSize="xs">■ {gun.name}</Text>;
+    .map((gun, index) => {
+      return (
+        <Text key={`gun-${index}`} fontSize="xs">
+          ■ {gun.name}
+        </Text>
+      );
     });
+
+  const sortedAmmos = [...allAmmosForCategory];
+
+  if (tableState && tableState.sorting.columnBeingSorted) {
+    const columnBeingSorted = tableState.sorting.columnBeingSorted;
+
+    if (tableState.sorting.direction.highToLow) {
+      sortedAmmos.sort(
+        (a, b) =>
+          parseInt(b[columnBeingSorted]) - parseInt(a[columnBeingSorted])
+      );
+    } else {
+      sortedAmmos.sort(
+        (a, b) =>
+          parseInt(a[columnBeingSorted]) - parseInt(b[columnBeingSorted])
+      );
+    }
+  }
 
   return (
     <>
@@ -74,14 +99,16 @@ const DesktopRow = ({
                 {category}
                 <Center ml="8px">
                   {gunsForCategory.length ? (
-                    <GiPistolGun mb="2px" size="14" />
+                    <GiAk47 mb="2px" size="20" />
                   ) : null}
                 </Center>
               </Flex>
             </Tooltip>
           }
         </Box>
-        {headers.map((header, index) => {
+        {Object.keys(headers).map((headerLabel, index) => {
+          const headerProperty = headers[headerLabel];
+          const isSortable = index < 4 && tableState;
           let toolTipLabel = "";
 
           if (index === 3) {
@@ -95,28 +122,61 @@ const DesktopRow = ({
               "A value used to determine how well a bullet penetrates armor and how much durability damage it does to armor, the higher the better.";
           } else if (index === 0) {
             toolTipLabel = "This is how much health damage a bullet does.";
+          } else {
+            toolTipLabel = `Bullet effectiveness against armor ${headerLabel}`;
           }
 
           return (
             <Center
-              flex={header.toLowerCase().includes("class") ? "0.5" : "1"}
+              flex={headerLabel.toLowerCase().includes("class") ? "0.5" : "1"}
               bg="vulcan.800"
               key={`header-${index}`}
               fontWeight="semibold"
               fontSize="xs"
               textAlign="center"
             >
-              {header.toUpperCase()}
-              {toolTipLabel && (
+              {toolTipLabel ? (
                 <Tooltip bg="#272712" label={toolTipLabel}>
-                  <InfoOutlineIcon ml="8px" mb="2px" />
+                  {headerLabel.toUpperCase()}
                 </Tooltip>
+              ) : (
+                <Text>{headerLabel.toUpperCase()}</Text>
+              )}
+              {isSortable && (
+                <Box ml="4px">
+                  <TiArrowSortedUp
+                    onClick={() => {
+                      setTableState({
+                        ...tableState,
+                        sorting: {
+                          columnBeingSorted: headerProperty,
+                          direction: {
+                            highToLow: false,
+                          },
+                        },
+                      });
+                    }}
+                  />
+                  <TiArrowSortedDown
+                    onClick={() => {
+                      setTableState({
+                        ...tableState,
+                        sorting: {
+                          columnBeingSorted: headerProperty,
+                          direction: {
+                            highToLow: true,
+                          },
+                        },
+                      });
+                    }}
+                  />
+                </Box>
               )}
             </Center>
           );
         })}
       </Flex>
-      {allAmmosForCategory.map((ammo, index) => {
+      {sortedAmmos.map((ammo, index) => {
         let toolTipLabel = undefined;
 
         if (ammo.note) {

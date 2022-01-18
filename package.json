@@ -10,6 +10,7 @@
     "@chakra-ui/react": "^1.7.3",
     "@emotion/react": "^11.7.1",
     "@emotion/styled": "^11.6.0",
+    "@sentry/nextjs": "^6.16.1",
     "chart.js": "^3.7.0",
     "chartjs-plugin-annotation": "^1.2.2",
     "chartjs-plugin-datalabels": "^2.0.0",
@@ -21,7 +22,6 @@
     "react-dom": "17.0.2",
     "react-icons": "^4.3.1",
     "react-intersection-observer": "^8.33.1",
-    "react-parallax-mouse": "github:NicolaGenesin/react-parallax-mouse",
     "react-query": "^3.34.8",
     "react-twitch-embed": "^2.1.0"
   },

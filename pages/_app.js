@@ -30,7 +30,7 @@ const App = ({ Component, pageProps }) => (
       <Box bg="vulcan.1000">
         <Component {...pageProps} />
         <SmallFooterWithSocial />
-        <Feedback />
+        {/* <Feedback /> */}
       </Box>
       <style jsx global>{`
         html,

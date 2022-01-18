@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import Head from "next/head";
-import { HStack, useBreakpointValue, VStack } from "@chakra-ui/react";
+import { HStack, Link, useBreakpointValue, VStack } from "@chakra-ui/react";
 import {
   Flex,
   Center,
@@ -12,6 +12,7 @@ import {
   TabPanels,
   TabPanel,
   Skeleton,
+  Button,
 } from "@chakra-ui/react";
 import getResults from "../utils/getResults";
 import Legenda from "../components/Legenda";
@@ -23,10 +24,6 @@ import CompareButton from "../components/CompareButton";
 import CompareModal from "../components/CompareModal";
 import TableWrapper from "../components/TableWrapper";
 import ChartWrapper from "../components/ChartWrapper";
-import {
-  MouseParallaxContainer,
-  MouseParallaxChild,
-} from "react-parallax-mouse";
 import TradersResetTimers from "../components/TradersResetTimers";
 
 const App = ({ results, isFallback }) => {
@@ -200,6 +197,23 @@ const App = ({ results, isFallback }) => {
               </SocialButton>
             )}
           </VStack>
+        </Center>
+
+        <Center>
+          <Link
+            href="https://forms.gle/ToTmLYiWoxuGsM2R6"
+            isExternal={true}
+            style={{ textDecoration: "none" }}
+          >
+            <Button
+              colorScheme="orange"
+              borderRadius="0"
+              color="black"
+              size="lg"
+            >
+              🛠️ Feedback or Ideas? 🛠️
+            </Button>
+          </Link>
         </Center>
 
         <Center>
