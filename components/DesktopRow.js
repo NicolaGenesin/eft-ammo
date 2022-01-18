@@ -108,6 +108,7 @@ const DesktopRow = ({
         </Box>
         {Object.keys(headers).map((headerLabel, index) => {
           const headerProperty = headers[headerLabel];
+          const isSortable = index < 4 && tableState;
           let toolTipLabel = "";
 
           if (index === 3) {
@@ -141,7 +142,7 @@ const DesktopRow = ({
               ) : (
                 <Text>{headerLabel.toUpperCase()}</Text>
               )}
-              {index < 4 && (
+              {isSortable && (
                 <Box ml="4px">
                   <TiArrowSortedUp
                     onClick={() => {
