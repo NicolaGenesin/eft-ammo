@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import Head from "next/head";
-import { HStack, useBreakpointValue, VStack } from "@chakra-ui/react";
+import { HStack, Link, useBreakpointValue, VStack } from "@chakra-ui/react";
 import {
   Flex,
   Center,
@@ -12,6 +12,7 @@ import {
   TabPanels,
   TabPanel,
   Skeleton,
+  Button,
 } from "@chakra-ui/react";
 import getResults from "../utils/getResults";
 import Legenda from "../components/Legenda";
@@ -200,6 +201,14 @@ const App = ({ results, isFallback }) => {
               </SocialButton>
             )}
           </VStack>
+        </Center>
+
+        <Center>
+          <Button colorScheme="orange" borderRadius="0" color="black" size="lg">
+            <Link href="https://forms.gle/ToTmLYiWoxuGsM2R6" isExternal={true}>
+              🛠️ Feedback or Ideas? 🛠️
+            </Link>
+          </Button>
         </Center>
 
         <Center>
