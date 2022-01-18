@@ -10,6 +10,7 @@ import {
   VStack,
   Spacer,
   HStack,
+  Divider,
 } from "@chakra-ui/react";
 import getColor from "../utils/getColor";
 import aRandomwordgeneratorperformsasimplebutusefultaskitgeneratesrandomwordsButwwwrandomwordgeneratororgdoesmorethanjustgeneraterandomwordsitletsyouchoosethenumberofwordsgeneratedsearchFilter from "../utils/search";
@@ -102,7 +103,7 @@ const MobileRow = ({ category, allAmmosForCategory, currentSearch }) => {
                 >
                   <VStack spacing="0" w="100%">
                     <Center bg="#232314" p="2px" w="100%">
-                      DMG
+                      Damage
                     </Center>
                     <Center bg="#4E4E4C" w="100%">
                       {ammo.damage}
@@ -110,7 +111,7 @@ const MobileRow = ({ category, allAmmosForCategory, currentSearch }) => {
                   </VStack>
                   <VStack spacing="0" w="100%">
                     <Center bg="#232314" p="2px" w="100%">
-                      PEN VAL
+                      Pen Value
                     </Center>
                     <Center bg="#4E4E4C" w="100%">
                       {ammo.penValue}
@@ -118,7 +119,7 @@ const MobileRow = ({ category, allAmmosForCategory, currentSearch }) => {
                   </VStack>
                   <VStack spacing="0" w="100%">
                     <Center bg="#232314" p="2px" w="100%">
-                      ARMOR DMG
+                      Armor Dmg
                     </Center>
                     <Center bg="#4E4E4C" w="100%">
                       {ammo.armorDamage}
@@ -126,17 +127,21 @@ const MobileRow = ({ category, allAmmosForCategory, currentSearch }) => {
                   </VStack>
                   <VStack spacing="0" w="100%">
                     <Center bg="#232314" p="2px" w="100%">
-                      FRAG %
+                      Frag %
                     </Center>
                     <Center bg="#4E4E4C" w="100%">
                       {ammo.fragChange}
                     </Center>
                   </VStack>
                 </HStack>
-                <HStack mt="8px" fontSize="xs" justify="space-around">
+                <Divider my="8px" borderColor="vulcan.900" />
+                <Center color="tarkovYellow.100" fontSize="xs" mb="4px">
+                  Bullet effectiveness against armor class
+                </Center>
+                <HStack fontSize="xs" justify="space-around">
                   <VStack spacing="0" w="100%">
                     <Center bg="#232314" w="100%" p="1px">
-                      C1
+                      Class 1
                     </Center>
                     <Center bg={getColor(ammo.class1)} color="black" w="100%">
                       {ammo.class1}
@@ -144,7 +149,7 @@ const MobileRow = ({ category, allAmmosForCategory, currentSearch }) => {
                   </VStack>
                   <VStack spacing="0" w="100%">
                     <Center bg="#232314" w="100%" p="1px">
-                      C2
+                      Class 2
                     </Center>
                     <Center bg={getColor(ammo.class2)} color="black" w="100%">
                       {ammo.class2}
@@ -152,7 +157,7 @@ const MobileRow = ({ category, allAmmosForCategory, currentSearch }) => {
                   </VStack>
                   <VStack spacing="0" w="100%">
                     <Center bg="#232314" w="100%" p="1px">
-                      C3
+                      Class 3
                     </Center>
                     <Center bg={getColor(ammo.class3)} color="black" w="100%">
                       {ammo.class3}
@@ -160,7 +165,7 @@ const MobileRow = ({ category, allAmmosForCategory, currentSearch }) => {
                   </VStack>
                   <VStack spacing="0" w="100%">
                     <Center bg="#232314" w="100%" p="1px">
-                      C4
+                      Class 4
                     </Center>
                     <Center bg={getColor(ammo.class4)} color="black" w="100%">
                       {ammo.class4}
@@ -168,7 +173,7 @@ const MobileRow = ({ category, allAmmosForCategory, currentSearch }) => {
                   </VStack>
                   <VStack spacing="0" w="100%">
                     <Center bg="#232314" w="100%" p="1px">
-                      C5
+                      Class 5
                     </Center>
                     <Center bg={getColor(ammo.class5)} color="black" w="100%">
                       {ammo.class5}
@@ -176,7 +181,7 @@ const MobileRow = ({ category, allAmmosForCategory, currentSearch }) => {
                   </VStack>
                   <VStack spacing="0" w="100%">
                     <Center bg="#232314" w="100%" p="1px">
-                      C6
+                      Class 6
                     </Center>
                     <Center bg={getColor(ammo.class6)} color="black" w="100%">
                       {ammo.class6}
