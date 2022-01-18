@@ -1,3 +1,4 @@
+import React, { useState } from "react";
 import {
   Box,
   VStack,
@@ -56,6 +57,8 @@ const DesktopTable = ({
   componentState,
   setComponentState,
   keysFilteredByWeaponName,
+  tableState,
+  setTableState,
 }) => {
   return (
     <>
@@ -92,6 +95,8 @@ const DesktopTable = ({
                           allAmmosForCategory={allAmmosForCategory}
                           minimalView={componentState.minimalView}
                           currentSearch={componentState.currentSearch}
+                          tableState={tableState}
+                          setTableState={setTableState}
                           selectedAmmos={componentState.selectedAmmos}
                           selectCallback={(ammo, newCheckboxValue) => {
                             let newSelectedRows = [
@@ -148,6 +153,15 @@ const DesktopTable = ({
 };
 
 const TableWrapper = ({ isMobile, componentState, setComponentState }) => {
+  const [tableState, setTableState] = useState({
+    sorting: {
+      columnBeingSorted: null, // header name
+      direction: {
+        highToLow: true,
+      },
+    },
+  });
+
   const keys = Object.keys(componentState.results);
   let keysFilteredByWeaponName = keys;
 
@@ -210,6 +224,8 @@ const TableWrapper = ({ isMobile, componentState, setComponentState }) => {
           componentState={componentState}
           setComponentState={setComponentState}
           keysFilteredByWeaponName={keysFilteredByWeaponName}
+          tableState={tableState}
+          setTableState={setTableState}
         />
       )}
     </>
