@@ -26,10 +26,9 @@ const MobileTable = ({ componentState, keysFilteredByWeaponName }) => (
                 ref={ref}
                 key={`allAmmos-${index}`}
                 color="tarkovYellow.100"
-                mx="8px"
                 mb="24px"
                 rounded="sm"
-                border="12px solid"
+                border="8px solid"
                 borderColor="vulcan.900"
                 bg="vulcan.900"
               >
