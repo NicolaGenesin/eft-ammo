@@ -51,7 +51,7 @@ const DesktopRow = ({
 
   const sortedAmmos = [...allAmmosForCategory];
 
-  if (tableState.sorting.columnBeingSorted) {
+  if (tableState && tableState.sorting.columnBeingSorted) {
     const columnBeingSorted = tableState.sorting.columnBeingSorted;
 
     if (tableState.sorting.direction.highToLow) {
