@@ -200,7 +200,23 @@ const App = ({ results, isFallback }) => {
         </Center>
 
         <Center>
-          <Button colorScheme="orange" borderRadius="0" color="black" size="lg">
+          <Button
+            colorScheme="orange"
+            borderRadius="0"
+            color="black"
+            size="lg"
+            onClick={() => {
+              ga("send", {
+                hitType: "event",
+                eventCategory: "Button",
+                eventAction: "click",
+                eventLabel: "Feedback",
+                hitCallback: function () {
+                  alert("Event received");
+                },
+              });
+            }}
+          >
             <Link href="https://forms.gle/ToTmLYiWoxuGsM2R6" isExternal={true}>
               🛠️ Feedback or Ideas? 🛠️
             </Link>
