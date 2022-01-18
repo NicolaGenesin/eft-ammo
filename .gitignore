@@ -105,3 +105,6 @@ dist
 .tern-port
 
 private-key.json
+
+# Sentry
+.sentryclirc

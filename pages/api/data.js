@@ -1,3 +1,4 @@
+import { withSentry } from "@sentry/nextjs";
 const { GoogleSpreadsheet } = require("google-spreadsheet");
 const fallback = require("./fallback").default;
 const doc = new GoogleSpreadsheet(process.env.NEXT_TARGET_SHEET);
@@ -76,4 +77,4 @@ const handler = async (req, res) => {
   res.status(200).json(json);
 };
 
-export default handler;
+export default withSentry(handler);
