@@ -8,7 +8,7 @@ import {
   Tr,
   Center,
 } from "@chakra-ui/react";
-import getColor from "../utils/getColor";
+import { getColor } from "../utils/getColor";
 
 const Legenda = ({ isDesktop }) => {
   return (
