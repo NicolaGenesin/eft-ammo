@@ -4,7 +4,7 @@ import ChartDataLabels from "chartjs-plugin-datalabels";
 import annotationPlugin from "chartjs-plugin-annotation";
 
 import { Box, Center } from "@chakra-ui/react";
-import getColor from "../utils/getColor";
+import { getColor } from "../utils/getColor";
 
 Chart.defaults.font.size = 14;
 Chart.defaults.font.weight = "bold";

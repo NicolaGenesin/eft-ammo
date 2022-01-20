@@ -9,11 +9,12 @@ import {
   Text,
   HStack,
   Spacer,
+  useBreakpointValue,
 } from "@chakra-ui/react";
 import { InfoOutlineIcon } from "@chakra-ui/icons";
 import { GiAk47 } from "react-icons/gi";
 import { TiArrowSortedDown, TiArrowSortedUp } from "react-icons/ti";
-import getColor from "../utils/getColor";
+import { getColor, getRecoilColor } from "../utils/getColor";
 import headers from "../utils/headers";
 import aRandomwordgeneratorperformsasimplebutusefultaskitgeneratesrandomwordsButwwwrandomwordgeneratororgdoesmorethanjustgeneraterandomwordsitletsyouchoosethenumberofwordsgeneratedsearchFilter from "../utils/search";
 import gunsData from "../utils/gunsData";
@@ -69,6 +70,8 @@ const DesktopRow = ({
     }
   }
 
+  const useVerticalHeaders = useBreakpointValue({ base: true, lg: false });
+
   return (
     <>
       <Flex>
@@ -110,10 +113,16 @@ const DesktopRow = ({
         </Box>
         {Object.keys(headers).map((headerLabel, index) => {
           const headerProperty = headers[headerLabel];
-          const isSortable = index < 4 && tableState;
+          const isSortable = index < 7 && tableState;
           let toolTipLabel = "";
 
-          if (index === 3) {
+          if (index === 6) {
+            toolTipLabel = "Maximum Headshot Distance";
+          } else if (index === 5) {
+            toolTipLabel = "Effective Distance";
+          } else if (index === 4) {
+            toolTipLabel = "Recoil Index";
+          } else if (index === 3) {
             toolTipLabel =
               "The chance a bullet will fragment, splitting into pieces on hit and essentially dealing 50% extra damage. Note that fragmentation chance is currently bugged, and chances will be lower than their chance implies, and any ammo with less than 20 pen value will be completely unable to fragment.";
           } else if (index === 2) {
@@ -139,7 +148,21 @@ const DesktopRow = ({
             >
               {toolTipLabel ? (
                 <Tooltip bg="#272712" label={toolTipLabel}>
-                  {headerLabel.toUpperCase()}
+                  <Text
+                    maxH="60px"
+                    style={
+                      useVerticalHeaders
+                        ? {
+                            writingMode: "vertical-rl",
+                            textOrientation: "mixed",
+                            paddingTop: "4px",
+                            paddingBottom: "4px",
+                          }
+                        : {}
+                    }
+                  >
+                    {headerLabel.toUpperCase()}
+                  </Text>
                 </Tooltip>
               ) : (
                 <Text>{headerLabel.toUpperCase()}</Text>
@@ -211,8 +234,6 @@ const DesktopRow = ({
           selectedAmmos.find(
             (item) => item.name === ammo.name && item.category === ammo.category
           ) !== undefined;
-
-        console.log(ammo);
 
         return (
           <div key={`ammo-${index}`}>
@@ -290,6 +311,15 @@ const DesktopRow = ({
               </Center>
               <Center flex="1" color="tarkovYellow.100">
                 {ammo.fragChange}
+              </Center>
+              <Center flex="1" bg={getRecoilColor(ammo.recoil)} color="black">
+                {ammo.recoil}
+              </Center>
+              <Center flex="1" color="tarkovYellow.100">
+                {ammo.effDist}
+              </Center>
+              <Center flex="1" color="tarkovYellow.100">
+                {ammo.maxHsDist}
               </Center>
               <Center flex="0.5" bg={getColor(ammo.class1)} color="black">
                 {ammo.class1}
