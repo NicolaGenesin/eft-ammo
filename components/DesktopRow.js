@@ -92,6 +92,7 @@ const DesktopRow = ({
               fontWeight="bold"
               fontSize="xl"
               bg={categoryMatch ? "blue.600" : ""}
+              style={{ zIndex: 1 }}
             >
               {category}
             </Text>
