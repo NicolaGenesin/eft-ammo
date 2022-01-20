@@ -64,6 +64,12 @@ const MobileRow = ({ category, allAmmosForCategory, currentSearch }) => {
                 ammo.name
               );
 
+            let ammoPrice;
+
+            if (ammo.buyFor && ammo.buyFor.length) {
+              ammoPrice = `${ammo.buyFor[0].price} ₽`;
+            }
+
             return (
               <Box key={`allAmmos-${index}`} bg="vulcan.800" mb="12px" p="8px">
                 <HStack>
@@ -93,7 +99,7 @@ const MobileRow = ({ category, allAmmosForCategory, currentSearch }) => {
                     {ammo.name.toUpperCase()}
                   </Center>
                   <Spacer />
-                  {ammo.notAvailableOnFleaMarket && (
+                  {ammo.notAvailableOnFleaMarket ? (
                     <Text
                       color="tomato"
                       fontSize="xs"
@@ -103,6 +109,17 @@ const MobileRow = ({ category, allAmmosForCategory, currentSearch }) => {
                       <span>Not on</span>
                       <br />
                       <span>Flea M.</span>
+                    </Text>
+                  ) : (
+                    <Text
+                      color="tarkovYellow.100"
+                      fontSize="xs"
+                      fontWeight="bold"
+                      textAlign="center"
+                    >
+                      Flea Price
+                      <br />
+                      {ammoPrice}
                     </Text>
                   )}
                 </HStack>
