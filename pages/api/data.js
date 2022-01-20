@@ -85,6 +85,10 @@ const handler = async (req, res) => {
       );
 
       if (additionalSpecsForAmmo) {
+        ammo.standard = {
+          name: additionalSpecsForAmmo[2],
+          normalizedName: additionalSpecsForAmmo[3],
+        };
         ammo.notAvailableOnFleaMarket = additionalSpecsForAmmo[4] === "FALSE";
       }
 
