@@ -85,7 +85,7 @@ const handler = async (req, res) => {
       );
 
       if (additionalSpecsForAmmo) {
-        ammo.notAvailableOnFleaMarket = additionalSpecsForAmmo[2] === "FALSE";
+        ammo.notAvailableOnFleaMarket = additionalSpecsForAmmo[4] === "FALSE";
       }
 
       return ammo;
