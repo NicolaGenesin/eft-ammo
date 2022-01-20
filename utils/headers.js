@@ -12,6 +12,7 @@ const headers = {
   "Class 4": "class4", // coloured
   "Class 5": "class5", // coloured
   "Class 6": "class6", // coloured
+  "Flea M. Price": "notNeeded",
 };
 
 export default headers;
