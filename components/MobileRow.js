@@ -92,6 +92,19 @@ const MobileRow = ({ category, allAmmosForCategory, currentSearch }) => {
                   >
                     {ammo.name.toUpperCase()}
                   </Center>
+                  <Spacer />
+                  {ammo.notAvailableOnFleaMarket && (
+                    <Text
+                      color="tomato"
+                      fontSize="xs"
+                      fontWeight="bold"
+                      textAlign="center"
+                    >
+                      <span>Not on</span>
+                      <br />
+                      <span>Flea M.</span>
+                    </Text>
+                  )}
                 </HStack>
                 <HStack
                   mt="8px"

@@ -7,6 +7,8 @@ import {
   Box,
   VStack,
   Text,
+  HStack,
+  Spacer,
 } from "@chakra-ui/react";
 import { InfoOutlineIcon } from "@chakra-ui/icons";
 import { GiAk47 } from "react-icons/gi";
@@ -210,10 +212,12 @@ const DesktopRow = ({
             (item) => item.name === ammo.name && item.category === ammo.category
           ) !== undefined;
 
+        console.log(ammo);
+
         return (
           <div key={`ammo-${index}`}>
             <Flex fontSize="md" fontWeight="normal">
-              <Flex minW="300px" bg="vulcan.800" py="2px">
+              <HStack minW="300px" bg="vulcan.800" py="2px" pr="4px">
                 {selectCallback && (
                   <Checkbox
                     borderColor="tarkovYellow.100"
@@ -256,7 +260,25 @@ const DesktopRow = ({
                     </Tooltip>
                   )}
                 </Center>
-              </Flex>
+                <Spacer />
+                {ammo.notAvailableOnFleaMarket && (
+                  <Tooltip
+                    bg="#272712"
+                    label={"This Ammo type is not available on Flea Market."}
+                  >
+                    <Text
+                      color="tomato"
+                      fontSize="xs"
+                      fontWeight="bold"
+                      textAlign="center"
+                    >
+                      <span>No</span>
+                      <br />
+                      <span>F. M.</span>
+                    </Text>
+                  </Tooltip>
+                )}
+              </HStack>
               <Center flex="1" color="tarkovYellow.100">
                 {ammo.damage}
               </Center>

@@ -1,9 +1,9 @@
 import { withSentry } from "@sentry/nextjs";
 const { GoogleSpreadsheet } = require("google-spreadsheet");
 const fallback = require("./fallback").default;
-const doc = new GoogleSpreadsheet(process.env.NEXT_TARGET_SHEET);
 
-const getResults = async () => {
+const getResults = async (targetSheet, headerRow) => {
+  const doc = new GoogleSpreadsheet(targetSheet);
   await doc.useServiceAccountAuth({
     client_email: process.env.NEXT_GOOGLE_CLIENT_EMAIL,
     private_key: process.env.NEXT_GOOGLE_PRIVATE_KEY,
@@ -12,7 +12,7 @@ const getResults = async () => {
 
   const sheet = doc.sheetsByIndex[0]; // or use doc.sheetsById[id] or doc.sheetsByTitle[title]
 
-  await sheet.loadHeaderRow(38);
+  await sheet.loadHeaderRow(headerRow);
   const rows = await sheet.getRows({
     limit: 160,
     // offset: 38
@@ -41,36 +41,54 @@ const handler = async (req, res) => {
 
   res.setHeader("Cache-Control", "s-maxage=900, stale-while-revalidate");
 
-  let results;
+  let noFAMResults;
+  let additionalResults = [];
 
   try {
-    results = await getResults();
+    noFAMResults = await getResults(process.env.NEXT_TARGET_SHEET, 38);
+    additionalResults = await getResults(
+      process.env.NEXT_TARGET_SHEET_ADDITIONAL,
+      1
+    );
   } catch (error) {
     console.log("[API] api/data GET - WARNING - Using fallback");
+    console.log(error);
 
-    results = fallback;
+    noFAMResults = fallback;
   }
 
   const json = {};
 
-  Object.keys(results).map((key) => {
-    json[key] = results[key].map((ammoSpecs) => {
-      return {
-        name: ammoSpecs[1],
-        damage: ammoSpecs[3],
-        penValue: ammoSpecs[4],
-        armorDamage: ammoSpecs[5],
-        fragChange: ammoSpecs[6],
-        class1: ammoSpecs[7],
-        class2: ammoSpecs[8],
-        class3: ammoSpecs[9],
-        class4: ammoSpecs[10],
-        class5: ammoSpecs[11],
-        class6: ammoSpecs[12],
-        note: ammoSpecs[13],
-        secondNote: ammoSpecs[14],
-        category: key,
+  Object.keys(noFAMResults).map((category) => {
+    json[category] = noFAMResults[category].map((ammoRow) => {
+      const ammo = {
+        name: ammoRow[1],
+        damage: ammoRow[2],
+        penValue: ammoRow[3],
+        armorDamage: ammoRow[4],
+        fragChange: ammoRow[5],
+        class1: ammoRow[6],
+        class2: ammoRow[7],
+        class3: ammoRow[8],
+        class4: ammoRow[9],
+        class5: ammoRow[10],
+        class6: ammoRow[11],
+        note: ammoRow[12],
+        secondNote: ammoRow[13],
+        category: category,
       };
+
+      const additionalSpecsForAmmo = additionalResults[category].find(
+        (additionalRow) => {
+          return additionalRow[1] === ammo.name;
+        }
+      );
+
+      if (additionalSpecsForAmmo) {
+        ammo.notAvailableOnFleaMarket = additionalSpecsForAmmo[2] === "FALSE";
+      }
+
+      return ammo;
     });
   });
 
