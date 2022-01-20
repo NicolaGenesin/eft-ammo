@@ -8,6 +8,8 @@ import {
   ModalBody,
   ModalCloseButton,
   Button,
+  Accordion,
+  AccordionItem,
 } from "@chakra-ui/react";
 import DesktopRow from "./DesktopRow";
 
@@ -20,13 +22,17 @@ const CompareModal = ({ selectedAmmos, onClose }) => {
           <ModalHeader>Selected Ammunitions:</ModalHeader>
           <ModalCloseButton />
           <ModalBody>
-            <DesktopRow
-              category=""
-              allAmmosForCategory={selectedAmmos}
-              minimalView={true}
-              currentSearch=""
-              selectedAmmos={[]}
-            />
+            <Accordion defaultIndex={0}>
+              <AccordionItem border="none">
+                <DesktopRow
+                  category=""
+                  allAmmosForCategory={selectedAmmos}
+                  minimalView={true}
+                  currentSearch=""
+                  selectedAmmos={[]}
+                />
+              </AccordionItem>
+            </Accordion>
           </ModalBody>
           <ModalFooter>
             <Button colorScheme="orange" onClick={onClose}>
