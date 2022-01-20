@@ -7,6 +7,9 @@ import {
   Accordion,
   AccordionItem,
   Fade,
+  Button,
+  HStack,
+  Spacer,
 } from "@chakra-ui/react";
 import DesktopRow from "./DesktopRow";
 import MobileRow from "./MobileRow";
@@ -59,93 +62,132 @@ const DesktopTable = ({
   tableState,
   setTableState,
 }) => {
+  const [expandedItems, setExpandedIndexes] = useState([
+    ...Array(keysFilteredByWeaponName.length).keys(),
+  ]);
+
   return (
     <>
       <Center>
-        <VStack
-          w={
-            componentState.minimalView
-              ? ["100%", "100%", "100%", "100%", "85%", "75%"]
-              : "100%"
-          }
+        <Accordion
+          textAlign="center"
+          defaultIndex={expandedItems}
+          index={expandedItems}
+          allowMultiple
+          allowToggle
+          reduceMotion={true}
+          onChange={(expandedIndexes) => {
+            setExpandedIndexes(expandedIndexes);
+          }}
+          w={["100%", "100%", "100%", "100%", "85%", "75%"]}
         >
-          {keysFilteredByWeaponName.map((key, index) => {
-            const allAmmosForCategory = componentState.results[key];
+          <HStack mb="8px">
+            <Spacer />
+            <Button
+              size="xs"
+              borderRadius="0"
+              colorScheme="orange"
+              color="black"
+              onClick={() => {
+                setExpandedIndexes([
+                  ...Array(keysFilteredByWeaponName.length).keys(),
+                ]);
+              }}
+            >
+              Show All
+            </Button>
+            <Button
+              size="xs"
+              borderRadius="0"
+              colorScheme="orange"
+              color="black"
+              onClick={() => {
+                setExpandedIndexes([]);
+              }}
+            >
+              Collapse All
+            </Button>
+          </HStack>
+          <VStack>
+            {keysFilteredByWeaponName.map((key, index) => {
+              const allAmmosForCategory = componentState.results[key];
 
-            return (
-              <InView triggerOnce={true} key={`inView-${index}`}>
-                {({ inView, ref }) => (
-                  <Box
-                    ref={ref}
-                    key={`allAmmos-${index}`}
-                    color="tarkovYellow.100"
-                    mx="24px"
-                    mb="24px"
-                    rounded="sm"
-                    border="12px solid"
-                    borderColor="vulcan.900"
-                    bg="vulcan.900"
-                    w="100%"
-                  >
-                    {inView && (
-                      <Fade in={true}>
-                        <DesktopRow
-                          category={key}
-                          allAmmosForCategory={allAmmosForCategory}
-                          minimalView={componentState.minimalView}
-                          currentSearch={componentState.currentSearch}
-                          tableState={tableState}
-                          setTableState={setTableState}
-                          selectedAmmos={componentState.selectedAmmos}
-                          selectCallback={(ammo, newCheckboxValue) => {
-                            let newSelectedRows = [
-                              ...componentState.selectedAmmos,
-                            ];
+              return (
+                <InView triggerOnce={true} key={`inView-${index}`}>
+                  {({ inView, ref }) => (
+                    <Box
+                      ref={ref}
+                      key={`allAmmos-${index}`}
+                      color="tarkovYellow.100"
+                      mx="24px"
+                      rounded="sm"
+                      border="12px solid"
+                      borderColor="vulcan.900"
+                      bg="vulcan.900"
+                      w="100%"
+                    >
+                      {inView && (
+                        <Fade in={true}>
+                          <AccordionItem border="none" w="100%">
+                            <DesktopRow
+                              category={key}
+                              allAmmosForCategory={allAmmosForCategory}
+                              minimalView={componentState.minimalView}
+                              currentSearch={componentState.currentSearch}
+                              tableState={tableState}
+                              setTableState={setTableState}
+                              selectedAmmos={componentState.selectedAmmos}
+                              selectCallback={(ammo, newCheckboxValue) => {
+                                let newSelectedRows = [
+                                  ...componentState.selectedAmmos,
+                                ];
 
-                            if (newCheckboxValue) {
-                              if (
-                                !componentState.selectedAmmos.find(
-                                  (row) =>
-                                    row.name === ammo.name &&
-                                    row.category === ammo.category
-                                )
-                              ) {
-                                newSelectedRows.push(ammo);
-                              }
-                            } else {
-                              const index =
-                                componentState.selectedAmmos.findIndex(
-                                  (row) =>
-                                    row.name === ammo.name &&
-                                    row.category === ammo.category
-                                );
-
-                              if (index !== -1) {
-                                newSelectedRows = newSelectedRows
-                                  .slice(0, index)
-                                  .concat(
-                                    newSelectedRows.slice(
-                                      index + 1,
-                                      newSelectedRows.length
+                                if (newCheckboxValue) {
+                                  if (
+                                    !componentState.selectedAmmos.find(
+                                      (row) =>
+                                        row.name === ammo.name &&
+                                        row.category === ammo.category
                                     )
-                                  );
-                              }
-                            }
+                                  ) {
+                                    newSelectedRows.push(ammo);
+                                  }
+                                } else {
+                                  const index =
+                                    componentState.selectedAmmos.findIndex(
+                                      (row) =>
+                                        row.name === ammo.name &&
+                                        row.category === ammo.category
+                                    );
 
-                            setComponentState({
-                              ...componentState,
-                              selectedAmmos: newSelectedRows,
-                            });
-                          }}
-                        />
-                      </Fade>
-                    )}
-                  </Box>
-                )}
-              </InView>
-            );
-          })}
-        </VStack>
+                                  if (index !== -1) {
+                                    newSelectedRows = newSelectedRows
+                                      .slice(0, index)
+                                      .concat(
+                                        newSelectedRows.slice(
+                                          index + 1,
+                                          newSelectedRows.length
+                                        )
+                                      );
+                                  }
+                                }
+
+                                setComponentState({
+                                  ...componentState,
+                                  selectedAmmos: newSelectedRows,
+                                });
+                              }}
+                            />
+                          </AccordionItem>
+                        </Fade>
+                      )}
+                    </Box>
+                  )}
+                </InView>
+              );
+            })}
+          </VStack>
+        </Accordion>
       </Center>
     </>
   );
@@ -192,7 +234,7 @@ const TableWrapper = ({ isMobile, componentState, setComponentState }) => {
 
   return (
     <>
-      <Center py="64px">
+      <Center py="24px">
         <Input
           w={["100%", "50%"]}
           maxW="400px"
