@@ -12,7 +12,7 @@ const getResults = async () => {
 
   const sheet = doc.sheetsByIndex[0]; // or use doc.sheetsById[id] or doc.sheetsByTitle[title]
 
-  await sheet.loadHeaderRow(38);
+  await sheet.loadHeaderRow(37);
   const rows = await sheet.getRows({
     limit: 160,
     // offset: 38
