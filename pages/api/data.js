@@ -2,6 +2,27 @@ import { withSentry } from "@sentry/nextjs";
 const { GoogleSpreadsheet } = require("google-spreadsheet");
 const fallback = require("./fallback").default;
 
+const getFleaMarketPrices = async () => {
+  const dataQuery = JSON.stringify({
+    query: `
+      { itemsByType(type: ammo){ name, normalizedName, buyFor {currency, price, source, requirements {type, value}}} }
+    `,
+  });
+
+  const response = await fetch("https://tarkov-tools.com/graphql", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+      Accept: "application/json",
+    },
+    body: dataQuery,
+  });
+
+  const json = await response.json();
+
+  return json.data?.itemsByType || [];
+};
+
 const getResults = async (targetSheet, headerRow) => {
   const doc = new GoogleSpreadsheet(targetSheet);
   await doc.useServiceAccountAuth({
@@ -43,18 +64,35 @@ const handler = async (req, res) => {
 
   let noFAMResults;
   let additionalResults = [];
+  let fleaMarketPrices;
 
   try {
     noFAMResults = await getResults(process.env.NEXT_TARGET_SHEET, 38);
+  } catch (error) {
+    console.log("[API] api/data GET - WARNING - Using fallback", error);
+
+    noFAMResults = fallback;
+  }
+
+  try {
     additionalResults = await getResults(
       process.env.NEXT_TARGET_SHEET_ADDITIONAL,
       1
     );
   } catch (error) {
-    console.log("[API] api/data GET - WARNING - Using fallback");
-    console.log(error);
+    console.log(
+      "[API] api/data GET - WARNING - Additional data failed to load",
+      error
+    );
+  }
 
-    noFAMResults = fallback;
+  try {
+    fleaMarketPrices = await getFleaMarketPrices();
+  } catch (error) {
+    console.log(
+      "[API] api/data GET - WARNING - Flea Market Prices data failed to load",
+      error
+    );
   }
 
   const json = {};
@@ -93,6 +131,18 @@ const handler = async (req, res) => {
           normalizedName: additionalSpecsForAmmo[3],
         };
         ammo.notAvailableOnFleaMarket = additionalSpecsForAmmo[4] === "FALSE";
+
+        const price = fleaMarketPrices.find((priceItem) => {
+          return priceItem.normalizedName === ammo.standard.normalizedName;
+        });
+
+        if (price) {
+          const buyFor = price.buyFor.find((x) => x.source === "fleaMarket");
+
+          if (buyFor) {
+            ammo.buyFor = [buyFor];
+          }
+        }
       }
 
       return ammo;
