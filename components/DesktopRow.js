@@ -114,7 +114,10 @@ const DesktopRow = ({
               const isSortable = index < 7 && tableState;
               let toolTipLabel = "";
 
-              if (index === 6) {
+              if (index === 13) {
+                toolTipLabel =
+                  "Flea Prices provided by Kokarn from tarkov-tools.com";
+              } else if (index === 6) {
                 toolTipLabel = "Maximum Headshot Distance";
               } else if (index === 5) {
                 toolTipLabel = "Effective Distance";
@@ -137,9 +140,7 @@ const DesktopRow = ({
 
               return (
                 <Center
-                  flex={
-                    headerLabel.toLowerCase().includes("class") ? "0.5" : "1"
-                  }
+                  flex={index >= 7 && index < 13 ? "0.5" : "1"}
                   bg="vulcan.800"
                   key={`header-${index}`}
                   fontWeight="semibold"
@@ -235,6 +236,12 @@ const DesktopRow = ({
                 (item) =>
                   item.name === ammo.name && item.category === ammo.category
               ) !== undefined;
+
+            let ammoPrice;
+
+            if (ammo.buyFor && ammo.buyFor.length) {
+              ammoPrice = `${ammo.buyFor[0].price} ₽`;
+            }
 
             return (
               <div key={`ammo-${index}`}>
@@ -345,6 +352,9 @@ const DesktopRow = ({
                   </Center>
                   <Center flex="0.5" bg={getColor(ammo.class6)} color="black">
                     {ammo.class6}
+                  </Center>
+                  <Center flex="1" color="tarkovYellow.100">
+                    {ammoPrice || "?"}
                   </Center>
                 </Flex>
                 <Divider style={{ opacity: "0.2" }} />

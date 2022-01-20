@@ -79,7 +79,7 @@ const DesktopTable = ({
           onChange={(expandedIndexes) => {
             setExpandedIndexes(expandedIndexes);
           }}
-          w={["100%", "100%", "100%", "100%", "85%", "75%"]}
+          w={["100%", "100%", "100%", "100%", "95%", "90%"]}
         >
           <HStack mb="8px">
             <Spacer />
