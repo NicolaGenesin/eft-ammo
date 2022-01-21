@@ -111,7 +111,7 @@ const DesktopRow = ({
         </Box>
         {Object.keys(headers).map((headerLabel, index) => {
           const headerProperty = headers[headerLabel];
-          const isSortable = index < 6 && tableState;
+          const isSortable = index < 5 && tableState;
           let toolTipLabel = "";
 
           if (index === 6) {
