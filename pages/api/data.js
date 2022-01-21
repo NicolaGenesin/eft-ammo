@@ -53,12 +53,12 @@ const handler = async (req, res) => {
     results = fallback;
   }
 
+  console.log(JSON.stringify(results));
+
   const json = {};
 
   Object.keys(results).map((key) => {
     json[key] = results[key].map((ammoSpecs) => {
-      console.log(ammoSpecs);
-
       return {
         name: ammoSpecs[1],
         damage: ammoSpecs[2],
