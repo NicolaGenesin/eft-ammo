@@ -1,4 +1,4 @@
-// updated 16/12/2021
+// updated 21/01/2022
 
 const fallback = {
   "12 Gauge Shot": [
@@ -18,6 +18,11 @@ const fallback = {
       class6: "3",
       note: "8 Pellets",
       category: "12 Gauge Shot",
+      standard: {
+        name: "12/70 5.25mm buckshot",
+        normalizedName: "1270-525mm-buckshot",
+      },
+      notAvailableOnFleaMarket: false,
     },
     {
       name: '8.5mm Buckshot "Magnum"',
@@ -35,6 +40,11 @@ const fallback = {
       class6: "3",
       note: "8 Pellets",
       category: "12 Gauge Shot",
+      standard: {
+        name: "12/70 8.5mm Magnum buckshot",
+        normalizedName: "1270-85mm-magnum-buckshot",
+      },
+      notAvailableOnFleaMarket: false,
     },
     {
       name: '6.5mm Buckshot "Express"',
@@ -52,6 +62,11 @@ const fallback = {
       class6: "3",
       note: "9 Pellets",
       category: "12 Gauge Shot",
+      standard: {
+        name: "12/70 6.5mm Express buckshot",
+        normalizedName: "1270-65mm-express-buckshot",
+      },
+      notAvailableOnFleaMarket: false,
     },
     {
       name: "7mm Buckshot",
@@ -69,6 +84,11 @@ const fallback = {
       class6: "3",
       note: "8 Pellets",
       category: "12 Gauge Shot",
+      standard: {
+        name: "12/70 7mm buckshot",
+        normalizedName: "1270-7mm-buckshot",
+      },
+      notAvailableOnFleaMarket: false,
     },
     {
       name: "Flechette",
@@ -86,6 +106,8 @@ const fallback = {
       class6: "5",
       note: "8 Darts, the armor damage is pretty high per dart and with 8 total darts, it destroys armor very quickly",
       category: "12 Gauge Shot",
+      standard: { name: "12/70 flechette", normalizedName: "1270-flechette" },
+      notAvailableOnFleaMarket: false,
     },
   ],
   "12 Gauge Slugs": [
@@ -105,6 +127,8 @@ const fallback = {
       class6: "0",
       note: "Because it has less than 20 pen, even though it has a 100% fragment chance, it can't fragment",
       category: "12 Gauge Slugs",
+      standard: { name: "12/70 RIP", normalizedName: "1270-rip" },
+      notAvailableOnFleaMarket: false,
     },
     {
       name: "Superformance HP Slug",
@@ -122,6 +146,11 @@ const fallback = {
       class6: "0",
       note: "^ This is true of all ammo under 20 pen",
       category: "12 Gauge Slugs",
+      standard: {
+        name: "12/70 SuperFormance HP slug",
+        normalizedName: "1270-superformance-hp-slug",
+      },
+      notAvailableOnFleaMarket: true,
     },
     {
       name: "Grizzly 40 Slug",
@@ -138,6 +167,11 @@ const fallback = {
       class5: "0",
       class6: "0",
       category: "12 Gauge Slugs",
+      standard: {
+        name: "12/70 Grizzly 40 slug",
+        normalizedName: "1270-grizzly-40-slug",
+      },
+      notAvailableOnFleaMarket: false,
     },
     {
       name: "Copper Sabot Premier HP",
@@ -154,6 +188,11 @@ const fallback = {
       class5: "0",
       class6: "0",
       category: "12 Gauge Slugs",
+      standard: {
+        name: "12/70 Copper Sabot Premier HP slug",
+        normalizedName: "1270-copper-sabot-premier-hp-slug",
+      },
+      notAvailableOnFleaMarket: true,
     },
     {
       name: "Lead Slug",
@@ -170,6 +209,8 @@ const fallback = {
       class5: "0",
       class6: "0",
       category: "12 Gauge Slugs",
+      standard: { name: "12/70 lead slug", normalizedName: "1270-lead-slug" },
+      notAvailableOnFleaMarket: false,
     },
     {
       name: "Dual Sabot Slug",
@@ -187,6 +228,11 @@ const fallback = {
       class6: "0",
       note: "2 Slugs",
       category: "12 Gauge Slugs",
+      standard: {
+        name: "12/70 Dual Sabot slug",
+        normalizedName: "1270-dual-sabot-slug",
+      },
+      notAvailableOnFleaMarket: false,
     },
     {
       name: 'Slug "Poleva-3"',
@@ -203,6 +249,11 @@ const fallback = {
       class5: "0",
       class6: "0",
       category: "12 Gauge Slugs",
+      standard: {
+        name: '12/70 \\"Poleva-3\\" slug',
+        normalizedName: "1270-poleva-3-slug",
+      },
+      notAvailableOnFleaMarket: false,
     },
     {
       name: "FTX Custom Lite Slug",
@@ -219,6 +270,11 @@ const fallback = {
       class5: "0",
       class6: "0",
       category: "12 Gauge Slugs",
+      standard: {
+        name: "12/70 FTX Custom Lite slug",
+        normalizedName: "1270-ftx-custom-lite-slug",
+      },
+      notAvailableOnFleaMarket: false,
     },
     {
       name: 'Slug "Poleva-6u" ',
@@ -235,6 +291,11 @@ const fallback = {
       class5: "0",
       class6: "0",
       category: "12 Gauge Slugs",
+      standard: {
+        name: '12/70 \\"Poleva-6u\\" slug',
+        normalizedName: "1270-poleva-6u-slug",
+      },
+      notAvailableOnFleaMarket: false,
     },
     {
       name: "Shell With .50 BMG (Tracer)",
@@ -251,6 +312,11 @@ const fallback = {
       class5: "1",
       class6: "0",
       category: "12 Gauge Slugs",
+      standard: {
+        name: "12/70 makeshift .50 BMG slug",
+        normalizedName: "1270-makeshift-50-bmg-slug",
+      },
+      notAvailableOnFleaMarket: false,
     },
     {
       name: "AP 20 Slug",
@@ -267,6 +333,11 @@ const fallback = {
       class5: "4",
       class6: "3",
       category: "12 Gauge Slugs",
+      standard: {
+        name: "12/70 AP-20 armor-piercing slug",
+        normalizedName: "1270-ap-20-armor-piercing-slug",
+      },
+      notAvailableOnFleaMarket: true,
     },
   ],
   "20 Gauge": [
@@ -286,6 +357,11 @@ const fallback = {
       class6: "3",
       note: "8 Pellets",
       category: "20 Gauge",
+      standard: {
+        name: "20/70 5.6mm buckshot",
+        normalizedName: "2070-56mm-buckshot",
+      },
+      notAvailableOnFleaMarket: false,
     },
     {
       name: "6.2mm Buckshot",
@@ -303,6 +379,11 @@ const fallback = {
       class6: "3",
       note: "8 Pellets",
       category: "20 Gauge",
+      standard: {
+        name: "20/70 6.2mm buckshot",
+        normalizedName: "2070-62mm-buckshot",
+      },
+      notAvailableOnFleaMarket: false,
     },
     {
       name: "7.5mm Buckshot",
@@ -320,6 +401,11 @@ const fallback = {
       class6: "3",
       note: "8 Pellets",
       category: "20 Gauge",
+      standard: {
+        name: "20/70 7.5mm buckshot",
+        normalizedName: "2070-75mm-buckshot",
+      },
+      notAvailableOnFleaMarket: false,
     },
     {
       name: "7.3mm Buckshot",
@@ -337,6 +423,11 @@ const fallback = {
       class6: "3",
       note: "9 Pellets",
       category: "20 Gauge",
+      standard: {
+        name: "20/70 7.3mm buckshot",
+        normalizedName: "2070-73mm-buckshot",
+      },
+      notAvailableOnFleaMarket: false,
     },
     {
       name: "Devastator Slug",
@@ -353,6 +444,11 @@ const fallback = {
       class5: "0",
       class6: "0",
       category: "20 Gauge",
+      standard: {
+        name: "20/70 Devastator slug",
+        normalizedName: "2070-devastator-slug",
+      },
+      notAvailableOnFleaMarket: false,
     },
     {
       name: 'Slug "Poleva-3"',
@@ -369,6 +465,11 @@ const fallback = {
       class5: "0",
       class6: "0",
       category: "20 Gauge",
+      standard: {
+        name: '20/70 \\"Poleva-3\\" slug',
+        normalizedName: "2070-poleva-3-slug",
+      },
+      notAvailableOnFleaMarket: false,
     },
     {
       name: "Star Slug",
@@ -385,6 +486,8 @@ const fallback = {
       class5: "0",
       class6: "0",
       category: "20 Gauge",
+      standard: { name: "20/70 Star slug", normalizedName: "2070-star-slug" },
+      notAvailableOnFleaMarket: false,
     },
     {
       name: 'Slug "Poleva-6u" ',
@@ -401,6 +504,11 @@ const fallback = {
       class5: "0",
       class6: "0",
       category: "20 Gauge",
+      standard: {
+        name: '20/70 \\"Poleva-6u\\" slug',
+        normalizedName: "2070-poleva-6u-slug",
+      },
+      notAvailableOnFleaMarket: false,
     },
   ],
   "23x75 mm": [
@@ -419,6 +527,11 @@ const fallback = {
       class5: "0",
       class6: "0",
       category: "23x75 mm",
+      standard: {
+        name: '23x75mm \\"Zvezda\\" flashbang round',
+        normalizedName: "23x75mm-zvezda-flashbang-round",
+      },
+      notAvailableOnFleaMarket: true,
     },
     {
       name: "Shrapnel 25",
@@ -436,6 +549,11 @@ const fallback = {
       class6: "3",
       note: "8 Pellets",
       category: "23x75 mm",
+      standard: {
+        name: '23x75mm \\"Shrapnel-25\\" buckshot',
+        normalizedName: "23x75mm-shrapnel-25-buckshot",
+      },
+      notAvailableOnFleaMarket: false,
     },
     {
       name: "Shrapnel 10",
@@ -453,6 +571,11 @@ const fallback = {
       class6: "3",
       note: "8 Pellets",
       category: "23x75 mm",
+      standard: {
+        name: '23x75mm \\"Shrapnel-10\\" buckshot',
+        normalizedName: "23x75mm-shrapnel-10-buckshot",
+      },
+      notAvailableOnFleaMarket: false,
     },
     {
       name: '"Barricade" Slug',
@@ -469,6 +592,11 @@ const fallback = {
       class5: "4",
       class6: "4",
       category: "23x75 mm",
+      standard: {
+        name: '23x75mm \\"Barrikada\\" slug',
+        normalizedName: "23x75mm-barrikada-slug",
+      },
+      notAvailableOnFleaMarket: false,
     },
   ],
   "9x18mm": [
@@ -487,6 +615,11 @@ const fallback = {
       class5: "0",
       class6: "0",
       category: "9x18mm",
+      standard: {
+        name: "9x18mm PM SP8 gzh",
+        normalizedName: "9x18mm-pm-sp8-gzh",
+      },
+      notAvailableOnFleaMarket: false,
     },
     {
       name: "SP7",
@@ -503,6 +636,11 @@ const fallback = {
       class5: "0",
       class6: "0",
       category: "9x18mm",
+      standard: {
+        name: "9x18mm PM SP7 gzh",
+        normalizedName: "9x18mm-pm-sp7-gzh",
+      },
+      notAvailableOnFleaMarket: false,
     },
     {
       name: "PSV",
@@ -519,6 +657,8 @@ const fallback = {
       class5: "0",
       class6: "0",
       category: "9x18mm",
+      standard: { name: "9x18mm PM PSV", normalizedName: "9x18mm-pm-psv" },
+      notAvailableOnFleaMarket: false,
     },
     {
       name: "P gzh",
@@ -535,6 +675,8 @@ const fallback = {
       class5: "0",
       class6: "0",
       category: "9x18mm",
+      standard: { name: "9x18mm PM P gzh", normalizedName: "9x18mm-pm-p-gzh" },
+      notAvailableOnFleaMarket: false,
     },
     {
       name: "PSO gzh",
@@ -551,6 +693,11 @@ const fallback = {
       class5: "0",
       class6: "0",
       category: "9x18mm",
+      standard: {
+        name: "9x18mm PM PSO gzh",
+        normalizedName: "9x18mm-pm-pso-gzh",
+      },
+      notAvailableOnFleaMarket: false,
     },
     {
       name: "PS gs PPO",
@@ -567,6 +714,11 @@ const fallback = {
       class5: "0",
       class6: "0",
       category: "9x18mm",
+      standard: {
+        name: "9x18mm PM PS gs PPO",
+        normalizedName: "9x18mm-pm-ps-gs-ppo",
+      },
+      notAvailableOnFleaMarket: false,
     },
     {
       name: "PRS gs",
@@ -583,6 +735,11 @@ const fallback = {
       class5: "0",
       class6: "0",
       category: "9x18mm",
+      standard: {
+        name: "9x18mm PM PRS gs",
+        normalizedName: "9x18mm-pm-prs-gs",
+      },
+      notAvailableOnFleaMarket: false,
     },
     {
       name: "PPE gzh",
@@ -599,6 +756,11 @@ const fallback = {
       class5: "0",
       class6: "0",
       category: "9x18mm",
+      standard: {
+        name: "9x18mm PM Ppe gzh",
+        normalizedName: "9x18mm-pm-ppe-gzh",
+      },
+      notAvailableOnFleaMarket: false,
     },
     {
       name: "PPT gzh",
@@ -615,6 +777,11 @@ const fallback = {
       class5: "0",
       class6: "0",
       category: "9x18mm",
+      standard: {
+        name: "9x18mm PM PPT gzh",
+        normalizedName: "9x18mm-pm-ppt-gzh",
+      },
+      notAvailableOnFleaMarket: false,
     },
     {
       name: "PST gzh",
@@ -631,6 +798,11 @@ const fallback = {
       class5: "0",
       class6: "0",
       category: "9x18mm",
+      standard: {
+        name: "9x18mm PM Pst gzh",
+        normalizedName: "9x18mm-pm-pst-gzh",
+      },
+      notAvailableOnFleaMarket: false,
     },
     {
       name: "RG028 gzh",
@@ -647,6 +819,11 @@ const fallback = {
       class5: "0",
       class6: "0",
       category: "9x18mm",
+      standard: {
+        name: "9x18mm PM RG028 gzh",
+        normalizedName: "9x18mm-pm-rg028-gzh",
+      },
+      notAvailableOnFleaMarket: false,
     },
     {
       name: "BZT gzh",
@@ -663,6 +840,11 @@ const fallback = {
       class5: "0",
       class6: "0",
       category: "9x18mm",
+      standard: {
+        name: "9x18mm PM BZhT gzh",
+        normalizedName: "9x18mm-pm-bzht-gzh",
+      },
+      notAvailableOnFleaMarket: false,
     },
     {
       name: "PMM",
@@ -679,6 +861,11 @@ const fallback = {
       class5: "0",
       class6: "0",
       category: "9x18mm",
+      standard: {
+        name: "9x18mm PMM PstM gzh",
+        normalizedName: "9x18mm-pmm-pstm-gzh",
+      },
+      notAvailableOnFleaMarket: false,
     },
     {
       name: "PBM",
@@ -697,6 +884,11 @@ const fallback = {
       note: "",
       secondNote: "290",
       category: "9x18mm",
+      standard: {
+        name: "9x18mm PM PBM gzh",
+        normalizedName: "9x18mm-pm-pbm-gzh",
+      },
+      notAvailableOnFleaMarket: false,
     },
   ],
   "7.62x25mm": [
@@ -717,6 +909,11 @@ const fallback = {
       note: "",
       secondNote: "725",
       category: "7.62x25mm",
+      standard: {
+        name: "7.62x25mm TT LRNPC",
+        normalizedName: "762x25mm-tt-lrnpc",
+      },
+      notAvailableOnFleaMarket: false,
     },
     {
       name: "LRN",
@@ -735,6 +932,8 @@ const fallback = {
       note: "",
       secondNote: "575",
       category: "7.62x25mm",
+      standard: { name: "7.62x25mm TT LRN", normalizedName: "762x25mm-tt-lrn" },
+      notAvailableOnFleaMarket: false,
     },
     {
       name: "FMJ43",
@@ -753,6 +952,11 @@ const fallback = {
       note: "",
       secondNote: "441",
       category: "7.62x25mm",
+      standard: {
+        name: "7.62x25mm TT FMJ43",
+        normalizedName: "762x25mm-tt-fmj43",
+      },
+      notAvailableOnFleaMarket: false,
     },
     {
       name: "akbs",
@@ -771,6 +975,11 @@ const fallback = {
       note: "",
       secondNote: "428",
       category: "7.62x25mm",
+      standard: {
+        name: "7.62x25mm TT AKBS",
+        normalizedName: "762x25mm-tt-akbs",
+      },
+      notAvailableOnFleaMarket: false,
     },
     {
       name: "P Gl",
@@ -789,6 +998,11 @@ const fallback = {
       note: "",
       secondNote: "194",
       category: "7.62x25mm",
+      standard: {
+        name: "7.62x25mm TT P gl",
+        normalizedName: "762x25mm-tt-p-gl",
+      },
+      notAvailableOnFleaMarket: false,
     },
     {
       name: "T Gzh (Tracer)",
@@ -807,6 +1021,11 @@ const fallback = {
       note: "",
       secondNote: "453",
       category: "7.62x25mm",
+      standard: {
+        name: "7.62x25mm TT PT gzh",
+        normalizedName: "762x25mm-tt-pt-gzh",
+      },
+      notAvailableOnFleaMarket: false,
     },
     {
       name: "Pst gzh",
@@ -825,6 +1044,11 @@ const fallback = {
       note: "",
       secondNote: "92",
       category: "7.62x25mm",
+      standard: {
+        name: "7.62x25mm TT Pst gzh",
+        normalizedName: "762x25mm-tt-pst-gzh",
+      },
+      notAvailableOnFleaMarket: false,
     },
   ],
   "9x19mm": [
@@ -843,6 +1067,8 @@ const fallback = {
       class5: "0",
       class6: "0",
       category: "9x19mm",
+      standard: { name: "9x19mm RIP", normalizedName: "9x19mm-rip" },
+      notAvailableOnFleaMarket: false,
     },
     {
       name: "Quakemaker",
@@ -859,6 +1085,11 @@ const fallback = {
       class5: "0",
       class6: "0",
       category: "9x19mm",
+      standard: {
+        name: "9x19mm QuakeMaker",
+        normalizedName: "9x19mm-quakemaker",
+      },
+      notAvailableOnFleaMarket: false,
     },
     {
       name: "PSO gzh",
@@ -875,6 +1106,8 @@ const fallback = {
       class5: "0",
       class6: "0",
       category: "9x19mm",
+      standard: { name: "9x19mm PSO gzh", normalizedName: "9x19mm-pso-gzh" },
+      notAvailableOnFleaMarket: false,
     },
     {
       name: "Luger CCI",
@@ -891,6 +1124,11 @@ const fallback = {
       class5: "0",
       class6: "0",
       category: "9x19mm",
+      standard: {
+        name: "9x19mm Luger CCI",
+        normalizedName: "9x19mm-luger-cci",
+      },
+      notAvailableOnFleaMarket: false,
     },
     {
       name: "T Gzh (Tracer)",
@@ -909,6 +1147,8 @@ const fallback = {
       note: "",
       secondNote: "Green Tracer",
       category: "9x19mm",
+      standard: { name: "9x19mm T gzh", normalizedName: "9x19mm-t-gzh" },
+      notAvailableOnFleaMarket: false,
     },
     {
       name: "PST gzh",
@@ -925,6 +1165,8 @@ const fallback = {
       class5: "0",
       class6: "0",
       category: "9x19mm",
+      standard: { name: "9x19mm Pst gzh", normalizedName: "9x19mm-pst-gzh" },
+      notAvailableOnFleaMarket: true,
     },
     {
       name: "AP 6.3",
@@ -941,6 +1183,8 @@ const fallback = {
       class5: "2",
       class6: "1",
       category: "9x19mm",
+      standard: { name: "9x19mm AP 6.3", normalizedName: "9x19mm-ap-63" },
+      notAvailableOnFleaMarket: true,
     },
     {
       name: "PBP",
@@ -959,6 +1203,8 @@ const fallback = {
       note: "",
       secondNote: "Previously 7n31",
       category: "9x19mm",
+      standard: { name: "9x19mm PBP gzh", normalizedName: "9x19mm-pbp-gzh" },
+      notAvailableOnFleaMarket: true,
     },
   ],
   ".45": [
@@ -977,6 +1223,8 @@ const fallback = {
       class5: "0",
       class6: "0",
       category: ".45",
+      standard: { name: ".45 ACP RIP", normalizedName: "45-acp-rip" },
+      notAvailableOnFleaMarket: false,
     },
     {
       name: "Hydroshok",
@@ -993,6 +1241,11 @@ const fallback = {
       class5: "0",
       class6: "0",
       category: ".45",
+      standard: {
+        name: ".45 ACP Hydra-Shok",
+        normalizedName: "45-acp-hydra-shok",
+      },
+      notAvailableOnFleaMarket: false,
     },
     {
       name: "Lasermatch (Tracer)",
@@ -1009,6 +1262,11 @@ const fallback = {
       class5: "0",
       class6: "0",
       category: ".45",
+      standard: {
+        name: ".45 ACP Lasermatch FMJ",
+        normalizedName: "45-acp-lasermatch-fmj",
+      },
+      notAvailableOnFleaMarket: false,
     },
     {
       name: "ACP FMJ",
@@ -1025,6 +1283,11 @@ const fallback = {
       class5: "0",
       class6: "0",
       category: ".45",
+      standard: {
+        name: ".45 ACP Match FMJ",
+        normalizedName: "45-acp-match-fmj",
+      },
+      notAvailableOnFleaMarket: false,
     },
     {
       name: "ACP AP",
@@ -1041,6 +1304,8 @@ const fallback = {
       class5: "4",
       class6: "2",
       category: ".45",
+      standard: { name: ".45 ACP AP", normalizedName: "45-acp-ap" },
+      notAvailableOnFleaMarket: true,
     },
   ],
   "9x21mm": [
@@ -1061,6 +1326,8 @@ const fallback = {
       note: "",
       secondNote: "Previously SP-12",
       category: "9x21mm",
+      standard: { name: "9x21mm PE gzh", normalizedName: "9x21mm-pe-gzh" },
+      notAvailableOnFleaMarket: false,
     },
     {
       name: "P Gzh",
@@ -1079,6 +1346,8 @@ const fallback = {
       note: "",
       secondNote: "Previously SP-11",
       category: "9x21mm",
+      standard: { name: "9x21mm P gzh", normalizedName: "9x21mm-p-gzh" },
+      notAvailableOnFleaMarket: false,
     },
     {
       name: "PS Gzh",
@@ -1097,6 +1366,8 @@ const fallback = {
       note: "",
       secondNote: "Previously SP-10",
       category: "9x21mm",
+      standard: { name: "9x21mm PS gzh", normalizedName: "9x21mm-ps-gzh" },
+      notAvailableOnFleaMarket: false,
     },
     {
       name: "BT (Tracer)",
@@ -1115,6 +1386,8 @@ const fallback = {
       note: "",
       secondNote: "Previously SP-13",
       category: "9x21mm",
+      standard: { name: "x21mm BT gzh", normalizedName: "9x21mm-bt-gzh" },
+      notAvailableOnFleaMarket: false,
     },
   ],
   "5.7x28 mm": [
@@ -1133,6 +1406,8 @@ const fallback = {
       class5: "0",
       class6: "0",
       category: "5.7x28 mm",
+      standard: { name: "5.7x28mm R37.F", normalizedName: "57x28mm-r37f" },
+      notAvailableOnFleaMarket: false,
     },
     {
       name: "ss198lf",
@@ -1149,6 +1424,8 @@ const fallback = {
       class5: "0",
       class6: "0",
       category: "5.7x28 mm",
+      standard: { name: "5.7x28mm SS198LF", normalizedName: "57x28mm-ss198lf" },
+      notAvailableOnFleaMarket: false,
     },
     {
       name: "r37x",
@@ -1165,6 +1442,8 @@ const fallback = {
       class5: "0",
       class6: "0",
       category: "5.7x28 mm",
+      standard: { name: "5.7x28mm R37.X", normalizedName: "57x28mm-r37x" },
+      notAvailableOnFleaMarket: false,
     },
     {
       name: "ss197sr",
@@ -1181,6 +1460,8 @@ const fallback = {
       class5: "0",
       class6: "0",
       category: "5.7x28 mm",
+      standard: { name: "5.7x28mm SS197SR", normalizedName: "57x28mm-ss197sr" },
+      notAvailableOnFleaMarket: false,
     },
     {
       name: "l191 (Tracer)",
@@ -1197,6 +1478,8 @@ const fallback = {
       class5: "2",
       class6: "2",
       category: "5.7x28 mm",
+      standard: { name: "5.7x28mm L191", normalizedName: "57x28mm-l191" },
+      notAvailableOnFleaMarket: false,
     },
     {
       name: "sb193",
@@ -1213,6 +1496,8 @@ const fallback = {
       class5: "3",
       class6: "2",
       category: "5.7x28 mm",
+      standard: { name: "5.7x28mm SB193", normalizedName: "57x28mm-sb193" },
+      notAvailableOnFleaMarket: false,
     },
     {
       name: "ss190",
@@ -1229,6 +1514,8 @@ const fallback = {
       class5: "4",
       class6: "3",
       category: "5.7x28 mm",
+      standard: { name: "5.7x28mm SS190", normalizedName: "57x28mm-ss190" },
+      notAvailableOnFleaMarket: true,
     },
   ],
   "4.6x30 mm": [
@@ -1247,6 +1534,11 @@ const fallback = {
       class5: "0",
       class6: "0",
       category: "4.6x30 mm",
+      standard: {
+        name: "4.6x30mm Action SX",
+        normalizedName: "46x30mm-action-sx",
+      },
+      notAvailableOnFleaMarket: false,
     },
     {
       name: "Subsonic SX",
@@ -1263,6 +1555,11 @@ const fallback = {
       class5: "3",
       class6: "2",
       category: "4.6x30 mm",
+      standard: {
+        name: "4.6x30mm Subsonic SX",
+        normalizedName: "46x30mm-subsonic-sx",
+      },
+      notAvailableOnFleaMarket: true,
     },
     {
       name: "FMJ SX",
@@ -1279,6 +1576,8 @@ const fallback = {
       class5: "4",
       class6: "3",
       category: "4.6x30 mm",
+      standard: { name: "4.6x30mm FMJ SX", normalizedName: "46x30mm-fmj-sx" },
+      notAvailableOnFleaMarket: false,
     },
     {
       name: "AP SX",
@@ -1295,6 +1594,8 @@ const fallback = {
       class5: "6",
       class6: "5",
       category: "4.6x30 mm",
+      standard: { name: "4.6x30mm AP SX", normalizedName: "46x30mm-ap-sx" },
+      notAvailableOnFleaMarket: true,
     },
   ],
   "9x39mm": [
@@ -1313,6 +1614,8 @@ const fallback = {
       class5: "4",
       class6: "3",
       category: "9x39mm",
+      standard: { name: "9x39mm SP-5 gs", normalizedName: "9x39mm-sp-5-gs" },
+      notAvailableOnFleaMarket: false,
     },
     {
       name: "SP6",
@@ -1329,6 +1632,8 @@ const fallback = {
       class5: "5",
       class6: "4",
       category: "9x39mm",
+      standard: { name: "9x39mm SP-6 gs", normalizedName: "9x39mm-sp-6-gs" },
+      notAvailableOnFleaMarket: true,
     },
     {
       name: "PAB9",
@@ -1345,6 +1650,8 @@ const fallback = {
       class5: "6",
       class6: "5",
       category: "9x39mm",
+      standard: { name: "9x39mm PAB-9 gs", normalizedName: "9x39mm-pab-9-gs" },
+      notAvailableOnFleaMarket: false,
     },
     {
       name: "SPP",
@@ -1361,6 +1668,8 @@ const fallback = {
       class5: "6",
       class6: "5",
       category: "9x39mm",
+      standard: { name: "9x39mm SPP gs", normalizedName: "9x39mm-spp-gs" },
+      notAvailableOnFleaMarket: true,
     },
     {
       name: "BP",
@@ -1377,6 +1686,8 @@ const fallback = {
       class5: "6",
       class6: "5",
       category: "9x39mm",
+      standard: { name: "9x39mm BP gs", normalizedName: "9x39mm-bp-gs" },
+      notAvailableOnFleaMarket: true,
     },
   ],
   ".366": [
@@ -1395,6 +1706,8 @@ const fallback = {
       class5: "0",
       class6: "0",
       category: ".366",
+      standard: { name: ".366 TKM Geksa", normalizedName: "366-tkm-geksa" },
+      notAvailableOnFleaMarket: false,
     },
     {
       name: "FMJ",
@@ -1411,6 +1724,8 @@ const fallback = {
       class5: "0",
       class6: "0",
       category: ".366",
+      standard: { name: ".366 TKM FMJ", normalizedName: "366-tkm-fmj" },
+      notAvailableOnFleaMarket: false,
     },
     {
       name: "EKO",
@@ -1427,6 +1742,8 @@ const fallback = {
       class5: "1",
       class6: "0",
       category: ".366",
+      standard: { name: ".366 TKM EKO", normalizedName: "366-tkm-eko" },
+      notAvailableOnFleaMarket: false,
     },
     {
       name: "AP",
@@ -1443,6 +1760,8 @@ const fallback = {
       class5: "5",
       class6: "4",
       category: ".366",
+      standard: { name: ".366 TKM AP-M", normalizedName: "366-tkm-ap-m" },
+      notAvailableOnFleaMarket: false,
     },
   ],
   "5.45x39 mm": [
@@ -1461,6 +1780,8 @@ const fallback = {
       class5: "0",
       class6: "0",
       category: "5.45x39 mm",
+      standard: { name: "5.45x39mm SP", normalizedName: "545x39mm-sp" },
+      notAvailableOnFleaMarket: false,
     },
     {
       name: "HP",
@@ -1477,6 +1798,8 @@ const fallback = {
       class5: "0",
       class6: "0",
       category: "5.45x39 mm",
+      standard: { name: "5.45x39mm HP", normalizedName: "545x39mm-hp" },
+      notAvailableOnFleaMarket: false,
     },
     {
       name: "PRS",
@@ -1493,6 +1816,8 @@ const fallback = {
       class5: "0",
       class6: "0",
       category: "5.45x39 mm",
+      standard: { name: "5.45x39mm PRS gs", normalizedName: "545x39mm-prs-gs" },
+      notAvailableOnFleaMarket: false,
     },
     {
       name: "US",
@@ -1509,6 +1834,8 @@ const fallback = {
       class5: "0",
       class6: "0",
       category: "5.45x39 mm",
+      standard: { name: "5.45x39mm US gs", normalizedName: "545x39mm-us-gs" },
+      notAvailableOnFleaMarket: false,
     },
     {
       name: "T (Tracer)",
@@ -1525,6 +1852,8 @@ const fallback = {
       class5: "0",
       class6: "0",
       category: "5.45x39 mm",
+      standard: { name: "5.45x39mm T gs", normalizedName: "545x39mm-t-gs" },
+      notAvailableOnFleaMarket: false,
     },
     {
       name: "FMJ",
@@ -1541,6 +1870,8 @@ const fallback = {
       class5: "0",
       class6: "0",
       category: "5.45x39 mm",
+      standard: { name: "5.45x39mm FMJ", normalizedName: "545x39mm-fmj" },
+      notAvailableOnFleaMarket: false,
     },
     {
       name: "PS",
@@ -1557,6 +1888,8 @@ const fallback = {
       class5: "0",
       class6: "0",
       category: "5.45x39 mm",
+      standard: { name: "5.45x39mm PS gs", normalizedName: "545x39mm-ps-gs" },
+      notAvailableOnFleaMarket: false,
     },
     {
       name: "PP",
@@ -1573,6 +1906,8 @@ const fallback = {
       class5: "2",
       class6: "0",
       category: "5.45x39 mm",
+      standard: { name: "5.45x39mm PP gs", normalizedName: "545x39mm-pp-gs" },
+      notAvailableOnFleaMarket: false,
     },
     {
       name: "BP",
@@ -1589,6 +1924,8 @@ const fallback = {
       class5: "3",
       class6: "1",
       category: "5.45x39 mm",
+      standard: { name: "5.45x39mm BP gs", normalizedName: "545x39mm-bp-gs" },
+      notAvailableOnFleaMarket: false,
     },
     {
       name: "BT (Tracer)",
@@ -1605,6 +1942,8 @@ const fallback = {
       class5: "4",
       class6: "3",
       category: "5.45x39 mm",
+      standard: { name: "5.45x39mm BT gs", normalizedName: "545x39mm-bt-gs" },
+      notAvailableOnFleaMarket: false,
     },
     {
       name: "7n40",
@@ -1621,6 +1960,8 @@ const fallback = {
       class5: "5",
       class6: "4",
       category: "5.45x39 mm",
+      standard: { name: "5.45x39mm 7N40", normalizedName: "545x39mm-7n40" },
+      notAvailableOnFleaMarket: true,
     },
     {
       name: "BS",
@@ -1637,6 +1978,8 @@ const fallback = {
       class5: "6",
       class6: "5",
       category: "5.45x39 mm",
+      standard: { name: "5.45x39mm BS gs", normalizedName: "545x39mm-bs-gs" },
+      notAvailableOnFleaMarket: true,
     },
     {
       name: 'PPBS "Igolnik"',
@@ -1653,6 +1996,11 @@ const fallback = {
       class5: "6",
       class6: "6",
       category: "5.45x39 mm",
+      standard: {
+        name: '5.45x39mm PPBS gs \\"Igolnik\\"',
+        normalizedName: "545x39mm-ppbs-gs-igolnik",
+      },
+      notAvailableOnFleaMarket: true,
     },
   ],
   "5.56x45 mm": [
@@ -1671,6 +2019,11 @@ const fallback = {
       class5: "0",
       class6: "0",
       category: "5.56x45 mm",
+      standard: {
+        name: "5.56x45mm Warmageddon",
+        normalizedName: "556x45mm-warmageddon",
+      },
+      notAvailableOnFleaMarket: false,
     },
     {
       name: "HP",
@@ -1687,6 +2040,8 @@ const fallback = {
       class5: "0",
       class6: "0",
       category: "5.56x45 mm",
+      standard: { name: "5.56x45mm HP", normalizedName: "556x45mm-hp" },
+      notAvailableOnFleaMarket: false,
     },
     {
       name: "MK 255 Mod 0",
@@ -1703,6 +2058,11 @@ const fallback = {
       class5: "0",
       class6: "0",
       category: "5.56x45 mm",
+      standard: {
+        name: "5.56x45mm MK 255 Mod 0 (RRLP)",
+        normalizedName: "556x45mm-mk-255-mod-0-rrlp",
+      },
+      notAvailableOnFleaMarket: false,
     },
     {
       name: "Mk318 SOST",
@@ -1719,6 +2079,11 @@ const fallback = {
       class5: "0",
       class6: "0",
       category: "5.56x45 mm",
+      standard: {
+        name: "5.56x45mm MK 318 Mod 0 (SOST)",
+        normalizedName: "556x45mm-mk-318-mod-0-sost",
+      },
+      notAvailableOnFleaMarket: false,
     },
     {
       name: "M856 (Tracer)",
@@ -1735,6 +2100,8 @@ const fallback = {
       class5: "0",
       class6: "0",
       category: "5.56x45 mm",
+      standard: { name: "5.56x45mm M856", normalizedName: "556x45mm-m856" },
+      notAvailableOnFleaMarket: false,
     },
     {
       name: "FMJ",
@@ -1751,6 +2118,8 @@ const fallback = {
       class5: "0",
       class6: "0",
       category: "5.56x45 mm",
+      standard: { name: "5.56x45mm FMJ", normalizedName: "556x45mm-fmj" },
+      notAvailableOnFleaMarket: false,
     },
     {
       name: "M855",
@@ -1767,6 +2136,8 @@ const fallback = {
       class5: "2",
       class6: "0",
       category: "5.56x45 mm",
+      standard: { name: "5.56x45mm M855", normalizedName: "556x45mm-m855" },
+      notAvailableOnFleaMarket: false,
     },
     {
       name: "M856A1 (Tracer)",
@@ -1783,6 +2154,8 @@ const fallback = {
       class5: "4",
       class6: "3",
       category: "5.56x45 mm",
+      standard: { name: "5.56x45mm M856A1", normalizedName: "556x45mm-m856a1" },
+      notAvailableOnFleaMarket: true,
     },
     {
       name: "M855A1",
@@ -1799,6 +2172,8 @@ const fallback = {
       class5: "5",
       class6: "4",
       category: "5.56x45 mm",
+      standard: { name: "5.56x45mm M855A1", normalizedName: "556x45mm-m855a1" },
+      notAvailableOnFleaMarket: true,
     },
     {
       name: "M995",
@@ -1815,6 +2190,8 @@ const fallback = {
       class5: "6",
       class6: "5",
       category: "5.56x45 mm",
+      standard: { name: "5.56x45mm M995", normalizedName: "556x45mm-m995" },
+      notAvailableOnFleaMarket: true,
     },
     {
       name: "SSA AP",
@@ -1831,6 +2208,8 @@ const fallback = {
       class5: "6",
       class6: "5",
       category: "5.56x45 mm",
+      standard: { name: "5.56x45mm SSA AP", normalizedName: "556x45mm-ssa-ap" },
+      notAvailableOnFleaMarket: true,
     },
   ],
   "7.62x39 mm": [
@@ -1849,6 +2228,8 @@ const fallback = {
       class5: "0",
       class6: "0",
       category: "7.62x39 mm",
+      standard: { name: "7.62x39mm HP", normalizedName: "762x39mm-hp" },
+      notAvailableOnFleaMarket: false,
     },
     {
       name: "US",
@@ -1865,6 +2246,8 @@ const fallback = {
       class5: "1",
       class6: "0",
       category: "7.62x39 mm",
+      standard: { name: "7.62x39mm US gzh", normalizedName: "762x39mm-us-gzh" },
+      notAvailableOnFleaMarket: false,
     },
     {
       name: "T45M1",
@@ -1881,6 +2264,11 @@ const fallback = {
       class5: "1",
       class6: "0",
       category: "7.62x39 mm",
+      standard: {
+        name: "7.62x39mm T-45M1 gzh",
+        normalizedName: "762x39mm-t-45m1-gzh",
+      },
+      notAvailableOnFleaMarket: false,
     },
     {
       name: "PS",
@@ -1897,6 +2285,8 @@ const fallback = {
       class5: "3",
       class6: "2",
       category: "7.62x39 mm",
+      standard: { name: "7.62x39mm PS gzh", normalizedName: "762x39mm-ps-gzh" },
+      notAvailableOnFleaMarket: false,
     },
     {
       name: "BP",
@@ -1913,6 +2303,8 @@ const fallback = {
       class5: "5",
       class6: "4",
       category: "7.62x39 mm",
+      standard: { name: "7.62x39mm BP gzh", normalizedName: "762x39mm-bp-gzh" },
+      notAvailableOnFleaMarket: true,
     },
     {
       name: "MAI AP",
@@ -1929,6 +2321,8 @@ const fallback = {
       class5: "6",
       class6: "5",
       category: "7.62x39 mm",
+      standard: { name: "7.62x39mm MAI AP", normalizedName: "762x39mm-mai-ap" },
+      notAvailableOnFleaMarket: true,
     },
   ],
   ".300 blk": [
@@ -1947,6 +2341,11 @@ const fallback = {
       class5: "0",
       class6: "0",
       category: ".300 blk",
+      standard: {
+        name: ".300 Blackout Whisper",
+        normalizedName: "300-blackout-whisper",
+      },
+      notAvailableOnFleaMarket: false,
     },
     {
       name: "VMAX",
@@ -1963,6 +2362,11 @@ const fallback = {
       class5: "1",
       class6: "0",
       category: ".300 blk",
+      standard: {
+        name: ".300 Blackout V-Max",
+        normalizedName: "300-blackout-v-max",
+      },
+      notAvailableOnFleaMarket: false,
     },
     {
       name: "BCP FMJ",
@@ -1979,6 +2383,11 @@ const fallback = {
       class5: "2",
       class6: "0",
       category: ".300 blk",
+      standard: {
+        name: ".300 Blackout BCP FMJ",
+        normalizedName: "300-blackout-bcp-fmj",
+      },
+      notAvailableOnFleaMarket: false,
     },
     {
       name: "M62 (Tracer)",
@@ -1995,6 +2404,11 @@ const fallback = {
       class5: "4",
       class6: "2",
       category: ".300 blk",
+      standard: {
+        name: ".300 Blackout M62 Tracer",
+        normalizedName: "300-blackout-m62-tracer",
+      },
+      notAvailableOnFleaMarket: false,
     },
     {
       name: "AP",
@@ -2011,6 +2425,8 @@ const fallback = {
       class5: "5",
       class6: "4",
       category: ".300 blk",
+      standard: { name: ".300 Blackout AP", normalizedName: "300-blackout-ap" },
+      notAvailableOnFleaMarket: true,
     },
   ],
   "7.62x51 mm": [
@@ -2029,6 +2445,11 @@ const fallback = {
       class5: "0",
       class6: "0",
       category: "7.62x51 mm",
+      standard: {
+        name: "7.62x51mm Ultra Nosler",
+        normalizedName: "762x51mm-ultra-nosler",
+      },
+      notAvailableOnFleaMarket: false,
     },
     {
       name: "FMJ",
@@ -2047,6 +2468,11 @@ const fallback = {
       note: "",
       secondNote: "Previously BPZ",
       category: "7.62x51 mm",
+      standard: {
+        name: "7.62x51mm BCP FMJ",
+        normalizedName: "762x51mm-bcp-fmj",
+      },
+      notAvailableOnFleaMarket: false,
     },
     {
       name: "SP",
@@ -2065,6 +2491,8 @@ const fallback = {
       note: "",
       secondNote: "Previously TPZ",
       category: "7.62x51 mm",
+      standard: { name: "7.62x51mm TCW SP", normalizedName: "762x51mm-tcw-sp" },
+      notAvailableOnFleaMarket: false,
     },
     {
       name: "M80",
@@ -2081,6 +2509,8 @@ const fallback = {
       class5: "5",
       class6: "4",
       category: "7.62x51 mm",
+      standard: { name: "7.62x51mm M80", normalizedName: "762x51mm-m80" },
+      notAvailableOnFleaMarket: false,
     },
     {
       name: "M62 (Tracer)",
@@ -2097,6 +2527,11 @@ const fallback = {
       class5: "5",
       class6: "5",
       category: "7.62x51 mm",
+      standard: {
+        name: "7.62x51mm M62 Tracer",
+        normalizedName: "762x51mm-m62-tracer",
+      },
+      notAvailableOnFleaMarket: true,
     },
     {
       name: "M61",
@@ -2113,6 +2548,8 @@ const fallback = {
       class5: "6",
       class6: "6",
       category: "7.62x51 mm",
+      standard: { name: "7.62x51mm M61", normalizedName: "762x51mm-m61" },
+      notAvailableOnFleaMarket: true,
     },
     {
       name: "M993",
@@ -2129,6 +2566,8 @@ const fallback = {
       class5: "6",
       class6: "6",
       category: "7.62x51 mm",
+      standard: { name: "7.62x51mm M993", normalizedName: "762x51mm-m993" },
+      notAvailableOnFleaMarket: true,
     },
   ],
   "7.62x54R": [
@@ -2147,6 +2586,11 @@ const fallback = {
       class5: "4",
       class6: "3",
       category: "7.62x54R",
+      standard: {
+        name: "7.62x54mm R T-46M gzh",
+        normalizedName: "762x54mm-r-t-46m-gzh",
+      },
+      notAvailableOnFleaMarket: false,
     },
     {
       name: "LPS Gzh",
@@ -2163,6 +2607,11 @@ const fallback = {
       class5: "4",
       class6: "3",
       category: "7.62x54R",
+      standard: {
+        name: "7.62x54mm R LPS gzh",
+        normalizedName: "762x54mm-r-lps-gzh",
+      },
+      notAvailableOnFleaMarket: false,
     },
     {
       name: "PS",
@@ -2181,6 +2630,11 @@ const fallback = {
       note: "",
       secondNote: "Previously 7n1",
       category: "7.62x54R",
+      standard: {
+        name: "7.62x54mm R PS gzh",
+        normalizedName: "762x54mm-r-ps-gzh",
+      },
+      notAvailableOnFleaMarket: false,
     },
     {
       name: "BT (Tracer)",
@@ -2199,6 +2653,11 @@ const fallback = {
       note: "",
       secondNote: "Previously 7BT1",
       category: "7.62x54R",
+      standard: {
+        name: "7.62x54mm R BT gzh",
+        normalizedName: "762x54mm-r-bt-gzh",
+      },
+      notAvailableOnFleaMarket: true,
     },
     {
       name: "SNB",
@@ -2215,6 +2674,11 @@ const fallback = {
       class5: "6",
       class6: "6",
       category: "7.62x54R",
+      standard: {
+        name: "7.62x54mm R SNB gzh",
+        normalizedName: "762x54mm-r-snb-gzh",
+      },
+      notAvailableOnFleaMarket: true,
     },
     {
       name: "BS",
@@ -2233,6 +2697,11 @@ const fallback = {
       note: "",
       secondNote: "Previously 7n37",
       category: "7.62x54R",
+      standard: {
+        name: "7.62x54mm R BS gs",
+        normalizedName: "762x54mm-r-bs-gs",
+      },
+      notAvailableOnFleaMarket: true,
     },
   ],
   "12.7x55 mm": [
@@ -2251,6 +2720,8 @@ const fallback = {
       class5: "0",
       class6: "0",
       category: "12.7x55 mm",
+      standard: { name: "12.7x55mm PS12A", normalizedName: "127x55mm-ps12a" },
+      notAvailableOnFleaMarket: false,
     },
     {
       name: "ps12",
@@ -2267,6 +2738,8 @@ const fallback = {
       class5: "1",
       class6: "0",
       category: "12.7x55 mm",
+      standard: { name: "12.7x55mm PS12", normalizedName: "127x55mm-ps12" },
+      notAvailableOnFleaMarket: false,
     },
     {
       name: "ps12b",
@@ -2283,6 +2756,8 @@ const fallback = {
       class5: "5",
       class6: "4",
       category: "12.7x55 mm",
+      standard: { name: "12.7x55mm PS12B", normalizedName: "127x55mm-ps12b" },
+      notAvailableOnFleaMarket: false,
     },
   ],
   ".338 Lapua Magnum": [
@@ -2301,6 +2776,11 @@ const fallback = {
       class5: "0",
       class6: "0",
       category: ".338 Lapua Magnum",
+      standard: {
+        name: ".338 Lapua Magnum TAC-X",
+        normalizedName: "338-lapua-magnum-tac-x",
+      },
+      notAvailableOnFleaMarket: true,
     },
     {
       name: "UPZ",
@@ -2317,6 +2797,11 @@ const fallback = {
       class5: "4",
       class6: "2",
       category: ".338 Lapua Magnum",
+      standard: {
+        name: ".338 Lapua Magnum UCW",
+        normalizedName: "338-lapua-magnum-ucw",
+      },
+      notAvailableOnFleaMarket: false,
     },
     {
       name: "FMJ",
@@ -2333,6 +2818,11 @@ const fallback = {
       class5: "5",
       class6: "5",
       category: ".338 Lapua Magnum",
+      standard: {
+        name: ".338 Lapua Magnum FMJ",
+        normalizedName: "338-lapua-magnum-fmj",
+      },
+      notAvailableOnFleaMarket: true,
     },
     {
       name: "AP",
@@ -2349,6 +2839,11 @@ const fallback = {
       class5: "6",
       class6: "6",
       category: ".338 Lapua Magnum",
+      standard: {
+        name: ".338 Lapua Magnum AP",
+        normalizedName: "338-lapua-magnum-ap",
+      },
+      notAvailableOnFleaMarket: true,
     },
   ],
   "Mounted Weapons": [
@@ -2368,6 +2863,8 @@ const fallback = {
       class6: "0",
       note: "This has an explosion radius like grenades which does most (all) of the damage",
       category: "Mounted Weapons",
+      standard: { name: "", normalizedName: "" },
+      notAvailableOnFleaMarket: false,
     },
     {
       name: "12.7x108mm",
@@ -2384,6 +2881,8 @@ const fallback = {
       class5: "6",
       class6: "6",
       category: "Mounted Weapons",
+      standard: { name: "", normalizedName: "" },
+      notAvailableOnFleaMarket: false,
     },
     {
       name: "12.7x108mm Tracer",
@@ -2400,6 +2899,8 @@ const fallback = {
       class5: "6",
       class6: "6",
       category: "Mounted Weapons",
+      standard: { name: "", normalizedName: "" },
+      notAvailableOnFleaMarket: false,
     },
   ],
   Other: [
@@ -2419,6 +2920,8 @@ const fallback = {
       class6: "3",
       note: "15 Pellets",
       category: "Other",
+      standard: { name: "", normalizedName: "" },
+      notAvailableOnFleaMarket: false,
     },
   ],
 };
