@@ -67,7 +67,10 @@ const handler = async (req, res) => {
   let fleaMarketPrices;
 
   try {
-    noFAMResults = await getResults(process.env.NEXT_TARGET_SHEET, 38);
+    noFAMResults = await getResults(
+      "1Ui7TUxTrueCElnfnuZ5SEHtAJnv-w4eoANeVO9_nqvY",
+      38
+    );
   } catch (error) {
     console.log("[API] api/data GET - WARNING - Using fallback", error);
 
