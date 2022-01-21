@@ -4,7 +4,7 @@ import ChartDataLabels from "chartjs-plugin-datalabels";
 import annotationPlugin from "chartjs-plugin-annotation";
 
 import { Box, Center } from "@chakra-ui/react";
-import getColor from "../utils/getColor";
+import { getColor } from "../utils/getColor";
 
 Chart.defaults.font.size = 14;
 Chart.defaults.font.weight = "bold";
@@ -148,16 +148,24 @@ const externalTooltipHandler = (context) => {
       value: "Damage",
     },
     {
-      key: "armorDamage",
-      value: "Armor Damage",
-    },
-    {
       key: "penValue",
       value: "Penetration Value",
     },
     {
       key: "fragChange",
       value: "Frag. Chance",
+    },
+    {
+      key: "recoil",
+      value: "Recoil",
+    },
+    {
+      key: "effDist",
+      value: "Effective Distance",
+    },
+    {
+      key: "maxHsDist",
+      value: "Max HS Distance",
     },
     {
       key: "class1",
@@ -186,31 +194,33 @@ const externalTooltipHandler = (context) => {
   ];
 
   lines.forEach((line, i) => {
-    const color = line.key.includes("class")
-      ? getColor(ammo[line.key])
-      : "green";
-    const span = document.createElement("span");
-    span.style.background = color;
-    span.style.borderColor = color;
-    span.style.borderWidth = "2px";
-    span.style.marginRight = "10px";
-    span.style.height = "10px";
-    span.style.width = "10px";
-    span.style.display = "inline-block";
+    if (ammo[line.key]) {
+      const color = line.key.includes("class")
+        ? getColor(ammo[line.key])
+        : "green";
+      const span = document.createElement("span");
+      span.style.background = color;
+      span.style.borderColor = color;
+      span.style.borderWidth = "2px";
+      span.style.marginRight = "10px";
+      span.style.height = "10px";
+      span.style.width = "10px";
+      span.style.display = "inline-block";
 
-    const tr = document.createElement("tr");
-    tr.style.backgroundColor = "inherit";
-    tr.style.borderWidth = 0;
+      const tr = document.createElement("tr");
+      tr.style.backgroundColor = "inherit";
+      tr.style.borderWidth = 0;
 
-    const td = document.createElement("td");
-    td.style.borderWidth = 0;
+      const td = document.createElement("td");
+      td.style.borderWidth = 0;
 
-    const text = document.createTextNode(`${line.value}: ${ammo[line.key]}`);
+      const text = document.createTextNode(`${line.value}: ${ammo[line.key]}`);
 
-    td.appendChild(span);
-    td.appendChild(text);
-    tr.appendChild(td);
-    tableBody.appendChild(tr);
+      td.appendChild(span);
+      td.appendChild(text);
+      tr.appendChild(td);
+      tableBody.appendChild(tr);
+    }
   });
 
   const tableRoot = tooltipEl.querySelector("table");

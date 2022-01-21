@@ -1,14 +1,16 @@
 const headers = {
   Damage: "damage",
   "Pen Value": "penValue",
-  "Armor Dmg": "armorDamage",
   "Frag %": "fragChange",
-  "Class 1": "class1",
-  "Class 2": "class2",
-  "Class 3": "class3",
-  "Class 4": "class4",
-  "Class 5": "class5",
-  "Class 6": "class6",
+  Recoil: "recoil", // coloured
+  "Eff Dist.": "effDist",
+  "Max HS Dist.": "maxHsDist",
+  "Class 1": "class1", // coloured
+  "Class 2": "class2", // coloured
+  "Class 3": "class3", // coloured
+  "Class 4": "class4", // coloured
+  "Class 5": "class5", // coloured
+  "Class 6": "class6", // coloured
 };
 
 export default headers;

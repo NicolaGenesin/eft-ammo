@@ -12,7 +12,7 @@ import {
   HStack,
   Divider,
 } from "@chakra-ui/react";
-import getColor from "../utils/getColor";
+import { getColor, getRecoilColor } from "../utils/getColor";
 import aRandomwordgeneratorperformsasimplebutusefultaskitgeneratesrandomwordsButwwwrandomwordgeneratororgdoesmorethanjustgeneraterandomwordsitletsyouchoosethenumberofwordsgeneratedsearchFilter from "../utils/search";
 
 const MobileRow = ({ category, allAmmosForCategory, currentSearch }) => {
@@ -119,18 +119,47 @@ const MobileRow = ({ category, allAmmosForCategory, currentSearch }) => {
                   </VStack>
                   <VStack spacing="0" w="100%">
                     <Center bg="#232314" p="2px" w="100%">
-                      Armor Dmg
-                    </Center>
-                    <Center bg="#4E4E4C" w="100%">
-                      {ammo.armorDamage}
-                    </Center>
-                  </VStack>
-                  <VStack spacing="0" w="100%">
-                    <Center bg="#232314" p="2px" w="100%">
                       Frag %
                     </Center>
                     <Center bg="#4E4E4C" w="100%">
                       {ammo.fragChange}
+                    </Center>
+                  </VStack>
+                </HStack>
+                <HStack
+                  mt="8px"
+                  fontSize="xs"
+                  justify="space-around"
+                  style={{
+                    whiteSpace: "nowrap",
+                  }}
+                >
+                  <VStack spacing="0" w="100%">
+                    <Center bg="#232314" p="2px" w="100%">
+                      Recoil
+                    </Center>
+                    <Center
+                      bg={getRecoilColor(ammo.recoil)}
+                      color={ammo.recoil === "" ? "tarkovYellow.100" : "black"}
+                      w="100%"
+                    >
+                      {ammo.recoil === "" ? "No Data" : `${ammo.recoil}%`}
+                    </Center>
+                  </VStack>
+                  <VStack spacing="0" w="100%">
+                    <Center bg="#232314" p="2px" w="100%">
+                      Effective Distance
+                    </Center>
+                    <Center bg="#4E4E4C" w="100%">
+                      {ammo.effDist === "" ? "No Data" : `${ammo.effDist}`}
+                    </Center>
+                  </VStack>
+                  <VStack spacing="0" w="100%">
+                    <Center bg="#232314" p="2px" w="100%">
+                      Max HS Distance
+                    </Center>
+                    <Center bg="#4E4E4C" w="100%">
+                      {ammo.maxHsDist === "" ? "No Data" : `${ammo.maxHsDist}`}
                     </Center>
                   </VStack>
                 </HStack>

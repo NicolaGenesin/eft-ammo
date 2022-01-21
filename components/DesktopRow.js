@@ -7,6 +7,7 @@ import {
   Box,
   VStack,
   Text,
+  useBreakpointValue,
   AccordionButton,
   AccordionIcon,
   AccordionPanel,
@@ -15,7 +16,7 @@ import {
 import { InfoOutlineIcon } from "@chakra-ui/icons";
 import { GiAk47 } from "react-icons/gi";
 import { TiArrowSortedDown, TiArrowSortedUp } from "react-icons/ti";
-import getColor from "../utils/getColor";
+import { getColor, getRecoilColor } from "../utils/getColor";
 import headers from "../utils/headers";
 import aRandomwordgeneratorperformsasimplebutusefultaskitgeneratesrandomwordsButwwwrandomwordgeneratororgdoesmorethanjustgeneraterandomwordsitletsyouchoosethenumberofwordsgeneratedsearchFilter from "../utils/search";
 import gunsData from "../utils/gunsData";
@@ -59,17 +60,33 @@ const DesktopRow = ({
     const columnBeingSorted = tableState.sorting.columnBeingSorted;
 
     if (tableState.sorting.direction.highToLow) {
-      sortedAmmos.sort(
-        (a, b) =>
-          parseInt(b[columnBeingSorted]) - parseInt(a[columnBeingSorted])
-      );
+      sortedAmmos.sort((a, b) => {
+        if (b[columnBeingSorted] == "") {
+          return -1;
+        } else if (a[columnBeingSorted] == "") {
+          return 1;
+        } else if (a[columnBeingSorted] == "" && b[columnBeingSorted] == "") {
+          return 0;
+        }
+
+        return parseInt(b[columnBeingSorted]) - parseInt(a[columnBeingSorted]);
+      });
     } else {
-      sortedAmmos.sort(
-        (a, b) =>
-          parseInt(a[columnBeingSorted]) - parseInt(b[columnBeingSorted])
-      );
+      sortedAmmos.sort((a, b) => {
+        if (b[columnBeingSorted] == "") {
+          return 1;
+        } else if (a[columnBeingSorted] == "") {
+          return -1;
+        } else if (a[columnBeingSorted] == "" && b[columnBeingSorted] == "") {
+          return 0;
+        }
+
+        return parseInt(a[columnBeingSorted]) - parseInt(b[columnBeingSorted]);
+      });
     }
   }
+
+  const useVerticalHeaders = useBreakpointValue({ base: true, lg: false });
 
   return (
     <Box>
@@ -108,23 +125,27 @@ const DesktopRow = ({
             <Box h={maxCellHeight} minW="300px" />
             {Object.keys(headers).map((headerLabel, index) => {
               const headerProperty = headers[headerLabel];
-              const isSortable = index < 4 && tableState;
+              const isSortable = index < 5 && tableState;
               let toolTipLabel = "";
 
-              if (index === 3) {
-                toolTipLabel =
-                  "The chance a bullet will fragment, splitting into pieces on hit and essentially dealing 50% extra damage. Note that fragmentation chance is currently bugged, and chances will be lower than their chance implies, and any ammo with less than 20 pen value will be completely unable to fragment.";
-              } else if (index === 2) {
-                toolTipLabel =
-                  "A modifier used in calculating durability damage, the higher the better.";
-              } else if (index === 1) {
-                toolTipLabel =
-                  "A value used to determine how well a bullet penetrates armor and how much durability damage it does to armor, the higher the better.";
-              } else if (index === 0) {
-                toolTipLabel = "This is how much health damage a bullet does.";
-              } else {
-                toolTipLabel = `Bullet effectiveness against armor ${headerLabel}`;
-              }
+	          if (index === 5) {
+	            toolTipLabel = "Maximum Headshot Distance.";
+	          } else if (index === 4) {
+	            toolTipLabel =
+	              "Effective Distance is the distance when the bullet has lost 25% of its damage and penetration.";
+	          } else if (index === 3) {
+	            toolTipLabel = "Recoil Index.";
+	          } else if (index === 2) {
+	            toolTipLabel =
+	              "The chance a bullet will fragment, splitting into pieces on hit and essentially dealing 50% extra damage. Note that fragmentation chance is currently bugged, and chances will be lower than their chance implies, and any ammo with less than 20 pen value will be completely unable to fragment.";
+	          } else if (index === 1) {
+	            toolTipLabel =
+	              "A value used to determine how well a bullet penetrates armor and how much durability damage it does to armor, the higher the better.";
+	          } else if (index === 0) {
+	            toolTipLabel = "This is how much health damage a bullet does.";
+	          } else {
+	            toolTipLabel = `Bullet effectiveness against armor ${headerLabel}`;
+	          }
 
               return (
                 <Center
@@ -137,13 +158,27 @@ const DesktopRow = ({
                   fontSize="xs"
                   textAlign="center"
                 >
-                  {toolTipLabel ? (
-                    <Tooltip bg="#272712" label={toolTipLabel}>
-                      {headerLabel.toUpperCase()}
-                    </Tooltip>
-                  ) : (
-                    <Text>{headerLabel.toUpperCase()}</Text>
-                  )}
+	              {toolTipLabel ? (
+	                <Tooltip bg="#272712" label={toolTipLabel}>
+	                  <Text
+	                    maxH="60px"
+	                    style={
+	                      useVerticalHeaders
+	                        ? {
+	                            writingMode: "vertical-rl",
+	                            textOrientation: "mixed",
+	                            paddingTop: "4px",
+	                            paddingBottom: "4px",
+	                          }
+	                        : {}
+	                    }
+	                  >
+	                    {headerLabel.toUpperCase()}
+	                  </Text>
+	                </Tooltip>
+	              ) : (
+	                <Text>{headerLabel.toUpperCase()}</Text>
+	              )}
                   {isSortable && (
                     <Box ml="4px">
                       <TiArrowSortedUp
@@ -267,11 +302,17 @@ const DesktopRow = ({
                     {ammo.penValue}
                   </Center>
                   <Center flex="1" color="tarkovYellow.100">
-                    {ammo.armorDamage}
-                  </Center>
-                  <Center flex="1" color="tarkovYellow.100">
                     {ammo.fragChange}
                   </Center>
+                  <Center flex="1" bg={getRecoilColor(ammo.recoil)} color="black">
+                	{ammo.recoil === "" ? "" : `${ammo.recoil}%`}
+	              </Center>
+	              <Center flex="1" color="tarkovYellow.100">
+	                {ammo.effDist}
+	              </Center>
+	              <Center flex="1" color="tarkovYellow.100">
+	                {ammo.maxHsDist}
+	              </Center>
                   <Center flex="0.5" bg={getColor(ammo.class1)} color="black">
                     {ammo.class1}
                   </Center>

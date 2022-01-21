@@ -1,4 +1,4 @@
-const getColor = (value) => {
+export const getColor = (value) => {
   if (value == 0) {
     return "#cf0b04";
   } else if (value == 1) {
@@ -16,4 +16,18 @@ const getColor = (value) => {
   }
 };
 
-export default getColor;
+export const getRecoilColor = (value) => {
+  if (value === "") {
+    return "vulcan.900";
+  } else if (value <= 0) {
+    return "#4cf057";
+  } else if (value > 100) {
+    return "#cf0b04";
+  } else if (value > 80) {
+    return "#ea6b0a";
+  } else if (value > 40) {
+    return "#f99d10";
+  } else if (value > 0) {
+    return "#c0b825";
+  }
+};
