@@ -123,7 +123,7 @@ const DesktopRow = ({
       <AccordionPanel pt={2} pb={0} px={0} mt="-32px" style={{ zIndex: 1 }}>
         <>
           <Flex>
-            <Box h={maxCellHeight} minW="300px" />
+            <Box h={maxCellHeight} minW="310px" />
             {Object.keys(headers).map((headerLabel, index) => {
               const headerProperty = headers[headerLabel];
               const isSortable = index < 5 && tableState;
@@ -264,7 +264,7 @@ const DesktopRow = ({
             return (
               <div key={`ammo-${index}`}>
                 <Flex fontSize="md" fontWeight="normal">
-                  <HStack minW="300px" bg="vulcan.800" py="2px" pr="8px">
+                  <HStack minW="310px" bg="vulcan.800" py="2px" pr="8px">
                     {selectCallback && (
                       <Checkbox
                         borderColor="tarkovYellow.100"
@@ -321,9 +321,7 @@ const DesktopRow = ({
                           fontWeight="bold"
                           textAlign="center"
                         >
-                          <span>No</span>
-                          <br />
-                          <span>F. M.</span>
+                          No F. M.
                         </Text>
                       </Tooltip>
                     )}
