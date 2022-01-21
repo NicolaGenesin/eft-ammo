@@ -8,11 +8,11 @@ import {
   VStack,
   Text,
   HStack,
-  Spacer,
+  useBreakpointValue,
   AccordionButton,
   AccordionIcon,
   AccordionPanel,
-  useBreakpointValue,
+  Spacer,
 } from "@chakra-ui/react";
 import { InfoOutlineIcon } from "@chakra-ui/icons";
 import { GiAk47 } from "react-icons/gi";
@@ -61,15 +61,29 @@ const DesktopRow = ({
     const columnBeingSorted = tableState.sorting.columnBeingSorted;
 
     if (tableState.sorting.direction.highToLow) {
-      sortedAmmos.sort(
-        (a, b) =>
-          parseInt(b[columnBeingSorted]) - parseInt(a[columnBeingSorted])
-      );
+      sortedAmmos.sort((a, b) => {
+        if (b[columnBeingSorted] == "") {
+          return -1;
+        } else if (a[columnBeingSorted] == "") {
+          return 1;
+        } else if (a[columnBeingSorted] == "" && b[columnBeingSorted] == "") {
+          return 0;
+        }
+
+        return parseInt(b[columnBeingSorted]) - parseInt(a[columnBeingSorted]);
+      });
     } else {
-      sortedAmmos.sort(
-        (a, b) =>
-          parseInt(a[columnBeingSorted]) - parseInt(b[columnBeingSorted])
-      );
+      sortedAmmos.sort((a, b) => {
+        if (b[columnBeingSorted] == "") {
+          return 1;
+        } else if (a[columnBeingSorted] == "") {
+          return -1;
+        } else if (a[columnBeingSorted] == "" && b[columnBeingSorted] == "") {
+          return 0;
+        }
+
+        return parseInt(a[columnBeingSorted]) - parseInt(b[columnBeingSorted]);
+      });
     }
   }
 
@@ -90,7 +104,7 @@ const DesktopRow = ({
             ) : null
           }
         >
-          <Flex>
+          <Flex style={{ zIndex: 1 }}>
             <Text
               pl="8px"
               fontWeight="bold"
@@ -111,24 +125,22 @@ const DesktopRow = ({
             <Box h={maxCellHeight} minW="300px" />
             {Object.keys(headers).map((headerLabel, index) => {
               const headerProperty = headers[headerLabel];
-              const isSortable = index < 7 && tableState;
+              const isSortable = index < 5 && tableState;
               let toolTipLabel = "";
 
-              if (index === 13) {
+              if (index === 12) {
                 toolTipLabel =
                   "Flea Prices provided by Kokarn from tarkov-tools.com";
-              } else if (index === 6) {
-                toolTipLabel = "Maximum Headshot Distance";
               } else if (index === 5) {
-                toolTipLabel = "Effective Distance";
+                toolTipLabel = "Maximum Headshot Distance.";
               } else if (index === 4) {
-                toolTipLabel = "Recoil Index";
-              } else if (index === 3) {
                 toolTipLabel =
-                  "The chance a bullet will fragment, splitting into pieces on hit and essentially dealing 50% extra damage. Note that fragmentation chance is currently bugged, and chances will be lower than their chance implies, and any ammo with less than 20 pen value will be completely unable to fragment.";
+                  "Effective Distance is the distance when the bullet has lost 25% of its damage and penetration.";
+              } else if (index === 3) {
+                toolTipLabel = "Recoil Index.";
               } else if (index === 2) {
                 toolTipLabel =
-                  "A modifier used in calculating durability damage, the higher the better.";
+                  "The chance a bullet will fragment, splitting into pieces on hit and essentially dealing 50% extra damage. Note that fragmentation chance is currently bugged, and chances will be lower than their chance implies, and any ammo with less than 20 pen value will be completely unable to fragment.";
               } else if (index === 1) {
                 toolTipLabel =
                   "A value used to determine how well a bullet penetrates armor and how much durability damage it does to armor, the higher the better.";
@@ -140,7 +152,7 @@ const DesktopRow = ({
 
               return (
                 <Center
-                  flex={index >= 7 && index < 13 ? "0.5" : "1"}
+                  flex={index >= 6 && index < 12 ? "0.5" : "1"}
                   bg="vulcan.800"
                   key={`header-${index}`}
                   fontWeight="semibold"
@@ -317,9 +329,6 @@ const DesktopRow = ({
                     {ammo.penValue}
                   </Center>
                   <Center flex="1" color="tarkovYellow.100">
-                    {ammo.armorDamage}
-                  </Center>
-                  <Center flex="1" color="tarkovYellow.100">
                     {ammo.fragChange}
                   </Center>
                   <Center
@@ -327,7 +336,7 @@ const DesktopRow = ({
                     bg={getRecoilColor(ammo.recoil)}
                     color="black"
                   >
-                    {ammo.recoil}
+                    {ammo.recoil === "" ? "" : `${ammo.recoil}%`}
                   </Center>
                   <Center flex="1" color="tarkovYellow.100">
                     {ammo.effDist}
@@ -354,7 +363,7 @@ const DesktopRow = ({
                     {ammo.class6}
                   </Center>
                   <Center flex="1" color="tarkovYellow.100">
-                    {ammoPrice || "?"}
+                    {ammoPrice || "Not Avail."}
                   </Center>
                 </Flex>
                 <Divider style={{ opacity: "0.2" }} />

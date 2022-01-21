@@ -149,14 +149,6 @@ const MobileRow = ({ category, allAmmosForCategory, currentSearch }) => {
                   </VStack>
                   <VStack spacing="0" w="100%">
                     <Center bg="#232314" p="2px" w="100%">
-                      Armor Dmg
-                    </Center>
-                    <Center bg="#4E4E4C" w="100%">
-                      {ammo.armorDamage}
-                    </Center>
-                  </VStack>
-                  <VStack spacing="0" w="100%">
-                    <Center bg="#232314" p="2px" w="100%">
                       Frag %
                     </Center>
                     <Center bg="#4E4E4C" w="100%">
@@ -178,10 +170,10 @@ const MobileRow = ({ category, allAmmosForCategory, currentSearch }) => {
                     </Center>
                     <Center
                       bg={getRecoilColor(ammo.recoil)}
-                      color="black"
+                      color={ammo.recoil === "" ? "tarkovYellow.100" : "black"}
                       w="100%"
                     >
-                      {ammo.recoil}
+                      {ammo.recoil === "" ? "No Data" : `${ammo.recoil}%`}
                     </Center>
                   </VStack>
                   <VStack spacing="0" w="100%">
@@ -189,7 +181,7 @@ const MobileRow = ({ category, allAmmosForCategory, currentSearch }) => {
                       Effective Distance
                     </Center>
                     <Center bg="#4E4E4C" w="100%">
-                      {ammo.effDist}
+                      {ammo.effDist === "" ? "No Data" : `${ammo.effDist}`}
                     </Center>
                   </VStack>
                   <VStack spacing="0" w="100%">
@@ -197,7 +189,7 @@ const MobileRow = ({ category, allAmmosForCategory, currentSearch }) => {
                       Max HS Distance
                     </Center>
                     <Center bg="#4E4E4C" w="100%">
-                      {ammo.maxHsDist}
+                      {ammo.maxHsDist === "" ? "No Data" : `${ammo.maxHsDist}`}
                     </Center>
                   </VStack>
                 </HStack>

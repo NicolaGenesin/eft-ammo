@@ -95,58 +95,63 @@ const handler = async (req, res) => {
     );
   }
 
+  console.log("[noFAMResults]", JSON.stringify(noFAMResults));
+  console.log("[additionalResults]", JSON.stringify(additionalResults));
+  console.log("[fleaMarketPrices]", JSON.stringify(fleaMarketPrices));
+
   const json = {};
 
   Object.keys(noFAMResults).map((category) => {
-    json[category] = noFAMResults[category].map((ammoRow) => {
-      const ammo = {
-        name: ammoRow[1],
-        damage: ammoRow[2],
-        penValue: ammoRow[3],
-        armorDamage: ammoRow[4],
-        fragChange: ammoRow[5],
-        recoil: ammoRow[6],
-        effDist: ammoRow[7],
-        maxHsDist: ammoRow[8],
-        class1: ammoRow[9],
-        class2: ammoRow[10],
-        class3: ammoRow[11],
-        class4: ammoRow[12],
-        class5: ammoRow[13],
-        class6: ammoRow[14],
-        note: ammoRow[15],
-        secondNote: ammoRow[16],
-        category: category,
-      };
-
-      const additionalSpecsForAmmo = additionalResults[category].find(
-        (additionalRow) => {
-          return additionalRow[1] === ammo.name;
-        }
-      );
-
-      if (additionalSpecsForAmmo) {
-        ammo.standard = {
-          name: additionalSpecsForAmmo[2],
-          normalizedName: additionalSpecsForAmmo[3],
+    if (category !== "undefined") {
+      json[category] = noFAMResults[category].map((ammoSpecs) => {
+        const ammo = {
+          name: ammoSpecs[1],
+          damage: ammoSpecs[2],
+          penValue: ammoSpecs[3],
+          fragChange: ammoSpecs[4],
+          recoil: ammoSpecs[5],
+          effDist: ammoSpecs[6],
+          maxHsDist: ammoSpecs[7],
+          class1: ammoSpecs[8],
+          class2: ammoSpecs[9],
+          class3: ammoSpecs[10],
+          class4: ammoSpecs[11],
+          class5: ammoSpecs[12],
+          class6: ammoSpecs[13],
+          note: ammoSpecs[14],
+          secondNote: ammoSpecs[15],
+          category: category,
         };
-        ammo.notAvailableOnFleaMarket = additionalSpecsForAmmo[4] === "FALSE";
 
-        const price = fleaMarketPrices.find((priceItem) => {
-          return priceItem.normalizedName === ammo.standard.normalizedName;
-        });
+        const additionalSpecsForAmmo = additionalResults[category].find(
+          (additionalRow) => {
+            return additionalRow[1] === ammo.name;
+          }
+        );
 
-        if (price) {
-          const buyFor = price.buyFor.find((x) => x.source === "fleaMarket");
+        if (additionalSpecsForAmmo) {
+          ammo.standard = {
+            name: additionalSpecsForAmmo[2],
+            normalizedName: additionalSpecsForAmmo[3],
+          };
+          ammo.notAvailableOnFleaMarket = additionalSpecsForAmmo[4] === "FALSE";
 
-          if (buyFor) {
-            ammo.buyFor = [buyFor];
+          const price = fleaMarketPrices.find((priceItem) => {
+            return priceItem.normalizedName === ammo.standard.normalizedName;
+          });
+
+          if (price) {
+            const buyFor = price.buyFor.find((x) => x.source === "fleaMarket");
+
+            if (buyFor) {
+              ammo.buyFor = [buyFor];
+            }
           }
         }
-      }
 
-      return ammo;
-    });
+        return ammo;
+      });
+    }
   });
 
   res.status(200).json(json);

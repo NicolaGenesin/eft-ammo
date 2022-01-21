@@ -1,7 +1,6 @@
 const headers = {
   Damage: "damage",
   "Pen Value": "penValue",
-  "Armor Dmg": "armorDamage",
   "Frag %": "fragChange",
   Recoil: "recoil", // coloured
   "Eff Dist.": "effDist",
