@@ -119,7 +119,7 @@ const MobileRow = ({ category, allAmmosForCategory, currentSearch }) => {
                     >
                       Last Low F.M.
                       <br />
-                      {ammoPrice}
+                      {ammoPrice || "-"}
                     </Text>
                   )}
                 </HStack>
