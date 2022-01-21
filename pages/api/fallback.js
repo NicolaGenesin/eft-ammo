@@ -2421,10 +2421,6 @@ const fallback = {
       "15 Pellets",
     ],
   ],
-  undefined: [
-    [],
-    ["", "", "", "", "", "", "", "", "", "", "", "", "994", ">1KM"],
-  ],
 };
 
 export default fallback;

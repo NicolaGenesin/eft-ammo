@@ -2421,25 +2421,6 @@ const fallback = {
       category: "Other",
     },
   ],
-  undefined: [
-    { category: "undefined" },
-    {
-      name: "",
-      damage: "",
-      penValue: "",
-      fragChange: "",
-      recoil: "",
-      effDist: "",
-      maxHsDist: "",
-      class1: "",
-      class2: "",
-      class3: "",
-      class4: "",
-      class5: "994",
-      class6: ">1KM",
-      category: "undefined",
-    },
-  ],
 };
 
 export default fallback;
