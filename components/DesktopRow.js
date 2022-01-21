@@ -130,7 +130,7 @@ const DesktopRow = ({
 
               if (index === 12) {
                 toolTipLabel =
-                  "Flea Prices provided by Kokarn from tarkov-tools.com";
+                  "Flea market prices provided by tarkov-tools.com";
               } else if (index === 5) {
                 toolTipLabel = "Maximum Headshot Distance.";
               } else if (index === 4) {
