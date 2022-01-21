@@ -103,13 +103,12 @@ const DesktopRow = ({
             ) : null
           }
         >
-          <Flex>
+          <Flex style={{ zIndex: 1 }}>
             <Text
               pl="8px"
               fontWeight="bold"
               fontSize="xl"
               bg={categoryMatch ? "blue.600" : ""}
-              style={{ zIndex: 1 }}
             >
               {category}
             </Text>
@@ -128,24 +127,24 @@ const DesktopRow = ({
               const isSortable = index < 5 && tableState;
               let toolTipLabel = "";
 
-	          if (index === 5) {
-	            toolTipLabel = "Maximum Headshot Distance.";
-	          } else if (index === 4) {
-	            toolTipLabel =
-	              "Effective Distance is the distance when the bullet has lost 25% of its damage and penetration.";
-	          } else if (index === 3) {
-	            toolTipLabel = "Recoil Index.";
-	          } else if (index === 2) {
-	            toolTipLabel =
-	              "The chance a bullet will fragment, splitting into pieces on hit and essentially dealing 50% extra damage. Note that fragmentation chance is currently bugged, and chances will be lower than their chance implies, and any ammo with less than 20 pen value will be completely unable to fragment.";
-	          } else if (index === 1) {
-	            toolTipLabel =
-	              "A value used to determine how well a bullet penetrates armor and how much durability damage it does to armor, the higher the better.";
-	          } else if (index === 0) {
-	            toolTipLabel = "This is how much health damage a bullet does.";
-	          } else {
-	            toolTipLabel = `Bullet effectiveness against armor ${headerLabel}`;
-	          }
+              if (index === 5) {
+                toolTipLabel = "Maximum Headshot Distance.";
+              } else if (index === 4) {
+                toolTipLabel =
+                  "Effective Distance is the distance when the bullet has lost 25% of its damage and penetration.";
+              } else if (index === 3) {
+                toolTipLabel = "Recoil Index.";
+              } else if (index === 2) {
+                toolTipLabel =
+                  "The chance a bullet will fragment, splitting into pieces on hit and essentially dealing 50% extra damage. Note that fragmentation chance is currently bugged, and chances will be lower than their chance implies, and any ammo with less than 20 pen value will be completely unable to fragment.";
+              } else if (index === 1) {
+                toolTipLabel =
+                  "A value used to determine how well a bullet penetrates armor and how much durability damage it does to armor, the higher the better.";
+              } else if (index === 0) {
+                toolTipLabel = "This is how much health damage a bullet does.";
+              } else {
+                toolTipLabel = `Bullet effectiveness against armor ${headerLabel}`;
+              }
 
               return (
                 <Center
@@ -158,27 +157,27 @@ const DesktopRow = ({
                   fontSize="xs"
                   textAlign="center"
                 >
-	              {toolTipLabel ? (
-	                <Tooltip bg="#272712" label={toolTipLabel}>
-	                  <Text
-	                    maxH="60px"
-	                    style={
-	                      useVerticalHeaders
-	                        ? {
-	                            writingMode: "vertical-rl",
-	                            textOrientation: "mixed",
-	                            paddingTop: "4px",
-	                            paddingBottom: "4px",
-	                          }
-	                        : {}
-	                    }
-	                  >
-	                    {headerLabel.toUpperCase()}
-	                  </Text>
-	                </Tooltip>
-	              ) : (
-	                <Text>{headerLabel.toUpperCase()}</Text>
-	              )}
+                  {toolTipLabel ? (
+                    <Tooltip bg="#272712" label={toolTipLabel}>
+                      <Text
+                        maxH="60px"
+                        style={
+                          useVerticalHeaders
+                            ? {
+                                writingMode: "vertical-rl",
+                                textOrientation: "mixed",
+                                paddingTop: "4px",
+                                paddingBottom: "4px",
+                              }
+                            : {}
+                        }
+                      >
+                        {headerLabel.toUpperCase()}
+                      </Text>
+                    </Tooltip>
+                  ) : (
+                    <Text>{headerLabel.toUpperCase()}</Text>
+                  )}
                   {isSortable && (
                     <Box ml="4px">
                       <TiArrowSortedUp
@@ -304,15 +303,19 @@ const DesktopRow = ({
                   <Center flex="1" color="tarkovYellow.100">
                     {ammo.fragChange}
                   </Center>
-                  <Center flex="1" bg={getRecoilColor(ammo.recoil)} color="black">
-                	{ammo.recoil === "" ? "" : `${ammo.recoil}%`}
-	              </Center>
-	              <Center flex="1" color="tarkovYellow.100">
-	                {ammo.effDist}
-	              </Center>
-	              <Center flex="1" color="tarkovYellow.100">
-	                {ammo.maxHsDist}
-	              </Center>
+                  <Center
+                    flex="1"
+                    bg={getRecoilColor(ammo.recoil)}
+                    color="black"
+                  >
+                    {ammo.recoil === "" ? "" : `${ammo.recoil}%`}
+                  </Center>
+                  <Center flex="1" color="tarkovYellow.100">
+                    {ammo.effDist}
+                  </Center>
+                  <Center flex="1" color="tarkovYellow.100">
+                    {ammo.maxHsDist}
+                  </Center>
                   <Center flex="0.5" bg={getColor(ammo.class1)} color="black">
                     {ammo.class1}
                   </Center>
