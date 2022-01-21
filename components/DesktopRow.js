@@ -129,11 +129,12 @@ const DesktopRow = ({
           let toolTipLabel = "";
 
           if (index === 5) {
-            toolTipLabel = "Maximum Headshot Distance";
+            toolTipLabel = "Maximum Headshot Distance.";
           } else if (index === 4) {
-            toolTipLabel = "Effective Distance";
+            toolTipLabel =
+              "Effective Distance is the distance when the bullet has lost 25% of its damage and penetration.";
           } else if (index === 3) {
-            toolTipLabel = "Recoil Index";
+            toolTipLabel = "Recoil Index.";
           } else if (index === 2) {
             toolTipLabel =
               "The chance a bullet will fragment, splitting into pieces on hit and essentially dealing 50% extra damage. Note that fragmentation chance is currently bugged, and chances will be lower than their chance implies, and any ammo with less than 20 pen value will be completely unable to fragment.";
@@ -301,7 +302,7 @@ const DesktopRow = ({
                 {ammo.fragChange}
               </Center>
               <Center flex="1" bg={getRecoilColor(ammo.recoil)} color="black">
-                {ammo.recoil}
+                {ammo.recoil === "" ? "" : `${ammo.recoil}%`}
               </Center>
               <Center flex="1" color="tarkovYellow.100">
                 {ammo.effDist}

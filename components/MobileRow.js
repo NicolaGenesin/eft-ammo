@@ -143,7 +143,7 @@ const MobileRow = ({ category, allAmmosForCategory, currentSearch }) => {
                       color="black"
                       w="100%"
                     >
-                      {ammo.recoil || "?"}
+                      {ammo.recoil === "" ? "" : `${ammo.recoil}%`}
                     </Center>
                   </VStack>
                   <VStack spacing="0" w="100%">
@@ -151,7 +151,7 @@ const MobileRow = ({ category, allAmmosForCategory, currentSearch }) => {
                       Effective Distance
                     </Center>
                     <Center bg="#4E4E4C" w="100%">
-                      {ammo.effDist || "?"}
+                      {ammo.effDist}
                     </Center>
                   </VStack>
                   <VStack spacing="0" w="100%">
@@ -159,7 +159,7 @@ const MobileRow = ({ category, allAmmosForCategory, currentSearch }) => {
                       Max HS Distance
                     </Center>
                     <Center bg="#4E4E4C" w="100%">
-                      {ammo.maxHsDist || "?"}
+                      {ammo.maxHsDist}
                     </Center>
                   </VStack>
                 </HStack>
