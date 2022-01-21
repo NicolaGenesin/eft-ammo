@@ -7,11 +7,13 @@ import {
   Box,
   VStack,
   Text,
+  HStack,
   useBreakpointValue,
   AccordionButton,
   AccordionIcon,
   AccordionPanel,
   Spacer,
+  Link,
 } from "@chakra-ui/react";
 import { InfoOutlineIcon } from "@chakra-ui/icons";
 import { GiAk47 } from "react-icons/gi";
@@ -127,7 +129,10 @@ const DesktopRow = ({
               const isSortable = index < 5 && tableState;
               let toolTipLabel = "";
 
-              if (index === 5) {
+              if (index === 12) {
+                toolTipLabel =
+                  "Flea market prices provided by tarkov-tools.com";
+              } else if (index === 5) {
                 toolTipLabel = "Maximum Headshot Distance.";
               } else if (index === 4) {
                 toolTipLabel =
@@ -148,9 +153,7 @@ const DesktopRow = ({
 
               return (
                 <Center
-                  flex={
-                    headerLabel.toLowerCase().includes("class") ? "0.5" : "1"
-                  }
+                  flex={index >= 6 && index < 12 ? "0.5" : "1"}
                   bg="vulcan.800"
                   key={`header-${index}`}
                   fontWeight="semibold"
@@ -247,10 +250,21 @@ const DesktopRow = ({
                   item.name === ammo.name && item.category === ammo.category
               ) !== undefined;
 
+            let ammoPrice;
+            let tarkovItemLink;
+
+            if (ammo.price) {
+              ammoPrice = `${ammo.price} ₽`;
+            }
+
+            if (ammo.standard && ammo.standard.name) {
+              tarkovItemLink = `https://tarkov-tools.com/item/${ammo.standard.normalizedName}`;
+            }
+
             return (
               <div key={`ammo-${index}`}>
                 <Flex fontSize="md" fontWeight="normal">
-                  <Flex minW="300px" bg="vulcan.800" py="2px">
+                  <HStack minW="300px" bg="vulcan.800" py="2px" pr="8px">
                     {selectCallback && (
                       <Checkbox
                         borderColor="tarkovYellow.100"
@@ -293,7 +307,27 @@ const DesktopRow = ({
                         </Tooltip>
                       )}
                     </Center>
-                  </Flex>
+                    <Spacer />
+                    {ammo.notAvailableOnFleaMarket && (
+                      <Tooltip
+                        bg="#272712"
+                        label={
+                          "This Ammo type is not available on Flea Market."
+                        }
+                      >
+                        <Text
+                          color="tomato"
+                          fontSize="xs"
+                          fontWeight="bold"
+                          textAlign="center"
+                        >
+                          <span>No</span>
+                          <br />
+                          <span>F. M.</span>
+                        </Text>
+                      </Tooltip>
+                    )}
+                  </HStack>
                   <Center flex="1" color="tarkovYellow.100">
                     {ammo.damage}
                   </Center>
@@ -333,6 +367,15 @@ const DesktopRow = ({
                   </Center>
                   <Center flex="0.5" bg={getColor(ammo.class6)} color="black">
                     {ammo.class6}
+                  </Center>
+                  <Center flex="1" color="tarkovYellow.100">
+                    <Link
+                      href={tarkovItemLink}
+                      isExternal
+                      style={{ textDecoration: "underline" }}
+                    >
+                      {ammoPrice || "-"}
+                    </Link>
                   </Center>
                 </Flex>
                 <Divider style={{ opacity: "0.2" }} />

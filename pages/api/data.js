@@ -1,11 +1,30 @@
 import { withSentry } from "@sentry/nextjs";
 const { GoogleSpreadsheet } = require("google-spreadsheet");
 const fallback = require("./fallback").default;
-const doc = new GoogleSpreadsheet(
-  "1Ui7TUxTrueCElnfnuZ5SEHtAJnv-w4eoANeVO9_nqvY"
-);
 
-const getResults = async () => {
+const getFleaMarketPrices = async () => {
+  const dataQuery = JSON.stringify({
+    query: `
+      { itemsByType(type: ammo){ name, normalizedName, lastLowPrice } }
+    `,
+  });
+
+  const response = await fetch("https://tarkov-tools.com/graphql", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+      Accept: "application/json",
+    },
+    body: dataQuery,
+  });
+
+  const json = await response.json();
+
+  return json.data?.itemsByType || [];
+};
+
+const getResults = async (targetSheet, headerRow) => {
+  const doc = new GoogleSpreadsheet(targetSheet);
   await doc.useServiceAccountAuth({
     client_email: process.env.NEXT_GOOGLE_CLIENT_EMAIL,
     private_key: process.env.NEXT_GOOGLE_PRIVATE_KEY,
@@ -14,7 +33,7 @@ const getResults = async () => {
 
   const sheet = doc.sheetsByIndex[0]; // or use doc.sheetsById[id] or doc.sheetsByTitle[title]
 
-  await sheet.loadHeaderRow(38);
+  await sheet.loadHeaderRow(headerRow);
   const rows = await sheet.getRows({
     limit: 160,
     // offset: 38
@@ -43,24 +62,49 @@ const handler = async (req, res) => {
 
   res.setHeader("Cache-Control", "s-maxage=900, stale-while-revalidate");
 
-  let results;
+  let noFAMResults;
+  let additionalResults = [];
+  let fleaMarketPrices;
 
   try {
-    results = await getResults();
+    noFAMResults = await getResults(process.env.NEXT_TARGET_SHEET_21012022, 38);
   } catch (error) {
-    console.log("[API] api/data GET - WARNING - Using fallback");
+    console.log("[API] api/data GET - WARNING - Using fallback", error);
 
-    results = fallback;
+    noFAMResults = fallback;
   }
 
-  console.log(JSON.stringify(results));
+  try {
+    additionalResults = await getResults(
+      process.env.NEXT_TARGET_SHEET_ADDITIONAL,
+      1
+    );
+  } catch (error) {
+    console.log(
+      "[API] api/data GET - WARNING - Additional data failed to load",
+      error
+    );
+  }
+
+  try {
+    fleaMarketPrices = await getFleaMarketPrices();
+  } catch (error) {
+    console.log(
+      "[API] api/data GET - WARNING - Flea Market Prices data failed to load",
+      error
+    );
+  }
+
+  console.log("[noFAMResults]", JSON.stringify(noFAMResults));
+  console.log("[additionalResults]", JSON.stringify(additionalResults));
+  console.log("[fleaMarketPrices]", JSON.stringify(fleaMarketPrices));
 
   const json = {};
 
-  Object.keys(results).map((key) => {
-    if (key !== "undefined") {
-      json[key] = results[key].map((ammoSpecs) => {
-        return {
+  Object.keys(noFAMResults).map((category) => {
+    if (category !== "undefined") {
+      json[category] = noFAMResults[category].map((ammoSpecs) => {
+        const ammo = {
           name: ammoSpecs[1],
           damage: ammoSpecs[2],
           penValue: ammoSpecs[3],
@@ -76,8 +120,38 @@ const handler = async (req, res) => {
           class6: ammoSpecs[13],
           note: ammoSpecs[14],
           secondNote: ammoSpecs[15],
-          category: key,
+          category: category,
         };
+
+        const additionalSpecsForAmmo = additionalResults[category].find(
+          (additionalRow) => {
+            return additionalRow[1] === ammo.name;
+          }
+        );
+
+        if (additionalSpecsForAmmo) {
+          ammo.standard = {
+            name: additionalSpecsForAmmo[2],
+            normalizedName: additionalSpecsForAmmo[3],
+          };
+          ammo.notAvailableOnFleaMarket = additionalSpecsForAmmo[4] === "FALSE";
+
+          const price = fleaMarketPrices.find((priceItem) => {
+            return priceItem.normalizedName === ammo.standard.normalizedName;
+          });
+
+          if (price) {
+            // const buyFor = price.buyFor.find((x) => x.source === "fleaMarket");
+
+            // if (buyFor) {
+            //   ammo.buyFor = [buyFor];
+            // }
+
+            ammo.price = price.lastLowPrice;
+          }
+        }
+
+        return ammo;
       });
     }
   });
