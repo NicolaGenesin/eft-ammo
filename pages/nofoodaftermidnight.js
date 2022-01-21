@@ -313,15 +313,9 @@ export async function getStaticProps() {
 
   try {
     results = await (await getResults()).json();
-
-    console.log("DEBUG");
-    console.log(JSON.stringify(results));
-    console.log("DEBUG");
   } catch (error) {
     results = fallback;
     isFallback = true;
-
-    console.log("DEBUG - FALLBACK");
 
     console.log("\n\n\n******************************");
     console.log(
