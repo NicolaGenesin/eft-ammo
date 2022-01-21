@@ -56,15 +56,29 @@ const DesktopRow = ({
     const columnBeingSorted = tableState.sorting.columnBeingSorted;
 
     if (tableState.sorting.direction.highToLow) {
-      sortedAmmos.sort(
-        (a, b) =>
-          parseInt(b[columnBeingSorted]) - parseInt(a[columnBeingSorted])
-      );
+      sortedAmmos.sort((a, b) => {
+        if (b[columnBeingSorted] == "") {
+          return -1;
+        } else if (a[columnBeingSorted] == "") {
+          return 1;
+        } else if (a[columnBeingSorted] == "" && b[columnBeingSorted] == "") {
+          return 0;
+        }
+
+        return parseInt(b[columnBeingSorted]) - parseInt(a[columnBeingSorted]);
+      });
     } else {
-      sortedAmmos.sort(
-        (a, b) =>
-          parseInt(a[columnBeingSorted]) - parseInt(b[columnBeingSorted])
-      );
+      sortedAmmos.sort((a, b) => {
+        if (b[columnBeingSorted] == "") {
+          return 1;
+        } else if (a[columnBeingSorted] == "") {
+          return -1;
+        } else if (a[columnBeingSorted] == "" && b[columnBeingSorted] == "") {
+          return 0;
+        }
+
+        return parseInt(a[columnBeingSorted]) - parseInt(b[columnBeingSorted]);
+      });
     }
   }
 
