@@ -1,7 +1,9 @@
 import { withSentry } from "@sentry/nextjs";
 const { GoogleSpreadsheet } = require("google-spreadsheet");
 const fallback = require("./fallback").default;
-const doc = new GoogleSpreadsheet(process.env.NEXT_TARGET_SHEET);
+const doc = new GoogleSpreadsheet(
+  "1Ui7TUxTrueCElnfnuZ5SEHtAJnv-w4eoANeVO9_nqvY"
+);
 
 const getResults = async () => {
   await doc.useServiceAccountAuth({
@@ -55,23 +57,24 @@ const handler = async (req, res) => {
 
   Object.keys(results).map((key) => {
     json[key] = results[key].map((ammoSpecs) => {
+      console.log(ammoSpecs);
+
       return {
         name: ammoSpecs[1],
-        damage: ammoSpecs[3],
-        penValue: ammoSpecs[4],
-        armorDamage: ammoSpecs[5],
-        fragChange: ammoSpecs[6],
-        recoil: ammoSpecs[7],
-        effDist: ammoSpecs[8],
-        maxHsDist: ammoSpecs[9],
-        class1: ammoSpecs[10],
-        class2: ammoSpecs[11],
-        class3: ammoSpecs[12],
-        class4: ammoSpecs[13],
-        class5: ammoSpecs[14],
-        class6: ammoSpecs[15],
-        note: ammoSpecs[16],
-        secondNote: ammoSpecs[17],
+        damage: ammoSpecs[2],
+        penValue: ammoSpecs[3],
+        fragChange: ammoSpecs[4],
+        recoil: ammoSpecs[5],
+        effDist: ammoSpecs[6],
+        maxHsDist: ammoSpecs[7],
+        class1: ammoSpecs[8],
+        class2: ammoSpecs[9],
+        class3: ammoSpecs[10],
+        class4: ammoSpecs[11],
+        class5: ammoSpecs[12],
+        class6: ammoSpecs[13],
+        note: ammoSpecs[14],
+        secondNote: ammoSpecs[15],
         category: key,
       };
     });

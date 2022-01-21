@@ -111,7 +111,7 @@ const DesktopRow = ({
         </Box>
         {Object.keys(headers).map((headerLabel, index) => {
           const headerProperty = headers[headerLabel];
-          const isSortable = index < 7 && tableState;
+          const isSortable = index < 6 && tableState;
           let toolTipLabel = "";
 
           if (index === 6) {
@@ -285,9 +285,6 @@ const DesktopRow = ({
               </Center>
               <Center flex="1" color="tarkovYellow.100">
                 {ammo.penValue}
-              </Center>
-              <Center flex="1" color="tarkovYellow.100">
-                {ammo.armorDamage}
               </Center>
               <Center flex="1" color="tarkovYellow.100">
                 {ammo.fragChange}
