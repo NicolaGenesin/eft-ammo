@@ -5,7 +5,7 @@ const fallback = require("./fallback").default;
 const getFleaMarketPrices = async () => {
   const dataQuery = JSON.stringify({
     query: `
-      { itemsByType(type: ammo){ name, normalizedName, buyFor {currency, price, source, requirements {type, value}}} }
+      { itemsByType(type: ammo){ name, normalizedName, lastLowPrice } }
     `,
   });
 
@@ -141,11 +141,13 @@ const handler = async (req, res) => {
           });
 
           if (price) {
-            const buyFor = price.buyFor.find((x) => x.source === "fleaMarket");
+            // const buyFor = price.buyFor.find((x) => x.source === "fleaMarket");
 
-            if (buyFor) {
-              ammo.buyFor = [buyFor];
-            }
+            // if (buyFor) {
+            //   ammo.buyFor = [buyFor];
+            // }
+
+            ammo.price = price.lastLowPrice;
           }
         }
 

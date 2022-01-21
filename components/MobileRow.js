@@ -66,8 +66,8 @@ const MobileRow = ({ category, allAmmosForCategory, currentSearch }) => {
 
             let ammoPrice;
 
-            if (ammo.buyFor && ammo.buyFor.length) {
-              ammoPrice = `${ammo.buyFor[0].price} ₽`;
+            if (ammo.price) {
+              ammoPrice = `${ammo.price} ₽`;
             }
 
             return (
@@ -115,9 +115,9 @@ const MobileRow = ({ category, allAmmosForCategory, currentSearch }) => {
                       color="tarkovYellow.100"
                       fontSize="xs"
                       fontWeight="bold"
-                      textAlign="center"
+                      textAlign="right"
                     >
-                      Flea Price
+                      Last Low F.M.
                       <br />
                       {ammoPrice}
                     </Text>

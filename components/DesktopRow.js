@@ -13,6 +13,7 @@ import {
   AccordionIcon,
   AccordionPanel,
   Spacer,
+  Link,
 } from "@chakra-ui/react";
 import { InfoOutlineIcon } from "@chakra-ui/icons";
 import { GiAk47 } from "react-icons/gi";
@@ -250,9 +251,14 @@ const DesktopRow = ({
               ) !== undefined;
 
             let ammoPrice;
+            let tarkovItemLink;
 
-            if (ammo.buyFor && ammo.buyFor.length) {
-              ammoPrice = `${ammo.buyFor[0].price} ₽`;
+            if (ammo.price) {
+              ammoPrice = `${ammo.price} ₽`;
+            }
+
+            if (ammo.standard && ammo.standard.name) {
+              tarkovItemLink = `https://tarkov-tools.com/item/${ammo.standard.normalizedName}`;
             }
 
             return (
@@ -363,7 +369,9 @@ const DesktopRow = ({
                     {ammo.class6}
                   </Center>
                   <Center flex="1" color="tarkovYellow.100">
-                    {ammoPrice || "Not Avail."}
+                    <Link href={tarkovItemLink} isExternal>
+                      {ammoPrice || "-"}
+                    </Link>
                   </Center>
                 </Flex>
                 <Divider style={{ opacity: "0.2" }} />
