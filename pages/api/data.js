@@ -58,26 +58,28 @@ const handler = async (req, res) => {
   const json = {};
 
   Object.keys(results).map((key) => {
-    json[key] = results[key].map((ammoSpecs) => {
-      return {
-        name: ammoSpecs[1],
-        damage: ammoSpecs[2],
-        penValue: ammoSpecs[3],
-        fragChange: ammoSpecs[4],
-        recoil: ammoSpecs[5],
-        effDist: ammoSpecs[6],
-        maxHsDist: ammoSpecs[7],
-        class1: ammoSpecs[8],
-        class2: ammoSpecs[9],
-        class3: ammoSpecs[10],
-        class4: ammoSpecs[11],
-        class5: ammoSpecs[12],
-        class6: ammoSpecs[13],
-        note: ammoSpecs[14],
-        secondNote: ammoSpecs[15],
-        category: key,
-      };
-    });
+    if (key !== "undefined") {
+      json[key] = results[key].map((ammoSpecs) => {
+        return {
+          name: ammoSpecs[1],
+          damage: ammoSpecs[2],
+          penValue: ammoSpecs[3],
+          fragChange: ammoSpecs[4],
+          recoil: ammoSpecs[5],
+          effDist: ammoSpecs[6],
+          maxHsDist: ammoSpecs[7],
+          class1: ammoSpecs[8],
+          class2: ammoSpecs[9],
+          class3: ammoSpecs[10],
+          class4: ammoSpecs[11],
+          class5: ammoSpecs[12],
+          class6: ammoSpecs[13],
+          note: ammoSpecs[14],
+          secondNote: ammoSpecs[15],
+          category: key,
+        };
+      });
+    }
   });
 
   res.status(200).json(json);
