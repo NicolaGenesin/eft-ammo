@@ -369,7 +369,11 @@ const DesktopRow = ({
                     {ammo.class6}
                   </Center>
                   <Center flex="1" color="tarkovYellow.100">
-                    <Link href={tarkovItemLink} isExternal>
+                    <Link
+                      href={tarkovItemLink}
+                      isExternal
+                      style={{ textDecoration: "underline" }}
+                    >
                       {ammoPrice || "-"}
                     </Link>
                   </Center>
