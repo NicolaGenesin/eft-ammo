@@ -44,15 +44,28 @@ const ModalTable = ({ items, setItem }) => {
           }}
         />
       </Center>
-      <Table variant="simple">
+      <Table variant="unstyled" mt="24px">
         <Tbody>
           {filteredItems.map((item, index) => {
             return (
-              <Tr key={`tr-${index}`} onClick={() => setItem(item)}>
-                <Td>
-                  <Image src={item.gridImageLink} />
+              <Tr
+                key={`tr-${index}`}
+                onClick={() => setItem(item)}
+                transitionProperty="shadow"
+                transitionDuration="1"
+                transitionTimingFunction="ease-in-out"
+                _hover={{ shadow: "lg", bg: "vulcan.900" }}
+              >
+                <Td w="100px" pl="8px" pr="0" py="8px">
+                  <Box h="64px" w="64px">
+                    <Image
+                      boxSize="64px"
+                      src={item.gridImageLink}
+                      objectFit="contain"
+                    />
+                  </Box>
                 </Td>
-                <Td>{item.name}</Td>
+                <Td p="0">{item.name}</Td>
               </Tr>
             );
           })}

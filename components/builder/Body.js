@@ -285,9 +285,9 @@ const Body = ({ data, query }) => {
         </HStack>
       </VStack>
 
-      <Modal isOpen={isOpen} onClose={onClose}>
+      <Modal isOpen={isOpen} onClose={onClose} size="2xl">
         <ModalOverlay />
-        <ModalContent bg="vulcan.900" color="tarkovYellow.100">
+        <ModalContent bg="vulcan.1000" color="tarkovYellow.100">
           <ModalHeader>Current Item Type: {state.currentItemType}</ModalHeader>
           <ModalCloseButton />
           <ModalBody>
