@@ -14,6 +14,8 @@ const ItemLabel = ({ itemType }) => {
     label = "on back";
   } else if (itemType === "facecover") {
     label = "face cover";
+  } else if (itemType === "title") {
+    label = "title";
   }
 
   return (

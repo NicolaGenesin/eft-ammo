@@ -32,8 +32,9 @@ const Builder = ({ data }) => {
               borderRadius="0"
               colorScheme="orange"
               as="h1"
-              fontSize="xl"
+              fontSize="lg"
               fontWeight="bold"
+              textTransform="uppercase"
               onClick={async () => {
                 const { result } = await (
                   await fetch(`${url}/api/urlShortener/`, {
