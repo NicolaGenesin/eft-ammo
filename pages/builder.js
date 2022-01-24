@@ -16,9 +16,7 @@ import { TwitchEmbed } from "react-twitch-embed";
 
 const Builder = ({ data }) => {
   const { asPath, query } = useRouter();
-  const dev = process.env.NEXT_NODE_ENV !== "production";
-  const url = dev ? "http://localhost:3000" : "https://eft-ammo.com";
-  const link = url + asPath;
+  const link = `https://eft-ammo.com${asPath}`;
 
   const [state, setState] = useState({
     shortenedURL: undefined,
