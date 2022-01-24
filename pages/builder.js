@@ -1,10 +1,18 @@
-import { Box, Button, Center, HStack, Link, VStack } from "@chakra-ui/react";
+import {
+  Box,
+  Button,
+  Center,
+  HStack,
+  Link,
+  VStack,
+  Text,
+} from "@chakra-ui/react";
 import React, { useState, useEffect } from "react";
 import { useRouter } from "next/router";
 import Body from "../components/builder/Body";
 import getBuilderData from "../utils/getBuilderData";
 import { BsClipboardPlus } from "react-icons/bs";
-import getResults from "../utils/getResults";
+import { TwitchEmbed } from "react-twitch-embed";
 
 const Builder = ({ data }) => {
   const { asPath, query } = useRouter();
@@ -14,17 +22,30 @@ const Builder = ({ data }) => {
 
   const [state, setState] = useState({
     shortenedURL: undefined,
+    embed: undefined,
   });
 
   useEffect(() => {
     setState({
       ...state,
       shortenedURL: undefined,
+      // embed: (
+      //   <TwitchEmbed
+      //     style={{ width: "100%", height: "100%" }}
+      //     channel={"nofoodaftermidnight"}
+      //     id={"nofoodaftermidnight"}
+      //     key={"nofoodaftermidnight"}
+      //     theme="dark"
+      //     autoplay
+      //     withChat={false}
+      //     muted={true}
+      //   />
+      // ),
     });
   }, [asPath]);
 
   return (
-    <Box py="24px">
+    <Box py="64px">
       <Center color="tarkovYellow.100">
         <VStack>
           {!state.shortenedURL && (
@@ -89,6 +110,28 @@ const Builder = ({ data }) => {
         </VStack>
       </Center>
       <Body data={data} query={query} />
+      <Center>
+        {/* <Box
+          w={["375px", "450px", "600px"]}
+          h={["300px", "400px", "400px"]}
+          pt="48px"
+          pb="64px"
+        >
+          <Text
+            textAlign="center"
+            color="tarkovYellow.100"
+            fontWeight="bold"
+            fontSize={["lg", "2xl"]}
+            as="h2"
+            mb="8px"
+          >
+            <a href="https://www.twitch.tv/nofoodaftermidnight/">
+              Watch NoFoodAfterMidnight's stream here:
+            </a>
+          </Text>
+          {state.embed}
+        </Box> */}
+      </Center>{" "}
     </Box>
   );
 };
