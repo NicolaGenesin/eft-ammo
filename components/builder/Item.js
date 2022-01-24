@@ -30,6 +30,8 @@ const Item = ({ data, w, h, select, unselect }) => {
               square ? "" : "-wide"
             }.jpg')`}
             bgRepeat="repeat"
+            borderColor="white"
+            borderWidth="1px"
           />
         ) : (
           <Box
@@ -38,6 +40,8 @@ const Item = ({ data, w, h, select, unselect }) => {
             position="relative"
             w={w}
             h={h}
+            borderColor="white"
+            borderWidth="1px"
           >
             <Image
               m="auto"

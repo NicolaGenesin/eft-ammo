@@ -85,6 +85,7 @@ const renderAmmoTypes = (target, state, setState, onOpen, router) => {
                 />
               </Box>
               <NumberInput
+                style={{ textAlign: "right" }}
                 value={state.loadout[`${key}Q`] || 0}
                 min={0}
                 max={500}
@@ -98,8 +99,12 @@ const renderAmmoTypes = (target, state, setState, onOpen, router) => {
                   updateQueryString(router, newState.loadout);
                 }}
               >
-                <NumberInputField />
-                <NumberInputStepper>
+                <NumberInputField
+                  borderRadius="0"
+                  borderColor="vulcan.900"
+                  _hover={{ borderColor: "vulcan.900" }}
+                />
+                <NumberInputStepper borderRadius="0" borderColor="vulcan.900">
                   <NumberIncrementStepper />
                   <NumberDecrementStepper />
                 </NumberInputStepper>
