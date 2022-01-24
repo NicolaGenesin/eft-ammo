@@ -44,6 +44,8 @@ const Item = ({ data, w, h, select, unselect }) => {
             borderWidth="1px"
           >
             <Image
+              maxH={h}
+              p="1px"
               m="auto"
               top="0"
               left="0"
@@ -59,16 +61,17 @@ const Item = ({ data, w, h, select, unselect }) => {
               <Button
                 h="48px"
                 w="48px"
+                p="0"
                 position="relative"
-                bg="tomato"
+                colorScheme="red"
+                rounded="full"
                 color="tarkovYellow.100"
-                borderRadius="0"
                 display={display}
                 onClick={() => {
                   unselect(data);
                 }}
               >
-                <IoMdClose />
+                <IoMdClose size={24} />
               </Button>
             </Center>
           </Box>

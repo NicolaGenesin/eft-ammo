@@ -1,19 +1,19 @@
 import { withSentry } from "@sentry/nextjs";
 
 const getItems = async () => {
-  // todo do mapping
+  // meds: getByBsgCategoryId('5448f3a14bdc2d27728b4569'),
 
   const dataQuery = JSON.stringify({
     query: `
         { 
-            headphones: itemsByType(type: headphones)  { gridImageLink, name, normalizedName, weight },
-            helmet: itemsByType(type: helmet)  { gridImageLink, name, normalizedName, weight },
-            gun: itemsByType(type: gun)  { gridImageLink, name, normalizedName, weight },
-            armor: itemsByType(type: armor)  { gridImageLink, name, normalizedName, weight },
-            glasses: itemsByType(type: glasses)  { gridImageLink, name, normalizedName, weight },
-            grenade: itemsByType(type: grenade)  { gridImageLink, name, normalizedName, weight },
-            injectors: itemsByType(type: injectors)  { gridImageLink, name, normalizedName, weight },
-            meds: itemsByType(type: meds)  { gridImageLink, name, normalizedName, weight },  
+            earpiece: itemsByType(type: headphones)  { gridImageLink, name, normalizedName, weight },
+            headwear: itemsByType(type: helmet)  { gridImageLink, name, normalizedName, weight },
+            faceCover: itemsByBsgCategoryId(bsgCategoryId: "57bef4c42459772e8d35a53b")  { gridImageLink, name, normalizedName, weight },
+            armband: itemsByBsgCategoryId(bsgCategoryId: "5b3f15d486f77432d0509248")  { gridImageLink, name, normalizedName, weight },
+            scabbard: itemsByBsgCategoryId(bsgCategoryId: "5447e1d04bdc2dff2f8b4567")  { gridImageLink, name, normalizedName, weight },
+            guns: itemsByType(type: gun)  { gridImageLink, name, normalizedName, weight },
+            bodyArmor: itemsByType(type: armor)  { gridImageLink, name, normalizedName, weight },
+            eyewear: itemsByType(type: glasses)  { gridImageLink, name, normalizedName, weight },
             ammos: itemsByType(type: ammo)  { gridImageLink, name, normalizedName, weight },  
         }
     `,

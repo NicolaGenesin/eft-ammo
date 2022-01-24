@@ -163,27 +163,39 @@ const Body = ({ data, query }) => {
       const itemName = query[itemKey];
 
       if (itemKey === "earpiece") {
-        loadout[itemKey] = data.headphones.find(
+        loadout[itemKey] = data.earpiece.find(
           (x) => x.normalizedName === itemName
         );
       } else if (itemKey === "headwear") {
-        loadout[itemKey] = data.helmet.find(
+        loadout[itemKey] = data.headwear.find(
+          (x) => x.normalizedName === itemName
+        );
+      } else if (itemKey === "faceCover") {
+        loadout[itemKey] = data.faceCover.find(
+          (x) => x.normalizedName === itemName
+        );
+      } else if (itemKey === "armband") {
+        loadout[itemKey] = data.armband.find(
+          (x) => x.normalizedName === itemName
+        );
+      } else if (itemKey === "scabbard") {
+        loadout[itemKey] = data.scabbard.find(
           (x) => x.normalizedName === itemName
         );
       } else if (itemKey === "bodyArmor") {
-        loadout[itemKey] = data.armor.find(
+        loadout[itemKey] = data.bodyArmor.find(
+          (x) => x.normalizedName === itemName
+        );
+      } else if (itemKey === "eyewear") {
+        loadout[itemKey] = data.eyewear.find(
           (x) => x.normalizedName === itemName
         );
       } else if (itemKey === "holster") {
-        loadout[itemKey] = data.gun.find((x) => x.normalizedName === itemName);
+        loadout[itemKey] = data.guns.find((x) => x.normalizedName === itemName);
       } else if (itemKey === "onSling") {
-        loadout[itemKey] = data.gun.find((x) => x.normalizedName === itemName);
+        loadout[itemKey] = data.guns.find((x) => x.normalizedName === itemName);
       } else if (itemKey === "onBack") {
-        loadout[itemKey] = data.gun.find((x) => x.normalizedName === itemName);
-      } else if (itemKey === "eyewear") {
-        loadout[itemKey] = data.glasses.find(
-          (x) => x.normalizedName === itemName
-        );
+        loadout[itemKey] = data.guns.find((x) => x.normalizedName === itemName);
       } else if (itemKey === "title") {
         loadout.title = itemName;
       } else {
@@ -200,26 +212,46 @@ const Body = ({ data, query }) => {
   let items;
 
   if (state.currentItemType === "earpiece") {
-    items = data.headphones;
+    items = data.earpiece;
   } else if (state.currentItemType === "headwear") {
-    items = data.helmet;
+    items = data.headwear;
+  } else if (state.currentItemType === "faceCover") {
+    items = data.faceCover.filter((item) => {
+      return (
+        item.name.includes("balaclava") ||
+        item.name.includes("mask") ||
+        item.name.includes("hat") ||
+        item.name.includes("beard") ||
+        item.name.includes("respirator") ||
+        item.name.includes("mask") ||
+        item.name.includes("magh")
+      );
+    });
+  } else if (state.currentItemType === "armband") {
+    items = data.armband;
+  } else if (state.currentItemType === "scabbard") {
+    items = data.scabbard;
   } else if (state.currentItemType === "bodyArmor") {
-    items = data.armor;
-  } else if (state.currentItemType === "holster") {
-    items = data.gun;
-  } else if (state.currentItemType === "onSling") {
-    items = data.gun;
-  } else if (state.currentItemType === "onBack") {
-    items = data.gun;
+    items = data.bodyArmor;
   } else if (state.currentItemType === "eyewear") {
-    items = data.glasses;
+    items = data.eyewear;
+  } else if (state.currentItemType === "holster") {
+    items = data.guns.filter((gun) => gun.name.includes("pistol"));
+  } else if (state.currentItemType === "onSling") {
+    items = data.guns.filter((gun) => !gun.name.includes("pistol"));
+  } else if (state.currentItemType === "onBack") {
+    items = data.guns.filter((gun) => !gun.name.includes("pistol"));
   } else if (
     state.currentItemType.includes("onSling") ||
     state.currentItemType.includes("onBack")
   ) {
-    items = data.ammos;
+    items = data.ammos.filter((item) => {
+      return !item.name.includes("pack") && !item.name.includes("grenade");
+    });
   } else if (state.currentItemType.includes("holster")) {
-    items = data.ammos;
+    items = data.ammos.filter((item) => {
+      return !item.name.includes("pack") && !item.name.includes("grenade");
+    });
   }
 
   let weight = 0;
@@ -236,21 +268,19 @@ const Body = ({ data, query }) => {
     }
   });
 
-  console.log("render", state.loadout);
-
   return (
     <VStack>
       <Box w="484px" pt="64px">
         <ItemLabel itemType="title" />
         <Input
-          placeholder="Title (Optional)"
+          placeholder="[optional] title"
           color="tarkovYellow.100"
           textAlign="center"
-          borderColor="tarkovYellow.100"
-          borderWidth="2px"
+          borderColor="white"
+          _placeholder={{ color: "tarkovYellow.100" }}
+          borderWidth="1px"
           borderRadius="0"
           size="md"
-          fontWeight="bold"
           textTransform="capitalize"
           defaultValue={state.loadout.title}
           onChange={(e) => {
@@ -289,7 +319,7 @@ const Body = ({ data, query }) => {
                 onOpen,
               })}
               {renderItem({
-                itemType: "facecover",
+                itemType: "faceCover",
                 w: "130px",
                 h: "130px",
                 state,

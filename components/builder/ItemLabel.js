@@ -12,7 +12,7 @@ const ItemLabel = ({ itemType, position }) => {
     label = "on sling";
   } else if (itemType === "onBack") {
     label = "on back";
-  } else if (itemType === "facecover") {
+  } else if (itemType === "faceCover") {
     label = "face cover";
   } else if (itemType === "title") {
     label = "title";

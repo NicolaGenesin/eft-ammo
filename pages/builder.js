@@ -94,8 +94,6 @@ const Builder = ({ data }) => {
 };
 
 export async function getStaticProps() {
-  const response = await (await getResults()).json();
-
   return {
     props: {
       data: await (await getBuilderData()).json(),
