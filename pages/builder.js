@@ -59,7 +59,7 @@ const Builder = ({ data }) => {
               textTransform="uppercase"
               onClick={async () => {
                 const { result } = await (
-                  await fetch(`${url}/api/urlShortener/`, {
+                  await fetch("https://eft-ammo.com/api/urlShortener/", {
                     method: "POST",
                     headers: {
                       "Content-Type": "application/json",
