@@ -23,7 +23,6 @@ const Item = ({ data, w, h, select, unselect }) => {
             onClick={() => {
               select();
             }}
-            position="absolute"
             opacity="0.5"
             w={w}
             h={h}
@@ -34,25 +33,40 @@ const Item = ({ data, w, h, select, unselect }) => {
           />
         ) : (
           <Box
-            position="relative"
             onMouseEnter={(e) => showButton(e)}
             onMouseLeave={(e) => hideButton(e)}
+            position="relative"
+            w={w}
+            h={h}
           >
-            <Box>
-              <Image
-                src={data.gridImageLink}
-                alt={data.name}
-                objectFit="cover"
-              />
-            </Box>
-            <Button
-              display={display}
-              onClick={() => {
-                unselect(data);
-              }}
-            >
-              <IoMdClose />
-            </Button>
+            <Image
+              m="auto"
+              top="0"
+              left="0"
+              bottom="0"
+              right="0"
+              position="absolute"
+              src={data.gridImageLink}
+              alt={data.name}
+              objectFit="cover"
+            />
+
+            <Center w={w} h={h}>
+              <Button
+                h="48px"
+                w="48px"
+                position="relative"
+                bg="tomato"
+                color="tarkovYellow.100"
+                borderRadius="0"
+                display={display}
+                onClick={() => {
+                  unselect(data);
+                }}
+              >
+                <IoMdClose />
+              </Button>
+            </Center>
           </Box>
         )}
       </Center>
