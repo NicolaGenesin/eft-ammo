@@ -137,11 +137,21 @@ const Builder = ({ data }) => {
 };
 
 export async function getStaticProps() {
+  let data = {};
+
+  try {
+    data = await (await getBuilderData()).json();
+  } catch (error) {
+    console.log(error);
+  }
+
+  console.log(data);
+
   return {
     props: {
-      data: await (await getBuilderData()).json(),
+      data,
     },
-    revalidate: 7200,
+    revalidate: 60,
   };
 }
 
