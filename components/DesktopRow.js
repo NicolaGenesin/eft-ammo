@@ -261,6 +261,18 @@ const DesktopRow = ({
               tarkovItemLink = `https://tarkov-tools.com/item/${ammo.standard.normalizedName}`;
             }
 
+            let recoil = "";
+
+            if (ammo.recoil !== "") {
+              if (ammo.recoil > 0) {
+                recoil = `${ammo.recoil}% ▲`;
+              } else if (ammo.recoil < 0) {
+                recoil = `${ammo.recoil}% ▼`;
+              } else {
+                recoil = `${ammo.recoil}%`;
+              }
+            }
+
             return (
               <div key={`ammo-${index}`}>
                 <Flex fontSize="md" fontWeight="normal">
@@ -335,12 +347,8 @@ const DesktopRow = ({
                   <Center flex="1" color="tarkovYellow.100">
                     {ammo.fragChange}
                   </Center>
-                  <Center
-                    flex="1"
-                    bg={getRecoilColor(ammo.recoil)}
-                    color="black"
-                  >
-                    {ammo.recoil === "" ? "" : `${ammo.recoil}%`}
+                  <Center flex="1" color={getRecoilColor(ammo.recoil)}>
+                    {recoil}
                   </Center>
                   <Center flex="1" color="tarkovYellow.100">
                     {ammo.effDist}

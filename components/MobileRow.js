@@ -70,6 +70,18 @@ const MobileRow = ({ category, allAmmosForCategory, currentSearch }) => {
               ammoPrice = `${ammo.price} ₽`;
             }
 
+            let recoil = "No Data";
+
+            if (ammo.recoil !== "") {
+              if (ammo.recoil > 0) {
+                recoil = `${ammo.recoil}% ▲`;
+              } else if (ammo.recoil < 0) {
+                recoil = `${ammo.recoil}% ▼`;
+              } else {
+                recoil = `${ammo.recoil}%`;
+              }
+            }
+
             return (
               <Box key={`allAmmos-${index}`} bg="vulcan.800" mb="12px" p="8px">
                 <HStack>
@@ -169,11 +181,15 @@ const MobileRow = ({ category, allAmmosForCategory, currentSearch }) => {
                       Recoil
                     </Center>
                     <Center
-                      bg={getRecoilColor(ammo.recoil)}
-                      color={ammo.recoil === "" ? "tarkovYellow.100" : "black"}
+                      color={
+                        ammo.recoil === ""
+                          ? "tarkovYellow.100"
+                          : getRecoilColor(ammo.recoil)
+                      }
+                      bg="#4E4E4C"
                       w="100%"
                     >
-                      {ammo.recoil === "" ? "No Data" : `${ammo.recoil}%`}
+                      {recoil}
                     </Center>
                   </VStack>
                   <VStack spacing="0" w="100%">
