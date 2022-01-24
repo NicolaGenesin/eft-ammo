@@ -20,10 +20,8 @@ const ModalTable = ({ items, setItem }) => {
   let filteredItems = [...items];
 
   if (state.currentSearch) {
-    filteredItems = filteredItems.filter(
-      (item) =>
-        item.name.toLowerCase().includes(state.currentSearch.toLowerCase()) ||
-        item.shortName.toLowerCase().includes(state.currentSearch.toLowerCase())
+    filteredItems = filteredItems.filter((item) =>
+      item.name.toLowerCase().includes(state.currentSearch.toLowerCase())
     );
   }
 
