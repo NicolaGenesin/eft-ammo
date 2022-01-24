@@ -20,8 +20,10 @@ const ModalTable = ({ items, setItem }) => {
   let filteredItems = [...items];
 
   if (state.currentSearch) {
-    filteredItems = filteredItems.filter((item) =>
-      item.name.toLowerCase().includes(state.currentSearch.toLowerCase())
+    filteredItems = filteredItems.filter(
+      (item) =>
+        item.name.toLowerCase().includes(state.currentSearch.toLowerCase()) ||
+        item.shortName.toLowerCase().includes(state.currentSearch.toLowerCase())
     );
   }
 
@@ -47,6 +49,9 @@ const ModalTable = ({ items, setItem }) => {
       <Table variant="unstyled" mt="24px">
         <Tbody>
           {filteredItems.map((item, index) => {
+            let imageURL = item.gridImageLink;
+            let name = item.name;
+
             return (
               <Tr
                 key={`tr-${index}`}
@@ -58,14 +63,10 @@ const ModalTable = ({ items, setItem }) => {
               >
                 <Td w="100px" pl="8px" pr="0" py="8px">
                   <Box h="64px" w="64px">
-                    <Image
-                      boxSize="64px"
-                      src={item.gridImageLink}
-                      objectFit="contain"
-                    />
+                    <Image boxSize="64px" src={imageURL} objectFit="contain" />
                   </Box>
                 </Td>
-                <Td p="0">{item.name}</Td>
+                <Td p="0">{name}</Td>
               </Tr>
             );
           })}

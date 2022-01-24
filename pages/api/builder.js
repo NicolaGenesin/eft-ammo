@@ -6,14 +6,15 @@ const getItems = async () => {
   const dataQuery = JSON.stringify({
     query: `
         { 
-            headphones: itemsByType(type: headphones)  { gridImageLink, name, normalizedName},
-            helmet: itemsByType(type: helmet)  { gridImageLink, name, normalizedName},
-            gun: itemsByType(type: gun)  { gridImageLink, name, normalizedName},
-            armor: itemsByType(type: armor)  { gridImageLink, name, normalizedName},
-            glasses: itemsByType(type: glasses)  { gridImageLink, name, normalizedName},
-            grenade: itemsByType(type: grenade)  { gridImageLink, name, normalizedName},
-            injectors: itemsByType(type: injectors)  { gridImageLink, name, normalizedName},
-            meds: itemsByType(type: meds)  { gridImageLink, name, normalizedName},  
+            headphones: itemsByType(type: headphones)  { gridImageLink, name, normalizedName, weight },
+            helmet: itemsByType(type: helmet)  { gridImageLink, name, normalizedName, weight },
+            gun: itemsByType(type: gun)  { gridImageLink, name, normalizedName, weight },
+            armor: itemsByType(type: armor)  { gridImageLink, name, normalizedName, weight },
+            glasses: itemsByType(type: glasses)  { gridImageLink, name, normalizedName, weight },
+            grenade: itemsByType(type: grenade)  { gridImageLink, name, normalizedName, weight },
+            injectors: itemsByType(type: injectors)  { gridImageLink, name, normalizedName, weight },
+            meds: itemsByType(type: meds)  { gridImageLink, name, normalizedName, weight },  
+            ammos: itemsByType(type: ammo)  { gridImageLink, name, normalizedName, weight },  
         }
     `,
   });
@@ -42,8 +43,6 @@ const handler = async (req, res) => {
   } catch (error) {
     console.log("[API] api/data GET - Failed to get items", error);
   }
-
-  console.log(json);
 
   res.status(200).json(json);
 };

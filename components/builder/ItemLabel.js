@@ -1,7 +1,7 @@
 import { Box, Text } from "@chakra-ui/react";
 import React from "react";
 
-const ItemLabel = ({ itemType }) => {
+const ItemLabel = ({ itemType, position }) => {
   let label = itemType;
 
   if (itemType === "bodyArmor") {
@@ -16,6 +16,14 @@ const ItemLabel = ({ itemType }) => {
     label = "face cover";
   } else if (itemType === "title") {
     label = "title";
+  } else if (itemType === "holster") {
+    label = "holster";
+  } else if (itemType.includes("onSling")) {
+    label = `on sling (${position})`;
+  } else if (itemType.includes("holster")) {
+    label = `holster (${position})`;
+  } else if (itemType.includes("onBack")) {
+    label = `on back (${position})`;
   }
 
   return (

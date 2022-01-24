@@ -4,6 +4,7 @@ import { useRouter } from "next/router";
 import Body from "../components/builder/Body";
 import getBuilderData from "../utils/getBuilderData";
 import { BsClipboardPlus } from "react-icons/bs";
+import getResults from "../utils/getResults";
 
 const Builder = ({ data }) => {
   const { asPath, query } = useRouter();
@@ -93,17 +94,11 @@ const Builder = ({ data }) => {
 };
 
 export async function getStaticProps() {
-  let data;
-
-  try {
-    data = await (await getBuilderData()).json();
-  } catch (error) {
-    console.log(error);
-  }
+  const response = await (await getResults()).json();
 
   return {
     props: {
-      data,
+      data: await (await getBuilderData()).json(),
     },
     revalidate: 7200,
   };

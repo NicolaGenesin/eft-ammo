@@ -11,37 +11,33 @@ import {
   ModalFooter,
   ModalHeader,
   ModalOverlay,
+  NumberDecrementStepper,
+  NumberIncrementStepper,
+  NumberInput,
+  NumberInputField,
+  NumberInputStepper,
+  Text,
   useDisclosure,
   VStack,
 } from "@chakra-ui/react";
 import Item from "./Item";
 import ItemLabel from "./ItemLabel";
 import ModalTable from "./ModalTable";
+import { GiWeight } from "react-icons/gi";
 import { useRouter } from "next/router";
 
 const updateQueryString = (router, loadout) => {
   const query = {};
-  const items = [
-    "earpiece",
-    "headwear",
-    "armband",
-    "bodyArmor",
-    "eyewear",
-    "onSling",
-    "holster",
-    "onBack",
-    "scabbard",
-  ];
 
-  items.forEach((item) => {
+  Object.keys(loadout).forEach((item) => {
     if (loadout[item]) {
-      query[item] = loadout[item].normalizedName;
+      if (loadout[item].normalizedName) {
+        query[item] = loadout[item].normalizedName;
+      } else {
+        query[item] = loadout[item];
+      }
     }
   });
-
-  if (loadout.title) {
-    query.title = loadout.title;
-  }
 
   router.push(
     {
@@ -53,11 +49,105 @@ const updateQueryString = (router, loadout) => {
   );
 };
 
+const renderAmmoTypes = (target, state, setState, onOpen, router) => {
+  return (
+    <VStack spacing="36px">
+      {[...Array(3).keys()].map((index) => {
+        const key = `${target}Ammo${index + 1}`;
+        const data = state.loadout[key];
+
+        return (
+          <Box key={key}>
+            <ItemLabel itemType={key} position={index + 1} />
+            <HStack color="tarkovYellow.100" bg="vulcan.900" pr="8px">
+              <Box>
+                <Item
+                  data={data}
+                  h="64px"
+                  w="64px"
+                  unselect={() => {
+                    const newLoadout = { ...state.loadout };
+
+                    delete newLoadout[key];
+
+                    setState({
+                      loadout: newLoadout,
+                      currentItemType: "",
+                    });
+                  }}
+                  select={() => {
+                    setState({
+                      ...state,
+                      currentItemType: key,
+                    });
+                    onOpen();
+                  }}
+                />
+              </Box>
+              <NumberInput
+                value={state.loadout[`${key}Q`] || 0}
+                min={0}
+                max={500}
+                maxW="80px"
+                onChange={(value) => {
+                  const newState = { ...state };
+
+                  newState.loadout[`${key}Q`] = value;
+
+                  setState(newState);
+                  updateQueryString(router, newState.loadout);
+                }}
+              >
+                <NumberInputField />
+                <NumberInputStepper>
+                  <NumberIncrementStepper />
+                  <NumberDecrementStepper />
+                </NumberInputStepper>
+              </NumberInput>
+            </HStack>
+          </Box>
+        );
+      })}
+    </VStack>
+  );
+};
+
+const renderItem = ({ itemType, state, setState, onOpen, w, h }) => {
+  return (
+    <Box h={h} w={w}>
+      <ItemLabel itemType={itemType} />
+      <Item
+        itemType={itemType}
+        data={state.loadout[itemType]}
+        h={h}
+        w={w}
+        unselect={() => {
+          const newLoadout = { ...state.loadout };
+
+          delete newLoadout[itemType];
+
+          setState({
+            loadout: newLoadout,
+            currentItemType: "",
+          });
+        }}
+        select={() => {
+          setState({
+            ...state,
+            currentItemType: itemType,
+          });
+          onOpen();
+        }}
+      />
+    </Box>
+  );
+};
+
 const Body = ({ data, query }) => {
   const router = useRouter();
   const { isOpen, onOpen, onClose } = useDisclosure();
   const [state, setState] = useState({
-    currentItemType: undefined,
+    currentItemType: "",
     loadout: {},
   });
 
@@ -66,8 +156,6 @@ const Body = ({ data, query }) => {
 
     Object.keys(query).forEach((itemKey) => {
       const itemName = query[itemKey];
-
-      console.log(itemKey, itemName);
 
       if (itemKey === "earpiece") {
         loadout[itemKey] = data.headphones.find(
@@ -93,6 +181,11 @@ const Body = ({ data, query }) => {
         );
       } else if (itemKey === "title") {
         loadout.title = itemName;
+      } else {
+        // default case to handle all ammo types
+        const ammoType = data.ammos.find((x) => x.normalizedName === itemName);
+
+        loadout[itemKey] = ammoType || itemName;
       }
     });
 
@@ -115,7 +208,30 @@ const Body = ({ data, query }) => {
     items = data.gun;
   } else if (state.currentItemType === "eyewear") {
     items = data.glasses;
+  } else if (
+    state.currentItemType.includes("onSling") ||
+    state.currentItemType.includes("onBack")
+  ) {
+    items = data.ammos;
+  } else if (state.currentItemType.includes("holster")) {
+    items = data.ammos;
   }
+
+  let weight = 0;
+
+  Object.keys(state.loadout).map((key) => {
+    const itemWeight = state.loadout[key].weight;
+
+    if (state.loadout[key].weight) {
+      if (state.loadout[`${key}Q`]) {
+        weight = weight + itemWeight * state.loadout[`${key}Q`];
+      } else {
+        weight = weight + itemWeight;
+      }
+    }
+  });
+
+  console.log("render", state.loadout);
 
   return (
     <VStack>
@@ -136,251 +252,156 @@ const Body = ({ data, query }) => {
             const newLoadout = { ...state.loadout };
 
             newLoadout.title = e.target.value;
-            setState({ ...state, loadout: newLoadout });
 
+            setState({ ...state, loadout: newLoadout });
             updateQueryString(router, newLoadout);
           }}
         />
       </Box>
-      <Box
-        py="64px"
-        bgImage="url('/builder/scav.png')"
-        bgPosition="center"
-        bgRepeat="no-repeat"
-      >
+      <HStack spacing="36px" justify="start">
+        <Box
+          py="64px"
+          bgImage="url('/builder/scav.png')"
+          bgPosition="center"
+          bgRepeat="no-repeat"
+        >
+          <VStack spacing="36px">
+            <HStack spacing="48px">
+              {renderItem({
+                itemType: "earpiece",
+                w: "130px",
+                h: "130px",
+                state,
+                setState,
+                onOpen,
+              })}
+              {renderItem({
+                itemType: "headwear",
+                w: "130px",
+                h: "130px",
+                state,
+                setState,
+                onOpen,
+              })}
+              {renderItem({
+                itemType: "facecover",
+                w: "130px",
+                h: "130px",
+                state,
+                setState,
+                onOpen,
+              })}
+            </HStack>
+            <HStack spacing="48px" align="top">
+              {renderItem({
+                itemType: "armband",
+                w: "130px",
+                h: "60px",
+                state,
+                setState,
+                onOpen,
+              })}
+              {renderItem({
+                itemType: "bodyArmor",
+                w: "130px",
+                h: "130px",
+                state,
+                setState,
+                onOpen,
+              })}
+              {renderItem({
+                itemType: "eyewear",
+                w: "130px",
+                h: "130px",
+                state,
+                setState,
+                onOpen,
+              })}
+            </HStack>
+            <HStack spacing="48px">
+              {renderItem({
+                itemType: "onSling",
+                w: "310px",
+                h: "130px",
+                state,
+                setState,
+                onOpen,
+              })}
+              {renderItem({
+                itemType: "holster",
+                w: "130px",
+                h: "130px",
+                state,
+                setState,
+                onOpen,
+              })}
+            </HStack>
+            <HStack spacing="48px">
+              {renderItem({
+                itemType: "onBack",
+                w: "310px",
+                h: "130px",
+                state,
+                setState,
+                onOpen,
+              })}
+              {renderItem({
+                itemType: "scabbard",
+                w: "130px",
+                h: "130px",
+                state,
+                setState,
+                onOpen,
+              })}
+            </HStack>
+          </VStack>
+
+          <Modal isOpen={isOpen} onClose={onClose} size="2xl">
+            <ModalOverlay />
+            <ModalContent bg="vulcan.1000" color="tarkovYellow.100">
+              <ModalHeader>
+                Current Item Type: {state.currentItemType}
+              </ModalHeader>
+              <ModalCloseButton />
+              <ModalBody>
+                <ModalTable
+                  items={items}
+                  setItem={(item) => {
+                    const newState = { ...state };
+
+                    newState.loadout[state.currentItemType] = item;
+
+                    setState(newState);
+                    updateQueryString(router, newState.loadout);
+                    onClose();
+                  }}
+                />
+              </ModalBody>
+
+              <ModalFooter>
+                <Button colorScheme="orange" color="black" onClick={onClose}>
+                  Close
+                </Button>
+              </ModalFooter>
+            </ModalContent>
+          </Modal>
+        </Box>
         <VStack spacing="36px">
-          <HStack spacing="48px">
-            <Box
-              h="130px"
-              w="130px"
-              onClick={() => {
-                setState({
-                  ...state,
-                  currentItemType: "earpiece",
-                });
-                onOpen();
-              }}
-            >
-              <ItemLabel itemType="earpiece" />
-              <Item
-                itemType="earpiece"
-                state={state.loadout.earpiece}
-                h="130px"
-                w="130px"
-              />
-            </Box>
-            <Box
-              h="130px"
-              w="130px"
-              onClick={() => {
-                setState({
-                  ...state,
-                  currentItemType: "headwear",
-                });
-                onOpen();
-              }}
-            >
-              <ItemLabel itemType="headwear" />
-              <Item
-                itemType="headwear"
-                state={state.loadout.headwear}
-                h="130px"
-                w="130px"
-              />
-            </Box>
-            <Box
-              h="130px"
-              w="130px"
-              onClick={() => {
-                setState({
-                  ...state,
-                  currentItemType: "facecover",
-                });
-                onOpen();
-              }}
-            >
-              <ItemLabel itemType="facecover" />
-              <Item
-                itemType="facecover"
-                state={state.loadout.facecover}
-                h="130px"
-                w="130px"
-              />
-            </Box>
+          <HStack spacing="24px">
+            {renderAmmoTypes("onSling", state, setState, onOpen, router)}
+            {renderAmmoTypes("onBack", state, setState, onOpen, router)}
+            {renderAmmoTypes("holster", state, setState, onOpen, router)}
           </HStack>
-          <HStack spacing="48px" align="top">
-            <Box
-              h="60px"
-              w="130px"
-              onClick={() => {
-                setState({
-                  ...state,
-                  currentItemType: "armband",
-                });
-                onOpen();
-              }}
-            >
-              <ItemLabel itemType="armband" />
-              <Item
-                itemType="armband"
-                state={state.loadout.armband}
-                h="75px"
-                w="130px"
-              />
-            </Box>
-            <Box
-              h="130px"
-              w="130px"
-              onClick={() => {
-                setState({
-                  ...state,
-                  currentItemType: "bodyArmor",
-                });
-                onOpen();
-              }}
-            >
-              <ItemLabel itemType="bodyArmor" />
-              <Item
-                itemType="bodyArmor"
-                state={state.loadout.bodyArmor}
-                h="130px"
-                w="130px"
-              />
-            </Box>
-            <Box
-              h="130px"
-              w="130px"
-              onClick={() => {
-                setState({
-                  ...state,
-                  currentItemType: "eyewear",
-                });
-                onOpen();
-              }}
-            >
-              <ItemLabel itemType="eyewear" />
-              <Item
-                itemType="eyewear"
-                state={state.loadout.eyewear}
-                h="130px"
-                w="130px"
-              />
-            </Box>
-          </HStack>
-          <HStack spacing="48px">
-            <Box
-              h="130px"
-              w="310px"
-              onClick={() => {
-                setState({
-                  ...state,
-                  currentItemType: "onSling",
-                });
-                onOpen();
-              }}
-            >
-              <ItemLabel itemType="onSling" />
-              <Item
-                itemType="onSling"
-                state={state.loadout.onSling}
-                h="130px"
-                w="310px"
-              />
-            </Box>
-            <Box
-              h="130px"
-              w="130px"
-              onClick={() => {
-                setState({
-                  ...state,
-                  currentItemType: "holster",
-                });
-                onOpen();
-              }}
-            >
-              <ItemLabel itemType="holster" />
-              <Item
-                itemType="holster"
-                state={state.loadout.holster}
-                h="130px"
-                w="130px"
-              />
-            </Box>
-          </HStack>
-          <HStack spacing="48px">
-            <Box
-              h="130px"
-              w="310px"
-              onClick={() => {
-                setState({
-                  ...state,
-                  currentItemType: "onBack",
-                });
-                onOpen();
-              }}
-            >
-              <ItemLabel itemType="onBack" />
-              <Item
-                itemType="onBack"
-                state={state.loadout.onBack}
-                h="130px"
-                w="310px"
-              />
-            </Box>
-            <Box
-              h="130px"
-              w="130px"
-              onClick={() => {
-                setState({
-                  ...state,
-                  currentItemType: "scabbard",
-                });
-                onOpen();
-              }}
-            >
-              <ItemLabel itemType="scabbard" />
-              <Item
-                itemType="scabbard"
-                state={state.loadout.scabbard}
-                h="130px"
-                w="130px"
-              />
-            </Box>
+          <HStack color="#a3c5a9" spacing="0">
+            <Text pr="8px">Weight Estimation:</Text>
+            <GiWeight />
+            <Text pl="8px" pr="4px" fontWeight="bold" fontSize="xl">
+              {weight.toFixed(2)}
+            </Text>
+            <Text>KG</Text>
           </HStack>
         </VStack>
-
-        <Modal isOpen={isOpen} onClose={onClose} size="2xl">
-          <ModalOverlay />
-          <ModalContent bg="vulcan.1000" color="tarkovYellow.100">
-            <ModalHeader>
-              Current Item Type: {state.currentItemType}
-            </ModalHeader>
-            <ModalCloseButton />
-            <ModalBody>
-              <ModalTable
-                items={items}
-                setItem={(item) => {
-                  const newState = { ...state };
-
-                  console.log("new Item", state.currentItemType);
-
-                  newState.loadout[state.currentItemType] = item;
-
-                  setState(newState);
-                  updateQueryString(router, newState.loadout);
-                  onClose();
-                }}
-              />
-            </ModalBody>
-
-            <ModalFooter>
-              <Button colorScheme="orange" color="black" onClick={onClose}>
-                Close
-              </Button>
-            </ModalFooter>
-          </ModalContent>
-        </Modal>
-      </Box>
+      </HStack>
     </VStack>
   );
 };

@@ -1,13 +1,28 @@
-import { Box, Center, Image } from "@chakra-ui/react";
+import React, { useState } from "react";
+import { Box, Button, Center, Image } from "@chakra-ui/react";
+import { IoMdClose } from "react-icons/io";
 
-const Item = ({ itemType, state, w, h }) => {
+const Item = ({ data, w, h, select, unselect }) => {
   const square = w === h;
+  const [display, setDisplay] = useState("none");
+
+  const showButton = (e) => {
+    e.preventDefault();
+    setDisplay("flex");
+  };
+  const hideButton = (e) => {
+    e.preventDefault();
+    setDisplay("none");
+  };
 
   return (
     <Box>
       <Center w={w} h={h} bg="#131313" opacity="0.85">
-        {!state && (
+        {!data ? (
           <Box
+            onClick={() => {
+              select();
+            }}
             position="absolute"
             opacity="0.5"
             w={w}
@@ -17,15 +32,28 @@ const Item = ({ itemType, state, w, h }) => {
             }.jpg')`}
             bgRepeat="repeat"
           />
-        )}
-        {state && state.gridImageLink && (
-          <Image
-            style={{ zIndex: "1" }}
+        ) : (
+          <Box
             position="relative"
-            src={state.gridImageLink}
-            // alt="todo" todo
-            objectFit="cover"
-          />
+            onMouseEnter={(e) => showButton(e)}
+            onMouseLeave={(e) => hideButton(e)}
+          >
+            <Box>
+              <Image
+                src={data.gridImageLink}
+                alt={data.name}
+                objectFit="cover"
+              />
+            </Box>
+            <Button
+              display={display}
+              onClick={() => {
+                unselect(data);
+              }}
+            >
+              <IoMdClose />
+            </Button>
+          </Box>
         )}
       </Center>
     </Box>
