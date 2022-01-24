@@ -19,6 +19,8 @@ import {
   Text,
   useDisclosure,
   VStack,
+  Center,
+  Link,
 } from "@chakra-ui/react";
 import Item from "./Item";
 import ItemLabel from "./ItemLabel";
@@ -435,6 +437,22 @@ const Body = ({ data, query }) => {
             </Text>
             <Text>KG</Text>
           </HStack>
+          <Center>
+            <Link
+              href="https://forms.gle/stgrZXYepmCgxPoKA"
+              isExternal={true}
+              style={{ textDecoration: "none" }}
+            >
+              <Button
+                colorScheme="orange"
+                borderRadius="0"
+                color="black"
+                size="lg"
+              >
+                🛠️ Feedback or Ideas? 🛠️
+              </Button>
+            </Link>
+          </Center>
         </VStack>
       </HStack>
     </VStack>
