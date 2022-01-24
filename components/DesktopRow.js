@@ -275,7 +275,11 @@ const DesktopRow = ({
 
             return (
               <div key={`ammo-${index}`}>
-                <Flex fontSize="md" fontWeight="normal">
+                <Flex
+                  fontSize="md"
+                  fontWeight="normal"
+                  bg={index % 2 === 0 ? "vulcan.900" : "vulcan.850"}
+                >
                   <HStack minW="310px" bg="vulcan.800" py="2px" pr="8px">
                     {selectCallback && (
                       <Checkbox

@@ -14,6 +14,7 @@ const theme = extendTheme({
   colors: {
     vulcan: {
       800: "#383932",
+      850: "#2a2a29",
       900: "#1f1f1e",
       1000: "#131313",
     },
