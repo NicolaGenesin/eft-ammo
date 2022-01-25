@@ -425,7 +425,7 @@ const Body = ({ data, query }) => {
           </Modal>
         </Box>
         <VStack spacing="36px">
-          <HStack spacing="24px">
+          <HStack spacing="24px" bg="vulcan.1050" p="32px">
             {renderAmmoTypes("onSling", state, setState, onOpen, router)}
             {renderAmmoTypes("onBack", state, setState, onOpen, router)}
             {renderAmmoTypes("holster", state, setState, onOpen, router)}
