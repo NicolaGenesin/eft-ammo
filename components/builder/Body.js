@@ -456,20 +456,31 @@ const Body = ({ data, query }) => {
                 <Text>KG</Text>
               </HStack>
               <Center>
-                <Link
-                  href="https://forms.gle/stgrZXYepmCgxPoKA"
-                  isExternal={true}
-                  style={{ textDecoration: "none" }}
-                >
-                  <Button
-                    colorScheme="orange"
-                    borderRadius="0"
-                    color="black"
-                    size="lg"
+                <VStack>
+                  <Link
+                    href="https://forms.gle/stgrZXYepmCgxPoKA"
+                    isExternal={true}
+                    style={{ textDecoration: "none" }}
                   >
-                    🛠️ Feedback or Ideas? 🛠️
-                  </Button>
-                </Link>
+                    <Button
+                      colorScheme="orange"
+                      borderRadius="0"
+                      color="black"
+                      size="lg"
+                    >
+                      🛠️ Feedback or Ideas? 🛠️
+                    </Button>
+                  </Link>
+                  <Link
+                    href="https://discord.gg/H4v5sQR7We"
+                    isExternal={true}
+                    style={{ textDecoration: "none" }}
+                    color="tarkovYellow.100"
+                    fontSize="xs"
+                  >
+                    or contact me on Discord
+                  </Link>
+                </VStack>
               </Center>
             </VStack>
           </WrapItem>
