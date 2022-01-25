@@ -12,6 +12,7 @@ import { useRouter } from "next/router";
 import Body from "../components/builder/Body";
 import getBuilderData from "../utils/getBuilderData";
 import { BsClipboardPlus } from "react-icons/bs";
+import Head from "next/head";
 import { TwitchEmbed } from "react-twitch-embed";
 
 const Builder = ({ data }) => {
@@ -44,6 +45,15 @@ const Builder = ({ data }) => {
 
   return (
     <Box py="64px">
+      <Head>
+        <title>EFT | Loadout Builder</title>
+        <link rel="icon" href="/favicon.ico" />
+
+        <meta
+          name="description"
+          content="Escape from Tarkov Loadout Builder 🙌"
+        />
+      </Head>
       <Center color="tarkovYellow.100">
         <VStack>
           {!state.shortenedURL && (
