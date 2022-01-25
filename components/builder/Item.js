@@ -23,6 +23,7 @@ const Item = ({ data, w, h, select, unselect }) => {
             onClick={() => {
               select();
             }}
+            cursor="pointer"
             opacity="0.5"
             w={w}
             h={h}
