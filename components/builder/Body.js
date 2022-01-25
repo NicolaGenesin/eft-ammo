@@ -27,6 +27,7 @@ import ItemLabel from "./ItemLabel";
 import ModalTable from "./ModalTable";
 import { GiWeight } from "react-icons/gi";
 import { useRouter } from "next/router";
+import { getModalTitleLabel } from "../../utils/labels";
 
 const updateQueryString = (router, loadout) => {
   const query = {};
@@ -397,7 +398,7 @@ const Body = ({ data, query }) => {
             <ModalOverlay />
             <ModalContent bg="vulcan.1000" color="tarkovYellow.100">
               <ModalHeader>
-                Current Item Type: {state.currentItemType}
+                Please select the {getModalTitleLabel(state.currentItemType)}
               </ModalHeader>
               <ModalCloseButton />
               <ModalBody>
