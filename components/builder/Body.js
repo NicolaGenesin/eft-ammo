@@ -21,6 +21,8 @@ import {
   VStack,
   Center,
   Link,
+  WrapItem,
+  Wrap,
 } from "@chakra-ui/react";
 import Item from "./Item";
 import ItemLabel from "./ItemLabel";
@@ -273,7 +275,7 @@ const Body = ({ data, query }) => {
 
   return (
     <VStack>
-      <Box w="484px" pt="64px">
+      <Box w={["250px", "310px"]} pt="64px">
         <ItemLabel itemType="title" />
         <Input
           placeholder="[optional] title"
@@ -296,165 +298,182 @@ const Body = ({ data, query }) => {
           }}
         />
       </Box>
-      <HStack spacing="36px" justify="start">
-        <Box
-          py="64px"
-          bgImage="url('/builder/scav.png')"
-          bgPosition="center"
-          bgRepeat="no-repeat"
-        >
-          <VStack spacing="36px">
-            <HStack spacing="48px">
-              {renderItem({
-                itemType: "earpiece",
-                w: "130px",
-                h: "130px",
-                state,
-                setState,
-                onOpen,
-              })}
-              {renderItem({
-                itemType: "headwear",
-                w: "130px",
-                h: "130px",
-                state,
-                setState,
-                onOpen,
-              })}
-              {renderItem({
-                itemType: "faceCover",
-                w: "130px",
-                h: "130px",
-                state,
-                setState,
-                onOpen,
-              })}
-            </HStack>
-            <HStack spacing="48px" align="top">
-              {renderItem({
-                itemType: "armband",
-                w: "130px",
-                h: "60px",
-                state,
-                setState,
-                onOpen,
-              })}
-              {renderItem({
-                itemType: "bodyArmor",
-                w: "130px",
-                h: "130px",
-                state,
-                setState,
-                onOpen,
-              })}
-              {renderItem({
-                itemType: "eyewear",
-                w: "130px",
-                h: "130px",
-                state,
-                setState,
-                onOpen,
-              })}
-            </HStack>
-            <HStack spacing="48px">
-              {renderItem({
-                itemType: "onSling",
-                w: "310px",
-                h: "130px",
-                state,
-                setState,
-                onOpen,
-              })}
-              {renderItem({
-                itemType: "holster",
-                w: "130px",
-                h: "130px",
-                state,
-                setState,
-                onOpen,
-              })}
-            </HStack>
-            <HStack spacing="48px">
-              {renderItem({
-                itemType: "onBack",
-                w: "310px",
-                h: "130px",
-                state,
-                setState,
-                onOpen,
-              })}
-              {renderItem({
-                itemType: "scabbard",
-                w: "130px",
-                h: "130px",
-                state,
-                setState,
-                onOpen,
-              })}
-            </HStack>
-          </VStack>
-
-          <Modal isOpen={isOpen} onClose={onClose} size="2xl">
-            <ModalOverlay />
-            <ModalContent bg="vulcan.1000" color="tarkovYellow.100">
-              <ModalHeader>
-                Please select the {getModalTitleLabel(state.currentItemType)}
-              </ModalHeader>
-              <ModalCloseButton />
-              <ModalBody>
-                <ModalTable
-                  items={items}
-                  setItem={(item) => {
-                    const newState = { ...state };
-
-                    newState.loadout[state.currentItemType] = item;
-
-                    setState(newState);
-                    updateQueryString(router, newState.loadout);
-                    onClose();
-                  }}
-                />
-              </ModalBody>
-
-              <ModalFooter>
-                <Button colorScheme="orange" color="black" onClick={onClose}>
-                  Close
-                </Button>
-              </ModalFooter>
-            </ModalContent>
-          </Modal>
-        </Box>
-        <VStack spacing="36px">
-          <HStack spacing="24px" bg="vulcan.1050" p="32px">
-            {renderAmmoTypes("onSling", state, setState, onOpen, router)}
-            {renderAmmoTypes("onBack", state, setState, onOpen, router)}
-            {renderAmmoTypes("holster", state, setState, onOpen, router)}
-          </HStack>
-          <HStack color="#a3c5a9" spacing="0">
-            <Text pr="8px">Weight Estimation:</Text>
-            <GiWeight />
-            <Text pl="8px" pr="4px" fontWeight="bold" fontSize="xl">
-              {weight.toFixed(2)}
-            </Text>
-            <Text>KG</Text>
-          </HStack>
-          <Center>
-            <Link
-              href="https://forms.gle/stgrZXYepmCgxPoKA"
-              isExternal={true}
-              style={{ textDecoration: "none" }}
+      <HStack spacing="36px" justify="start" p="4px">
+        <Wrap>
+          <WrapItem>
+            <Box
+              py="64px"
+              bgImage="url('/builder/scav.png')"
+              bgPosition="center"
+              bgRepeat="no-repeat"
             >
-              <Button
-                colorScheme="orange"
-                borderRadius="0"
-                color="black"
-                size="lg"
-              >
-                🛠️ Feedback or Ideas? 🛠️
-              </Button>
-            </Link>
-          </Center>
-        </VStack>
+              <VStack spacing="36px">
+                <HStack spacing={["4px", "48px"]}>
+                  {renderItem({
+                    itemType: "earpiece",
+                    w: ["105px", "130px"],
+                    h: ["105px", "130px"],
+                    state,
+                    setState,
+                    onOpen,
+                  })}
+                  {renderItem({
+                    itemType: "headwear",
+                    w: ["105px", "130px"],
+                    h: ["105px", "130px"],
+                    state,
+                    setState,
+                    onOpen,
+                  })}
+                  {renderItem({
+                    itemType: "faceCover",
+                    w: ["105px", "130px"],
+                    h: ["105px", "130px"],
+                    state,
+                    setState,
+                    onOpen,
+                  })}
+                </HStack>
+                <HStack spacing={["4px", "48px"]} align="top">
+                  {renderItem({
+                    itemType: "armband",
+                    w: ["105px", "130px"],
+                    h: "60px",
+                    state,
+                    setState,
+                    onOpen,
+                  })}
+                  {renderItem({
+                    itemType: "bodyArmor",
+                    w: ["105px", "130px"],
+                    h: ["105px", "130px"],
+                    state,
+                    setState,
+                    onOpen,
+                  })}
+                  {renderItem({
+                    itemType: "eyewear",
+                    w: ["105px", "130px"],
+                    h: ["105px", "130px"],
+                    state,
+                    setState,
+                    onOpen,
+                  })}
+                </HStack>
+                <HStack spacing={["4px", "48px"]}>
+                  {renderItem({
+                    itemType: "onSling",
+                    w: ["250px", "310px"],
+                    h: ["105px", "130px"],
+                    state,
+                    setState,
+                    onOpen,
+                  })}
+                  {renderItem({
+                    itemType: "holster",
+                    w: ["105px", "130px"],
+                    h: ["105px", "130px"],
+                    state,
+                    setState,
+                    onOpen,
+                  })}
+                </HStack>
+                <HStack spacing={["4px", "48px"]}>
+                  {renderItem({
+                    itemType: "onBack",
+                    w: ["250px", "310px"],
+                    h: ["105px", "130px"],
+                    state,
+                    setState,
+                    onOpen,
+                  })}
+                  {renderItem({
+                    itemType: "scabbard",
+                    w: ["105px", "130px"],
+                    h: ["105px", "130px"],
+                    state,
+                    setState,
+                    onOpen,
+                  })}
+                </HStack>
+              </VStack>
+
+              <Modal isOpen={isOpen} onClose={onClose} size="2xl">
+                <ModalOverlay />
+                <ModalContent bg="vulcan.1000" color="tarkovYellow.100">
+                  <ModalHeader>
+                    Please select the{" "}
+                    {getModalTitleLabel(state.currentItemType)}
+                  </ModalHeader>
+                  <ModalCloseButton />
+                  <ModalBody>
+                    <ModalTable
+                      items={items}
+                      setItem={(item) => {
+                        const newState = { ...state };
+
+                        newState.loadout[state.currentItemType] = item;
+
+                        setState(newState);
+                        updateQueryString(router, newState.loadout);
+                        onClose();
+                      }}
+                    />
+                  </ModalBody>
+
+                  <ModalFooter>
+                    <Button
+                      colorScheme="orange"
+                      color="black"
+                      onClick={onClose}
+                    >
+                      Close
+                    </Button>
+                  </ModalFooter>
+                </ModalContent>
+              </Modal>
+            </Box>
+          </WrapItem>
+          <WrapItem>
+            <VStack spacing="36px" pt="32px" ml={["0px", "32px"]}>
+              <Wrap spacing="24px" p={["0px", "32px"]} justify="center">
+                <WrapItem>
+                  {renderAmmoTypes("onSling", state, setState, onOpen, router)}
+                </WrapItem>
+                <WrapItem>
+                  {renderAmmoTypes("onBack", state, setState, onOpen, router)}
+                </WrapItem>
+                <WrapItem>
+                  {renderAmmoTypes("holster", state, setState, onOpen, router)}
+                </WrapItem>
+              </Wrap>
+              <HStack color="#a3c5a9" spacing="0">
+                <Text pr="8px">Weight Estimation:</Text>
+                <GiWeight />
+                <Text pl="8px" pr="4px" fontWeight="bold" fontSize="xl">
+                  {weight.toFixed(2)}
+                </Text>
+                <Text>KG</Text>
+              </HStack>
+              <Center>
+                <Link
+                  href="https://forms.gle/stgrZXYepmCgxPoKA"
+                  isExternal={true}
+                  style={{ textDecoration: "none" }}
+                >
+                  <Button
+                    colorScheme="orange"
+                    borderRadius="0"
+                    color="black"
+                    size="lg"
+                  >
+                    🛠️ Feedback or Ideas? 🛠️
+                  </Button>
+                </Link>
+              </Center>
+            </VStack>
+          </WrapItem>
+        </Wrap>
       </HStack>
     </VStack>
   );
