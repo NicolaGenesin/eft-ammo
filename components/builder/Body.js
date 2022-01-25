@@ -275,7 +275,7 @@ const Body = ({ data, query }) => {
 
   return (
     <VStack>
-      <Box w={["250px", "310px"]} pt="64px">
+      <Box w={["96%", "500px"]} pt="64px">
         <ItemLabel itemType="title" />
         <Input
           placeholder="[optional] title"
