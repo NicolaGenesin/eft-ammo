@@ -20,6 +20,7 @@ const Builder = ({ data }) => {
   const link = `https://eft-ammo.com${asPath}`;
 
   const [state, setState] = useState({
+    loading: false,
     shortenedURL: undefined,
     embed: undefined,
   });
@@ -65,7 +66,13 @@ const Builder = ({ data }) => {
               fontSize="lg"
               fontWeight="bold"
               textTransform="uppercase"
+              disabled={state.loading}
               onClick={async () => {
+                setState({
+                  ...state,
+                  loading: true,
+                });
+
                 const { result } = await (
                   await fetch("https://eft-ammo.com/api/urlShortener/", {
                     method: "POST",
@@ -79,10 +86,11 @@ const Builder = ({ data }) => {
                 setState({
                   ...state,
                   shortenedURL: result,
+                  loading: false,
                 });
               }}
             >
-              Share this Loadout
+              {state.loading ? "Please Wait..." : "Share this Loadout"}
             </Button>
           )}
           {state.shortenedURL && (
