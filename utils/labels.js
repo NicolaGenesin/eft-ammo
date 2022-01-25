@@ -14,11 +14,11 @@ export const getItemLabel = (itemType, position) => {
   } else if (itemType === "holster") {
     label = "holster";
   } else if (itemType.includes("onSling")) {
-    label = `on sling (${position})`;
+    label = `on sling ammo (${position})`;
   } else if (itemType.includes("holster")) {
-    label = `holster (${position})`;
+    label = `holster ammo (${position})`;
   } else if (itemType.includes("onBack")) {
-    label = `on back (${position})`;
+    label = `on back ammo (${position})`;
   }
 
   return label;
