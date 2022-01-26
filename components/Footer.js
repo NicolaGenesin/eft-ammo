@@ -66,7 +66,7 @@ const Footer = () => {
           <VStack px="12px" pb={["24px", "0"]}>
             <ListHeader>Special Thanks To</ListHeader>
             <Link isExternal href={"https://tarkov-tools.com"}>
-              Kokarn from Tarkov-Tools
+              Kokarn from tarkov-tools
             </Link>
           </VStack>
         </Wrap>
