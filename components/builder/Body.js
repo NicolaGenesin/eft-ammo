@@ -521,7 +521,7 @@ const Body = ({ data, query }) => {
               <Center>
                 <VStack color="#a3c5a9">
                   <Text fontWeight="bold" fontSize="2xl">
-                    Loadout Summary and Prices
+                    Summary and Flea Prices
                   </Text>
                   <Box pb="24px" px="8px">
                     <UnorderedList>
