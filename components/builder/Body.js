@@ -255,7 +255,11 @@ const Body = ({ data, query }) => {
   } else if (state.currentItemType === "bodyArmor") {
     items = data.bodyArmor;
   } else if (state.currentItemType === "eyewear") {
-    items = data.eyewear.filter((item) => !item.name.includes("face shield"));
+    items = data.eyewear.filter(
+      (item) =>
+        !item.name.includes("face shield") &&
+        !item.name.toLowerCase().includes("visor")
+    );
   } else if (state.currentItemType === "holster") {
     items = data.guns.filter((gun) => gun.name.includes("pistol"));
   } else if (state.currentItemType === "onSling") {
