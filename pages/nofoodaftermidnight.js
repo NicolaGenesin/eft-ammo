@@ -211,7 +211,7 @@ const App = ({ results, isFallback }) => {
         </Center>
 
         <Center>
-          <Wrap justify="center">
+          <Wrap justify="center" spacing="0">
             <WrapItem>
               <Link
                 href="https://forms.gle/ToTmLYiWoxuGsM2R6"
