@@ -235,6 +235,8 @@ const App = ({ results, isFallback }) => {
                 style={{ textDecoration: "none" }}
               >
                 <Button
+                  mt={["8px", "0"]}
+                  ml={["0", "8px"]}
                   style={customTransform}
                   colorScheme="orange"
                   borderRadius="0"
