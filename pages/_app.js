@@ -29,7 +29,7 @@ const theme = extendTheme({
 const App = ({ Component, pageProps }) => (
   <ChakraProvider theme={theme}>
     <QueryClientProvider client={queryClient}>
-      <Box bg="vulcan.1000">
+      <Box>
         <Component {...pageProps} />
         <Footer />
         {/* <Feedback /> */}
