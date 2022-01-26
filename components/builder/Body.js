@@ -521,7 +521,10 @@ const Body = ({ data, query }) => {
               <Center>
                 <VStack color="#a3c5a9">
                   <Text fontWeight="bold" fontSize="2xl">
-                    Summary and Flea Prices
+                    Summary and Flea M. Prices *
+                  </Text>
+                  <Text fontWeight="bold" fontSize="xs">
+                    * Prices based on last low price
                   </Text>
                   <Box pb="24px" px="8px">
                     <UnorderedList>
