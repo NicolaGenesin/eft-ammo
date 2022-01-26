@@ -6,6 +6,8 @@ import {
   Spacer,
   useBreakpointValue,
   VStack,
+  Wrap,
+  WrapItem,
 } from "@chakra-ui/react";
 import {
   Flex,
@@ -54,7 +56,6 @@ const App = ({ results, isFallback }) => {
   console.log("isFallback", isFallback);
 
   const isMobile = useBreakpointValue({ base: true, md: false });
-  const isLargeScreen = useBreakpointValue({ base: false, xl: true });
 
   useEffect(async () => {
     let twitchId = "nofoodaftermidnight";
@@ -85,6 +86,9 @@ const App = ({ results, isFallback }) => {
       });
     }, 1000);
   }, []);
+
+  const rotation = useBreakpointValue({ base: "0", md: "10", lg: "15" });
+  const customTransform = { transform: `rotate(${rotation}deg)` };
 
   return (
     <Box>
@@ -206,44 +210,44 @@ const App = ({ results, isFallback }) => {
           </VStack>
         </Center>
 
-        {isLargeScreen && (
-          <HStack>
-            <Spacer />
-            <Link
-              href="/builder"
-              isExternal={true}
-              style={{ textDecoration: "none" }}
-            >
-              <Button
-                style={{ transform: "rotate(45deg)" }}
-                colorScheme="orange"
-                borderRadius="0"
-                color="black"
-                size="lg"
-              >
-                ⚙️ Want to try our simple
-                <br />
-                [beta] loadout builder? 👷
-              </Button>
-            </Link>
-          </HStack>
-        )}
-
         <Center>
-          <Link
-            href="https://forms.gle/ToTmLYiWoxuGsM2R6"
-            isExternal={true}
-            style={{ textDecoration: "none" }}
-          >
-            <Button
-              colorScheme="orange"
-              borderRadius="0"
-              color="black"
-              size="lg"
-            >
-              🛠️ Feedback or Ideas? 🛠️
-            </Button>
-          </Link>
+          <Wrap justify="center">
+            <WrapItem>
+              <Link
+                href="https://forms.gle/ToTmLYiWoxuGsM2R6"
+                isExternal={true}
+                style={{ textDecoration: "none" }}
+              >
+                <Button
+                  colorScheme="orange"
+                  borderRadius="0"
+                  color="black"
+                  size="lg"
+                >
+                  🛠️ Feedback or Ideas? 🛠️
+                </Button>
+              </Link>
+            </WrapItem>
+            <WrapItem>
+              <Link
+                href="/builder"
+                isExternal={true}
+                style={{ textDecoration: "none" }}
+              >
+                <Button
+                  style={customTransform}
+                  colorScheme="orange"
+                  borderRadius="0"
+                  color="black"
+                  size="lg"
+                >
+                  ⚙️ Want to try our easy
+                  <br />
+                  [beta] loadout builder? 👷
+                </Button>
+              </Link>
+            </WrapItem>
+          </Wrap>
         </Center>
 
         <Center>
