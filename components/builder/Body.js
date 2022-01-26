@@ -274,35 +274,78 @@ const Body = ({ data, query }) => {
   });
 
   return (
-    <VStack>
-      <Box w={["96%", "500px"]} pt="64px">
-        <ItemLabel itemType="title" />
-        <Input
-          placeholder="[optional] title"
-          color="tarkovYellow.100"
-          textAlign="center"
-          borderColor="white"
-          _placeholder={{ color: "tarkovYellow.100" }}
-          borderWidth="1px"
-          borderRadius="0"
-          size="md"
-          textTransform="capitalize"
-          defaultValue={state.loadout.title}
-          onChange={(e) => {
-            const newLoadout = { ...state.loadout };
+    <VStack spacing="0">
+      <Wrap shouldWrapChildren justify="center" pt="64px" spacing="0">
+        <Box w={["100%", "500px"]}>
+          <ItemLabel itemType="title" />
+          <Input
+            minW="300px"
+            placeholder="[optional] title"
+            color="tarkovYellow.100"
+            textAlign="center"
+            borderColor="white"
+            _placeholder={{ color: "tarkovYellow.100" }}
+            borderWidth="1px"
+            borderRadius="0"
+            size="md"
+            textTransform="capitalize"
+            defaultValue={state.loadout.title}
+            onChange={(e) => {
+              const newLoadout = { ...state.loadout };
 
-            newLoadout.title = e.target.value;
+              newLoadout.title = e.target.value;
 
-            setState({ ...state, loadout: newLoadout });
-            updateQueryString(router, newLoadout);
-          }}
-        />
-      </Box>
+              setState({ ...state, loadout: newLoadout });
+              updateQueryString(router, newLoadout);
+            }}
+          />
+        </Box>
+        <Box
+          w={["100%", "500px"]}
+          mt={["24px", "24px", "24px", 0]}
+          ml={[0, 0, 0, "24px"]}
+        >
+          <ItemLabel itemType="embedTitle" />
+          <Input
+            minW="300px"
+            placeholder="[optional] twitch ID"
+            color="tarkovYellow.100"
+            textAlign="center"
+            borderColor="white"
+            _placeholder={{ color: "tarkovYellow.100" }}
+            borderWidth="1px"
+            borderRadius="0"
+            size="md"
+            textTransform="capitalize"
+            defaultValue={state.loadout.embedUser}
+            onChange={(e) => {
+              const newLoadout = { ...state.loadout };
+
+              newLoadout.embedUser = e.target.value;
+
+              setState({ ...state, loadout: newLoadout });
+              updateQueryString(router, newLoadout);
+            }}
+          />
+          {!state.loadout.embedUser && (
+            <Text
+              color="tarkovYellow.100"
+              fontSize="xs"
+              mt="8px"
+              textAlign="center"
+            >
+              If set, a Twitch embed will be displayed at the bottom
+              <br />
+              of this page. Visitors will count as viewers on Twitch.
+            </Text>
+          )}
+        </Box>
+      </Wrap>
       <HStack spacing="36px" justify="start" p="4px">
         <Wrap justify="center" spacing="0">
           <WrapItem>
             <Box
-              py="64px"
+              py="40px"
               bgImage="url('/builder/scav.png')"
               bgPosition="center"
               bgRepeat="no-repeat"
@@ -435,7 +478,7 @@ const Body = ({ data, query }) => {
             </Box>
           </WrapItem>
           <WrapItem>
-            <VStack spacing="36px" pt="32px" ml={["0px", "32px"]}>
+            <VStack spacing="36px" pt="8px" ml={["0px", "32px"]}>
               <Wrap
                 spacing={["12px", "32px"]}
                 p={["0px", "32px"]}

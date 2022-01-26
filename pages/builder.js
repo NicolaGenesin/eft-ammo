@@ -22,26 +22,46 @@ const Builder = ({ data }) => {
   const [state, setState] = useState({
     loading: false,
     shortenedURL: undefined,
-    embed: undefined,
+    embed: (
+      <TwitchEmbed
+        style={{ width: "100%", height: "100%" }}
+        channel={"nofoodaftermidnight"}
+        id={"nofoodaftermidnight"}
+        key={"nofoodaftermidnight"}
+        theme="dark"
+        autoplay
+        withChat={false}
+        muted={true}
+      />
+    ),
+    embedUser: "nofoodaftermidnight",
   });
 
   useEffect(() => {
-    setState({
+    const newState = {
       ...state,
       shortenedURL: undefined,
-      // embed: (
-      //   <TwitchEmbed
-      //     style={{ width: "100%", height: "100%" }}
-      //     channel={"nofoodaftermidnight"}
-      //     id={"nofoodaftermidnight"}
-      //     key={"nofoodaftermidnight"}
-      //     theme="dark"
-      //     autoplay
-      //     withChat={false}
-      //     muted={true}
-      //   />
-      // ),
-    });
+    };
+
+    if (query.embedUser) {
+      const embedUser = query.embedUser;
+
+      newState.embedUser = embedUser;
+      newState.embed = (
+        <TwitchEmbed
+          style={{ width: "100%", height: "100%" }}
+          channel={embedUser}
+          id={embedUser}
+          key={embedUser}
+          theme="dark"
+          autoplay
+          withChat={false}
+          muted={true}
+        />
+      );
+    }
+
+    setState(newState);
   }, [asPath]);
 
   return (
@@ -126,28 +146,30 @@ const Builder = ({ data }) => {
         </VStack>
       </Center>
       <Body data={data} query={query} />
-      <Center>
-        {/* <Box
-          w={["375px", "450px", "600px"]}
-          h={["300px", "400px", "400px"]}
-          pt="48px"
-          pb="64px"
-        >
-          <Text
-            textAlign="center"
-            color="tarkovYellow.100"
-            fontWeight="bold"
-            fontSize={["lg", "2xl"]}
-            as="h2"
-            mb="8px"
+      {state.embedUser && (
+        <Center>
+          <Box
+            w={["375px", "450px", "600px"]}
+            h={["300px", "400px", "400px"]}
+            pt="48px"
+            pb="64px"
           >
-            <a href="https://www.twitch.tv/nofoodaftermidnight/">
-              Watch NoFoodAfterMidnight's stream here:
-            </a>
-          </Text>
-          {state.embed}
-        </Box> */}
-      </Center>{" "}
+            <Text
+              textAlign="center"
+              color="tarkovYellow.100"
+              fontWeight="bold"
+              fontSize={["lg", "2xl"]}
+              as="h2"
+              mb="8px"
+            >
+              <a href={`https://www.twitch.tv/${state.embedUser}/`}>
+                Watch {state.embedUser}'s stream here:
+              </a>
+            </Text>
+            {state.embed}
+          </Box>
+        </Center>
+      )}
     </Box>
   );
 };

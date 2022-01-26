@@ -11,6 +11,8 @@ export const getItemLabel = (itemType, position) => {
     label = "on back";
   } else if (itemType === "title") {
     label = "title";
+  } else if (itemType === "embedTitle") {
+    label = "twitch id";
   } else if (itemType === "holster") {
     label = "holster";
   } else if (itemType.includes("onSling")) {
