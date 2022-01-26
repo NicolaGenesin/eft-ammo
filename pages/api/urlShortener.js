@@ -15,7 +15,7 @@ const writeToGoogleSheet = async (link) => {
   const sheet = doc.sheetsByIndex[0];
 
   await sheet.loadHeaderRow(1);
-  await sheet.addRow([link]);
+  await sheet.addRow([link, new Date().toString()]);
 };
 
 const handler = async (req, res) => {
