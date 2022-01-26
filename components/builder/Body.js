@@ -219,16 +219,27 @@ const Body = ({ data, query }) => {
   if (state.currentItemType === "earpiece") {
     items = data.earpiece;
   } else if (state.currentItemType === "headwear") {
-    items = data.headwear;
+    items = data.headwear.filter((item) => {
+      return (
+        (item.name.includes(" cap") ||
+          item.name.includes(" hat") ||
+          item.name.includes("bandana") ||
+          item.name.includes("beanie") ||
+          item.name.includes("helmet") ||
+          item.name.includes("mask") ||
+          item.name.includes("Beret")) &&
+        !item.name.includes(" hat ") &&
+        !item.name.includes("Shattered")
+      );
+    });
   } else if (state.currentItemType === "faceCover") {
     items = data.faceCover.filter((item) => {
       return (
         item.name.includes("balaclava") ||
         item.name.includes("mask") ||
-        item.name.includes("hat") ||
         item.name.includes("beard") ||
+        item.name.includes(" hat ") ||
         item.name.includes("respirator") ||
-        item.name.includes("mask") ||
         item.name.includes("magh")
       );
     });

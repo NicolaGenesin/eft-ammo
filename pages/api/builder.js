@@ -30,6 +30,8 @@ const getItems = async () => {
 
   const json = await response.json();
 
+  json.data.headwear = [...json.data.faceCover, ...json.data.headwear];
+
   return json.data;
 };
 
