@@ -14,6 +14,7 @@ import getBuilderData from "../utils/getBuilderData";
 import { BsClipboardPlus } from "react-icons/bs";
 import Head from "next/head";
 import { TwitchEmbed } from "react-twitch-embed";
+import TradersResetTimers from "../components/TradersResetTimers";
 
 const Builder = ({ data }) => {
   const { asPath, query } = useRouter();
@@ -170,6 +171,16 @@ const Builder = ({ data }) => {
           </Box>
         </Center>
       )}
+      <Center py="32px">
+        <TradersResetTimers />
+      </Center>
+      <Center>
+        <Link href="/nofoodaftermidnight" style={{ textDecoration: "none" }}>
+          <Button colorScheme="orange" borderRadius="0" color="black" size="lg">
+            Back to Ammo Chart
+          </Button>
+        </Link>
+      </Center>
     </Box>
   );
 };
