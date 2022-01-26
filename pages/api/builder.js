@@ -32,6 +32,12 @@ const getItems = async () => {
 
   json.data.headwear = [...json.data.faceCover, ...json.data.headwear];
 
+  // dedupe (there are some)
+  json.data.headwear = json.data.headwear.filter(
+    (value, index, self) =>
+      index === self.findIndex((t) => t.name === value.name)
+  );
+
   return json.data;
 };
 
