@@ -2,7 +2,7 @@ import { withSentry } from "@sentry/nextjs";
 const tinyURL = require("tinyurl");
 const { GoogleSpreadsheet } = require("google-spreadsheet");
 
-const writeToGoogleSheet = async (link) => {
+const writeToGoogleSheet = async (link, originalLink) => {
   const doc = new GoogleSpreadsheet(
     "18QS7LFyM-Hy5xgFqVAPHeJKhAdUUiL6ZFU1eXGn5WHQ"
   );
@@ -15,15 +15,16 @@ const writeToGoogleSheet = async (link) => {
   const sheet = doc.sheetsByIndex[0];
 
   await sheet.loadHeaderRow(1);
-  await sheet.addRow([link, new Date().toString()]);
+  await sheet.addRow([link, new Date().toString(), originalLink]);
 };
 
 const handler = async (req, res) => {
   const body = req.body;
-  const result = await tinyURL.shorten(body.link);
+  const originalLink = body.link;
+  const result = await tinyURL.shorten(originalLink);
 
   try {
-    await writeToGoogleSheet(result);
+    await writeToGoogleSheet(result, originalLink);
   } catch (error) {
     console.log("Error while saving to spreadsheet");
   }
