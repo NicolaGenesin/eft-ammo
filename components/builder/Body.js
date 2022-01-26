@@ -354,9 +354,9 @@ const Body = ({ data, query }) => {
               mt="8px"
               textAlign="center"
             >
-              If set, a Twitch embed will be displayed at the bottom
+              If set, a Twitch embed will be displayed
               <br />
-              of this page. Visitors will count as viewers on Twitch.
+              at the bottom of this page.
             </Text>
           )}
         </Box>
