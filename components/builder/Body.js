@@ -23,6 +23,11 @@ import {
   Link,
   WrapItem,
   Wrap,
+  List,
+  ListItem,
+  ListIcon,
+  OrderedList,
+  UnorderedList,
 } from "@chakra-ui/react";
 import Item from "./Item";
 import ItemLabel from "./ItemLabel";
@@ -514,7 +519,30 @@ const Body = ({ data, query }) => {
                 <Text>KG</Text>
               </HStack>
               <Center>
-                <VStack>
+                <VStack color="#a3c5a9">
+                  <Text fontWeight="bold" fontSize="2xl">
+                    Loadout Summary and Prices
+                  </Text>
+                  <Box pb="24px" px="8px">
+                    <UnorderedList>
+                      {Object.keys(state.loadout)
+                        .filter((key) => !key.includes("Q"))
+                        .map((key) => {
+                          const item = state.loadout[key];
+                          let price = item.lastLowPrice || 0;
+
+                          if (state.loadout[`${key}Q`]) {
+                            price = price * state.loadout[`${key}Q`];
+                          }
+
+                          return (
+                            <ListItem>
+                              {item.name} <b>( {price || "-"} ₽ )</b>
+                            </ListItem>
+                          );
+                        })}
+                    </UnorderedList>
+                  </Box>
                   <Link
                     href="https://forms.gle/stgrZXYepmCgxPoKA"
                     isExternal={true}
