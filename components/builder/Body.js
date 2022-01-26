@@ -228,10 +228,11 @@ const Body = ({ data, query }) => {
       return (
         (item.name.includes(" cap") ||
           item.name.includes(" hat") ||
-          item.name.includes("bandana") ||
-          item.name.includes("beanie") ||
+          item.name.toLowerCase().includes("bandana") ||
+          item.name.toLowerCase().includes("beanie") ||
           item.name.includes("helmet") ||
           item.name.includes("mask") ||
+          item.name.toLowerCase().includes("wendy") ||
           item.name.includes("Beret")) &&
         !item.name.includes(" hat ") &&
         !item.name.includes("Shattered")
@@ -240,12 +241,13 @@ const Body = ({ data, query }) => {
   } else if (state.currentItemType === "faceCover") {
     items = data.faceCover.filter((item) => {
       return (
-        item.name.includes("balaclava") ||
-        item.name.includes("mask") ||
-        item.name.includes("beard") ||
-        item.name.includes(" hat ") ||
-        item.name.includes("respirator") ||
-        item.name.includes("magh")
+        item.name.toLowerCase().includes("balaclava") ||
+        item.name.toLowerCase().includes("mask") ||
+        item.name.toLowerCase().includes("beard") ||
+        item.name.toLowerCase().includes(" hat ") ||
+        item.name.toLowerCase().includes("respirator") ||
+        item.name.toLowerCase().includes("magh") ||
+        item.name.toLowerCase().includes("fake mustache")
       );
     });
   } else if (state.currentItemType === "armband") {
