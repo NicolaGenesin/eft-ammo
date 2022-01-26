@@ -1,7 +1,7 @@
 import * as React from "react";
 import { Box, ChakraProvider, extendTheme } from "@chakra-ui/react";
 import { QueryClient, QueryClientProvider, useQuery } from "react-query";
-import { SmallFooterWithSocial } from "../components/SmallFooterWithSocial";
+import { Footer } from "../components/Footer";
 import Feedback from "../components/Feedback";
 
 const queryClient = new QueryClient();
@@ -31,7 +31,7 @@ const App = ({ Component, pageProps }) => (
     <QueryClientProvider client={queryClient}>
       <Box bg="vulcan.1000">
         <Component {...pageProps} />
-        <SmallFooterWithSocial />
+        <Footer />
         {/* <Feedback /> */}
       </Box>
       <style jsx global>{`
