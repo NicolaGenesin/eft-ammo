@@ -123,7 +123,9 @@ const Builder = ({ data }) => {
                   });
                 }}
               >
-                {state.loading ? "Please Wait..." : "Share this Loadout"}
+                {state.loading
+                  ? "Please Wait..."
+                  : "Click here to share this Loadout"}
               </Button>
             )}
             {state.shortenedURL && (
