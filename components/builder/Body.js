@@ -299,7 +299,7 @@ const Body = ({ data, query }) => {
         />
       </Box>
       <HStack spacing="36px" justify="start" p="4px">
-        <Wrap>
+        <Wrap justify="center" spacing="0">
           <WrapItem>
             <Box
               py="64px"
@@ -436,14 +436,18 @@ const Body = ({ data, query }) => {
           </WrapItem>
           <WrapItem>
             <VStack spacing="36px" pt="32px" ml={["0px", "32px"]}>
-              <Wrap spacing="24px" p={["0px", "32px"]} justify="center">
+              <Wrap
+                spacing={["12px", "32px"]}
+                p={["0px", "32px"]}
+                justify="center"
+              >
                 <WrapItem>
                   {renderAmmoTypes("onSling", state, setState, onOpen, router)}
                 </WrapItem>
                 <WrapItem>
                   {renderAmmoTypes("onBack", state, setState, onOpen, router)}
                 </WrapItem>
-                <WrapItem>
+                <WrapItem pt={["24px", "0px"]}>
                   {renderAmmoTypes("holster", state, setState, onOpen, router)}
                 </WrapItem>
               </Wrap>
