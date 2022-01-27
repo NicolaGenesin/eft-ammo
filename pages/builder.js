@@ -63,7 +63,7 @@ const Builder = ({ data }) => {
     }
 
     setState(newState);
-  }, [asPath]);
+  }, [asPath, query]);
 
   return (
     <Box>
