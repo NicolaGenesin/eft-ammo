@@ -7,8 +7,8 @@ const getItems = async () => {
     query: `
         { 
             earpiece: itemsByType(type: headphones)  { lastLowPrice, gridImageLink, name, normalizedName, weight },
-            headwear: itemsByType(type: helmet)  { lastLowPrice, gridImageLink, name, normalizedName, weight },
-            faceCover: itemsByBsgCategoryId(bsgCategoryId: "57bef4c42459772e8d35a53b")  { lastLowPrice, gridImageLink, name, normalizedName, weight },
+            headwear: itemsByBsgCategoryId(bsgCategoryId: "5a341c4086f77401f2541505")  { lastLowPrice, gridImageLink, name, normalizedName, weight },
+            faceCover: itemsByBsgCategoryId(bsgCategoryId: "5a341c4686f77469e155819e")  { lastLowPrice, gridImageLink, name, normalizedName, weight },
             armband: itemsByBsgCategoryId(bsgCategoryId: "5b3f15d486f77432d0509248")  { lastLowPrice, gridImageLink, name, normalizedName, weight },
             scabbard: itemsByBsgCategoryId(bsgCategoryId: "5447e1d04bdc2dff2f8b4567")  { lastLowPrice, gridImageLink, name, normalizedName, weight },
             guns: itemsByType(type: gun)  { lastLowPrice, gridImageLink, name, normalizedName, weight },
@@ -29,14 +29,6 @@ const getItems = async () => {
   });
 
   const json = await response.json();
-
-  json.data.headwear = [...json.data.faceCover, ...json.data.headwear];
-
-  // dedupe (there are some)
-  json.data.headwear = json.data.headwear.filter(
-    (value, index, self) =>
-      index === self.findIndex((t) => t.name === value.name)
-  );
 
   return json.data;
 };
