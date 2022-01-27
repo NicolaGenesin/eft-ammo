@@ -28,6 +28,7 @@ import {
   ListIcon,
   OrderedList,
   UnorderedList,
+  Divider,
 } from "@chakra-ui/react";
 import Item from "./Item";
 import ItemLabel from "./ItemLabel";
@@ -282,18 +283,30 @@ const Body = ({ data, query }) => {
   }
 
   let weight = 0;
+  let prices = [];
 
-  Object.keys(state.loadout).map((key) => {
-    const itemWeight = state.loadout[key].weight;
+  Object.keys(state.loadout)
+    .filter(
+      (key) =>
+        !key.includes("Q") &&
+        !key.includes("embedUser") &&
+        !key.includes("title")
+    )
+    .map((key) => {
+      const item = state.loadout[key];
+      let price = item.lastLowPrice || 0;
 
-    if (state.loadout[key].weight) {
-      if (state.loadout[`${key}Q`]) {
-        weight = weight + itemWeight * state.loadout[`${key}Q`];
-      } else {
-        weight = weight + itemWeight;
+      if (state.loadout[key].weight) {
+        if (state.loadout[`${key}Q`]) {
+          weight = weight + item.weight * state.loadout[`${key}Q`];
+          price = price * state.loadout[`${key}Q`];
+        } else {
+          weight = weight + item.weight;
+        }
       }
-    }
-  });
+
+      prices.push({ name: item.name, price });
+    });
 
   return (
     <VStack spacing="0">
@@ -516,48 +529,50 @@ const Body = ({ data, query }) => {
                   {renderAmmoTypes("holster", state, setState, onOpen, router)}
                 </WrapItem>
               </Wrap>
-              <HStack color="#a3c5a9" spacing="0">
+              <HStack color="#a3c5a9" spacing="0" fontSize="xl">
                 <Text pr="8px">Weight Estimation:</Text>
                 <GiWeight />
-                <Text pl="8px" pr="4px" fontWeight="bold" fontSize="xl">
+                <Text pl="8px" pr="4px" fontWeight="bold">
                   {weight.toFixed(2)}
                 </Text>
                 <Text>KG</Text>
               </HStack>
               <Center>
                 <VStack color="#a3c5a9">
-                  <Text fontWeight="bold" fontSize="2xl">
-                    Summary and Flea M. Prices *
-                  </Text>
-                  <Text fontWeight="bold" fontSize="xs">
-                    * Prices based on last low price
-                  </Text>
-                  <Box pb="24px" px="8px">
-                    <UnorderedList>
-                      {Object.keys(state.loadout)
-                        .filter((key) => !key.includes("Q"))
-                        .map((key) => {
-                          const item = state.loadout[key];
-                          let price = item.lastLowPrice || 0;
-
-                          if (state.loadout[`${key}Q`]) {
-                            price = price * state.loadout[`${key}Q`];
-                          }
-
+                  <VStack bg="vulcan.900" p="16px" opacity="0.9">
+                    <Text fontWeight="bold" fontSize="2xl">
+                      Summary and Flea M. Prices *
+                    </Text>
+                    <Text fontWeight="bold" fontSize="xs">
+                      * Prices based on last low price
+                    </Text>
+                    <Box px="8px">
+                      <UnorderedList>
+                        {prices.map((item) => {
                           return (
                             <ListItem>
-                              {item.name} <b>( {price || "-"} ₽ )</b>
+                              {item.name} <b>( {item.price || "-"} ₽ )</b>
                             </ListItem>
                           );
                         })}
-                    </UnorderedList>
-                  </Box>
+                      </UnorderedList>
+                      <Divider my="4px" />
+                      <Text ml="16px" fontWeight="bold" fontSize="lg">
+                        Total:{" "}
+                        {prices
+                          .map((item) => item.price)
+                          .reduce((prev, next) => prev + next, 0)}{" "}
+                        ₽
+                      </Text>
+                    </Box>
+                  </VStack>
                   <Link
                     href="https://forms.gle/stgrZXYepmCgxPoKA"
                     isExternal={true}
                     style={{ textDecoration: "none" }}
                   >
                     <Button
+                      mt="24px"
                       colorScheme="orange"
                       borderRadius="0"
                       color="black"
