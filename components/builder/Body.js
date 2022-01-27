@@ -384,6 +384,7 @@ const Body = ({ data, query }) => {
               bgImage="url('/builder/scav.png')"
               bgPosition="center"
               bgRepeat="no-repeat"
+              backgroundSize="cover"
             >
               <VStack spacing="36px">
                 <HStack spacing={["4px", "48px"]}>
