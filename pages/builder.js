@@ -23,19 +23,7 @@ const Builder = ({ data }) => {
   const [state, setState] = useState({
     loading: false,
     shortenedURL: undefined,
-    embed: (
-      <TwitchEmbed
-        style={{ width: "100%", height: "100%" }}
-        channel={"nofoodaftermidnight"}
-        id={"nofoodaftermidnight"}
-        key={"nofoodaftermidnight"}
-        theme="dark"
-        autoplay
-        withChat={false}
-        muted={true}
-      />
-    ),
-    embedUser: "nofoodaftermidnight",
+    embed: undefined,
   });
 
   useEffect(() => {
@@ -44,10 +32,11 @@ const Builder = ({ data }) => {
       shortenedURL: undefined,
     };
 
-    if (query.embedUser) {
-      const embedUser = query.embedUser;
+    const embedUser = query.embedUser;
 
-      newState.embedUser = embedUser;
+    newState.embedUser = embedUser;
+
+    if (embedUser) {
       newState.embed = (
         <TwitchEmbed
           style={{ width: "100%", height: "100%" }}
@@ -62,7 +51,23 @@ const Builder = ({ data }) => {
       );
     }
 
-    setState(newState);
+    const interval = setInterval(() => {
+      console.log(
+        state.embedUser,
+        newState.embedUser,
+        state.embedUser !== newState.embedUser
+      );
+
+      if (state.embedUser !== newState.embedUser) {
+        setState(newState);
+
+        newState.embedUser = state.embedUser;
+      }
+    }, 1500);
+
+    return () => {
+      clearInterval(interval);
+    };
   }, [asPath, query]);
 
   return (
