@@ -243,9 +243,9 @@ const App = ({ results, isFallback }) => {
                   color="black"
                   size="lg"
                 >
-                  ⚙️ Want to try our easy
+                  ⚙️ New to the game? Try our
                   <br />
-                  [beta] loadout builder? 👷
+                  simple loadout builder 👷🚧
                 </Button>
               </Link>
             </WrapItem>
