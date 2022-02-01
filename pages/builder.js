@@ -221,7 +221,7 @@ export async function getStaticProps() {
     console.log(error);
   }
 
-  console.log(data);
+  // console.log(data);
 
   return {
     props: {

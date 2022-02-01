@@ -95,9 +95,9 @@ const handler = async (req, res) => {
     );
   }
 
-  console.log("[noFAMResults]", JSON.stringify(noFAMResults));
-  console.log("[additionalResults]", JSON.stringify(additionalResults));
-  console.log("[fleaMarketPrices]", JSON.stringify(fleaMarketPrices));
+  // console.log("[noFAMResults]", JSON.stringify(noFAMResults));
+  // console.log("[additionalResults]", JSON.stringify(additionalResults));
+  // console.log("[fleaMarketPrices]", JSON.stringify(fleaMarketPrices));
 
   const json = {};
 
