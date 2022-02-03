@@ -1,5 +1,4 @@
-const dev = process.env.NEXT_NODE_ENV !== "production";
-const url = dev ? "http://localhost:3000" : "https://eft-ammo.com";
+import { url } from "./env";
 
 const getResults = async () => {
   const results = fetch(`${url}/api/data`, {

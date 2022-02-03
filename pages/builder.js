@@ -15,10 +15,11 @@ import { BsClipboardPlus } from "react-icons/bs";
 import Head from "next/head";
 import { TwitchEmbed } from "react-twitch-embed";
 import TradersResetTimers from "../components/TradersResetTimers";
+import { url } from "../utils/env";
 
 const Builder = ({ data }) => {
   const { asPath, query } = useRouter();
-  const link = `https://eft-ammo.com${asPath}`;
+  const link = `${url}${asPath}`;
 
   const [state, setState] = useState({
     loading: false,
@@ -111,8 +112,8 @@ const Builder = ({ data }) => {
                     loading: true,
                   });
 
-                  const { result } = await (
-                    await fetch("https://eft-ammo.com/api/urlShortener/", {
+                  const { code } = await (
+                    await fetch(`${url}/api/urlShortener/`, {
                       method: "POST",
                       headers: {
                         "Content-Type": "application/json",
@@ -123,7 +124,7 @@ const Builder = ({ data }) => {
 
                   setState({
                     ...state,
-                    shortenedURL: result,
+                    shortenedURL: `${url}/build/${code}`,
                     loading: false,
                   });
                 }}
