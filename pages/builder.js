@@ -33,6 +33,8 @@ const Builder = ({ data }) => {
       shortenedURL: undefined,
     };
 
+    setState(newState);
+
     const embedUser = query.embedUser;
 
     newState.embedUser = embedUser;
