@@ -365,7 +365,7 @@ export async function getStaticProps() {
       results,
       isFallback,
     },
-    revalidate: 450,
+    revalidate: 3600,
   };
 }
 
