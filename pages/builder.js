@@ -6,6 +6,7 @@ import {
   Link,
   VStack,
   Text,
+  Wrap,
 } from "@chakra-ui/react";
 import React, { useState, useEffect } from "react";
 import { useRouter } from "next/router";
@@ -18,7 +19,8 @@ import TradersResetTimers from "../components/TradersResetTimers";
 import { url } from "../utils/env";
 
 const Builder = ({ data }) => {
-  const { asPath, query } = useRouter();
+  const router = useRouter();
+  const { asPath, query } = router;
   const link = `${url}${asPath}`;
 
   const [state, setState] = useState({
@@ -98,74 +100,93 @@ const Builder = ({ data }) => {
         </Head>
         <Center color="tarkovYellow.100">
           <VStack>
-            {!state.shortenedURL && (
-              <Button
-                color="black"
-                borderRadius="0"
-                colorScheme="orange"
-                as="h1"
-                fontSize="lg"
-                fontWeight="bold"
-                textTransform="uppercase"
-                disabled={state.loading}
-                onClick={async () => {
-                  setState({
-                    ...state,
-                    loading: true,
-                  });
-
-                  const { code } = await (
-                    await fetch(`${url}/api/urlShortener/`, {
-                      method: "POST",
-                      headers: {
-                        "Content-Type": "application/json",
-                      },
-                      body: JSON.stringify({ link }),
-                    })
-                  ).json();
-
-                  setState({
-                    ...state,
-                    shortenedURL: `${url}/build/${code}`,
-                    loading: false,
-                  });
-                }}
-              >
-                {state.loading
-                  ? "Please Wait..."
-                  : "Click here to share this Loadout"}
-              </Button>
-            )}
-            {state.shortenedURL && (
-              <HStack>
-                <Box
-                  color="tarkovYellow.100"
-                  textAlign="center"
-                  borderColor="tarkovYellow.100"
-                  borderWidth="2px"
-                  borderRadius="0"
-                  py="4px"
-                  px="8px"
-                >
-                  <Link textAlign="center">{state.shortenedURL}</Link>
-                </Box>
+            <Wrap shouldWrapChildren justify="center">
+              {Object.keys(query).length && (
                 <Button
-                  w="36px"
-                  h="36px"
-                  p="0"
-                  color="tarkovYellow.100"
-                  colorScheme="orange"
-                  borderColor="tarkovYellow.100"
-                  borderWidth="2px"
+                  color="black"
                   borderRadius="0"
+                  colorScheme="blue"
+                  as="h1"
+                  fontSize="lg"
+                  fontWeight="bold"
+                  textTransform="uppercase"
+                  onClick={() => {
+                    router.push("/builder");
+                  }}
+                >
+                  Create New Loadout
+                </Button>
+              )}
+              {!state.shortenedURL && (
+                <Button
+                  color="black"
+                  borderRadius="0"
+                  colorScheme="orange"
+                  as="h1"
+                  fontSize="lg"
+                  fontWeight="bold"
+                  textTransform="uppercase"
+                  disabled={state.loading}
+                  onClick={async () => {
+                    setState({
+                      ...state,
+                      loading: true,
+                    });
+
+                    const { code } = await (
+                      await fetch(`${url}/api/urlShortener/`, {
+                        method: "POST",
+                        headers: {
+                          "Content-Type": "application/json",
+                        },
+                        body: JSON.stringify({ link }),
+                      })
+                    ).json();
+
+                    setState({
+                      ...state,
+                      shortenedURL: `${url}/build/${code}`,
+                      loading: false,
+                    });
+                  }}
+                >
+                  {state.loading
+                    ? "Please Wait..."
+                    : "Click here to share this Loadout"}
+                </Button>
+              )}
+              {state.shortenedURL && (
+                <HStack
                   onClick={() => {
                     navigator.clipboard.writeText(state.shortenedURL);
                   }}
                 >
-                  <BsClipboardPlus size={16} />
-                </Button>
-              </HStack>
-            )}
+                  <Box
+                    color="tarkovYellow.100"
+                    textAlign="center"
+                    borderColor="tarkovYellow.100"
+                    borderWidth="2px"
+                    borderRadius="0"
+                    py="4px"
+                    px="8px"
+                  >
+                    <Link textAlign="center">{state.shortenedURL}</Link>
+                  </Box>
+                  <Button
+                    w="36px"
+                    h="36px"
+                    p="0"
+                    color="tarkovYellow.100"
+                    colorScheme="orange"
+                    borderColor="tarkovYellow.100"
+                    borderWidth="2px"
+                    borderRadius="0"
+                  >
+                    <BsClipboardPlus size={16} />
+                  </Button>
+                </HStack>
+              )}
+            </Wrap>
           </VStack>
         </Center>
         <Box>
