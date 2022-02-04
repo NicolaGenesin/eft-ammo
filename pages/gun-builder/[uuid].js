@@ -12,6 +12,7 @@ import {
   HStack,
   useBreakpointValue,
   Link,
+  Skeleton,
 } from "@chakra-ui/react";
 import { useRouter } from "next/router";
 import { useEffect, useState, useRef } from "react";
@@ -187,7 +188,7 @@ const GunBuilder = ({ data, createMode }) => {
         }}
       >
         {!isMobile && (
-          <Text fontSize="6xl" fontWeight="bold" opacity="0.3" ml="24px">
+          <Text fontSize="7xl" fontWeight="bold" opacity="0.25" ml="24px">
             Gun Builder
           </Text>
         )}
@@ -409,13 +410,13 @@ const GunBuilder = ({ data, createMode }) => {
             Builder
           </Box>
           <Box>Configuration: {JSON.stringify(state.configuration)}</Box>
-          {state.configuration.twitchLoginId && (
-            <Box
-              w={["375px", "450px", "600px"]}
-              h={["300px", "400px", "400px"]}
-              pt="48px"
-              pb="64px"
-            >
+          <Box
+            w={["375px", "450px", "600px"]}
+            h={["300px", "400px", "400px"]}
+            pt="48px"
+            pb="64px"
+          >
+            {state.configuration.twitchLoginId && (
               <Text
                 textAlign="center"
                 color="tarkovYellow.100"
@@ -430,9 +431,33 @@ const GunBuilder = ({ data, createMode }) => {
                   Watch {state.configuration.twitchLoginId}'s stream here:
                 </a>
               </Text>
-              {state.embed}
-            </Box>
-          )}
+            )}
+            {state.configuration.twitchLoginId && state.embed}
+            {!state.configuration.twitchLoginId && createMode && (
+              <Center
+                w="100%"
+                h="100%"
+                borderColor="white"
+                borderWidth="1px"
+                align="center"
+                fontWeight="bold"
+                position="relative"
+              >
+                <Skeleton
+                  zIndex="-1"
+                  position="absolute"
+                  w="100%"
+                  h="100%"
+                  startColor="vulcan.900"
+                  endColor="vulcan.800"
+                  speed="1.5"
+                />
+                A Twitch Stream will show here if you fill
+                <br />
+                the Twitch ID input at the top of this page.
+              </Center>
+            )}
+          </Box>
         </VStack>
       </Center>
     </Box>
