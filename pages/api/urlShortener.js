@@ -24,7 +24,7 @@ export default async (req, res) => {
   const { body, method, query } = req;
   switch (method) {
     case "POST":
-      let code = uuidv4().replace(/-/g, "");
+      const code = uuidv4().replace(/-/g, "");
       const path = body.link;
 
       await conn.query(

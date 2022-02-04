@@ -10,7 +10,9 @@ export const getItemLabel = (itemType, position) => {
   } else if (itemType === "onBack") {
     label = "on back";
   } else if (itemType === "title") {
-    label = "title";
+    label = "build name";
+  } else if (itemType === "score") {
+    label = "score";
   } else if (itemType === "embedTitle") {
     label = "twitch id";
   } else if (itemType === "holster") {

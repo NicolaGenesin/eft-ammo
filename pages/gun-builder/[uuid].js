@@ -1,0 +1,378 @@
+import Head from "next/head";
+import {
+  Box,
+  Center,
+  Wrap,
+  Button,
+  VStack,
+  Input,
+  Text,
+  usePrevious,
+  useInterval,
+  HStack,
+  useBreakpointValue,
+} from "@chakra-ui/react";
+import { useRouter } from "next/router";
+import { useEffect, useState, useRef } from "react";
+import ItemLabel from "../../components/builder/ItemLabel";
+import { url } from "../../utils/env";
+import { TwitchEmbed } from "react-twitch-embed";
+import deepEqual from "deep-equal";
+import { BiUpvote, BiDownvote } from "react-icons/bi";
+
+const persistVote = async (code, direction) => {
+  await (
+    await fetch(`${url}/api/guns/builds/${code}/vote`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        code,
+        direction,
+      }),
+    })
+  ).json();
+};
+
+const GunBuilder = ({ data, createMode }) => {
+  if (!data) {
+    return (
+      <Center h="100vh" bg="vulcan.800">
+        <Text fontSize="2xl" fontWeight="bold" color="tarkovYellow.100">
+          Loading...
+        </Text>
+      </Center>
+    );
+  }
+
+  if (!createMode) {
+    // TODO if not all data is filled, create configuration with defaults
+    // check field by field
+    // ====================
+    // TODO disable builder
+  }
+
+  const router = useRouter();
+  const { query } = router;
+  const [vote, setVote] = useState();
+  const [score, setScore] = useState(data.socialVote || 0);
+  const [state, setState] = useState({
+    configuration: data?.configuration || {}, // this needs to stay empty (interval)
+    embed: undefined,
+  });
+  const [doUpdatePrevConfiguration, setDoUpdatePrevConfiguration] =
+    useState(false);
+
+  const configurationRef = useRef();
+  configurationRef.current = state.configuration;
+
+  let prevConfiguration = usePrevious(JSON.stringify(state.configuration));
+  const prevConfigurationRef = useRef();
+  prevConfigurationRef.current = prevConfiguration;
+
+  // Keep content up to date
+  useInterval(async () => {
+    const parsedPrevConfiguration = JSON.parse(
+      prevConfigurationRef?.current || "{}"
+    );
+
+    const stateHasChanged = !deepEqual(
+      parsedPrevConfiguration,
+      configurationRef.current
+    );
+
+    if (Object.keys(parsedPrevConfiguration).length && stateHasChanged) {
+      console.log("Saving New State");
+
+      setDoUpdatePrevConfiguration(true);
+
+      const result = await (
+        await fetch(`${url}/api/guns/builds/${query.uuid}`, {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            code: query.uuid,
+            configuration: state.configuration,
+          }),
+        })
+      ).json();
+
+      console.log("+ Done", result);
+    } else {
+      console.log("No update");
+    }
+  }, 4000);
+
+  // Update previous configuration when necessary
+  useEffect(() => {
+    prevConfiguration = JSON.stringify(state.configuration || {});
+    setDoUpdatePrevConfiguration(false);
+  }, [doUpdatePrevConfiguration]);
+
+  // Update Twitch Embed
+  useEffect(() => {
+    if (state.configuration.twitchLoginId?.length > 3) {
+      const newState = {
+        ...state,
+        embed: (
+          <TwitchEmbed
+            style={{ width: "100%", height: "100%" }}
+            channel={state.configuration.twitchLoginId}
+            id={state.configuration.twitchLoginId}
+            key={state.configuration.twitchLoginId}
+            theme="dark"
+            autoplay
+            withChat={false}
+            muted={true}
+          />
+        ),
+      };
+
+      setState(newState);
+    }
+  }, [state.configuration.twitchLoginId]);
+
+  const isMobile = useBreakpointValue({ base: true, md: false });
+
+  return (
+    <Box color="tarkovYellow.100">
+      <Head>
+        <title>EFT | Gun Builder</title>
+        <link rel="icon" href="/favicon.ico" />
+
+        <meta name="description" content="Escape from Tarkov Gun Builder 🙌" />
+      </Head>
+      <Box
+        style={{
+          background: "url(/builder/background.jpg)",
+          backgroundPositionY: "50%",
+          position: "fixed",
+          backgroundSize: "cover",
+          width: "100%",
+          height: "100vh",
+          zIndex: "-1",
+        }}
+      >
+        <Text fontSize="6xl" fontWeight="bold" opacity="0.3" ml="24px">
+          Gun Builder
+        </Text>
+      </Box>
+      <Center pb="5%" pt="2%">
+        <VStack spacing="24px">
+          <Wrap
+            p="24px"
+            shouldWrapChildren
+            justify="center"
+            position={!isMobile && "fixed"}
+            right={0}
+            bottom={0}
+          >
+            {!createMode && (
+              <Button
+                color="black"
+                borderRadius="0"
+                colorScheme="green"
+                as="h1"
+                fontSize="lg"
+                fontWeight="bold"
+                textTransform="uppercase"
+                onClick={() => {
+                  router.push("/gun-builder");
+                }}
+              >
+                Clone Build
+              </Button>
+            )}
+            <Button
+              color="black"
+              borderRadius="0"
+              colorScheme="orange"
+              as="h1"
+              fontSize="lg"
+              fontWeight="bold"
+              textTransform="uppercase"
+              onClick={() => {
+                if (createMode) {
+                  setState({ ...state, configuration: {} });
+                } else {
+                  router.push("/gun-builder");
+                }
+              }}
+            >
+              {createMode ? "Reset Build" : "Create New Build"}
+            </Button>
+          </Wrap>
+          <Wrap shouldWrapChildren justify="center" align="end">
+            <VStack justify="center" spacing="0">
+              <Box w={["300px", "400px", "500px"]} py="24px">
+                <ItemLabel itemType="title" />
+                <Input
+                  minW="300px"
+                  placeholder="[Optional]"
+                  color="tarkovYellow.100"
+                  textAlign="center"
+                  _placeholder={{ color: "tarkovYellow.50" }}
+                  _disabled={{ color: "tarkovYellow.100" }}
+                  borderColor="white"
+                  borderWidth="1px"
+                  borderRadius="0"
+                  size="md"
+                  disabled={!createMode}
+                  textTransform="capitalize"
+                  value={state.configuration.title || ""}
+                  onChange={(e) => {
+                    const newState = { ...state };
+
+                    newState.configuration.title = e.target.value;
+
+                    setState(newState);
+                  }}
+                />
+              </Box>
+              <Box
+                w={["300px", "400px", "500px"]}
+                mt={["24px", "24px", "24px", 0]}
+              >
+                <ItemLabel itemType="embedTitle" />
+                <Input
+                  minW="300px"
+                  placeholder="[Optional]"
+                  color="tarkovYellow.100"
+                  textAlign="center"
+                  _placeholder={{ color: "tarkovYellow.50" }}
+                  _disabled={{ color: "tarkovYellow.100" }}
+                  borderColor="white"
+                  borderWidth="1px"
+                  borderRadius="0"
+                  size="md"
+                  disabled={!createMode}
+                  textTransform="capitalize"
+                  value={state.configuration.twitchLoginId || ""}
+                  onChange={(e) => {
+                    const newState = { ...state };
+
+                    newState.configuration.twitchLoginId = e.target.value;
+
+                    setState(newState);
+                  }}
+                />
+                {!state.configuration.twitchLoginId && createMode && (
+                  <Text
+                    color="tarkovYellow.100"
+                    fontSize="xs"
+                    mt="8px"
+                    textAlign="center"
+                  >
+                    If set, a Twitch embed will be displayed
+                    <br />
+                    at the bottom of this page.
+                  </Text>
+                )}
+              </Box>
+            </VStack>
+            {!createMode && (
+              <Box>
+                <ItemLabel itemType="score" />
+                <VStack
+                  h="107px"
+                  borderColor="white"
+                  borderWidth="1px"
+                  p="4px"
+                  justify="center"
+                  spacing="0"
+                >
+                  <BiUpvote
+                    size={24}
+                    color={vote === "up" ? "#38A169" : "#9AE6B4"}
+                    onClick={() => {
+                      if (vote === undefined) {
+                        persistVote(query.uuid, "up");
+                      } else {
+                        persistVote(query.uuid, "down");
+                      }
+                      setVote(vote === "up" ? undefined : "up");
+                      setScore(vote === "up" ? score - 1 : score + 1);
+                    }}
+                  />
+                  <Text color="white">{score}</Text>
+                  <BiDownvote
+                    size={24}
+                    color={vote === "down" ? "#E53E3E" : "#FC8181"}
+                    onClick={() => {
+                      if (vote === undefined) {
+                        persistVote(query.uuid, "down");
+                      } else {
+                        persistVote(query.uuid, "up");
+                      }
+                      setVote(vote === "down" ? undefined : "down");
+                      setScore(vote === "down" ? score + 1 : score - 1);
+                    }}
+                  />
+                </VStack>
+              </Box>
+            )}
+          </Wrap>
+          <Box
+            w={["360px", "450px", "550px", "600px"]}
+            h="500px"
+            borderColor="white"
+            borderWidth="1px"
+          >
+            Builder
+          </Box>
+          <Box>Configuration: {JSON.stringify(state.configuration)}</Box>
+          {state.configuration.twitchLoginId && (
+            <Box
+              w={["375px", "450px", "600px"]}
+              h={["300px", "400px", "400px"]}
+              pt="48px"
+              pb="64px"
+            >
+              <Text
+                textAlign="center"
+                color="tarkovYellow.100"
+                fontWeight="bold"
+                fontSize={["lg", "2xl"]}
+                as="h2"
+                mb="8px"
+              >
+                <a
+                  href={`https://www.twitch.tv/${state.configuration.twitchLoginId}/`}
+                >
+                  Watch {state.configuration.twitchLoginId}'s stream here:
+                </a>
+              </Text>
+              {state.embed}
+            </Box>
+          )}
+        </VStack>
+      </Center>
+    </Box>
+  );
+};
+
+export async function getStaticPaths() {
+  return {
+    paths: [],
+    fallback: true,
+  };
+}
+
+export async function getStaticProps(context) {
+  const response = await (
+    await fetch(`${url}/api/guns/builds/${context.params.uuid}`, {
+      method: "GET",
+    })
+  ).json();
+
+  const createMode = response.isNew;
+
+  return {
+    props: { data: response.data, createMode },
+  };
+}
+
+export default GunBuilder;

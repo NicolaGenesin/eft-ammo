@@ -20,6 +20,7 @@ const theme = extendTheme({
       1050: "#101010",
     },
     tarkovYellow: {
+      50: "#877f70",
       100: "#dbc59c",
       // 100: "#dbc59c", real yellow used
     },
