@@ -54,7 +54,7 @@ const GunBuilder = ({ data, createMode }) => {
   }
 
   const router = useRouter();
-  const { query } = router;
+  const { query, asPath } = router;
   const [vote, setVote] = useState();
   const [score, setScore] = useState(data.socialVote || 0);
   const [state, setState] = useState({
@@ -112,6 +112,23 @@ const GunBuilder = ({ data, createMode }) => {
     setDoUpdatePrevConfiguration(false);
   }, [doUpdatePrevConfiguration]);
 
+  // Clone logic
+  useEffect(async () => {
+    if (query.clone) {
+      const response = await (
+        await fetch(`${url}/api/guns/builds/${query.clone}`, {
+          method: "GET",
+        })
+      ).json();
+
+      const configuration = response.data.configuration || {};
+
+      setState({ ...state, configuration });
+
+      router.push(`/gun-builder/${query.uuid}`, undefined, { shallow: true });
+    }
+  }, [query.clone]);
+
   // Update Twitch Embed
   useEffect(() => {
     if (state.configuration.twitchLoginId?.length > 3) {
@@ -156,12 +173,19 @@ const GunBuilder = ({ data, createMode }) => {
           zIndex: "-1",
         }}
       >
-        <Text fontSize="6xl" fontWeight="bold" opacity="0.3" ml="24px">
-          Gun Builder
-        </Text>
+        {!isMobile && (
+          <Text fontSize="6xl" fontWeight="bold" opacity="0.3" ml="24px">
+            Gun Builder
+          </Text>
+        )}
       </Box>
       <Center pb="5%" pt="2%">
         <VStack spacing="24px">
+          {isMobile && (
+            <Text fontSize="5xl" fontWeight="bold">
+              Gun Builder
+            </Text>
+          )}
           <Wrap
             p="24px"
             shouldWrapChildren
@@ -180,7 +204,7 @@ const GunBuilder = ({ data, createMode }) => {
                 fontWeight="bold"
                 textTransform="uppercase"
                 onClick={() => {
-                  router.push("/gun-builder");
+                  router.push(`/gun-builder-clone/${query.uuid}`);
                 }}
               >
                 Clone Build
