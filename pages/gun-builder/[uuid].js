@@ -11,6 +11,7 @@ import {
   useInterval,
   HStack,
   useBreakpointValue,
+  Link,
 } from "@chakra-ui/react";
 import { useRouter } from "next/router";
 import { useEffect, useState, useRef } from "react";
@@ -19,6 +20,16 @@ import { url } from "../../utils/env";
 import { TwitchEmbed } from "react-twitch-embed";
 import deepEqual from "deep-equal";
 import { BiUpvote, BiDownvote } from "react-icons/bi";
+import {
+  RedditIcon,
+  RedditShareButton,
+  TelegramIcon,
+  TelegramShareButton,
+  TwitterIcon,
+  TwitterShareButton,
+  VKIcon,
+  VKShareButton,
+} from "react-share";
 
 const persistVote = async (code, direction) => {
   await (
@@ -153,6 +164,8 @@ const GunBuilder = ({ data, createMode }) => {
   }, [state.configuration.twitchLoginId]);
 
   const isMobile = useBreakpointValue({ base: true, md: false });
+  const shareURL = url + asPath;
+  const shareTitle = "Check my EFT Gun Build";
 
   return (
     <Box color="tarkovYellow.100">
@@ -186,6 +199,54 @@ const GunBuilder = ({ data, createMode }) => {
               Gun Builder
             </Text>
           )}
+          <HStack px="8px">
+            {createMode ? (
+              <Text fontSize="xs">
+                Data saved automatically.{" "}
+                <span
+                  onClick={() => {
+                    navigator.clipboard.writeText(shareURL);
+                  }}
+                  style={{ textDecoration: "underline", cursor: "pointer" }}
+                >
+                  Copy URL
+                </span>{" "}
+                or share via Social when ready!
+              </Text>
+            ) : (
+              <Text fontSize="xs">
+                Want to re-share?{" "}
+                <span
+                  onClick={() => {
+                    navigator.clipboard.writeText(shareURL);
+                  }}
+                  style={{ textDecoration: "underline", cursor: "pointer" }}
+                >
+                  Copy URL
+                </span>{" "}
+                or do it via Social:
+              </Text>
+            )}
+            <HStack>
+              <TwitterShareButton url={shareURL} title={shareTitle}>
+                <TwitterIcon size={32} round />
+              </TwitterShareButton>
+              <RedditShareButton
+                url={shareURL}
+                title={shareTitle}
+                windowWidth={660}
+                windowHeight={460}
+              >
+                <RedditIcon size={32} round />
+              </RedditShareButton>
+              <TelegramShareButton url={shareURL} title={shareTitle}>
+                <TelegramIcon size={32} round />
+              </TelegramShareButton>
+              <VKShareButton url={shareURL}>
+                <VKIcon size={32} round />
+              </VKShareButton>
+            </HStack>
+          </HStack>
           <Wrap
             p="24px"
             shouldWrapChildren
