@@ -101,7 +101,7 @@ const Builder = ({ data }) => {
         <Center color="tarkovYellow.100">
           <VStack>
             <Wrap shouldWrapChildren justify="center">
-              {Object.keys(query).length && (
+              {Object.keys(query).length > 0 && (
                 <Button
                   color="black"
                   borderRadius="0"
