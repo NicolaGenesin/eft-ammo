@@ -210,7 +210,7 @@ const App = ({ results, isFallback }) => {
           </VStack>
         </Center>
 
-        <Center>
+        {/* <Center>
           <Wrap justify="center" spacing="0">
             <WrapItem>
               <Link
@@ -250,7 +250,7 @@ const App = ({ results, isFallback }) => {
               </Link>
             </WrapItem>
           </Wrap>
-        </Center>
+        </Center> */}
 
         <Center>
           <Flex pt="24px" px="8px" w={["100%", "75%"]}>
