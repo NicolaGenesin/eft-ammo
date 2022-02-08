@@ -167,6 +167,16 @@ const MobileRow = ({ category, allAmmosForCategory, currentSearch }) => {
                       {ammo.fragChange}
                     </Center>
                   </VStack>
+                  <VStack spacing="0" w="100%">
+                    <Center bg="#232314" p="2px" w="100%">
+                      Speed (m/s)
+                    </Center>
+                    <Center bg="#4E4E4C" w="100%">
+                      {ammo.initialSpeed === ""
+                        ? "No Data"
+                        : `${ammo.initialSpeed}`}
+                    </Center>
+                  </VStack>
                 </HStack>
                 <HStack
                   mt="8px"
