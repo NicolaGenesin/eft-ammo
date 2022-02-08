@@ -168,6 +168,10 @@ const externalTooltipHandler = (context) => {
       value: "Max HS Distance",
     },
     {
+      key: "initialSpeed",
+      value: "Muzzle Speed (m/s)",
+    },
+    {
       key: "class1",
       value: "Class 1",
     },
