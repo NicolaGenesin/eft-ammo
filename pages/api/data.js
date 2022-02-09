@@ -135,6 +135,7 @@ const handler = async (req, res) => {
             normalizedName: additionalSpecsForAmmo[3],
           };
           ammo.notAvailableOnFleaMarket = additionalSpecsForAmmo[4] === "FALSE";
+          ammo.initialSpeed = additionalSpecsForAmmo[5] || "";
 
           const price = fleaMarketPrices.find((priceItem) => {
             return priceItem.normalizedName === ammo.standard.normalizedName;

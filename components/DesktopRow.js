@@ -88,7 +88,7 @@ const DesktopRow = ({
     }
   }
 
-  const useVerticalHeaders = useBreakpointValue({ base: true, lg: false });
+  const useVerticalHeaders = useBreakpointValue({ base: true, xl: false });
 
   return (
     <Box>
@@ -126,12 +126,14 @@ const DesktopRow = ({
             <Box h={maxCellHeight} minW="310px" />
             {Object.keys(headers).map((headerLabel, index) => {
               const headerProperty = headers[headerLabel];
-              const isSortable = index < 5 && tableState;
+              const isSortable = (index < 5 || index === 6) && tableState;
               let toolTipLabel = "";
 
               if (index === 12) {
                 toolTipLabel =
                   "Flea market prices provided by tarkov-tools.com";
+              } else if (index === 6) {
+                toolTipLabel = "Velocity of the projectile as it leaves the barrel or muzzle.";
               } else if (index === 5) {
                 toolTipLabel = "Maximum Headshot Distance.";
               } else if (index === 4) {
@@ -153,7 +155,7 @@ const DesktopRow = ({
 
               return (
                 <Center
-                  flex={index >= 6 && index < 12 ? "0.5" : "1"}
+                  flex={index >= 7 && index < 13 ? "0.5" : "1"}
                   bg="vulcan.800"
                   key={`header-${index}`}
                   fontWeight="semibold"
@@ -359,6 +361,9 @@ const DesktopRow = ({
                   </Center>
                   <Center flex="1" color="tarkovYellow.100">
                     {ammo.maxHsDist}
+                  </Center>
+                  <Center flex="1" color="tarkovYellow.100">
+                    {ammo.initialSpeed}
                   </Center>
                   <Center flex="0.5" bg={getColor(ammo.class1)} color="black">
                     {ammo.class1}

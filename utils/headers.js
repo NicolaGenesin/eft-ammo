@@ -5,6 +5,7 @@ const headers = {
   Recoil: "recoil", // coloured
   "Eff Dist.": "effDist",
   "Max HS Dist.": "maxHsDist",
+  "Speed (m/s)": "initialSpeed",
   "Class 1": "class1", // coloured
   "Class 2": "class2", // coloured
   "Class 3": "class3", // coloured
