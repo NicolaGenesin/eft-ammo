@@ -274,7 +274,7 @@ const App = ({ results, isFallback }) => {
                   color="tarkovYellow.100"
                   _selected={{ color: "black", bg: "orange.500" }}
                 >
-                  ⚠️ Chart View 🆕
+                  Chart View
                 </Tab>
               </TabList>
             </Center>
