@@ -2,7 +2,7 @@ import * as React from "react";
 import { Box, ChakraProvider, extendTheme } from "@chakra-ui/react";
 import { QueryClient, QueryClientProvider, useQuery } from "react-query";
 import { Footer } from "../components/Footer";
-import Feedback from "../components/Feedback";
+import Sidebar from "../components/Sidebar";
 
 const queryClient = new QueryClient();
 
@@ -27,27 +27,29 @@ const theme = extendTheme({
   },
 });
 
-const App = ({ Component, pageProps }) => (
-  <ChakraProvider theme={theme}>
-    <QueryClientProvider client={queryClient}>
-      <Box>
-        <Component {...pageProps} />
-        <Footer />
-        {/* <Feedback /> */}
-      </Box>
-      <style jsx global>{`
-        html,
-        body {
-          height: 100%;
-          width: 100%;
-        }
+const App = ({ Component, pageProps }) => {
+  return (
+    <ChakraProvider theme={theme}>
+      <QueryClientProvider client={queryClient}>
+        <Box>
+          <Sidebar children={<Component {...pageProps} />} />
+          <Footer />
+          {/* <Feedback /> */}
+        </Box>
+        <style jsx global>{`
+          html,
+          body {
+            height: 100%;
+            width: 100%;
+          }
 
-        * {
-          box-sizing: border-box;
-        }
-      `}</style>
-    </QueryClientProvider>
-  </ChakraProvider>
-);
+          * {
+            box-sizing: border-box;
+          }
+        `}</style>
+      </QueryClientProvider>
+    </ChakraProvider>
+  );
+};
 
 export default App;
