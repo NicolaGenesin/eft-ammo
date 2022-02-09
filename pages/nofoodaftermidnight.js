@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import Head from "next/head";
 import {
+  Divider,
   HStack,
   Link,
   Spacer,
@@ -26,6 +27,7 @@ import getResults from "../utils/getResults";
 import Legenda from "../components/Legenda";
 import { SocialButton } from "../components/SmallFooterWithSocial";
 import { FaTwitch } from "react-icons/fa";
+import { AiFillInfoCircle } from "react-icons/ai";
 import fallback from "../utils/fallback";
 import { TwitchEmbed } from "react-twitch-embed";
 import CompareButton from "../components/CompareButton";
@@ -133,7 +135,14 @@ const App = ({ results, isFallback }) => {
           content="http://eft-ammo.com/assets/og-01.jpg"
         />
       </Head>
-      <Box py="48px">
+      <Box pb="48px">
+        <Center color="white" fontSize="sm" py="4px">
+          <AiFillInfoCircle color="#4cf057" size={18} />
+          <Text ml="4px">
+            Last Update on February 8th 2022 - Bullet Speed Added
+          </Text>
+        </Center>
+        <Divider borderColor="tarkovYellow.100" opacity="0.5" />
         <Center mb="24px">
           <VStack>
             <Text
@@ -155,7 +164,7 @@ const App = ({ results, isFallback }) => {
                   textAlign="center"
                   color="tarkovYellow.100"
                   fontWeight="bold"
-                  fontSize={["lg", "2xl"]}
+                  fontSize={["lg", "xl"]}
                   as="h1"
                 >
                   <a href="https://www.twitch.tv/nofoodaftermidnight/">
@@ -190,11 +199,11 @@ const App = ({ results, isFallback }) => {
               </Center>
               {!isMobile && (
                 <SocialButton
-                  size={16}
+                  size={12}
                   label={"Twitch"}
                   href={"https://www.twitch.tv/nofoodaftermidnight/"}
                 >
-                  <FaTwitch color="#a15422" size={32} />
+                  <FaTwitch color="#a15422" size={28} />
                 </SocialButton>
               )}
             </HStack>
@@ -209,7 +218,6 @@ const App = ({ results, isFallback }) => {
             )}
           </VStack>
         </Center>
-
         {/* <Center>
           <Wrap justify="center" spacing="0">
             <WrapItem>
@@ -251,13 +259,11 @@ const App = ({ results, isFallback }) => {
             </WrapItem>
           </Wrap>
         </Center> */}
-
         <Center>
           <Flex pt="24px" px="8px" w={["100%", "75%"]}>
             <Legenda isDesktop={!isMobile} />
           </Flex>
         </Center>
-
         <Center>
           <Tabs variant="unstyled" w="100%" mt="48px" size="lg">
             <Center>
@@ -292,9 +298,7 @@ const App = ({ results, isFallback }) => {
             </TabPanels>
           </Tabs>
         </Center>
-
         <TradersResetTimers />
-
         <Center>
           <Box
             w={["375px", "450px", "600px"]}
