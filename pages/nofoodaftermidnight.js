@@ -136,9 +136,9 @@ const App = ({ results, isFallback }) => {
         />
       </Head>
       <Box pb="48px">
-        <Center color="white" fontSize="sm" py="4px">
-          <AiFillInfoCircle color="#4cf057" size={18} />
-          <Text ml="4px">
+        <Center color="white" py="4px" px="8px">
+          {!isMobile && <AiFillInfoCircle color="#4cf057" size={18} />}
+          <Text ml="4px" textAlign="center" fontSize={isMobile ? "xs" : "sm"}>
             Last Update on February 8th 2022 - Bullet Speed Added
           </Text>
         </Center>
