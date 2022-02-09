@@ -104,7 +104,10 @@ const App = ({ results, isFallback }) => {
         />
 
         {/* <!-- Google / Search Engine Tags --> */}
-        <meta itemProp="name" content="eft-ammo.com 🎮" />
+        <meta
+          itemProp="name"
+          content="eft-ammo.com 🎮 | The definitive Tarkov Ammo charts 12.12"
+        />
         <meta
           itemProp="description"
           content="Escape from Tarkov Ammo and Armor Charts created by NoFoodAfterMidnight 🙌"
@@ -114,7 +117,10 @@ const App = ({ results, isFallback }) => {
         {/* <!-- Facebook Meta Tags --> */}
         <meta property="og:url" content="https://eft-ammo.com/" />
         <meta property="og:type" content="website" />
-        <meta property="og:title" content="eft-ammo.com 🎮" />
+        <meta
+          property="og:title"
+          content="eft-ammo.com 🎮 | The definitive Tarkov Ammo charts 12.12"
+        />
         <meta
           property="og:description"
           content="Escape from Tarkov Ammo and Armor Charts created by NoFoodAfterMidnight 🙌"
@@ -125,7 +131,10 @@ const App = ({ results, isFallback }) => {
         <meta name="twitter:card" content="summary_large_image" />
         <meta property="twitter:domain" content="eft-ammo.com" />
         <meta property="twitter:url" content="https://eft-ammo.com/" />
-        <meta name="twitter:title" content="eft-ammo.com 🎮" />
+        <meta
+          name="twitter:title"
+          content="eft-ammo.com 🎮 | The definitive Tarkov Ammo charts 12.12"
+        />
         <meta
           name="twitter:description"
           content="Escape from Tarkov Ammo and Armor Charts created by NoFoodAfterMidnight 🙌"
