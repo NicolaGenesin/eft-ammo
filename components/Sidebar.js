@@ -11,18 +11,24 @@ import {
   DrawerContent,
   Text,
   useDisclosure,
+  Tag,
 } from "@chakra-ui/react";
 import { FiHome, FiCompass, FiMenu } from "react-icons/fi";
-import { GiMachineGunMagazine, GiBeamsAura } from "react-icons/gi";
+import { GiAk47U, GiBeamsAura } from "react-icons/gi";
 import { FaDiscord } from "react-icons/fa";
 
 const LinkItems = [
   { name: "Ammo Charts", icon: FiHome, path: "/nofoodaftermidnight" },
-  { name: "Gun Builder", icon: GiMachineGunMagazine, path: "/gun-builder" },
+  {
+    name: "Gun Builder",
+    icon: GiAk47U,
+    path: "/gun-builder",
+    isNew: true,
+  },
   { name: "Explore Gun Builds", icon: FiCompass, path: "/explorer" },
   { name: "Loadout Builder", icon: GiBeamsAura, path: "/builder" },
   {
-    name: "Join my Discord",
+    name: "Join the Discord",
     icon: FaDiscord,
     path: "https://discord.gg/H4v5sQR7We",
   },
@@ -31,7 +37,7 @@ const LinkItems = [
 export default function Sidebar({ children }) {
   const { isOpen, onOpen, onClose } = useDisclosure();
   return (
-    <Box minH="100vh" bg="vulcan.900" color="tarkovYellow.100">
+    <Box minH="100vh" color="tarkovYellow.100">
       <SidebarContent
         onClose={() => onClose}
         display={{ base: "none", xl: "block" }}
@@ -75,7 +81,12 @@ const SidebarContent = ({ onClose, ...rest }) => {
         <CloseButton display={{ base: "flex", xl: "none" }} onClick={onClose} />
       </Flex>
       {LinkItems.map((link) => (
-        <NavItem key={link.name} icon={link.icon} href={link.path}>
+        <NavItem
+          key={link.name}
+          isNew={link.isNew}
+          icon={link.icon}
+          href={link.path}
+        >
           {link.name}
         </NavItem>
       ))}
@@ -83,7 +94,7 @@ const SidebarContent = ({ onClose, ...rest }) => {
   );
 };
 
-const NavItem = ({ icon, href, children, ...rest }) => {
+const NavItem = ({ icon, isNew, href, children, ...rest }) => {
   return (
     <Link
       href={href}
@@ -114,7 +125,20 @@ const NavItem = ({ icon, href, children, ...rest }) => {
             as={icon}
           />
         )}
-        {children}
+        {children}{" "}
+        {isNew && (
+          <Tag
+            ml="8px"
+            size="sm"
+            colorScheme="purple"
+            borderRadius="full"
+            variant="solid"
+            fontSize="xs"
+            fontWeight="bold"
+          >
+            NEW
+          </Tag>
+        )}
       </Flex>
     </Link>
   );

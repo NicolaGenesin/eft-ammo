@@ -34,13 +34,16 @@ const App = ({ Component, pageProps }) => {
         <Box>
           <Sidebar children={<Component {...pageProps} />} />
           <Footer />
-          {/* <Feedback /> */}
         </Box>
         <style jsx global>{`
           html,
           body {
-            height: 100%;
-            width: 100%;
+            height: 100% !important;
+            width: 100% !important;
+            background-image: url(/builder/background.jpg) !important;
+            background-repeat: no-repeat !important;
+            background-attachment: fixed !important;
+            background-size: cover !important;
           }
 
           * {

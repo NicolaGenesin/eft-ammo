@@ -178,17 +178,11 @@ const GunBuilder = ({ data, createMode }) => {
       </Head>
       <Box
         style={{
-          background: "url(/builder/background.jpg)",
-          backgroundPositionY: "50%",
           position: "fixed",
-          backgroundSize: "cover",
-          width: "100%",
-          height: "100vh",
-          zIndex: "-1",
         }}
       >
         {!isMobile && (
-          <Text fontSize="7xl" fontWeight="bold" opacity="0.25" ml="24px">
+          <Text fontSize="7xl" fontWeight="bold" opacity="0.15" ml="24px">
             Gun Builder
           </Text>
         )}
@@ -444,7 +438,6 @@ const GunBuilder = ({ data, createMode }) => {
                 position="relative"
               >
                 <Skeleton
-                  zIndex="-1"
                   position="absolute"
                   w="100%"
                   h="100%"
