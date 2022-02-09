@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import Head from "next/head";
 import Router from "next/router";
-import { Box } from "@chakra-ui/react";
+import { Box, Center, Text, VStack } from "@chakra-ui/react";
 
 const Home = () => {
   useEffect(() => {
@@ -63,11 +63,18 @@ const Home = () => {
           content="http://eft-ammo.com/assets/og-01.jpg"
         />
       </Head>
-      <Box>
-        Here you will find all ammunition types in the chaos of Tarkov. Varying
-        opponents will require different types of ammunition to tackle. This
-        page lists all ammunition types in Escape from Tarkov.
-      </Box>
+      <Center bg="vulcan.1000" color="tarkovYellow.100" h="100vh">
+        <VStack px="24px" textAlign="center">
+          <Text fontSize="4xl">Loading...</Text>
+          <Box>
+            Here you will find all ammunition types in the chaos of Tarkov.{" "}
+            <br />
+            Varying opponents will require different types of ammunition to
+            tackle.
+            <br /> This page lists all ammunition types in Escape from Tarkov.
+          </Box>
+        </VStack>
+      </Center>
     </>
   );
 };
