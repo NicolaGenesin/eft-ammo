@@ -18,7 +18,8 @@ import {
   GiAk47U,
   GiBeamsAura,
   GiShotgunRounds,
-  GiPlayerTime,
+  GiDuration,
+  GiDrippingTube,
 } from "react-icons/gi";
 import { FaDiscord } from "react-icons/fa";
 import { useRouter } from "next/router";
@@ -32,16 +33,23 @@ const LinkItems = [
     isNew: true,
   },
   { name: "Explore Gun Builds", icon: FiCompass, path: "/explorer" },
-  { name: "Loadout Builder", icon: GiBeamsAura, path: "/builder" },
+  { name: "[Beta] Loadout Builder", icon: GiBeamsAura, path: "/builder" },
   {
     name: "Traders Reset Timers",
-    icon: GiPlayerTime,
+    icon: GiDuration,
     path: "/traders-reset-timers",
   },
   {
     name: "Join the Discord",
     icon: FaDiscord,
     path: "https://discord.gg/H4v5sQR7We",
+    isExternal: true,
+  },
+  {
+    name: "Feedback",
+    icon: GiDrippingTube,
+    path: "https://forms.gle/ToTmLYiWoxuGsM2R6",
+    isExternal: true,
   },
 ];
 
@@ -112,6 +120,7 @@ const SidebarContent = ({ onClose, selectedIndex, ...rest }) => {
           icon={link.icon}
           href={link.path}
           isSelected={selectedIndex === index}
+          isExternal={link.isExternal}
         >
           {link.name}
         </NavItem>
@@ -120,12 +129,21 @@ const SidebarContent = ({ onClose, selectedIndex, ...rest }) => {
   );
 };
 
-const NavItem = ({ icon, isNew, isSelected, href, children, ...rest }) => {
+const NavItem = ({
+  icon,
+  isNew,
+  isSelected,
+  isExternal,
+  href,
+  children,
+  ...rest
+}) => {
   return (
     <Link
       href={href}
       style={{ textDecoration: "none" }}
       _focus={{ boxShadow: "none" }}
+      isExternal={isExternal}
     >
       <Flex
         align="center"
