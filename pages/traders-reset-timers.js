@@ -1,3 +1,4 @@
+import Head from "next/head";
 import {
   Box,
   Center,
@@ -12,6 +13,15 @@ const Timers = () => {
 
   return (
     <Box>
+      <Head>
+        <title>EFT | Traders Reset Timers</title>
+        <link rel="icon" href="/favicon.ico" />
+
+        <meta
+          name="description"
+          content="Escape from Tarkov Traders Reset Timers 🙌"
+        />
+      </Head>
       <Box
         style={{
           position: "fixed",

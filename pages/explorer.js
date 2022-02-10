@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import Head from "next/head";
 import {
   Box,
   Table,
@@ -51,6 +52,15 @@ const Explorer = () => {
 
   return (
     <Box>
+      <Head>
+        <title>EFT | Gun Builds Explorer</title>
+        <link rel="icon" href="/favicon.ico" />
+
+        <meta
+          name="description"
+          content="Escape from Tarkov Gun Build Explorer 🙌"
+        />
+      </Head>
       <Box
         style={{
           position: "fixed",
