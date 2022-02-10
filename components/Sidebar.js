@@ -27,13 +27,13 @@ import { useRouter } from "next/router";
 const LinkItems = [
   { name: "Ammo Charts", icon: GiShotgunRounds, path: "/nofoodaftermidnight" },
   {
-    name: "Gun Builder",
+    name: "Create Gun Build",
     icon: GiAk47U,
     path: "/gun-builder",
     isNew: true,
   },
   { name: "Explore Gun Builds", icon: FiCompass, path: "/explorer" },
-  { name: "[Beta] Loadout Builder", icon: GiBeamsAura, path: "/builder" },
+  { name: "[Beta] Create Loadout", icon: GiBeamsAura, path: "/builder" },
   {
     name: "Traders Reset Timers",
     icon: GiDuration,
@@ -147,7 +147,7 @@ const NavItem = ({
     >
       <Flex
         align="center"
-        px="8"
+        px="6"
         py="4"
         role="group"
         cursor="pointer"
