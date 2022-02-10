@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import {
   IconButton,
   Box,
@@ -16,6 +16,7 @@ import {
 import { FiHome, FiCompass, FiMenu } from "react-icons/fi";
 import { GiAk47U, GiBeamsAura } from "react-icons/gi";
 import { FaDiscord } from "react-icons/fa";
+import { useRouter } from "next/router";
 
 const LinkItems = [
   { name: "Ammo Charts", icon: FiHome, path: "/nofoodaftermidnight" },
@@ -36,11 +37,25 @@ const LinkItems = [
 
 export default function Sidebar({ children }) {
   const { isOpen, onOpen, onClose } = useDisclosure();
+  const router = useRouter();
+  const [selectedIndex, setSelectedIndex] = useState();
+
+  useEffect(() => {
+    const index = LinkItems.findIndex((item) =>
+      item.path.includes(router.asPath)
+    );
+
+    if (index >= 0) {
+      setSelectedIndex(index);
+    }
+  }, [router.asPath]);
+
   return (
     <Box minH="100vh" color="tarkovYellow.100">
       <SidebarContent
         onClose={() => onClose}
         display={{ base: "none", xl: "block" }}
+        selectedIndex={selectedIndex}
       />
       <Drawer
         autoFocus={false}
@@ -52,7 +67,7 @@ export default function Sidebar({ children }) {
         size="full"
       >
         <DrawerContent>
-          <SidebarContent onClose={onClose} />
+          <SidebarContent onClose={onClose} selectedIndex={selectedIndex} />
         </DrawerContent>
       </Drawer>
       {/* mobilenav */}
@@ -62,7 +77,7 @@ export default function Sidebar({ children }) {
   );
 }
 
-const SidebarContent = ({ onClose, ...rest }) => {
+const SidebarContent = ({ onClose, selectedIndex, ...rest }) => {
   return (
     <Box
       bg="vulcan.900"
@@ -80,12 +95,13 @@ const SidebarContent = ({ onClose, ...rest }) => {
         </Text>
         <CloseButton display={{ base: "flex", xl: "none" }} onClick={onClose} />
       </Flex>
-      {LinkItems.map((link) => (
+      {LinkItems.map((link, index) => (
         <NavItem
           key={link.name}
           isNew={link.isNew}
           icon={link.icon}
           href={link.path}
+          isSelected={selectedIndex === index}
         >
           {link.name}
         </NavItem>
@@ -94,7 +110,7 @@ const SidebarContent = ({ onClose, ...rest }) => {
   );
 };
 
-const NavItem = ({ icon, isNew, href, children, ...rest }) => {
+const NavItem = ({ icon, isNew, isSelected, href, children, ...rest }) => {
   return (
     <Link
       href={href}
@@ -103,12 +119,13 @@ const NavItem = ({ icon, isNew, href, children, ...rest }) => {
     >
       <Flex
         align="center"
-        p="4"
-        mx="4"
+        px="8"
+        py="4"
         role="group"
         cursor="pointer"
-        color="tarkovYellow.100"
         fontWeight="bold"
+        bg={isSelected && "tarkovYellow.50"}
+        color={isSelected ? "black" : "tarkovYellow.100"}
         _hover={{
           bg: "tarkovYellow.50",
           color: "black",
