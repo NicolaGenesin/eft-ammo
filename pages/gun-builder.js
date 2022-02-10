@@ -3,6 +3,7 @@ import { Text, Center, Box } from "@chakra-ui/react";
 import { useRouter } from "next/router";
 import { useEffect } from "react";
 import { v4 as uuidv4 } from "uuid";
+import Loading from "../components/Loading";
 
 const GunBuilder = ({ data }) => {
   const router = useRouter();
@@ -20,11 +21,7 @@ const GunBuilder = ({ data }) => {
 
         <meta name="description" content="Escape from Tarkov Gun Builder 🙌" />
       </Head>
-      <Center h="100vh" bg="vulcan.800">
-        <Text fontSize="2xl" fontWeight="bold" color="tarkovYellow.100">
-          Loading...
-        </Text>
-      </Center>
+      <Loading />
     </Box>
   );
 };
