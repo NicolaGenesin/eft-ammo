@@ -219,9 +219,6 @@ const Builder = ({ data }) => {
             </Box>
           </Center>
         )}
-        <Center py="32px">
-          <TradersResetTimers />
-        </Center>
         <Center>
           <Link href="/nofoodaftermidnight" style={{ textDecoration: "none" }}>
             <Button

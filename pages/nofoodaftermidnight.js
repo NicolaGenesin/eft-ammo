@@ -307,7 +307,6 @@ const App = ({ results, isFallback }) => {
             </TabPanels>
           </Tabs>
         </Center>
-        <TradersResetTimers />
         <Center>
           <Box
             w={["375px", "450px", "600px"]}
