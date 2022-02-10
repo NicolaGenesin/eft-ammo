@@ -13,13 +13,18 @@ import {
   useDisclosure,
   Tag,
 } from "@chakra-ui/react";
-import { FiHome, FiCompass, FiMenu } from "react-icons/fi";
-import { GiAk47U, GiBeamsAura } from "react-icons/gi";
+import { FiCompass, FiMenu } from "react-icons/fi";
+import {
+  GiAk47U,
+  GiBeamsAura,
+  GiShotgunRounds,
+  GiPlayerTime,
+} from "react-icons/gi";
 import { FaDiscord } from "react-icons/fa";
 import { useRouter } from "next/router";
 
 const LinkItems = [
-  { name: "Ammo Charts", icon: FiHome, path: "/nofoodaftermidnight" },
+  { name: "Ammo Charts", icon: GiShotgunRounds, path: "/nofoodaftermidnight" },
   {
     name: "Gun Builder",
     icon: GiAk47U,
@@ -28,6 +33,11 @@ const LinkItems = [
   },
   { name: "Explore Gun Builds", icon: FiCompass, path: "/explorer" },
   { name: "Loadout Builder", icon: GiBeamsAura, path: "/builder" },
+  {
+    name: "Traders Reset Timers",
+    icon: GiPlayerTime,
+    path: "/traders-reset-timers",
+  },
   {
     name: "Join the Discord",
     icon: FaDiscord,
@@ -135,7 +145,7 @@ const NavItem = ({ icon, isNew, isSelected, href, children, ...rest }) => {
         {icon && (
           <Icon
             mr="4"
-            fontSize="16"
+            fontSize="22"
             _groupHover={{
               color: "black",
             }}

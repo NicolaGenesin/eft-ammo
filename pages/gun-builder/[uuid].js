@@ -190,7 +190,7 @@ const GunBuilder = ({ data, createMode }) => {
       <Center pb="5%" pt="2%">
         <VStack spacing="24px">
           {isMobile && (
-            <Text fontSize="5xl" fontWeight="bold">
+            <Text fontSize="4xl" fontWeight="bold" textAlign="center">
               Gun Builder
             </Text>
           )}
