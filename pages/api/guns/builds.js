@@ -12,10 +12,10 @@ const handler = async (req, res) => {
 
   switch (method) {
     case "GET":
-      let queryToExec = `select * from gunbuilds order by createdAt desc limit 150`;
+      let queryToExec = `select * from gunbuilds where configuration is not null order by createdAt desc limit 150`;
 
       if (query.orderBy === "score") {
-        queryToExec = `select * from gunbuilds order by socialVote desc limit 150`;
+        queryToExec = `select * from gunbuilds where configuration is not null order by socialVote desc limit 150`;
       }
 
       const [getRows, _] = await conn.query(queryToExec);
