@@ -5,12 +5,15 @@ import { useEffect } from "react";
 import { v4 as uuidv4 } from "uuid";
 import Loading from "../../components/Loading";
 
-const GunBuilder = ({ data }) => {
+const GunBuilder = () => {
   const router = useRouter();
 
   useEffect(() => {
-    router.push(`/gun-builder/${data.code}?clone=${data.cloneFromCode}`);
-  }, [data.code]);
+    const code = uuidv4().replace(/-/g, "");
+    const cloneFromCode = router.query.uuid;
+
+    router.push(`/gun-builder/${code}?clone=${cloneFromCode}`);
+  }, []);
 
   return (
     <Box>
@@ -24,23 +27,5 @@ const GunBuilder = ({ data }) => {
     </Box>
   );
 };
-
-export async function getStaticPaths() {
-  return {
-    paths: [],
-    fallback: false,
-  };
-}
-
-export async function getStaticProps(context) {
-  const code = uuidv4().replace(/-/g, "");
-  const cloneFromCode = context.params.uuid;
-
-  return {
-    props: {
-      data: { code, cloneFromCode },
-    },
-  };
-}
 
 export default GunBuilder;
