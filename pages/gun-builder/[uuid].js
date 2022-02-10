@@ -113,6 +113,25 @@ const GunBuilder = ({ data, createMode }) => {
       ).json();
 
       console.log("+ Done", result);
+
+      if (state.configuration.twitchLoginId?.length > 3) {
+        const newState = {
+          ...state,
+          embed: (
+            <TwitchEmbed
+              style={{ width: "100%", height: "100%" }}
+              channel={state.configuration.twitchLoginId}
+              id={state.configuration.twitchLoginId}
+              key={state.configuration.twitchLoginId}
+              theme="dark"
+              autoplay
+              withChat={false}
+              muted={true}
+            />
+          ),
+        };
+        setState(newState);
+      }
     } else {
       console.log("No update");
     }
@@ -140,29 +159,6 @@ const GunBuilder = ({ data, createMode }) => {
       router.push(`/gun-builder/${query.uuid}`, undefined, { shallow: true });
     }
   }, [query.clone]);
-
-  // Update Twitch Embed
-  useEffect(() => {
-    if (state.configuration.twitchLoginId?.length > 3) {
-      const newState = {
-        ...state,
-        embed: (
-          <TwitchEmbed
-            style={{ width: "100%", height: "100%" }}
-            channel={state.configuration.twitchLoginId}
-            id={state.configuration.twitchLoginId}
-            key={state.configuration.twitchLoginId}
-            theme="dark"
-            autoplay
-            withChat={false}
-            muted={true}
-          />
-        ),
-      };
-
-      setState(newState);
-    }
-  }, [state.configuration.twitchLoginId]);
 
   const isMobile = useBreakpointValue({ base: true, md: false });
   const shareURL = url + asPath;
