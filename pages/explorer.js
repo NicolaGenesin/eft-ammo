@@ -125,6 +125,25 @@ const Explorer = () => {
           </Thead>
           <Tbody>
             {builds.map((build, index) => {
+              let modsCount = 0;
+
+              if (build.configuration) {
+                const slots = build.configuration.currentBuild?.slots || [];
+
+                const countSlots = (slots) => {
+                  slots.forEach((slot) => {
+                    if (slot.item) {
+                      modsCount += 1;
+                    }
+                    if (slot.slots.length) {
+                      countSlots(slot.slots);
+                    }
+                  });
+                };
+
+                countSlots(slots);
+              }
+
               return (
                 <Tr
                   bg={index % 2 === 0 ? "vulcan.900" : "vulcan.850"}
@@ -141,10 +160,10 @@ const Explorer = () => {
                     {build.configuration?.title || "-"}
                   </Td>
                   <Td _hover={{ cursor: "pointer" }} fontSize="md">
-                    ASh-12 12.7x55 assault rifle
+                    {build.configuration?.gun?.name || "-"}
                   </Td>
                   <Td _hover={{ cursor: "pointer" }} fontSize="md">
-                    3
+                    {modsCount}
                   </Td>
                   <Td _hover={{ cursor: "pointer" }} fontSize="md">
                     {build.configuration?.twitchLoginId || "-"}
