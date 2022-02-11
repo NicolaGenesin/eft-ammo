@@ -1,4 +1,4 @@
-export const configuration = {
+export const exampleConfiguration = {
   gun: {
     id: "5c07c60e0db834002330051f",
     bsgCategoryId: "5447b5f14bdc2d61278b4567",
