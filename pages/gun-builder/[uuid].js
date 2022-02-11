@@ -31,6 +31,7 @@ import {
   VKIcon,
   VKShareButton,
 } from "react-share";
+import { configuration } from "../../utils/exampleConfiguration";
 
 const persistVote = async (code, direction) => {
   await (
@@ -413,14 +414,21 @@ const GunBuilder = ({ data, createMode }) => {
               </Box>
             )}
           </Wrap>
-          <Box
+          <Center
             w={["360px", "450px", "550px", "600px"]}
             h="500px"
             borderColor="white"
             borderWidth="1px"
           >
-            Builder
-          </Box>
+            <Button
+              colorScheme="blue"
+              onClick={() => {
+                setState({ ...state, configuration: configuration });
+              }}
+            >
+              Set Example Configuration
+            </Button>
+          </Center>
           <Box>Configuration: {JSON.stringify(state.configuration)}</Box>
           <Box
             w={["375px", "450px", "600px"]}

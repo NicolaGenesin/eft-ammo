@@ -14,10 +14,11 @@ const handler = async (req, res) => {
     case "POST":
       const { code, configuration } = body;
 
+      // the replace is crucial e.g. 'AR-15s 20"' is stringified to "AR-15 20\\"" and will fail the insert
+      const stringifiedBody = JSON.stringify(configuration).replace(/\\"/g, "");
+
       await conn.query(
-        `update gunbuilds set configuration = '${JSON.stringify(
-          configuration
-        )}' where code = '${code}';`
+        `update gunbuilds set configuration = '${stringifiedBody}' where code = '${code}';`
       );
 
       res.status(200).json({ ok: true });
