@@ -419,6 +419,7 @@ const GunBuilder = ({ data, createMode }) => {
             h="500px"
             borderColor="white"
             borderWidth="1px"
+            style={{ pointerEvents: createMode ? "auto" : "none" }}
           >
             <Button
               colorScheme="blue"
