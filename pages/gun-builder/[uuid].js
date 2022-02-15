@@ -198,10 +198,10 @@ const GunBuilder = ({ data, createMode }) => {
         <VStack spacing="24px">
           {isMobile && (
             <Text fontSize="4xl" fontWeight="bold" textAlign="center">
-              Gun Builder
+              Tarkov Gun Builder
             </Text>
           )}
-          <HStack px="8px">
+          <HStack px="24px">
             {createMode ? (
               <Text fontSize="xs">
                 Data saved automatically.{" "}
@@ -217,16 +217,16 @@ const GunBuilder = ({ data, createMode }) => {
               </Text>
             ) : (
               <Text fontSize="xs">
-                Want to re-share?{" "}
+                Share{" "}
                 <span
                   onClick={() => {
                     navigator.clipboard.writeText(shareURL);
                   }}
                   style={{ textDecoration: "underline", cursor: "pointer" }}
                 >
-                  Copy URL
+                  via URL
                 </span>{" "}
-                or do it via Social:
+                or Social:
               </Text>
             )}
             <HStack>
@@ -261,7 +261,7 @@ const GunBuilder = ({ data, createMode }) => {
               <Button
                 color="black"
                 borderRadius="0"
-                colorScheme="green"
+                colorScheme="orange"
                 fontSize="lg"
                 fontWeight="bold"
                 textTransform="uppercase"
@@ -430,10 +430,7 @@ const GunBuilder = ({ data, createMode }) => {
               }
             }}
           >
-            <Center
-              bg="tomato"
-              style={{ pointerEvents: createMode ? "auto" : "none" }}
-            >
+            <Center style={{ pointerEvents: createMode ? "auto" : "none" }}>
               <TarkovGunBuilder
                 items={items}
                 presets={gamePresets.ItemPresets}
