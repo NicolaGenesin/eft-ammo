@@ -77,19 +77,11 @@ const Footer = () => {
           align={"center"}
           _before={{
             content: '""',
-            borderBottom: "1px solid",
-            borderColor: "tarkovYellow.100",
             flexGrow: 1,
-            opacity: 0.5,
-            mr: 8,
           }}
           _after={{
             content: '""',
-            borderBottom: "1px solid",
-            borderColor: "tarkovYellow.100",
-            opacity: 0.5,
             flexGrow: 1,
-            ml: 8,
           }}
         >
           <Text textTransform="uppercase" fontWeight="bold" fontSize="2xl">
