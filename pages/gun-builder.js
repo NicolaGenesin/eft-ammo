@@ -5,13 +5,14 @@ import { useEffect } from "react";
 import { v4 as uuidv4 } from "uuid";
 import Loading from "../components/Loading";
 
-const GunBuilder = ({ data }) => {
+const GunBuilder = () => {
   const router = useRouter();
-  const { asPath, query } = router;
 
   useEffect(() => {
-    router.push(`/gun-builder/${data.code}`);
-  }, [data.code]);
+    const code = uuidv4().replace(/-/g, "");
+
+    router.push(`/gun-builder/${code}`);
+  }, []);
 
   return (
     <Box>
@@ -25,15 +26,5 @@ const GunBuilder = ({ data }) => {
     </Box>
   );
 };
-
-export async function getStaticProps() {
-  const code = uuidv4().replace(/-/g, "");
-
-  return {
-    props: {
-      data: { code },
-    },
-  };
-}
 
 export default GunBuilder;
