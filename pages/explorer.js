@@ -135,8 +135,14 @@ const Explorer = () => {
                     if (slot.item) {
                       modsCount += 1;
                     }
-                    if (slot.slots.length) {
+                    if (slot.slots?.length) {
                       countSlots(slot.slots);
+                    }
+
+                    if (!slot.slots) {
+                      console.error(
+                        `slot.slots not defined for Build ID: ${build.code}`
+                      );
                     }
                   });
                 };
