@@ -156,7 +156,11 @@ const Explorer = () => {
                     router.push(`/gun-builder/${build.code}`);
                   }}
                 >
-                  <Td _hover={{ cursor: "pointer" }} fontSize="md">
+                  <Td
+                    _hover={{ cursor: "pointer" }}
+                    fontSize="md"
+                    textTransform="capitalize"
+                  >
                     {build.configuration?.title || "-"}
                   </Td>
                   <Td _hover={{ cursor: "pointer" }} fontSize="md">
