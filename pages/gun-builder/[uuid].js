@@ -272,23 +272,21 @@ const GunBuilder = ({ data, createMode }) => {
                 Clone
               </Button>
             )}
-            <Button
-              color="black"
-              borderRadius="0"
-              colorScheme="green"
-              fontSize="lg"
-              fontWeight="bold"
-              textTransform="uppercase"
-              onClick={() => {
-                if (createMode) {
-                  setState({ ...state, configuration: {} });
-                } else {
+            {!createMode && (
+              <Button
+                color="black"
+                borderRadius="0"
+                colorScheme="green"
+                fontSize="lg"
+                fontWeight="bold"
+                textTransform="uppercase"
+                onClick={() => {
                   router.push("/gun-builder");
-                }
-              }}
-            >
-              {createMode ? "Reset Build" : "Create New"}
-            </Button>
+                }}
+              >
+                Create New
+              </Button>
+            )}
             <Button
               color="black"
               borderRadius="0"
@@ -447,9 +445,6 @@ const GunBuilder = ({ data, createMode }) => {
                     ...data,
                   };
                   setState({ ...state, configuration: newConfiguration });
-                }}
-                shareCallback={(data) => {
-                  // called once when you click on the share button
                 }}
               />
             </Center>
