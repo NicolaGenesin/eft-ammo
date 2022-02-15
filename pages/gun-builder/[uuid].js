@@ -21,6 +21,7 @@ import { url } from "../../utils/env";
 import { TwitchEmbed } from "react-twitch-embed";
 import deepEqual from "deep-equal";
 import { BiUpvote, BiDownvote } from "react-icons/bi";
+import TarkovGunBuilder from "tarkov-gun-builder/dist/components/tarkov-gun-builder/index";
 import {
   RedditIcon,
   RedditShareButton,
@@ -32,6 +33,9 @@ import {
   VKShareButton,
 } from "react-share";
 import { exampleConfiguration } from "../../utils/exampleConfiguration";
+import items from "../../utils/bsg/items.json";
+import gamePresets from "../../utils/bsg/globals.json";
+import defaultPresets from "../../utils/bsg/item_presets.json";
 
 const persistVote = async (code, direction) => {
   await (
@@ -86,6 +90,10 @@ const GunBuilder = ({ data, createMode }) => {
 
   // Keep content up to date
   useInterval(async () => {
+    if (!createMode) {
+      return;
+    }
+
     const parsedPrevConfiguration = JSON.parse(
       prevConfigurationRef?.current || "{}"
     );
@@ -310,12 +318,13 @@ const GunBuilder = ({ data, createMode }) => {
                 <ItemLabel itemType="title" />
                 <Input
                   minW="300px"
+                  bg="vulcan.950"
                   placeholder="[Optional]"
                   color="tarkovYellow.100"
                   textAlign="center"
                   _placeholder={{ color: "tarkovYellow.50" }}
                   _disabled={{ color: "tarkovYellow.100" }}
-                  borderColor="white"
+                  borderColor="vanishedWhite.100"
                   borderWidth="1px"
                   borderRadius="0"
                   size="md"
@@ -338,12 +347,13 @@ const GunBuilder = ({ data, createMode }) => {
                 <ItemLabel itemType="embedTitle" />
                 <Input
                   minW="300px"
+                  bg="vulcan.950"
                   placeholder="[Optional]"
                   color="tarkovYellow.100"
                   textAlign="center"
                   _placeholder={{ color: "tarkovYellow.50" }}
                   _disabled={{ color: "tarkovYellow.100" }}
-                  borderColor="white"
+                  borderColor="vanishedWhite.100"
                   borderWidth="1px"
                   borderRadius="0"
                   size="md"
@@ -373,11 +383,11 @@ const GunBuilder = ({ data, createMode }) => {
               </Box>
             </VStack>
             {!createMode && (
-              <Box>
+              <Box bg="vulcan.950">
                 <ItemLabel itemType="score" />
                 <VStack
                   h="107px"
-                  borderColor="white"
+                  borderColor="vanishedWhite.100"
                   borderWidth="1px"
                   p="4px"
                   justify="center"
@@ -414,26 +424,42 @@ const GunBuilder = ({ data, createMode }) => {
               </Box>
             )}
           </Wrap>
-          <Center
-            w={["360px", "450px", "550px", "600px"]}
-            h="500px"
-            borderColor="white"
-            borderWidth="1px"
-            style={{ pointerEvents: createMode ? "auto" : "none" }}
+          <Box
+            onClick={() => {
+              if (!createMode) {
+                alert(
+                  "You cannot edit this build. Please clone or create a new one."
+                );
+              }
+            }}
           >
-            <Button
-              colorScheme="blue"
-              onClick={() => {
-                const newConfiguration = {
-                  ...state.configuration,
-                  ...exampleConfiguration,
-                };
-                setState({ ...state, configuration: newConfiguration });
-              }}
+            <Center
+              bg="tomato"
+              style={{ pointerEvents: createMode ? "auto" : "none" }}
             >
-              Set Example Configuration
-            </Button>
-          </Center>
+              <TarkovGunBuilder
+                items={items}
+                presets={gamePresets.ItemPresets}
+                defaultPresets={defaultPresets}
+                defaultConfiguration={
+                  Object.keys(state.configuration).length > 0
+                    ? state.configuration
+                    : undefined
+                }
+                callback={(data) => {
+                  // called every time the configuration changes
+                  const newConfiguration = {
+                    ...state.configuration,
+                    ...data,
+                  };
+                  setState({ ...state, configuration: newConfiguration });
+                }}
+                shareCallback={(data) => {
+                  // called once when you click on the share button
+                }}
+              />
+            </Center>
+          </Box>
           <Box
             w={["375px", "450px", "600px"]}
             h={["300px", "400px", "400px"]}
@@ -456,16 +482,17 @@ const GunBuilder = ({ data, createMode }) => {
                 </a>
               </Text>
             )}
-            {state.configuration.twitchLoginId && state.embed}
-            {!state.configuration.twitchLoginId && createMode && (
+            {state.configuration.twitchLoginId && !createMode && state.embed}
+            {createMode && (
               <Center
                 w="100%"
                 h="100%"
-                borderColor="white"
+                borderColor="vanishedWhite.100"
                 borderWidth="1px"
                 align="center"
                 fontWeight="bold"
                 position="relative"
+                bg="vulcan.950"
               >
                 <Skeleton
                   position="absolute"
@@ -474,10 +501,10 @@ const GunBuilder = ({ data, createMode }) => {
                   startColor="vulcan.900"
                   endColor="vulcan.800"
                   speed="1.5"
+                  opacity="0.5"
                 />
-                A Twitch Stream will show here if you fill
-                <br />
-                the Twitch ID input at the top of this page.
+                A Twitch Stream will show here when you share this page.
+                <br />( just set your Twitch ID at the top of this page )
               </Center>
             )}
           </Box>

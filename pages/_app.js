@@ -16,12 +16,17 @@ const theme = extendTheme({
       800: "#383932",
       850: "#2a2a29",
       900: "#1f1f1e",
+      950: "#191c1c",
       1000: "#131313",
       1050: "#101010",
     },
     tarkovYellow: {
       50: "#877f70",
       100: "#dbc59c",
+      // 100: "#dbc59c", real yellow used
+    },
+    vanishedWhite: {
+      100: "#4d5154",
       // 100: "#dbc59c", real yellow used
     },
   },
