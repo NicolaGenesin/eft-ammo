@@ -480,20 +480,11 @@ const GunBuilder = ({ data, createMode }) => {
                 borderWidth="1px"
                 align="center"
                 fontWeight="bold"
-                position="relative"
                 bg="vulcan.950"
               >
-                <Skeleton
-                  position="absolute"
-                  w="100%"
-                  h="100%"
-                  startColor="vulcan.900"
-                  endColor="vulcan.800"
-                  speed="1.5"
-                  opacity="0.5"
-                />
-                A Twitch Stream will show here when you share this page.
-                <br />( just set your Twitch ID at the top of this page )
+                When you'll share this page, a Twitch Stream will show here.
+                <br />
+                Just remember to set your Twitch login name on this page.
               </Center>
             )}
           </Box>
