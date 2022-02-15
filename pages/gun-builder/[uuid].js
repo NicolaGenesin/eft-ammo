@@ -98,10 +98,9 @@ const GunBuilder = ({ data, createMode }) => {
       prevConfigurationRef?.current || "{}"
     );
 
-    const stateHasChanged = !deepEqual(
-      parsedPrevConfiguration,
-      configurationRef.current
-    );
+    const stateHasChanged =
+      JSON.stringify(parsedPrevConfiguration) !==
+      JSON.stringify(configurationRef.current);
 
     if (Object.keys(parsedPrevConfiguration).length && stateHasChanged) {
       console.log("Saving New State");
@@ -122,25 +121,6 @@ const GunBuilder = ({ data, createMode }) => {
       ).json();
 
       console.log("+ Done", result);
-
-      if (state.configuration.twitchLoginId?.length > 3) {
-        const newState = {
-          ...state,
-          embed: (
-            <TwitchEmbed
-              style={{ width: "100%", height: "100%" }}
-              channel={state.configuration.twitchLoginId}
-              id={state.configuration.twitchLoginId}
-              key={state.configuration.twitchLoginId}
-              theme="dark"
-              autoplay
-              withChat={false}
-              muted={true}
-            />
-          ),
-        };
-        setState(newState);
-      }
     } else {
       console.log("No update");
     }
@@ -148,7 +128,7 @@ const GunBuilder = ({ data, createMode }) => {
 
   // Update previous configuration when necessary
   useEffect(() => {
-    prevConfiguration = JSON.stringify(state.configuration || {});
+    prevConfigurationRef.current = JSON.stringify(state.configuration || {});
     setDoUpdatePrevConfiguration(false);
   }, [doUpdatePrevConfiguration]);
 
@@ -282,7 +262,6 @@ const GunBuilder = ({ data, createMode }) => {
                 color="black"
                 borderRadius="0"
                 colorScheme="green"
-                as="h1"
                 fontSize="lg"
                 fontWeight="bold"
                 textTransform="uppercase"
@@ -290,14 +269,13 @@ const GunBuilder = ({ data, createMode }) => {
                   router.push(`/gun-builder-clone/${query.uuid}`);
                 }}
               >
-                Clone Build
+                Clone
               </Button>
             )}
             <Button
               color="black"
               borderRadius="0"
-              colorScheme="orange"
-              as="h1"
+              colorScheme="green"
               fontSize="lg"
               fontWeight="bold"
               textTransform="uppercase"
@@ -309,7 +287,26 @@ const GunBuilder = ({ data, createMode }) => {
                 }
               }}
             >
-              {createMode ? "Reset Build" : "Create New Build"}
+              {createMode ? "Reset Build" : "Create New"}
+            </Button>
+            <Button
+              color="black"
+              borderRadius="0"
+              colorScheme="blue"
+              fontSize="lg"
+              fontWeight="bold"
+              textTransform="uppercase"
+              onClick={() => {
+                navigator.clipboard.writeText(shareURL);
+
+                setTimeout(
+                  async () =>
+                    alert(`${shareURL} has been copied to your clipboard!`),
+                  500
+                );
+              }}
+            >
+              Share
             </Button>
           </Wrap>
           <Wrap shouldWrapChildren justify="center" align="end">
@@ -428,7 +425,7 @@ const GunBuilder = ({ data, createMode }) => {
             onClick={() => {
               if (!createMode) {
                 alert(
-                  "You cannot edit this build. Please clone or create a new one."
+                  "You cannot edit this Build. Please clone it or create a new one."
                 );
               }
             }}
