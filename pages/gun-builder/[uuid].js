@@ -478,7 +478,6 @@ const GunBuilder = ({ data, createMode }) => {
 };
 
 export async function getServerSideProps(context) {
-  console.log("context", context.query.clone);
   let cloneData;
 
   // Clone logic
