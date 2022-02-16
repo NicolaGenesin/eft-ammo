@@ -239,6 +239,7 @@ const GunBuilder = ({ data, createMode }) => {
             position={!isMobile && "fixed"}
             right={0}
             bottom={0}
+            zIndex={100}
           >
             {!createMode && (
               <Button
@@ -410,6 +411,7 @@ const GunBuilder = ({ data, createMode }) => {
                 );
               }
             }}
+            zIndex={99}
           >
             <Center style={{ pointerEvents: createMode ? "auto" : "none" }}>
               <TarkovGunBuilder
@@ -437,6 +439,7 @@ const GunBuilder = ({ data, createMode }) => {
             h={["300px", "400px", "400px"]}
             pt="48px"
             pb="64px"
+            px="16px"
           >
             {state.configuration.twitchLoginId && (
               <Text
@@ -464,6 +467,7 @@ const GunBuilder = ({ data, createMode }) => {
                 align="center"
                 fontWeight="bold"
                 bg="vulcan.950"
+                p="16px"
               >
                 When you'll share this page, a Twitch Stream will show here.
                 <br />
