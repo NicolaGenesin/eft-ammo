@@ -1,12 +1,6 @@
 import { PSDB } from "planetscale-node";
 const conn = new PSDB("main");
 
-// `id` int NOT NULL AUTO_INCREMENT,
-// `createdAt` datetime DEFAULT CURRENT_TIMESTAMP,
-// `code` varchar(255) NOT NULL,
-// `configuration` json DEFAULT NULL,
-// `socialVote` int DEFAULT '0',
-
 const handler = async (req, res) => {
   const { body, method, query } = req;
 
@@ -18,7 +12,7 @@ const handler = async (req, res) => {
       const stringifiedBody = JSON.stringify(configuration).replace(/\\"/g, "");
 
       await conn.query(
-        `update gunbuilds set configuration = '${stringifiedBody}' where code = '${code}';`
+        `update configuration set value = '${stringifiedBody}' where code = '${code}';`
       );
 
       res.status(200).json({ ok: true });
@@ -27,13 +21,14 @@ const handler = async (req, res) => {
       const { uuid } = req.query;
 
       const [getRows, _] = await conn.query(
-        `select * from gunbuilds where code = '${uuid}'`
+        `select a.createdAt, a.code, a.score, value as configuration from build a join configuration b on a.code = b.code where b.code = '${uuid}'`
       );
 
       if (getRows.length) {
         res.json({ data: getRows[0], isNew: false });
       } else {
-        await conn.query(`insert into gunbuilds (code) values ('${uuid}')`);
+        await conn.query(`insert into build (code) values ('${uuid}')`);
+        await conn.query(`insert into configuration (code) values ('${uuid}')`);
 
         res.json({ data: { code: uuid }, isNew: true });
       }

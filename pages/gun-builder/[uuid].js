@@ -63,17 +63,10 @@ const GunBuilder = ({ data, createMode }) => {
     );
   }
 
-  if (!createMode) {
-    // TODO if not all data is filled, create configuration with defaults
-    // check field by field
-    // ====================
-    // TODO disable builder
-  }
-
   const router = useRouter();
   const { query, asPath } = router;
   const [vote, setVote] = useState();
-  const [score, setScore] = useState(data.socialVote || 0);
+  const [score, setScore] = useState(data.score || 0);
   const [state, setState] = useState({
     configuration: data?.configuration || {}, // this needs to stay empty (interval)
     embed: undefined,
@@ -126,28 +119,18 @@ const GunBuilder = ({ data, createMode }) => {
     }
   }, 4000);
 
+  // clean url from clone logic
+  useEffect(async () => {
+    if (query.clone) {
+      router.push(`/gun-builder/${query.uuid}`, undefined, { shallow: true });
+    }
+  }, [query.clone]);
+
   // Update previous configuration when necessary
   useEffect(() => {
     prevConfigurationRef.current = JSON.stringify(state.configuration || {});
     setDoUpdatePrevConfiguration(false);
   }, [doUpdatePrevConfiguration]);
-
-  // Clone logic
-  useEffect(async () => {
-    if (query.clone) {
-      const response = await (
-        await fetch(`${url}/api/guns/builds/${query.clone}`, {
-          method: "GET",
-        })
-      ).json();
-
-      const configuration = response.data.configuration || {};
-
-      setState({ ...state, configuration });
-
-      router.push(`/gun-builder/${query.uuid}`, undefined, { shallow: true });
-    }
-  }, [query.clone]);
 
   // Update Twitch Embed
   useEffect(() => {
@@ -495,6 +478,21 @@ const GunBuilder = ({ data, createMode }) => {
 };
 
 export async function getServerSideProps(context) {
+  console.log("context", context.query.clone);
+  let cloneData;
+
+  // Clone logic
+  if (context.query.clone) {
+    // query.clone is the uuid of the original build we want to clone
+    const response = await (
+      await fetch(`${url}/api/guns/builds/${context.query.clone}`, {
+        method: "GET",
+      })
+    ).json();
+
+    cloneData = response.data;
+  }
+
   const response = await (
     await fetch(`${url}/api/guns/builds/${context.params.uuid}`, {
       method: "GET",
@@ -502,6 +500,10 @@ export async function getServerSideProps(context) {
   ).json();
 
   const createMode = response.isNew;
+
+  if (cloneData) {
+    response.data = cloneData;
+  }
 
   return {
     props: { data: response.data, createMode },

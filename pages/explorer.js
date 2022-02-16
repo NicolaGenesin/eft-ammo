@@ -182,7 +182,7 @@ const Explorer = () => {
                     {new Date(build.createdAt).toDateString()}
                   </Td>
                   <Td _hover={{ cursor: "pointer" }} fontSize="md">
-                    {build.socialVote}
+                    {build.score}
                   </Td>
                 </Tr>
               );

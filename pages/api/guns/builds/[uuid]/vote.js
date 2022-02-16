@@ -1,12 +1,6 @@
 import { PSDB } from "planetscale-node";
 const conn = new PSDB("main");
 
-// `id` int NOT NULL AUTO_INCREMENT,
-// `createdAt` datetime DEFAULT CURRENT_TIMESTAMP,
-// `code` varchar(255) NOT NULL,
-// `configuration` json DEFAULT NULL,
-// `socialVote` int DEFAULT '0',
-
 const handler = async (req, res) => {
   const { body, method, query } = req;
 
@@ -15,10 +9,10 @@ const handler = async (req, res) => {
       const { direction } = body;
 
       const [getRows, _] = await conn.query(
-        `select * from gunbuilds where code = '${query.uuid}'`
+        `select * from build where code = '${query.uuid}'`
       );
 
-      let score = getRows[0].socialVote;
+      let score = getRows[0].score;
 
       if (direction === "up") {
         score = score + 1;
@@ -27,7 +21,7 @@ const handler = async (req, res) => {
       }
 
       await conn.query(
-        `update gunbuilds set socialVote = ${score} where code = '${query.uuid}';`
+        `update build set score = ${score} where code = '${query.uuid}';`
       );
 
       res.status(200).json({ ok: true });
