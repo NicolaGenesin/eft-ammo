@@ -13,13 +13,11 @@ import {
   Tab,
   Tabs,
   Center,
-  TabPanels,
-  TabPanel,
   useBreakpointValue,
 } from "@chakra-ui/react";
-import { url } from "../utils/env";
+import { url } from "../../utils/env";
 import { useRouter } from "next/router";
-import Loading from "../components/Loading";
+import Loading from "../../components/Loading";
 
 const Explorer = () => {
   const [builds, setBuilds] = useState([]);
