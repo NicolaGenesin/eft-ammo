@@ -38,7 +38,7 @@ const LinkItems = [
     path: "/gun-builder/explorer",
     isNew: true,
   },
-  { name: "[Beta] Create Loadout", icon: GiBeamsAura, path: "/builder" },
+  { name: "Create Loadout", icon: GiBeamsAura, path: "/builder" },
   {
     name: "Traders Reset Timers",
     icon: GiDuration,
