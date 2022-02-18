@@ -45,9 +45,9 @@ const LinkItems = [
     path: "/traders-reset-timers",
   },
   {
-    name: "Join the Discord",
+    name: "Join NoFAM Discord",
     icon: FaDiscord,
-    path: "https://discord.gg/H4v5sQR7We",
+    path: "https://discord.gg/wexEyCg",
     isExternal: true,
   },
   {
