@@ -151,7 +151,7 @@ const NavItem = ({
     >
       <Flex
         align="center"
-        px="6"
+        px="4"
         py="4"
         role="group"
         cursor="pointer"
@@ -185,7 +185,7 @@ const NavItem = ({
             fontSize="xs"
             fontWeight="bold"
           >
-            NEW
+            BETA
           </Tag>
         )}
       </Flex>
