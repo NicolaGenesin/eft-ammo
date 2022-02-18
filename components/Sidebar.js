@@ -36,6 +36,7 @@ const LinkItems = [
     name: "Explore Gun Builds",
     icon: FiCompass,
     path: "/gun-builder/explorer",
+    isNew: true,
   },
   { name: "[Beta] Create Loadout", icon: GiBeamsAura, path: "/builder" },
   {
