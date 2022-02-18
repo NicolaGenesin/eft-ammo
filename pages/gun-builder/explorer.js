@@ -177,7 +177,7 @@ const Explorer = () => {
                     {build.configuration?.twitchLoginId || "-"}
                   </Td>
                   <Td _hover={{ cursor: "pointer" }} fontSize="md">
-                    {new Date(build.createdAt).toDateString()}
+                    {new Date(build.createdAt).toLocaleString()}
                   </Td>
                   <Td _hover={{ cursor: "pointer" }} fontSize="md">
                     {build.score}
