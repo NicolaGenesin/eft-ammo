@@ -93,7 +93,7 @@ const App = ({ results, isFallback }) => {
   const customTransform = { transform: `rotate(${rotation}deg)` };
 
   return (
-    <Box bg="vulcan.1000">
+    <Box>
       <Head>
         <title>EFT | Ammo and Armor Charts</title>
         <link rel="icon" href="/favicon.ico" />
@@ -307,7 +307,6 @@ const App = ({ results, isFallback }) => {
             </TabPanels>
           </Tabs>
         </Center>
-        <TradersResetTimers />
         <Center>
           <Box
             w={["375px", "450px", "600px"]}

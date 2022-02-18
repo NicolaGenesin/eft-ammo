@@ -7,6 +7,7 @@ import {
   VStack,
   Text,
   Wrap,
+  useBreakpointValue,
 } from "@chakra-ui/react";
 import React, { useState, useEffect } from "react";
 import { useRouter } from "next/router";
@@ -75,20 +76,22 @@ const Builder = ({ data }) => {
     };
   }, [asPath, query]);
 
+  const isMobile = useBreakpointValue({ base: true, md: false });
+
   return (
     <Box>
       <Box
         style={{
-          background: "url(/builder/background.jpg)",
-          backgroundPositionY: "50%",
           position: "fixed",
-          backgroundSize: "cover",
-          width: "100%",
-          height: "100vh",
-          zIndex: "-1",
         }}
-      />
-      <Box py="64px" zIndex="1">
+      >
+        {!isMobile && (
+          <Text fontSize="7xl" fontWeight="bold" opacity="0.15" ml="24px">
+            Loadout Builder
+          </Text>
+        )}
+      </Box>
+      <Box py="64px">
         <Head>
           <title>EFT | Loadout Builder</title>
           <link rel="icon" href="/favicon.ico" />
@@ -216,9 +219,6 @@ const Builder = ({ data }) => {
             </Box>
           </Center>
         )}
-        <Center py="32px">
-          <TradersResetTimers />
-        </Center>
         <Center>
           <Link href="/nofoodaftermidnight" style={{ textDecoration: "none" }}>
             <Button

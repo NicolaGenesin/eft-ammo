@@ -36,29 +36,7 @@ import ModalTable from "./ModalTable";
 import { GiWeight } from "react-icons/gi";
 import { useRouter } from "next/router";
 import { getModalTitleLabel } from "../../utils/labels";
-
-const updateQueryString = (router, loadout) => {
-  const query = {};
-
-  Object.keys(loadout).forEach((item) => {
-    if (loadout[item]) {
-      if (loadout[item].normalizedName) {
-        query[item] = loadout[item].normalizedName;
-      } else {
-        query[item] = loadout[item];
-      }
-    }
-  });
-
-  router.push(
-    {
-      pathname: "/builder",
-      query,
-    },
-    undefined,
-    { shallow: true }
-  );
-};
+import { updateQueryString } from "../../utils/url";
 
 const renderAmmoTypes = (target, state, setState, onOpen, router) => {
   return (
@@ -107,7 +85,7 @@ const renderAmmoTypes = (target, state, setState, onOpen, router) => {
                   newState.loadout[`${key}Q`] = value;
 
                   setState(newState);
-                  updateQueryString(router, newState.loadout);
+                  updateQueryString(router, newState.loadout, "/builder");
                 }}
               >
                 <NumberInputField
@@ -331,7 +309,7 @@ const Body = ({ data, query }) => {
               newLoadout.title = e.target.value;
 
               setState({ ...state, loadout: newLoadout });
-              updateQueryString(router, newLoadout);
+              updateQueryString(router, newLoadout, "/builder");
             }}
           />
         </Box>
@@ -359,7 +337,7 @@ const Body = ({ data, query }) => {
               newLoadout.embedUser = e.target.value;
 
               setState({ ...state, loadout: newLoadout });
-              updateQueryString(router, newLoadout);
+              updateQueryString(router, newLoadout, "/builder");
             }}
           />
           {!state.loadout.embedUser && (
@@ -494,7 +472,7 @@ const Body = ({ data, query }) => {
                         newState.loadout[state.currentItemType] = item;
 
                         setState(newState);
-                        updateQueryString(router, newState.loadout);
+                        updateQueryString(router, newState.loadout, "/builder");
                         onClose();
                       }}
                     />

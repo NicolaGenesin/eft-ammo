@@ -37,6 +37,7 @@ const Footer = () => {
           <VStack px="12px" pb={["24px", "0"]}>
             <ListHeader>Resources</ListHeader>
             <Link href={"/nofoodaftermidnight"}>Home</Link>
+            <Link href={"/gun-builder"}>Gun Builder</Link>
             <Link href={"/builder"}>Loadout Builder</Link>
           </VStack>
           <VStack px="12px" pb={["24px", "0"]}>
@@ -76,19 +77,11 @@ const Footer = () => {
           align={"center"}
           _before={{
             content: '""',
-            borderBottom: "1px solid",
-            borderColor: "tarkovYellow.100",
             flexGrow: 1,
-            opacity: 0.5,
-            mr: 8,
           }}
           _after={{
             content: '""',
-            borderBottom: "1px solid",
-            borderColor: "tarkovYellow.100",
-            opacity: 0.5,
             flexGrow: 1,
-            ml: 8,
           }}
         >
           <Text textTransform="uppercase" fontWeight="bold" fontSize="2xl">

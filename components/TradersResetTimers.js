@@ -35,7 +35,7 @@ const Renderer = (props) => {
   );
 };
 
-const TradersResetTimers = ({ trader }) => {
+const TradersResetTimers = ({ big }) => {
   const { status, data } = useQuery(`server-status`, () =>
     fetch("https://tarkov-tools.com/graphql", {
       method: "POST",
@@ -82,8 +82,8 @@ const TradersResetTimers = ({ trader }) => {
                         style={{
                           objectFit: "cover",
                         }}
-                        width={"56px"}
-                        height={"56px"}
+                        width={big ? "120px" : "56px"}
+                        height={big ? "120px" : "56px"}
                         src={encodeURIComponent(
                           `/traders/${resetTime.name}.jpeg`
                         )}
