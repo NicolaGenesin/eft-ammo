@@ -40,7 +40,7 @@ const Explorer = () => {
         })
       ).json();
 
-      setBuilds(response.data);
+      setBuilds(response.data.filter((x) => x?.configuration?.gun?.name));
     }
   }, [builds]);
 
