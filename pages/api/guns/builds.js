@@ -6,10 +6,10 @@ const handler = async (req, res) => {
 
   switch (method) {
     case "GET":
-      let queryToExec = `select a.createdAt, a.code, a.score, value as configuration from build a join configuration b on a.code = b.code where value is not null order by a.createdAt desc limit 150`;
+      let queryToExec = `select a.createdAt, a.code, a.score, value as configuration from build a join configuration b on a.code = b.code where value is not null and json_length(value) > 1 order by a.createdAt desc limit 25`;
 
       if (query.orderBy === "score") {
-        queryToExec = `select a.createdAt, a.code, a.score, value as configuration from build a join configuration b on a.code = b.code where value is not null order by a.score desc limit 150`;
+        queryToExec = `select a.createdAt, a.code, a.score, value as configuration from build a join configuration b on a.code = b.code where value is not null and json_length(value) > 1 order by a.score desc limit 25`;
       }
 
       const [getRows, _] = await conn.query(queryToExec);
