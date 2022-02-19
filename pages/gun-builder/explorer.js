@@ -136,12 +136,6 @@ const Explorer = () => {
                     if (slot.slots?.length) {
                       countSlots(slot.slots);
                     }
-
-                    if (!slot.slots) {
-                      console.error(
-                        `slot.slots not defined for Build ID: ${build.code}`
-                      );
-                    }
                   });
                 };
 
