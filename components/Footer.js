@@ -69,6 +69,9 @@ const Footer = () => {
             <Link isExternal href={"https://tarkov-tools.com"}>
               Kokarn from tarkov-tools
             </Link>
+            <Link isExternal href={"https://andreibegu.me/"}>
+              Andrew | andreibegu.me
+            </Link>
           </VStack>
         </Wrap>
       </Center>
