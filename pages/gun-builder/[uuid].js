@@ -32,7 +32,6 @@ import {
   VKIcon,
   VKShareButton,
 } from "react-share";
-import { exampleConfiguration } from "../../utils/exampleConfiguration";
 import items from "../../utils/bsg/items.json";
 import gamePresets from "../../utils/bsg/globals.json";
 import defaultPresets from "../../utils/bsg/item_presets.json";
@@ -233,8 +232,7 @@ const GunBuilder = ({ data, createMode }) => {
             </HStack>
           </HStack>
           <Text fontSize="sm" fontWeight="bold" textAlign="center" px="24px">
-            [Feb 18th 2022] This Beta has been built by Kokarn from tarkov-tools
-            and me. This is a work in progress. Feedback?{" "}
+            [BETA] This is a work in progress. Feedback?{" "}
             <Link style={{ textDecoration: "underline" }}>
               Join the Discord
             </Link>
@@ -476,9 +474,9 @@ const GunBuilder = ({ data, createMode }) => {
                 bg="vulcan.950"
                 p="16px"
               >
-                When you'll share this page, a Twitch Stream will show here.
-                <br />
-                Just remember to set your Twitch login name on this page.
+                Are you a Streamer? Set your Twitch login name at the top of
+                this page.
+                <br />A Twitch player will show here once you share this page.
               </Center>
             )}
           </Box>
