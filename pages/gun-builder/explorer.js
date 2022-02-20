@@ -113,7 +113,7 @@ const Explorer = () => {
         <Table size="sm" variant="unstyled">
           <Thead color="tarkovYellow.50">
             <Tr>
-              <Th>Gun Build Name</Th>
+              <Th>Build Name</Th>
               <Th>Gun Used</Th>
               <Th>Total Mods</Th>
               <Th>Created By</Th>
