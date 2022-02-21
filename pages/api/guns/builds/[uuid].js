@@ -15,6 +15,45 @@ const handler = async (req, res) => {
         `update configuration set value = '${stringifiedBody}' where code = '${code}';`
       );
 
+      const queryBuilder = [];
+
+      if (configuration?.title) {
+        queryBuilder.push(`name = "${configuration.title}"`);
+      }
+
+      if (configuration?.twitchLoginId) {
+        queryBuilder.push(`twitchLoginId = "${configuration.twitchLoginId}"`);
+      }
+
+      if (configuration?.gun?.name) {
+        queryBuilder.push(`gunName = "${configuration.gun.name}"`);
+      }
+
+      if (configuration?.currentBuild) {
+        let modsCount = 0;
+
+        const slots = configuration.currentBuild?.slots || [];
+
+        const countSlots = (slots) => {
+          slots.forEach((slot) => {
+            if (slot.item) {
+              modsCount += 1;
+            }
+            if (slot.slots?.length) {
+              countSlots(slot.slots);
+            }
+          });
+        };
+
+        countSlots(slots);
+
+        queryBuilder.push(`modsCount = ${modsCount}`);
+      }
+
+      await conn.query(
+        `update build set ${queryBuilder.join(",")} where code = '${code}';`
+      );
+
       res.status(200).json({ ok: true });
       break;
     case "GET":
