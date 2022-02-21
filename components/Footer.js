@@ -110,6 +110,10 @@ const Footer = () => {
             Made with ❤️ by filodreamz <ExternalLinkIcon mx="2px" />
           </Link>
         </Text>
+        <Text textAlign="center" pb="16px" fontSize="xs">
+          Game content and materials are trademarks and copyrights of
+          Battlestate Games and its licensors. All rights reserved.
+        </Text>
       </Box>
     </Box>
   );
