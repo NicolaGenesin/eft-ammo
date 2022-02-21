@@ -17,13 +17,10 @@ const handler = async (req, res) => {
 
       const queryBuilder = [];
 
-      if (configuration?.title) {
-        queryBuilder.push(`name = "${configuration.title}"`);
-      }
-
-      if (configuration?.twitchLoginId) {
-        queryBuilder.push(`twitchLoginId = "${configuration.twitchLoginId}"`);
-      }
+      queryBuilder.push(`name = "${configuration.title || ""}"`);
+      queryBuilder.push(
+        `twitchLoginId = "${configuration.twitchLoginId || ""}"`
+      );
 
       if (configuration?.gun?.name) {
         queryBuilder.push(`gunName = "${configuration.gun.name}"`);
