@@ -231,12 +231,6 @@ const GunBuilder = ({ data, createMode }) => {
               </VKShareButton>
             </HStack>
           </HStack>
-          <Text fontSize="sm" fontWeight="bold" textAlign="center" px="24px">
-            [BETA] This is a work in progress. Feedback?{" "}
-            <Link style={{ textDecoration: "underline" }}>
-              Join the Discord
-            </Link>
-          </Text>
           <Wrap
             p="24px"
             shouldWrapChildren
