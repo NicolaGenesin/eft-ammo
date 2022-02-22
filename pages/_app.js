@@ -1,5 +1,6 @@
 import * as React from "react";
-import { Box, ChakraProvider, extendTheme } from "@chakra-ui/react";
+import { useRouter } from "next/router";
+import { background, Box, ChakraProvider, extendTheme } from "@chakra-ui/react";
 import { QueryClient, QueryClientProvider, useQuery } from "react-query";
 import { Footer } from "../components/Footer";
 import Sidebar from "../components/Sidebar";
@@ -33,6 +34,10 @@ const theme = extendTheme({
 });
 
 const App = ({ Component, pageProps }) => {
+  const { asPath } = useRouter();
+
+  const isSherpaPath = asPath.includes("sherpa");
+
   return (
     <ChakraProvider theme={theme}>
       <QueryClientProvider client={queryClient}>
@@ -45,7 +50,9 @@ const App = ({ Component, pageProps }) => {
           body {
             height: 100% !important;
             width: 100% !important;
-            background-image: url(/builder/background.jpg) !important;
+            background-image: url(/builder/${!isSherpaPath
+              ? "background"
+              : "sherpa"}.jpg) !important;
             background-repeat: no-repeat !important;
             background-attachment: fixed !important;
             background-size: cover !important;

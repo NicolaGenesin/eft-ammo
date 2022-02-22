@@ -175,8 +175,8 @@ const GunBuilder = ({ data, createMode }) => {
         }}
       >
         {!isMobile && (
-          <Text fontSize="7xl" fontWeight="bold" opacity="0.15" ml="24px">
-            Gun Builder
+          <Text fontSize="5xl" fontWeight="bold" opacity="0.55" ml="24px">
+            Sherpa Gun Builder
           </Text>
         )}
       </Box>
