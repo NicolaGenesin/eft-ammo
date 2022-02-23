@@ -148,7 +148,8 @@ const App = ({ results, isFallback }) => {
         <Center color="white" py="4px" px="8px">
           {!isMobile && <AiFillInfoCircle color="#4cf057" size={18} />}
           <Text ml="4px" textAlign="center" fontSize={isMobile ? "xs" : "sm"}>
-            Last Update on February 8th 2022 - Bullet Speed Added
+            Last Update on February 23rd 2022 | Gun builder - MOA calculation
+            added.
           </Text>
         </Center>
         <Divider borderColor="tarkovYellow.100" opacity="0.5" />
@@ -165,7 +166,7 @@ const App = ({ results, isFallback }) => {
               Escape from Tarkov Ammo and Armor Charts
             </Text>
             <Text color="tarkovYellow.100" fontSize="sm">
-              Updated for v0.12.12
+              Updated for v0.12.12.15
             </Text>
             <HStack>
               <Center>
