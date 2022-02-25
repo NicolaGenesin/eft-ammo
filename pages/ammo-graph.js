@@ -1,25 +1,23 @@
 import React, { useState, useEffect } from "react";
 import Head from "next/head";
 import {
+  Divider,
   HStack,
-  Skeleton,
   useBreakpointValue,
   VStack,
   Flex,
   Center,
   Text,
   Box,
+  Skeleton,
 } from "@chakra-ui/react";
-
 import getResults from "../utils/getResults";
 import Legenda from "../components/Legenda";
 import { SocialButton } from "../components/SmallFooterWithSocial";
 import { FaTwitch } from "react-icons/fa";
 import fallback from "../utils/fallback";
 import { TwitchEmbed } from "react-twitch-embed";
-import CompareButton from "../components/CompareButton";
-import CompareModal from "../components/CompareModal";
-import TableWrapper from "../components/TableWrapper";
+import ChartWrapper from "../components/ChartWrapper";
 
 const App = ({ results, isFallback }) => {
   const [componentState, setComponentState] = useState({
@@ -130,6 +128,7 @@ const App = ({ results, isFallback }) => {
         />
       </Head>
       <Box pb="48px">
+        <Divider borderColor="tarkovYellow.100" opacity="0.5" />
         <Center mb="24px">
           <VStack>
             <Text
@@ -205,60 +204,13 @@ const App = ({ results, isFallback }) => {
             )}
           </VStack>
         </Center>
-        {/* <Center>
-          <Wrap justify="center" spacing="0">
-            <WrapItem>
-              <Link
-                href="https://forms.gle/ToTmLYiWoxuGsM2R6"
-                isExternal={true}
-                style={{ textDecoration: "none" }}
-              >
-                <Button
-                  colorScheme="orange"
-                  borderRadius="0"
-                  color="black"
-                  size="lg"
-                >
-                  🛠️ Feedback or Ideas? 🛠️
-                </Button>
-              </Link>
-            </WrapItem>
-            <WrapItem>
-              <Link
-                href="/builder"
-                isExternal={true}
-                style={{ textDecoration: "none" }}
-              >
-                <Button
-                  mt={["8px", "0"]}
-                  ml={["0", "8px"]}
-                  style={customTransform}
-                  colorScheme="orange"
-                  borderRadius="0"
-                  color="black"
-                  size="lg"
-                >
-                  ⚙️ New to the game? Try our
-                  <br />
-                  simple loadout builder 👷🚧
-                </Button>
-              </Link>
-            </WrapItem>
-          </Wrap>
-        </Center> */}
         <Center>
           <Flex pt="24px" px="8px" w={["100%", "75%"]}>
             <Legenda isDesktop={!isMobile} />
           </Flex>
         </Center>
-        <Center w="100%" mt="48px" size="lg">
-          <Box w="100%">
-            <TableWrapper
-              isMobile={isMobile}
-              componentState={componentState}
-              setComponentState={setComponentState}
-            />
-          </Box>
+        <Center>
+          <ChartWrapper results={results} />
         </Center>
         <Center>
           <Box
@@ -283,27 +235,6 @@ const App = ({ results, isFallback }) => {
           </Box>
         </Center>
       </Box>
-      {componentState.selectedAmmos.length > 0 && (
-        <CompareButton
-          showModal={() => {
-            setComponentState({
-              ...componentState,
-              showModal: true,
-            });
-          }}
-        />
-      )}
-      {componentState.showModal && (
-        <CompareModal
-          selectedAmmos={componentState.selectedAmmos}
-          onClose={() => {
-            setComponentState({
-              ...componentState,
-              showModal: false,
-            });
-          }}
-        />
-      )}
     </Box>
   );
 };

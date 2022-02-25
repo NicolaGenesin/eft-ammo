@@ -5,13 +5,15 @@ import {
   CloseButton,
   Flex,
   Icon,
-  useColorModeValue,
   Link,
   Drawer,
   DrawerContent,
   Text,
   useDisclosure,
   Tag,
+  Center,
+  Spacer,
+  VStack,
 } from "@chakra-ui/react";
 import { FiCompass, FiMenu } from "react-icons/fi";
 import {
@@ -22,10 +24,17 @@ import {
   GiDrippingTube,
 } from "react-icons/gi";
 import { FaDiscord } from "react-icons/fa";
+import { VscGraphScatter } from "react-icons/vsc";
 import { useRouter } from "next/router";
 
 const LinkItems = [
-  { name: "Ammo Charts", icon: GiShotgunRounds, path: "/nofoodaftermidnight" },
+  { name: "Ammo Table", icon: GiShotgunRounds, path: "/nofoodaftermidnight" },
+  {
+    name: "Ammo Graph",
+    icon: VscGraphScatter,
+    path: "/ammo-graph",
+    isNew: true,
+  },
   {
     name: "Create Gun Build",
     icon: GiAk47U,
@@ -102,7 +111,7 @@ export default function Sidebar({ children }) {
 
 const SidebarContent = ({ onClose, selectedIndex, ...rest }) => {
   return (
-    <Box
+    <VStack
       bg="vulcan.900"
       color="tarkovYellow.100"
       //   borderRight="1px"
@@ -130,7 +139,22 @@ const SidebarContent = ({ onClose, selectedIndex, ...rest }) => {
           {link.name}
         </NavItem>
       ))}
-    </Box>
+      <Text textAlign="center" fontSize="xs" opacity="0.4">
+        CHANGELOG:
+        <br />
+        <br />
+        February 25th 2022:
+        <br />
+        Gun builder | Sortable Tables.
+        <br />
+        Ammo Graph page added.
+        <br />
+        <br />
+        February 23rd 2022:
+        <br />
+        Gun builder | MOA calculation added.
+      </Text>
+    </VStack>
   );
 };
 

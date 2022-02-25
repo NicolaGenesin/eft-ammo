@@ -593,11 +593,11 @@ export default function AmmoChart({ results, classDefeated }) {
     }
   }, [classDefeated]);
   return (
-    <Center>
+    <Center w="100%">
       <Box
         resize="both"
         mt="48px"
-        w={["100%", "85%", "75%"]}
+        w={["100%", "95%"]}
         height="700px"
         overflow="auto"
         style={{ zIndex: 1 }}

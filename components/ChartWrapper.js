@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import Chart from "../components/Chart";
-import { Button, Center, Wrap, WrapItem } from "@chakra-ui/react";
+import { Button, Center, VStack, Wrap, WrapItem } from "@chakra-ui/react";
 
 const ChartWrapper = ({ results }) => {
   const [state, setState] = useState({
@@ -8,7 +8,7 @@ const ChartWrapper = ({ results }) => {
   });
 
   return (
-    <>
+    <VStack w="100%">
       <Chart results={results} classDefeated={state.classDefeated} />
       <Center mt="16px">
         <Wrap justify="center">
@@ -34,7 +34,7 @@ const ChartWrapper = ({ results }) => {
             })}
         </Wrap>
       </Center>
-    </>
+    </VStack>
   );
 };
 
