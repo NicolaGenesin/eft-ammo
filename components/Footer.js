@@ -41,7 +41,8 @@ const Footer = () => {
             <Link href={"/builder"}>Loadout Builder</Link>
           </VStack>
           <VStack px="12px" pb={["24px", "0"]}>
-            <ListHeader>NoFAM's Resources</ListHeader>
+            <ListHeader>NoFAM</ListHeader>
+            <Text fontSize="xs">(Ammo Chart Creator &amp; Maintainer)</Text>
             <Link isExternal href={"https://twitter.com/food_eft"}>
               Twitter
             </Link>
@@ -53,7 +54,8 @@ const Footer = () => {
             </Link>
           </VStack>
           <VStack px="12px" pb={["24px", "0"]}>
-            <ListHeader>Filodreamz's Resources</ListHeader>
+            <ListHeader>Filodreamz</ListHeader>
+            <Text fontSize="xs">(Website Developer)</Text>
             <Link isExternal href={"https://www.twitch.tv/filodreamz"}>
               Twitch
             </Link>
@@ -91,23 +93,21 @@ const Footer = () => {
             eft-ammo
           </Text>
         </Flex>
-        <Text textAlign="center" pt="16px">
-          © {new Date().getFullYear()}{" "}
-          <span
-            style={{
-              backgroundImage:
-                "linear-gradient(120deg, #a15422 0%, #a15422 100%)",
-              backgroundRepeat: "no-repeat",
-              backgroundSize: "100% 0.4em",
-              backgroundPosition: "0 88%",
-              transition: "background-size 0.25s ease-in",
-            }}
-          >
-            NoFoodAfterMidnight
-          </span>{" "}
-          - All rights reserved |{" "}
+        <Text textAlign="center" pt="16px" fontSize="sm">
+          © {new Date().getFullYear()} Made with ❤️ by{" "}
           <Link href="https://www.twitch.tv/filodreamz">
-            Made with ❤️ by filodreamz <ExternalLinkIcon mx="2px" />
+            <span
+              style={{
+                backgroundImage:
+                  "linear-gradient(120deg, #a15422 0%, #a15422 100%)",
+                backgroundRepeat: "no-repeat",
+                backgroundSize: "100% 0.4em",
+                backgroundPosition: "0 88%",
+                transition: "background-size 0.25s ease-in",
+              }}
+            >
+              Filodreamz
+            </span>
           </Link>
         </Text>
         <Text textAlign="center" pb="16px" fontSize="xs">
