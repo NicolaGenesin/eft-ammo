@@ -70,6 +70,7 @@ export default function Sidebar({ children }) {
   const { isOpen, onOpen, onClose } = useDisclosure();
   const router = useRouter();
   const [selectedIndex, setSelectedIndex] = useState();
+  const [isSidebarVisible, setIsSidebarVisible] = useState(true);
 
   useEffect(() => {
     const index = LinkItems.findIndex((item) =>
@@ -85,7 +86,10 @@ export default function Sidebar({ children }) {
     <Box minH="100vh" color="tarkovYellow.100">
       <SidebarContent
         onClose={() => onClose}
-        display={{ base: "none", xl: "block" }}
+        hideSidebar={() => {
+          setIsSidebarVisible(false);
+        }}
+        display={isSidebarVisible ? { base: "none", xl: "block" } : "none"}
         selectedIndex={selectedIndex}
       />
       <Drawer
@@ -98,23 +102,33 @@ export default function Sidebar({ children }) {
         size="full"
       >
         <DrawerContent>
-          <SidebarContent onClose={onClose} selectedIndex={selectedIndex} />
+          <SidebarContent
+            onClose={onClose}
+            selectedIndex={selectedIndex}
+            hideSidebar={() => {
+              setIsSidebarVisible(false);
+            }}
+          />
         </DrawerContent>
       </Drawer>
       {/* mobilenav */}
-      <MobileNav display={{ base: "flex", xl: "none" }} onOpen={onOpen} />
-      <Box ml={{ base: 0, xl: 60 }}>{children}</Box>
+      {isSidebarVisible && (
+        <MobileNav
+          isSidebarVisible={isSidebarVisible}
+          display={isSidebarVisible ? { base: "flex", xl: "none" } : "flex"}
+          onOpen={onOpen}
+        />
+      )}
+      <Box ml={isSidebarVisible ? { base: 0, xl: 60 } : 0}>{children}</Box>
     </Box>
   );
 }
 
-const SidebarContent = ({ onClose, selectedIndex, ...rest }) => {
+const SidebarContent = ({ onClose, hideSidebar, selectedIndex, ...rest }) => {
   return (
     <VStack
       bg="vulcan.900"
       color="tarkovYellow.100"
-      //   borderRight="1px"
-      //   borderRightColor={useColorModeValue("gray.200", "gray.700")}
       w={{ base: "full", xl: 60 }}
       pos="fixed"
       h="full"
@@ -148,11 +162,29 @@ const SidebarContent = ({ onClose, selectedIndex, ...rest }) => {
         <br />
         Ammo Graph page added.
         <br />
+        Hide sidebar functionality.
+        <br />
         <br />
         February 23rd 2022:
         <br />
         Gun builder | MOA calculation added.
       </Text>
+      <Center>
+        <Text
+          onClick={() => {
+            hideSidebar();
+          }}
+          textAlign="center"
+          fontSize="sm"
+          border="1px"
+          mt="8px"
+          px="8px"
+          color="tarkovYellow.50"
+          display={{ base: "none", xl: "flex" }}
+        >
+          Hide Sidebar
+        </Text>
+      </Center>
     </VStack>
   );
 };
@@ -220,7 +252,6 @@ const NavItem = ({
 const MobileNav = ({ onOpen, ...rest }) => {
   return (
     <Flex
-      ml={{ base: 0, xl: 60 }}
       px={{ base: 4, xl: 24 }}
       height="20"
       alignItems="center"
