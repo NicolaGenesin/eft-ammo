@@ -219,18 +219,6 @@ const Builder = ({ data }) => {
             </Box>
           </Center>
         )}
-        <Center>
-          <Link href="/nofoodaftermidnight" style={{ textDecoration: "none" }}>
-            <Button
-              colorScheme="orange"
-              borderRadius="0"
-              color="black"
-              size="lg"
-            >
-              Back to Ammo Chart
-            </Button>
-          </Link>
-        </Center>
       </Box>
     </Box>
   );
