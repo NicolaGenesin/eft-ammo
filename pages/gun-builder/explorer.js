@@ -151,7 +151,13 @@ const Explorer = () => {
                   transitionTimingFunction="ease-in-out"
                   _hover={{ shadow: "lg", bg: "vulcan.800" }}
                   onClick={() => {
-                    router.push(`/gun-builder/${build.code}`);
+                    router.push(
+                      `/${
+                        router.asPath.includes("sherpa")
+                          ? "sherpa-hub"
+                          : "gun-builder"
+                      }/${build.code}`
+                    );
                   }}
                 >
                   <Td

@@ -11,17 +11,13 @@ import {
   useInterval,
   HStack,
   useBreakpointValue,
-  Link,
-  Skeleton,
 } from "@chakra-ui/react";
 import { useRouter } from "next/router";
 import { useEffect, useState, useRef } from "react";
 import ItemLabel from "../../components/builder/ItemLabel";
 import { url } from "../../utils/env";
 import { TwitchEmbed } from "react-twitch-embed";
-import deepEqual from "deep-equal";
 import { BiUpvote, BiDownvote } from "react-icons/bi";
-import TarkovGunBuilder from "tarkov-gun-builder/dist/components/tarkov-gun-builder/index";
 import {
   RedditIcon,
   RedditShareButton,
@@ -35,6 +31,7 @@ import {
 import items from "../../utils/bsg/items.json";
 import gamePresets from "../../utils/bsg/globals.json";
 import defaultPresets from "../../utils/bsg/item_presets.json";
+import { TarkovGunBuilder } from "tarkov-gun-builder/dist/index";
 
 const persistVote = async (code, direction) => {
   await (
