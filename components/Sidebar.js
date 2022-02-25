@@ -186,7 +186,7 @@ const NavItem = ({
             fontSize="xs"
             fontWeight="bold"
           >
-            BETA
+            NEW
           </Tag>
         )}
       </Flex>
