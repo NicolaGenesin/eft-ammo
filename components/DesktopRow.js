@@ -133,7 +133,8 @@ const DesktopRow = ({
                 toolTipLabel =
                   "Flea market prices provided by tarkov-tools.com";
               } else if (index === 6) {
-                toolTipLabel = "Velocity of the projectile as it leaves the barrel or muzzle.";
+                toolTipLabel =
+                  "Velocity of the projectile as it leaves the barrel or muzzle.";
               } else if (index === 5) {
                 toolTipLabel = "Maximum Headshot Distance.";
               } else if (index === 4) {
@@ -318,7 +319,13 @@ const DesktopRow = ({
                       fontWeight="semibold"
                       ml="8px"
                     >
-                      {ammo.name.toUpperCase()}
+                      <Link
+                        href={tarkovItemLink}
+                        isExternal
+                        style={{ textDecoration: "underline" }}
+                      >
+                        {ammo.name.toUpperCase()}
+                      </Link>
                       {toolTipLabel && (
                         <Tooltip bg="#272712" label={toolTipLabel}>
                           <InfoOutlineIcon ml="8px" />
