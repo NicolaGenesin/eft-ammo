@@ -155,18 +155,23 @@ const SidebarContent = ({ onClose, hideSidebar, selectedIndex, ...rest }) => {
         CHANGELOG:
         <br />
         <br />
+        February 28th 2022:
+        <br />
+        Gun builder | Prices Summary added
+        <br />
+        <br />
         February 25th 2022:
         <br />
-        Gun builder | Sortable Tables.
+        Gun builder | Sortable Tables
         <br />
-        Ammo Graph page added.
+        Ammo Graph page added
         <br />
-        Hide sidebar functionality.
+        Hide sidebar functionality
         <br />
         <br />
         February 23rd 2022:
         <br />
-        Gun builder | MOA calculation added.
+        Gun builder | MOA calculation added
       </Text>
       <Center>
         <Text
