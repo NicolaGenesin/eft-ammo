@@ -11,6 +11,14 @@ import {
   useInterval,
   HStack,
   useBreakpointValue,
+  Table,
+  Thead,
+  Tbody,
+  Tr,
+  Th,
+  Td,
+  TableCaption,
+  Link,
 } from "@chakra-ui/react";
 import { useRouter } from "next/router";
 import { useEffect, useState, useRef } from "react";
@@ -19,7 +27,6 @@ import { url } from "../../utils/env";
 import { TwitchEmbed } from "react-twitch-embed";
 import { BiUpvote, BiDownvote } from "react-icons/bi";
 import { TarkovGunBuilder } from "tarkov-gun-builder/dist/index";
-
 import {
   RedditIcon,
   RedditShareButton,
@@ -49,7 +56,31 @@ const persistVote = async (code, direction) => {
   ).json();
 };
 
-const GunBuilder = ({ data, createMode }) => {
+const getGunAndAllItems = (configuration) => {
+  const gunAndAllItems = [];
+
+  if (configuration?.gun) {
+    gunAndAllItems.push(configuration.gun);
+  }
+
+  const getAllItems = (slots) => {
+    slots.forEach((slot) => {
+      if (slot.slots) {
+        getAllItems(slot.slots);
+      }
+
+      if (slot.item) {
+        gunAndAllItems.push(slot.item);
+      }
+    });
+  };
+
+  getAllItems(configuration?.currentBuild?.slots || []);
+
+  return gunAndAllItems;
+};
+
+const GunBuilder = ({ data, createMode, pricesData }) => {
   if (!data) {
     return (
       <Center h="100vh" bg="vulcan.800">
@@ -63,6 +94,7 @@ const GunBuilder = ({ data, createMode }) => {
   const router = useRouter();
   const { query, asPath } = router;
   const [vote, setVote] = useState();
+  const [prices, setPrices] = useState(pricesData || {});
   const [score, setScore] = useState(data.score || 0);
   const [state, setState] = useState({
     configuration: data?.configuration || {}, // this needs to stay empty (interval)
@@ -77,6 +109,19 @@ const GunBuilder = ({ data, createMode }) => {
   let prevConfiguration = usePrevious(JSON.stringify(state.configuration));
   const prevConfigurationRef = useRef();
   prevConfigurationRef.current = prevConfiguration;
+
+  const summaryItems = [];
+
+  Object.keys(prices).forEach((key) => {
+    const normalizedKey = key.replace("_", "");
+    const item = items.find((item) => item.id === normalizedKey);
+
+    summaryItems.push({
+      name: item.name,
+      shortName: item.shortName,
+      price: prices[key].lastLowPrice,
+    });
+  });
 
   // Keep content up to date
   useInterval(async () => {
@@ -109,6 +154,8 @@ const GunBuilder = ({ data, createMode }) => {
           }),
         })
       ).json();
+
+      setPrices(await fetchPrices(state.configuration));
 
       console.log("+ Done", result);
     } else {
@@ -430,6 +477,65 @@ const GunBuilder = ({ data, createMode }) => {
                 }}
               />
             </Center>
+            {summaryItems.length > 0 && (
+              <Box
+                mt="24px"
+                bg="vulcan.1050"
+                pb="8px"
+                pt="16px"
+                px="4px"
+                borderColor="vanishedWhite.100"
+                borderWidth="1px"
+              >
+                <Text
+                  textAlign="center"
+                  fontWeight="bold"
+                  fontSize="lg"
+                  mb="8px"
+                >
+                  BUILD SUMMARY &amp; PRICES
+                </Text>
+                <Table variant="unstyled" size="sm">
+                  <TableCaption>
+                    Prices provided by{" "}
+                    <Link
+                      textDecoration="underline"
+                      href="https://tarkov-tools.com"
+                    >
+                      tarkov-tools.com
+                    </Link>
+                  </TableCaption>
+                  <Thead textColor="tarkovYellow.50">
+                    <Tr>
+                      <Th>Name</Th>
+                      <Th>Short Name</Th>
+                      <Th textAlign="right">Last Low Price</Th>
+                    </Tr>
+                  </Thead>
+                  <Tbody>
+                    {summaryItems.map((item, index) => {
+                      return (
+                        <Tr key={`item-detail-${index}`}>
+                          <Td>{item.name}</Td>
+                          <Td>{item.shortName}</Td>
+                          <Td textAlign="right">{item.price || "?"} ₽</Td>
+                        </Tr>
+                      );
+                    })}
+                    <Tr fontWeight="bold">
+                      <Td fontSize="md">TOTAL</Td>
+                      <Td fontSize="md"></Td>
+                      <Td fontSize="md" textAlign="right">
+                        {summaryItems
+                          .map((item) => item.price)
+                          .reduce((prev, next) => prev + next, 0)}{" "}
+                        ₽
+                      </Td>
+                    </Tr>
+                  </Tbody>
+                </Table>
+              </Box>
+            )}
           </Box>
           <Box
             w={["375px", "450px", "600px"]}
@@ -505,9 +611,29 @@ export async function getServerSideProps(context) {
     response.data = cloneData;
   }
 
+  const props = { data: response.data, createMode };
+
+  if (!createMode) {
+    props.pricesData = await fetchPrices(response.data.configuration);
+  }
+
   return {
-    props: { data: response.data, createMode },
+    props,
   };
 }
+
+const fetchPrices = async (configuration) => {
+  return await (
+    await fetch(`${url}/api/prices`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        ids: getGunAndAllItems(configuration).map((item) => item.id),
+      }),
+    })
+  ).json();
+};
 
 export default GunBuilder;
