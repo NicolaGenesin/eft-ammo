@@ -114,7 +114,6 @@ export default function Sidebar({ children }) {
       {/* mobilenav */}
       {isSidebarVisible && (
         <MobileNav
-          isSidebarVisible={isSidebarVisible}
           display={isSidebarVisible ? { base: "flex", xl: "none" } : "flex"}
           onOpen={onOpen}
         />
