@@ -48,11 +48,6 @@ const LinkItems = [
   },
   { name: "Create Loadout", icon: GiBeamsAura, path: "/builder" },
   {
-    name: "Traders Reset Timers",
-    icon: GiDuration,
-    path: "/traders-reset-timers",
-  },
-  {
     name: "Join NoFAM Discord",
     icon: FaDiscord,
     path: "https://discord.gg/wexEyCg",
