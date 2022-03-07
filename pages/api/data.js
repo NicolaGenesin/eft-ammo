@@ -2,27 +2,6 @@ import { withSentry } from "@sentry/nextjs";
 const { GoogleSpreadsheet } = require("google-spreadsheet");
 const fallback = require("./fallback").default;
 
-const getFleaMarketPrices = async () => {
-  const dataQuery = JSON.stringify({
-    query: `
-      { itemsByType(type: ammo){ name, normalizedName, lastLowPrice } }
-    `,
-  });
-
-  const response = await fetch("https://tarkov-tools.com/graphql", {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-      Accept: "application/json",
-    },
-    body: dataQuery,
-  });
-
-  const json = await response.json();
-
-  return json.data?.itemsByType || [];
-};
-
 const getResults = async (targetSheet, headerRow) => {
   const doc = new GoogleSpreadsheet(targetSheet);
   await doc.useServiceAccountAuth({
@@ -64,7 +43,6 @@ const handler = async (req, res) => {
 
   let noFAMResults;
   let additionalResults = [];
-  let fleaMarketPrices;
 
   try {
     noFAMResults = await getResults(process.env.NEXT_TARGET_SHEET_21012022, 38);
@@ -86,18 +64,8 @@ const handler = async (req, res) => {
     );
   }
 
-  try {
-    fleaMarketPrices = await getFleaMarketPrices();
-  } catch (error) {
-    console.log(
-      "[API] api/data GET - WARNING - Flea Market Prices data failed to load",
-      error
-    );
-  }
-
   // console.log("[noFAMResults]", JSON.stringify(noFAMResults));
   // console.log("[additionalResults]", JSON.stringify(additionalResults));
-  // console.log("[fleaMarketPrices]", JSON.stringify(fleaMarketPrices));
 
   const json = {};
 
@@ -136,20 +104,6 @@ const handler = async (req, res) => {
           };
           ammo.notAvailableOnFleaMarket = additionalSpecsForAmmo[4] === "FALSE";
           ammo.initialSpeed = additionalSpecsForAmmo[5] || "";
-
-          const price = fleaMarketPrices.find((priceItem) => {
-            return priceItem.normalizedName === ammo.standard.normalizedName;
-          });
-
-          if (price) {
-            // const buyFor = price.buyFor.find((x) => x.source === "fleaMarket");
-
-            // if (buyFor) {
-            //   ammo.buyFor = [buyFor];
-            // }
-
-            ammo.price = price.lastLowPrice;
-          }
         }
 
         return ammo;
