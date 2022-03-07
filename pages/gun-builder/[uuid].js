@@ -614,7 +614,11 @@ export async function getServerSideProps(context) {
   const props = { data: response.data, createMode };
 
   if (!createMode) {
-    props.pricesData = await fetchPrices(response.data.configuration);
+    try {
+      props.pricesData = await fetchPrices(response.data.configuration);
+    } catch (error) {
+      console.log("TT Api is probably down now.");
+    }
   }
 
   return {
