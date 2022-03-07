@@ -129,10 +129,7 @@ const DesktopRow = ({
               const isSortable = (index < 5 || index === 6) && tableState;
               let toolTipLabel = "";
 
-              if (index === 12) {
-                toolTipLabel =
-                  "Flea market prices provided by tarkov-tools.com";
-              } else if (index === 6) {
+              if (index === 6) {
                 toolTipLabel =
                   "Velocity of the projectile as it leaves the barrel or muzzle.";
               } else if (index === 5) {
@@ -253,17 +250,6 @@ const DesktopRow = ({
                   item.name === ammo.name && item.category === ammo.category
               ) !== undefined;
 
-            let ammoPrice;
-            let tarkovItemLink;
-
-            if (ammo.price) {
-              ammoPrice = `${ammo.price} ₽`;
-            }
-
-            if (ammo.standard && ammo.standard.name) {
-              tarkovItemLink = `https://tarkov-tools.com/item/${ammo.standard.normalizedName}`;
-            }
-
             let recoil = "";
 
             if (ammo.recoil !== "") {
@@ -319,13 +305,7 @@ const DesktopRow = ({
                       fontWeight="semibold"
                       ml="8px"
                     >
-                      <Link
-                        href={tarkovItemLink}
-                        isExternal
-                        style={{ textDecoration: "underline" }}
-                      >
-                        {ammo.name.toUpperCase()}
-                      </Link>
+                      {ammo.name.toUpperCase()}
                       {toolTipLabel && (
                         <Tooltip bg="#272712" label={toolTipLabel}>
                           <InfoOutlineIcon ml="8px" />
@@ -389,15 +369,6 @@ const DesktopRow = ({
                   </Center>
                   <Center flex="0.5" bg={getColor(ammo.class6)} color="black">
                     {ammo.class6}
-                  </Center>
-                  <Center flex="1" color="tarkovYellow.100">
-                    <Link
-                      href={tarkovItemLink}
-                      isExternal
-                      style={{ textDecoration: "underline" }}
-                    >
-                      {ammoPrice || "-"}
-                    </Link>
                   </Center>
                 </Flex>
                 <Divider style={{ opacity: "0.2" }} />
