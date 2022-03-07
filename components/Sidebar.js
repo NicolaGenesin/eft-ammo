@@ -149,6 +149,13 @@ const SidebarContent = ({ onClose, hideSidebar, selectedIndex, ...rest }) => {
         CHANGELOG:
         <br />
         <br />
+        March 7th 2022:
+        <br />
+        Loadout Builder tool removed
+        <br />
+        (reviewing alpha feedback)
+        <br />
+        <br />
         February 28th 2022:
         <br />
         Gun builder | Prices Summary added
