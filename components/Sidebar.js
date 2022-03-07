@@ -46,7 +46,6 @@ const LinkItems = [
     icon: FiCompass,
     path: "/gun-builder/explorer",
   },
-  { name: "Create Loadout", icon: GiBeamsAura, path: "/builder" },
   {
     name: "Join NoFAM Discord",
     icon: FaDiscord,
