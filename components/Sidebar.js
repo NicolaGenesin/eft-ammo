@@ -12,17 +12,10 @@ import {
   useDisclosure,
   Tag,
   Center,
-  Spacer,
   VStack,
 } from "@chakra-ui/react";
 import { FiCompass, FiMenu } from "react-icons/fi";
-import {
-  GiAk47U,
-  GiBeamsAura,
-  GiShotgunRounds,
-  GiDuration,
-  GiDrippingTube,
-} from "react-icons/gi";
+import { GiAk47U, GiShotgunRounds, GiDrippingTube } from "react-icons/gi";
 import { FaDiscord } from "react-icons/fa";
 import { VscGraphScatter } from "react-icons/vsc";
 import { useRouter } from "next/router";
@@ -53,10 +46,18 @@ const LinkItems = [
     isExternal: true,
   },
   {
+    name: "Join Developer Discord",
+    icon: FaDiscord,
+    path: "https://discord.com/invite/H4v5sQR7We",
+    isExternal: true,
+    bgColor: "vulcan.1050",
+  },
+  {
     name: "Feedback",
     icon: GiDrippingTube,
     path: "https://forms.gle/ToTmLYiWoxuGsM2R6",
     isExternal: true,
+    bgColor: "vulcan.1050",
   },
 ];
 
@@ -137,6 +138,7 @@ const SidebarContent = ({ onClose, hideSidebar, selectedIndex, ...rest }) => {
         <NavItem
           key={link.name}
           isNew={link.isNew}
+          bgColor={link.bgColor}
           icon={link.icon}
           href={link.path}
           isSelected={selectedIndex === index}
@@ -147,6 +149,11 @@ const SidebarContent = ({ onClose, hideSidebar, selectedIndex, ...rest }) => {
       ))}
       <Text textAlign="center" fontSize="xs" opacity="0.4">
         CHANGELOG:
+        <br />
+        <br />
+        March 11th 2022:
+        <br />
+        Reviewed ammos available on FM
         <br />
         <br />
         March 7th 2022:
@@ -197,12 +204,19 @@ const SidebarContent = ({ onClose, hideSidebar, selectedIndex, ...rest }) => {
 const NavItem = ({
   icon,
   isNew,
+  bgColor,
   isSelected,
   isExternal,
   href,
   children,
   ...rest
 }) => {
+  let bg = isSelected && "tarkovYellow.50";
+
+  if (bgColor) {
+    bg = bgColor;
+  }
+
   return (
     <Link
       href={href}
@@ -217,7 +231,7 @@ const NavItem = ({
         role="group"
         cursor="pointer"
         fontWeight="bold"
-        bg={isSelected && "tarkovYellow.50"}
+        bg={bg}
         color={isSelected ? "black" : "tarkovYellow.100"}
         _hover={{
           bg: "tarkovYellow.50",
