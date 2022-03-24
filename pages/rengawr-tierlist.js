@@ -1,26 +1,19 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import Head from "next/head";
 import {
   Divider,
   HStack,
   useBreakpointValue,
   VStack,
-  Flex,
   Center,
   Text,
   Box,
   Skeleton,
   Wrap,
   Image,
-  Link,
 } from "@chakra-ui/react";
-import getResults from "../utils/getResults";
-import Legenda from "../components/Legenda";
 import { SocialButton } from "../components/SmallFooterWithSocial";
 import { FaTwitch } from "react-icons/fa";
-import fallback from "../utils/fallback";
-import { TwitchEmbed } from "react-twitch-embed";
-import ChartWrapper from "../components/ChartWrapper";
 
 const values = {
   INSANE: {
@@ -119,12 +112,7 @@ const App = ({ results, isFallback }) => {
     showModal: false,
   });
 
-  console.log("isFallback", isFallback);
-
   const isMobile = useBreakpointValue({ base: true, md: false });
-
-  const rotation = useBreakpointValue({ base: "0", md: "10", lg: "15" });
-  const customTransform = { transform: `rotate(${rotation}deg)` };
 
   return (
     <Box>
@@ -193,7 +181,7 @@ const App = ({ results, isFallback }) => {
               Ammo Tier List
             </Text>
             <Text color="tarkovYellow.100" fontSize="sm">
-              Updated for v0.12.12.15
+              Updated for v0.12.12
             </Text>
             <HStack>
               <Center>
@@ -291,13 +279,8 @@ const App = ({ results, isFallback }) => {
 };
 
 export async function getStaticProps() {
-  let results;
-  let isFallback = false;
-
   return {
-    props: {
-      isFallback,
-    },
+    props: {},
     revalidate: 900,
   };
 }
