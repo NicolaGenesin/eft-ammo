@@ -15,7 +15,12 @@ import {
   VStack,
 } from "@chakra-ui/react";
 import { FiCompass, FiMenu } from "react-icons/fi";
-import { GiAk47U, GiShotgunRounds, GiDrippingTube } from "react-icons/gi";
+import {
+  GiAk47U,
+  GiShotgunRounds,
+  GiDrippingTube,
+  GiPodiumWinner,
+} from "react-icons/gi";
 import { FaDiscord } from "react-icons/fa";
 import { VscGraphScatter } from "react-icons/vsc";
 import { useRouter } from "next/router";
@@ -26,6 +31,11 @@ const LinkItems = [
     name: "Ammo Graph",
     icon: VscGraphScatter,
     path: "/ammo-graph",
+  },
+  {
+    name: "Ammo Tier List",
+    icon: GiPodiumWinner,
+    path: "/rengawr-tierlist",
     isNew: true,
   },
   {
