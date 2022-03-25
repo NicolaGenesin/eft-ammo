@@ -14,6 +14,7 @@ import {
 } from "@chakra-ui/react";
 import { SocialButton } from "../components/SmallFooterWithSocial";
 import { FaTwitch } from "react-icons/fa";
+import ReactPlayer from "react-player";
 
 const values = {
   INSANE: {
@@ -21,7 +22,7 @@ const values = {
     values: [
       "https://eft-ammo.com/%2Fimages-fallback%2F12%20Gauge%20Shot%40Flechette.jpeg",
       "https://eft-ammo.com/%2Fimages-fallback%2F5.45x39%20mm%407n40.jpeg",
-      "https://eft-ammo.com/%2Fimages-fallback%2F9x39mm%40BP.jpeg",
+      "https://eft-ammo.com/%2Fimages-fallback%2F7.62x39%20mm%40BP.jpeg",
       "https://eft-ammo.com/%2Fimages-fallback%2F7.62x51%20mm%40M62%20(Tracer).jpeg",
       "https://eft-ammo.com/%2Fimages-fallback%2F7.62x51%20mm%40M61.jpeg",
       "https://eft-ammo.com/%2Fimages-fallback%2F7.62x51%20mm%40M993.jpeg",
@@ -204,7 +205,7 @@ const App = ({ results, isFallback }) => {
                         transition: "background-size 0.25s ease-in",
                       }}
                     >
-                      RengaWR
+                      RengaWr
                     </span>{" "}
                     | watch his stream{" "}
                     <span
@@ -271,6 +272,13 @@ const App = ({ results, isFallback }) => {
                 </Wrap>
               );
             })}
+            <Text pt="24px" pb="8px" fontStyle="italic">
+              Watch the full explaination on this video
+            </Text>
+            <ReactPlayer
+              width={isMobile ? "100%" : "600px"}
+              url="https://www.youtube.com/watch?v=EpZzN7BqJeM"
+            />
           </VStack>
         </Center>
       </Box>
