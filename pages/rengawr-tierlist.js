@@ -118,7 +118,7 @@ const App = ({ results, isFallback }) => {
   return (
     <Box>
       <Head>
-        <title>EFT | Ammo and Armor Graph</title>
+        <title>EFT | Ammo Tier List</title>
         <link rel="icon" href="/favicon.ico" />
 
         <meta
