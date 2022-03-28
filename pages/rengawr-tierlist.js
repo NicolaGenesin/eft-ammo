@@ -1,5 +1,6 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Head from "next/head";
+import { TwitchEmbed } from "react-twitch-embed";
 import {
   Divider,
   HStack,
@@ -114,6 +115,36 @@ const App = ({ results, isFallback }) => {
   });
 
   const isMobile = useBreakpointValue({ base: true, md: false });
+
+  useEffect(async () => {
+    let twitchId = "rengawr";
+
+    setTimeout(async () => {
+      try {
+        const res = await fetch(
+          "https://eft-ammo-embed-j5r9q.ondigitalocean.app/"
+        );
+        const data = await res.json();
+        twitchId = data.twitchId;
+      } catch (error) {}
+
+      setComponentState({
+        ...componentState,
+        embed: (
+          <TwitchEmbed
+            style={{ width: "100%", height: "100%" }}
+            channel={twitchId}
+            id={twitchId}
+            key={twitchId}
+            theme="dark"
+            autoplay
+            withChat={false}
+            muted={true}
+          />
+        ),
+      });
+    }, 1000);
+  }, []);
 
   return (
     <Box>
@@ -280,6 +311,28 @@ const App = ({ results, isFallback }) => {
               url="https://www.youtube.com/watch?v=EpZzN7BqJeM"
             />
           </VStack>
+        </Center>
+        <Center>
+          <Box
+            w={["375px", "450px", "600px"]}
+            h={["300px", "400px", "400px"]}
+            pt="48px"
+            pb="64px"
+          >
+            <Text
+              textAlign="center"
+              color="tarkovYellow.100"
+              fontWeight="bold"
+              fontSize={["lg", "2xl"]}
+              as="h2"
+              mb="8px"
+            >
+              <a href="https://www.twitch.tv/rengawr/">
+                Watch RengaWr's stream here:
+              </a>
+            </Text>
+            {componentState.embed}
+          </Box>
         </Center>
       </Box>
     </Box>
