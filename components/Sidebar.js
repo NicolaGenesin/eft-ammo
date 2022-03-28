@@ -166,6 +166,22 @@ const SidebarContent = ({ onClose, hideSidebar, selectedIndex, ...rest }) => {
           {link.name}
         </NavItem>
       ))}
+      <Center>
+        <Text
+          onClick={() => {
+            hideSidebar();
+          }}
+          textAlign="center"
+          fontSize="sm"
+          border="1px"
+          my="8px"
+          px="8px"
+          color="tarkovYellow.50"
+          display={{ base: "none", xl: "flex" }}
+        >
+          Hide Sidebar
+        </Text>
+      </Center>
       <Text textAlign="center" fontSize="xs" opacity="0.4">
         CHANGELOG:
         <br />
@@ -200,22 +216,6 @@ const SidebarContent = ({ onClose, hideSidebar, selectedIndex, ...rest }) => {
         <br />
         Gun builder | MOA calculation added
       </Text>
-      <Center>
-        <Text
-          onClick={() => {
-            hideSidebar();
-          }}
-          textAlign="center"
-          fontSize="sm"
-          border="1px"
-          mt="8px"
-          px="8px"
-          color="tarkovYellow.50"
-          display={{ base: "none", xl: "flex" }}
-        >
-          Hide Sidebar
-        </Text>
-      </Center>
     </VStack>
   );
 };
