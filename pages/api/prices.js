@@ -15,7 +15,7 @@ const getItems = async (ids) => {
     `,
   });
 
-  const response = await fetch("https://tarkov-tools.com/graphql", {
+  const response = await fetch("https://api.tarkov.dev/graphql", {
     method: "POST",
     headers: {
       "Content-Type": "application/json",

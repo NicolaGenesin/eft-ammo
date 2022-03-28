@@ -21,6 +21,7 @@ import {
   GiDrippingTube,
   GiPodiumWinner,
   GiSixEyes,
+  GiAlarmClock,
 } from "react-icons/gi";
 import { FaDiscord } from "react-icons/fa";
 import { VscGraphScatter } from "react-icons/vsc";
@@ -49,6 +50,11 @@ const LinkItems = [
     name: "Explore Gun Builds",
     icon: FiCompass,
     path: "/gun-builder/explorer",
+  },
+  {
+    name: "Traders timers",
+    icon: GiAlarmClock,
+    path: "/traders-reset-timers",
   },
   {
     name: "Join NoFAM Discord",

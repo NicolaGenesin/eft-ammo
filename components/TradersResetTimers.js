@@ -37,7 +37,7 @@ const Renderer = (props) => {
 
 const TradersResetTimers = ({ big }) => {
   const { status, data } = useQuery(`server-status`, () =>
-    fetch("https://tarkov-tools.com/graphql", {
+    fetch("https://api.tarkov.dev/graphql", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
