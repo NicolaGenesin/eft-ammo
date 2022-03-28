@@ -20,6 +20,7 @@ import {
   GiShotgunRounds,
   GiDrippingTube,
   GiPodiumWinner,
+  GiSixEyes,
 } from "react-icons/gi";
 import { FaDiscord } from "react-icons/fa";
 import { VscGraphScatter } from "react-icons/vsc";
@@ -68,6 +69,14 @@ const LinkItems = [
     path: "https://forms.gle/ToTmLYiWoxuGsM2R6",
     isExternal: true,
     bgColor: "vulcan.1050",
+  },
+  {
+    name: "Multistream.gg",
+    icon: GiSixEyes,
+    path: "https://multistream.gg",
+    isExternal: true,
+    isNew: true,
+    bgColor: "brown",
   },
 ];
 
