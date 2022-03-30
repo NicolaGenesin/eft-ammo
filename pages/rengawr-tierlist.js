@@ -12,6 +12,7 @@ import {
   Skeleton,
   Wrap,
   Image,
+  Link,
 } from "@chakra-ui/react";
 import { SocialButton } from "../components/SmallFooterWithSocial";
 import { FaTwitch } from "react-icons/fa";
@@ -303,8 +304,14 @@ const App = ({ results, isFallback }) => {
                 </Wrap>
               );
             })}
-            <Text pt="24px" pb="8px" fontStyle="italic">
-              Watch the full explaination on this video
+            <Text pt="32px" pb="8px" fontSize={["lg", "xl"]} align="center">
+              For explanation of rankings watch the video{" "}
+              <Link
+                textDecoration="underline"
+                href="https://www.youtube.com/watch?v=EpZzN7BqJeM"
+              >
+                Here
+              </Link>
             </Text>
             <ReactPlayer
               width={isMobile ? "100%" : "600px"}
@@ -322,8 +329,7 @@ const App = ({ results, isFallback }) => {
             <Text
               textAlign="center"
               color="tarkovYellow.100"
-              fontWeight="bold"
-              fontSize={["lg", "2xl"]}
+              fontSize={["lg", "xl"]}
               as="h2"
               mb="8px"
             >
