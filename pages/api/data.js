@@ -91,11 +91,15 @@ const handler = async (req, res) => {
           category: category,
         };
 
-        const additionalSpecsForAmmo = additionalResults[category].find(
-          (additionalRow) => {
-            return additionalRow[1] === ammo.name;
-          }
-        );
+        let additionalSpecsForAmmo;
+
+        try {
+          additionalSpecsForAmmo = additionalResults[category].find(
+            (additionalRow) => {
+              return additionalRow[1] === ammo.name;
+            }
+          );
+        } catch (error) {}
 
         if (additionalSpecsForAmmo) {
           ammo.standard = {
