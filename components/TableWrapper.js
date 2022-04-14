@@ -126,7 +126,7 @@ const DesktopTable = ({
                       bg="vulcan.900"
                       w="100%"
                     >
-                      {inView && (
+                      {true && ( // tmp disable lazy loading
                         <Fade in={true}>
                           <AccordionItem border="none" w="100%">
                             <DesktopRow
