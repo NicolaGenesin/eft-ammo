@@ -184,12 +184,18 @@ const SidebarContent = ({ onClose, hideSidebar, selectedIndex, ...rest }) => {
           px="8px"
           color="tarkovYellow.50"
           display={{ base: "none", xl: "flex" }}
+          _hover={{ cursor: "pointer" }}
         >
           Hide Sidebar
         </Text>
       </Center>
       <Text textAlign="center" fontSize="xs" opacity="0.4">
         CHANGELOG:
+        <br />
+        <br />
+        April 14th 2022:
+        <br />
+        New caliber (.357) added
         <br />
         <br />
         March 11th 2022:
