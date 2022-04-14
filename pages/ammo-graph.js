@@ -142,7 +142,7 @@ const App = ({ results, isFallback }) => {
               Escape from Tarkov Ammo and Armor Charts
             </Text>
             <Text color="tarkovYellow.100" fontSize="sm">
-              Updated for v0.12.12.15
+              Updated for v0.12.12.15 - .357 Added
             </Text>
             <HStack>
               <Center>
