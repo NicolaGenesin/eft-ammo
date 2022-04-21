@@ -193,6 +193,11 @@ const SidebarContent = ({ onClose, hideSidebar, selectedIndex, ...rest }) => {
         CHANGELOG:
         <br />
         <br />
+        April 18th 2022:
+        <br />
+        .357 updated
+        <br />
+        <br />
         April 14th 2022:
         <br />
         New caliber (.357) added
