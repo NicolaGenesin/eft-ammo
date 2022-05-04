@@ -193,7 +193,7 @@ const SidebarContent = ({ onClose, hideSidebar, selectedIndex, ...rest }) => {
         CHANGELOG:
         <br />
         <br />
-        April 18th 2022:
+        April 19th 2022:
         <br />
         .357 updated
         <br />
