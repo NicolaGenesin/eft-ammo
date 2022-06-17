@@ -204,11 +204,11 @@ const App = ({ results, isFallback }) => {
         </Center>
         <Center w="100%" mt="48px">
           <Box w="100%">
-            {/* <TableWrapper
+            <TableWrapper
               isMobile={isMobile}
               componentState={componentState}
               setComponentState={setComponentState}
-            /> */}
+            />
           </Box>
         </Center>
         <Center>
@@ -247,11 +247,11 @@ const getResults = async () => {
 };
 
 export async function getStaticProps() {
-  // const results = await (await getResults()).json();
+  const results = await (await getResults()).json();
 
   return {
     props: {
-      results: {},
+      results,
     },
     revalidate: 900,
   };

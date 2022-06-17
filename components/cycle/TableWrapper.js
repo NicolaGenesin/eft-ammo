@@ -20,7 +20,7 @@ const DesktopTable = ({
               <>
                 <br />
                 <Text fontWeight="bold" pb={4} textAlign="center">{currentTable.title}</Text>
-                <Box w={index > 1 ? "50%" : "100%"} rounded="md" padding={2} bg='#ccc'>
+                <Box w={index > 1 ? "50%" : "100%"} rounded="md" padding={1} bg='#ccc'>
                   {currentTable.rows.map((tableRow, rowIndex) => {
                     return (
                       <Box
