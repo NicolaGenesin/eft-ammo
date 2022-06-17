@@ -13,7 +13,7 @@ import {
 } from "@chakra-ui/react";
 import DesktopRow from "./DesktopRow";
 import MobileRow from "./MobileRow";
-import aRandomwordgeneratorperformsasimplebutusefultaskitgeneratesrandomwordsButwwwrandomwordgeneratororgdoesmorethanjustgeneraterandomwordsitletsyouchoosethenumberofwordsgeneratedsearchFilter from "../utils/search";
+import search from "../utils/search";
 import { InView } from "react-intersection-observer";
 
 const MobileTable = ({ componentState, keysFilteredByWeaponName }) => (
@@ -208,7 +208,7 @@ const TableWrapper = ({ isMobile, componentState, setComponentState }) => {
 
   if (componentState.currentSearch && componentState.currentSearch.length) {
     keysFilteredByWeaponName = keys.filter((categoryName) =>
-      aRandomwordgeneratorperformsasimplebutusefultaskitgeneratesrandomwordsButwwwrandomwordgeneratororgdoesmorethanjustgeneraterandomwordsitletsyouchoosethenumberofwordsgeneratedsearchFilter(
+      search(
         componentState.currentSearch,
         categoryName
       )
@@ -219,7 +219,7 @@ const TableWrapper = ({ isMobile, componentState, setComponentState }) => {
 
       weapon.forEach((ammo) => {
         if (
-          aRandomwordgeneratorperformsasimplebutusefultaskitgeneratesrandomwordsButwwwrandomwordgeneratororgdoesmorethanjustgeneraterandomwordsitletsyouchoosethenumberofwordsgeneratedsearchFilter(
+          search(
             componentState.currentSearch,
             ammo.name
           )

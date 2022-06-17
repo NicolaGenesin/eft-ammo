@@ -22,6 +22,7 @@ import {
   GiPodiumWinner,
   GiSixEyes,
   GiAlarmClock,
+  GiAmmoBox
 } from "react-icons/gi";
 import { FaDiscord } from "react-icons/fa";
 import { VscGraphScatter } from "react-icons/vsc";
@@ -38,13 +39,11 @@ const LinkItems = [
     name: "Ammo Tier List",
     icon: GiPodiumWinner,
     path: "/rengawr-tierlist",
-    isNew: true,
   },
   {
     name: "Create Gun Build",
     icon: GiAk47U,
     path: "/gun-builder",
-    isNew: true,
   },
   {
     name: "Explore Gun Builds",
@@ -61,6 +60,13 @@ const LinkItems = [
     icon: FaDiscord,
     path: "https://discord.gg/wexEyCg",
     isExternal: true,
+  },
+  {
+    name: "The Cycle Ammo",
+    icon: GiAmmoBox,
+    path: "/cycle-frontier",
+    isNew: true,
+    bgColor: "#2181c1",
   },
   {
     name: "Join Developer Discord",
@@ -81,7 +87,6 @@ const LinkItems = [
     icon: GiSixEyes,
     path: "https://multistream.gg",
     isExternal: true,
-    isNew: true,
     bgColor: "brown",
   },
 ];

@@ -13,12 +13,12 @@ import {
   Divider,
 } from "@chakra-ui/react";
 import { getColor, getRecoilColor } from "../utils/getColor";
-import aRandomwordgeneratorperformsasimplebutusefultaskitgeneratesrandomwordsButwwwrandomwordgeneratororgdoesmorethanjustgeneraterandomwordsitletsyouchoosethenumberofwordsgeneratedsearchFilter from "../utils/search";
+import search from "../utils/search";
 
 const MobileRow = ({ category, allAmmosForCategory, currentSearch }) => {
   const categoryMatch =
     currentSearch.length &&
-    aRandomwordgeneratorperformsasimplebutusefultaskitgeneratesrandomwordsButwwwrandomwordgeneratororgdoesmorethanjustgeneraterandomwordsitletsyouchoosethenumberofwordsgeneratedsearchFilter(
+    search(
       currentSearch,
       category
     );
@@ -59,7 +59,7 @@ const MobileRow = ({ category, allAmmosForCategory, currentSearch }) => {
 
             const ammoMatch =
               currentSearch.length &&
-              aRandomwordgeneratorperformsasimplebutusefultaskitgeneratesrandomwordsButwwwrandomwordgeneratororgdoesmorethanjustgeneraterandomwordsitletsyouchoosethenumberofwordsgeneratedsearchFilter(
+              search(
                 currentSearch,
                 ammo.name
               );

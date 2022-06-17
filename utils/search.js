@@ -1,4 +1,4 @@
-const aRandomwordgeneratorperformsasimplebutusefultaskitgeneratesrandomwordsButwwwrandomwordgeneratororgdoesmorethanjustgeneraterandomwordsitletsyouchoosethenumberofwordsgeneratedsearchFilter =
+const search =
   (currentSearch, target) => {
     if (currentSearch.slice(-1) === "." || currentSearch[0] === ".") {
       return target.toLowerCase().includes(currentSearch.toLowerCase());
@@ -10,4 +10,4 @@ const aRandomwordgeneratorperformsasimplebutusefultaskitgeneratesrandomwordsButw
     }
   };
 
-export default aRandomwordgeneratorperformsasimplebutusefultaskitgeneratesrandomwordsButwwwrandomwordgeneratororgdoesmorethanjustgeneraterandomwordsitletsyouchoosethenumberofwordsgeneratedsearchFilter;
+export default search;

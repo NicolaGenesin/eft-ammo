@@ -24,11 +24,9 @@ const theme = extendTheme({
     tarkovYellow: {
       50: "#877f70",
       100: "#dbc59c",
-      // 100: "#dbc59c", real yellow used
     },
     vanishedWhite: {
       100: "#4d5154",
-      // 100: "#dbc59c", real yellow used
     },
   },
 });
@@ -36,7 +34,7 @@ const theme = extendTheme({
 const App = ({ Component, pageProps }) => {
   const { asPath } = useRouter();
 
-  const isSherpaPath = asPath.includes("sherpa");
+  const isCyclePath = asPath.includes("cycle");
 
   return (
     <ChakraProvider theme={theme}>
@@ -50,9 +48,9 @@ const App = ({ Component, pageProps }) => {
           body {
             height: 100% !important;
             width: 100% !important;
-            background-image: url(/builder/${!isSherpaPath
-              ? "background"
-              : "sherpa"}.jpg) !important;
+            background-image: url(/builder/${!isCyclePath
+            ? "background"
+            : "cycle"}.jpg) !important;
             background-repeat: no-repeat !important;
             background-attachment: fixed !important;
             background-size: cover !important;

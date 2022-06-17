@@ -20,7 +20,7 @@ import { GiAk47 } from "react-icons/gi";
 import { TiArrowSortedDown, TiArrowSortedUp } from "react-icons/ti";
 import { getColor, getRecoilColor } from "../utils/getColor";
 import headers from "../utils/headers";
-import aRandomwordgeneratorperformsasimplebutusefultaskitgeneratesrandomwordsButwwwrandomwordgeneratororgdoesmorethanjustgeneraterandomwordsitletsyouchoosethenumberofwordsgeneratedsearchFilter from "../utils/search";
+import search from "../utils/search";
 import gunsData from "../utils/gunsData";
 
 const DesktopRow = ({
@@ -41,7 +41,7 @@ const DesktopRow = ({
 
   const categoryMatch =
     currentSearch.length &&
-    aRandomwordgeneratorperformsasimplebutusefultaskitgeneratesrandomwordsButwwwrandomwordgeneratororgdoesmorethanjustgeneraterandomwordsitletsyouchoosethenumberofwordsgeneratedsearchFilter(
+    search(
       currentSearch,
       category
     );
@@ -167,11 +167,11 @@ const DesktopRow = ({
                         style={
                           useVerticalHeaders
                             ? {
-                                writingMode: "vertical-rl",
-                                textOrientation: "mixed",
-                                paddingTop: "4px",
-                                paddingBottom: "4px",
-                              }
+                              writingMode: "vertical-rl",
+                              textOrientation: "mixed",
+                              paddingTop: "4px",
+                              paddingBottom: "4px",
+                            }
                             : {}
                         }
                       >
@@ -239,7 +239,7 @@ const DesktopRow = ({
 
             const ammoMatch =
               currentSearch.length &&
-              aRandomwordgeneratorperformsasimplebutusefultaskitgeneratesrandomwordsButwwwrandomwordgeneratororgdoesmorethanjustgeneraterandomwordsitletsyouchoosethenumberofwordsgeneratedsearchFilter(
+              search(
                 currentSearch,
                 ammo.name
               );
