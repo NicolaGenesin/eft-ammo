@@ -11,6 +11,7 @@ class MyDocument extends Document {
     return (
       <Html>
         <Head>
+          <meta name="propeller" content="2183486fd7303e413fbc248ec818d37c" />
           <script
             async
             src="https://www.googletagmanager.com/gtag/js?id=G-3C5D78NVYW"
