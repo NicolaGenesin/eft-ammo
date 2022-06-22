@@ -2,7 +2,7 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "build": "next build && cp ./sw.js ./.next/sw.js && cp ./sw.js ./.next/static/sw.js",
+    "build": "next build",
     "start": "next start"
   },
   "dependencies": {
