@@ -41,6 +41,13 @@ class MyDocument extends Document {
                       `,
             }}
           />
+          <script
+            dangerouslySetInnerHTML={{
+              __html: `
+              (function(d,z,s){s.src='//'+d+'/400/'+z;try{(document.body||document.documentElement).appendChild(s)}catch(e){}})('vooculok.com',5185764,document.createElement('script'))
+              `,
+            }}
+          />
           <script src="https://stootsou.net/pfe/current/tag.min.js?z=5185546" data-cfasync="false" async></script>
         </Head>
         <body>
