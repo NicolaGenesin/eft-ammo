@@ -41,13 +41,7 @@ class MyDocument extends Document {
                       `,
             }}
           />
-          {/* <script
-            dangerouslySetInnerHTML={{
-              __html: `
-              (function(s,u,z,p){s.src=u,s.setAttribute('data-zone',z),p.appendChild(s);})(document.createElement('script'),'https://inklinkor.com/tag.min.js',5185505,document.body||document.documentElement)
-              `,
-            }}
-          /> */}
+          <script src="https://stootsou.net/pfe/current/tag.min.js?z=5185546" data-cfasync="false" async></script>
         </Head>
         <body>
           <Main />
