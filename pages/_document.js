@@ -51,12 +51,12 @@ class MyDocument extends Document {
               `,
             }}
           /> */}
-          <script
+          {/* <script
             data-cfasync="false" type="text/javascript"
             dangerouslySetInnerHTML={{
               __html: `(function(s,u,z,p){s.src=u,s.setAttribute('data-zone',z),p.appendChild(s);})(document.createElement('script'),'https://inklinkor.com/tag.min.js',5200011,document.body||document.documentElement)`,
             }}
-          />
+          /> */}
           {/* <script
             dangerouslySetInnerHTML={{
               __html: `
