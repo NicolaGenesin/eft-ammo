@@ -22,7 +22,7 @@ import {
   GiPodiumWinner,
   GiSixEyes,
   GiAlarmClock,
-  GiAmmoBox
+  GiAmmoBox,
 } from "react-icons/gi";
 import { FaDiscord } from "react-icons/fa";
 import { VscGraphScatter } from "react-icons/vsc";
@@ -196,6 +196,11 @@ const SidebarContent = ({ onClose, hideSidebar, selectedIndex, ...rest }) => {
       </Center>
       <Text textAlign="center" fontSize="xs" opacity="0.4">
         CHANGELOG:
+        <br />
+        <br />
+        June 30th 2022:
+        <br />
+        Charts updated for v0.12.12.30
         <br />
         <br />
         April 19th 2022:
