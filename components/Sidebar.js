@@ -13,6 +13,7 @@ import {
   Tag,
   Center,
   VStack,
+  HStack,
 } from "@chakra-ui/react";
 import { FiCompass, FiMenu } from "react-icons/fi";
 import {
@@ -24,7 +25,7 @@ import {
   GiAlarmClock,
   GiAmmoBox,
 } from "react-icons/gi";
-import { FaDiscord } from "react-icons/fa";
+import { FaDiscord, FaBitcoin, FaEthereum } from "react-icons/fa";
 import { VscGraphScatter } from "react-icons/vsc";
 import { useRouter } from "next/router";
 
@@ -143,8 +144,23 @@ export default function Sidebar({ children }) {
           onOpen={onOpen}
         />
       )}
+      <Center ml={isSidebarVisible ? { base: 0, xl: 60 } : 0} py={8}>
+        <VStack>
+          <Text fontSize={'md'} fontWeight='semibold'>EFT-AMMO is free and operates at loss. Please consider supporting us. Thank you.</Text>
+          <VStack bg='#bbb' p={4} color='#000' spacing={1}>
+            <HStack>
+              <FaEthereum color="#434870" size={24} />
+              <Text fontSize={'xs'} fontWeight='bold'>Ethereum Address: 0x672EFB0af5c70466Cf18D48296164c87aA04c161</Text>
+            </HStack>
+            <HStack>
+              <FaBitcoin color="#ef8e1b" size={24} />
+              <Text fontSize={'xs'} fontWeight='bold'>Bitcoin Address: bc1qgc5jn7tj6jzs860zyaa3tg3cmac5y963naf7yw</Text>
+            </HStack>
+          </VStack>
+        </VStack>
+      </Center >
       <Box ml={isSidebarVisible ? { base: 0, xl: 60 } : 0}>{children}</Box>
-    </Box>
+    </Box >
   );
 }
 
