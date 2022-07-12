@@ -47,7 +47,7 @@ const App = ({ results, isFallback }) => {
   const isMobile = useBreakpointValue({ base: true, md: false });
 
   useEffect(async () => {
-    let twitchId = "neenoh";
+    let twitchId = "dopeeffecttv";
 
     setTimeout(async () => {
       try {
