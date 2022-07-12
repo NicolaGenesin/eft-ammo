@@ -17,12 +17,12 @@ const Timers = () => {
     return (
         <Box>
             <Head>
-                <title>EFT | Traders Reset Timers</title>
+                <title>EFT | Maps</title>
                 <link rel="icon" href="/favicon.ico" />
 
                 <meta
                     name="description"
-                    content="Escape from Tarkov Traders Reset Timers 🙌"
+                    content="Escape from Tarkov Maps 🙌"
                 />
             </Head>
             <Box
