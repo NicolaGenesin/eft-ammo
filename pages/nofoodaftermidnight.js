@@ -9,6 +9,7 @@ import {
   Center,
   Text,
   Box,
+  Button
 } from "@chakra-ui/react";
 
 import getResults from "../utils/getResults";
@@ -20,6 +21,7 @@ import { TwitchEmbed } from "react-twitch-embed";
 import CompareButton from "../components/CompareButton";
 import CompareModal from "../components/CompareModal";
 import TableWrapper from "../components/TableWrapper";
+import router from "next/router";
 
 const App = ({ results, isFallback }) => {
   const [componentState, setComponentState] = useState({
@@ -54,7 +56,7 @@ const App = ({ results, isFallback }) => {
         );
         const data = await res.json();
         twitchId = data.twitchId;
-      } catch (error) {}
+      } catch (error) { }
 
       setComponentState({
         ...componentState,
@@ -129,6 +131,20 @@ const App = ({ results, isFallback }) => {
           content="http://eft-ammo.com/assets/og-01.jpg"
         />
       </Head>
+      <Center>
+        <Button
+          mt={8}
+          size="xs"
+          borderRadius="0"
+          colorScheme="orange"
+          color="black"
+          onClick={() => {
+            router.push('/maps')
+          }}
+        >
+          Maps added on 12/11/2022
+        </Button>
+      </Center>
       <Box pb="48px">
         <Center mb="24px">
           <VStack>

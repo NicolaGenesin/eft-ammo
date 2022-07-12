@@ -24,6 +24,7 @@ import {
   GiSixEyes,
   GiAlarmClock,
   GiAmmoBox,
+  GiTreasureMap
 } from "react-icons/gi";
 import { FaDiscord, FaBitcoin, FaEthereum } from "react-icons/fa";
 import { VscGraphScatter } from "react-icons/vsc";
@@ -35,6 +36,12 @@ const LinkItems = [
     name: "Ammo Graph",
     icon: VscGraphScatter,
     path: "/ammo-graph",
+  },
+  {
+    name: "Maps",
+    icon: GiTreasureMap,
+    isNew: true,
+    path: "/maps",
   },
   {
     name: "Ammo Tier List",
@@ -144,7 +151,7 @@ export default function Sidebar({ children }) {
           onOpen={onOpen}
         />
       )}
-      <Center ml={isSidebarVisible ? { base: 0, xl: 60 } : 0} py={8}>
+      {/* <Center ml={isSidebarVisible ? { base: 0, xl: 60 } : 0} py={8}>
         <VStack>
           <Text fontSize={'md'} fontWeight='semibold'>EFT-AMMO is free and operates at loss. Please consider supporting us. Thank you.</Text>
           <VStack bg='#bbb' p={4} color='#000' spacing={1}>
@@ -158,7 +165,7 @@ export default function Sidebar({ children }) {
             </HStack>
           </VStack>
         </VStack>
-      </Center >
+      </Center > */}
       <Box ml={isSidebarVisible ? { base: 0, xl: 60 } : 0}>{children}</Box>
     </Box >
   );
@@ -212,6 +219,11 @@ const SidebarContent = ({ onClose, hideSidebar, selectedIndex, ...rest }) => {
       </Center>
       <Text textAlign="center" fontSize="xs" opacity="0.4">
         CHANGELOG:
+        <br />
+        <br />
+        July 12th 2022:
+        <br />
+        Maps added
         <br />
         <br />
         June 30th 2022:
