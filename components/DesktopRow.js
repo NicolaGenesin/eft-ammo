@@ -268,6 +268,7 @@ const DesktopRow = ({
                   fontSize="md"
                   fontWeight="normal"
                   bg={index % 2 === 0 ? "vulcan.900" : "vulcan.850"}
+                  fontWeight="bold"
                 >
                   <HStack minW="310px" bg="vulcan.800" py="2px" pr="8px">
                     {selectCallback && (
