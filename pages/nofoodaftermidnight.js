@@ -9,7 +9,8 @@ import {
   Center,
   Text,
   Box,
-  Button
+  Button,
+  Image
 } from "@chakra-ui/react";
 
 import getResults from "../utils/getResults";
@@ -131,19 +132,34 @@ const App = ({ results, isFallback }) => {
           content="http://eft-ammo.com/assets/og-01.jpg"
         />
       </Head>
-      <Center>
-        <Button
-          mt={8}
-          size="xs"
-          borderRadius="0"
-          colorScheme="orange"
-          color="black"
-          onClick={() => {
-            router.push('/maps')
-          }}
-        >
-          Maps added on 12/11/2022
-        </Button>
+      <Center pt={8}>
+        <HStack>
+          <Image src='/pog.gif' alt='Dan Abramov' w='50px' />
+          <VStack>
+            <Button
+              size="xs"
+              borderRadius="0"
+              colorScheme="orange"
+              color="black"
+              onClick={() => {
+                router.push('/maps')
+              }}
+            >
+              Maps added on 12/11/2022
+            </Button>
+            <Button
+              size="xs"
+              borderRadius="0"
+              colorScheme="pink"
+              color="black"
+              onClick={() => {
+                router.push('https://discord.com/invite/H4v5sQR7We')
+              }}
+            >
+              What do you want to see next?
+            </Button>
+          </VStack>
+        </HStack>
       </Center>
       <Box pb="48px">
         <Center mb="24px">
