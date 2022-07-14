@@ -5,11 +5,11 @@ const fallback = require("./fallback").default;
 const getFleaMarketPrices = async () => {
   const dataQuery = JSON.stringify({
     query: `
-      { itemsByType(type: ammo){ name, normalizedName, lastLowPrice } }
+      { itemsByType(type: ammo){ name, normalizedName, lastLowPrice, wikiLink } }
     `,
   });
 
-  const response = await fetch("https://tarkov-tools.com/graphql", {
+  const response = await fetch("https://api.tarkov.dev/graphql", {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
@@ -131,7 +131,7 @@ const handler = async (req, res) => {
               return additionalRow[1] === ammo.name;
             }
           );
-        } catch (error) {}
+        } catch (error) { }
 
         if (additionalSpecsForAmmo) {
           ammo.standard = {
@@ -153,6 +153,7 @@ const handler = async (req, res) => {
             // }
 
             ammo.price = price.lastLowPrice;
+            ammo.wikiLink = price.wikiLink;
           }
         }
 

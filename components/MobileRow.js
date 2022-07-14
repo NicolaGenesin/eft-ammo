@@ -64,6 +64,12 @@ const MobileRow = ({ category, allAmmosForCategory, currentSearch }) => {
                 ammo.name
               );
 
+            let ammoPrice;
+
+            if (ammo.price) {
+              ammoPrice = `${ammo.price} ₽`;
+            }
+
             let recoil = "No Data";
 
             if (ammo.recoil !== "") {
@@ -105,7 +111,7 @@ const MobileRow = ({ category, allAmmosForCategory, currentSearch }) => {
                     {ammo.name.toUpperCase()}
                   </Center>
                   <Spacer />
-                  {ammo.notAvailableOnFleaMarket && (
+                  {ammo.notAvailableOnFleaMarket ? (
                     <Text
                       color="tomato"
                       fontSize="xs"
@@ -115,6 +121,17 @@ const MobileRow = ({ category, allAmmosForCategory, currentSearch }) => {
                       <span>Not on</span>
                       <br />
                       <span>Flea M.</span>
+                    </Text>
+                  ) : (
+                    <Text
+                      color="tarkovYellow.100"
+                      fontSize="xs"
+                      fontWeight="bold"
+                      textAlign="right"
+                    >
+                      Last Low F.M.
+                      <br />
+                      {ammoPrice || "-"}
                     </Text>
                   )}
                 </HStack>

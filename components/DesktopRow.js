@@ -129,7 +129,10 @@ const DesktopRow = ({
               const isSortable = (index < 5 || index === 6) && tableState;
               let toolTipLabel = "";
 
-              if (index === 6) {
+              if (index === 13) {
+                toolTipLabel =
+                  "Flea market prices provided by tarkov-tools.com";
+              } else if (index === 6) {
                 toolTipLabel =
                   "Velocity of the projectile as it leaves the barrel or muzzle.";
               } else if (index === 5) {
@@ -262,6 +265,12 @@ const DesktopRow = ({
               }
             }
 
+            let ammoPrice;
+
+            if (ammo.price) {
+              ammoPrice = `${ammo.price} ₽`;
+            }
+
             return (
               <div key={`ammo-${index}`}>
                 <Flex
@@ -306,7 +315,13 @@ const DesktopRow = ({
                       fontWeight="semibold"
                       ml="8px"
                     >
-                      {ammo.name.toUpperCase()}
+                      <Link
+                        href={ammo.wikiLink}
+                        isExternal
+                        style={{ textDecoration: "underline" }}
+                      >
+                        {ammo.name.toUpperCase()}
+                      </Link>
                       {toolTipLabel && (
                         <Tooltip bg="#272712" label={toolTipLabel}>
                           <InfoOutlineIcon ml="8px" />
@@ -370,6 +385,9 @@ const DesktopRow = ({
                   </Center>
                   <Center flex="0.5" bg={getColor(ammo.class6)} color="black">
                     {ammo.class6}
+                  </Center>
+                  <Center flex="1" color="tarkovYellow.100">
+                    {ammoPrice || "-"}
                   </Center>
                 </Flex>
                 <Divider style={{ opacity: "0.2" }} />
