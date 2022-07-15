@@ -134,7 +134,7 @@ const App = ({ results, isFallback }) => {
       </Head>
       <Center pt={8}>
         <HStack>
-          <Image src='/pog.gif' alt='Dan Abramov' w='50px' />
+          {/* <Image src='/pog.gif' alt='Dan Abramov' w='50px' /> */}
           <VStack>
             <Button
               size="xs"
