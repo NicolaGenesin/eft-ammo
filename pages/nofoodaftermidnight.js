@@ -145,7 +145,7 @@ const App = ({ results, isFallback }) => {
                 router.push('/maps')
               }}
             >
-              Maps added on 12/11/2022
+              Maps added on 07/12/2022
             </Button>
             <Button
               size="xs"
