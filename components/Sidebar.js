@@ -13,7 +13,8 @@ import {
   Tag,
   Center,
   VStack,
-  HStack,
+  Button,
+  Image
 } from "@chakra-ui/react";
 import { FiCompass, FiMenu } from "react-icons/fi";
 import {
@@ -151,9 +152,9 @@ export default function Sidebar({ children }) {
           onOpen={onOpen}
         />
       )}
-      {/* <Center ml={isSidebarVisible ? { base: 0, xl: 60 } : 0} py={8}>
+      <Center ml={isSidebarVisible ? { base: 0, xl: 60 } : 0} pt={8}>
         <VStack>
-          <Text fontSize={'md'} fontWeight='semibold'>EFT-AMMO is free and operates at loss. Please consider supporting us. Thank you.</Text>
+          {/* <Text fontSize={'md'} fontWeight='semibold'>EFT-AMMO is free and operates at loss. Please consider supporting us. Thank you.</Text>
           <VStack bg='#bbb' p={4} color='#000' spacing={1}>
             <HStack>
               <FaEthereum color="#434870" size={24} />
@@ -163,9 +164,14 @@ export default function Sidebar({ children }) {
               <FaBitcoin color="#ef8e1b" size={24} />
               <Text fontSize={'xs'} fontWeight='bold'>Bitcoin Address: bc1qgc5jn7tj6jzs860zyaa3tg3cmac5y963naf7yw</Text>
             </HStack>
-          </VStack>
+          </VStack> */}
+          <Link href="https://www.buymeacoffee.com/filodream">
+            <Button bg="yellow" color='black'>
+              <Image src="/stew.png" width="30px" mr={2} />Buy me a can of condensed milk
+            </Button>
+          </Link>
         </VStack>
-      </Center > */}
+      </Center >
       <Box ml={isSidebarVisible ? { base: 0, xl: 60 } : 0}>{children}</Box>
     </Box >
   );

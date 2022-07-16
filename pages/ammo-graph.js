@@ -52,7 +52,7 @@ const App = ({ results, isFallback }) => {
         );
         const data = await res.json();
         twitchId = data.twitchId;
-      } catch (error) {}
+      } catch (error) { }
 
       setComponentState({
         ...componentState,
@@ -128,7 +128,6 @@ const App = ({ results, isFallback }) => {
         />
       </Head>
       <Box pb="48px">
-        <Divider borderColor="tarkovYellow.100" opacity="0.5" />
         <Center mb="24px">
           <VStack>
             <Text
