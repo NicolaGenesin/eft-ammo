@@ -136,7 +136,7 @@ const App = ({ results, isFallback }) => {
         <HStack>
           {/* <Image src='/pog.gif' alt='Dan Abramov' w='50px' /> */}
           <VStack>
-            <Button
+            {/* <Button
               size="xs"
               borderRadius="0"
               colorScheme="orange"
@@ -146,8 +146,8 @@ const App = ({ results, isFallback }) => {
               }}
             >
               Maps added on 07/12/2022
-            </Button>
-            <Button
+            </Button> */}
+            {/* <Button
               size="xs"
               borderRadius="0"
               colorScheme="pink"
@@ -157,7 +157,7 @@ const App = ({ results, isFallback }) => {
               }}
             >
               What do you want to see next?
-            </Button>
+            </Button> */}
           </VStack>
         </HStack>
       </Center>
