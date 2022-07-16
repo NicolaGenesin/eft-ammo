@@ -165,7 +165,7 @@ export default function Sidebar({ children }) {
               <Text fontSize={'xs'} fontWeight='bold'>Bitcoin Address: bc1qgc5jn7tj6jzs860zyaa3tg3cmac5y963naf7yw</Text>
             </HStack>
           </VStack> */}
-          <a href="https://deal.kinguin.net?r=filodream&amp;bid=5feb0bfc" target="_top"><img src="//affiliate.kinguin.net/accounts/default1/m0x0b41/5feb0bfc.jpg" alt="Kinguin Best Deals" title="Kinguin Best Deals" width="728" height="90" /></a><img style={{ border: 0 }} src="https://affiliate.kinguin.net/scripts/m0x0i41?r=filodream&amp;bid=5feb0bfc" width="1" height="1" alt="" />
+          <a href="https://deal.kinguin.net?r=filodream&amp;bid=5feb0bfc" target="_top"><img src="/5feb0bfc.jpeg" alt="Kinguin Best Deals" title="Kinguin Best Deals" width="728" height="90" /></a><img style={{ border: 0 }} src="/5feb0bfc.jpeg" width="1" height="1" alt="" />
           <Link href="https://www.buymeacoffee.com/filodream">
             <Button bg="yellow" color='black'>
               <Image src="/stew.png" width="30px" mr={2} />Support me with a can of condensed milk
@@ -225,7 +225,7 @@ const SidebarContent = ({ onClose, hideSidebar, selectedIndex, ...rest }) => {
         </Text>
       </Center>
       <Box py={4}>
-        <a href="https://deal.kinguin.net?r=filodream&amp;bid=f4000c3d" target="_top"><img src="//affiliate.kinguin.net/accounts/default1/m0x0b41/f4000c3d.jpg" alt="Kinguin Best Deals" title="Kinguin Best Deals" width="300" height="100" /></a><img style={{ border: 0 }} src="https://affiliate.kinguin.net/scripts/m0x0i41?r=filodream&amp;bid=f4000c3d" width="1" height="1" alt="" />
+        <a href="https://deal.kinguin.net?r=filodream&amp;bid=f4000c3d" target="_top"><img src="/f4000c3d.jpeg" alt="Kinguin Best Deals" title="Kinguin Best Deals" width="300" height="100" /></a><img style={{ border: 0 }} src="/f4000c3d.jpeg" width="1" height="1" alt="" />
       </Box>
       <Text textAlign="center" fontSize="xs" opacity="0.4">
         CHANGELOG:
