@@ -183,7 +183,7 @@ const DesktopTable = ({
                       )}
                       {[0, 7, 15].includes(index) &&
                         <Center pt={4}>
-                          <a href="https://deal.kinguin.net?r=filodream&amp;bid=bf4d8be1" target="_top"><img src="/bf4d8be1.jpeg" alt="Kinguin Best Deals" title="Kinguin Best Deals" width="728" height="90" /></a><img style={{ border: 0 }} src="/bf4d8be1.jpeg" width="1" height="1" alt="" />
+                          <a href="https://deal.kinguin.net/c/software?r=filodream&amp;bid=bf4d8be1" target="_top"><img src="/bf4d8be1.jpeg" alt="Kinguin Best Deals" title="Kinguin Best Deals" width="728" height="90" /></a><img style={{ border: 0 }} src="/bf4d8be1.jpeg" width="1" height="1" alt="" />
                           <a href="https://deal.kinguin.net/c/software?r=filodream&amp;bid=bf4d8be1" target="_top"><img src="//affiliate.kinguin.net/accounts/default1/m0x0b41/bf4d8be1.jpg" alt="Software Sale" title="Software Sale" width="728" height="90" /></a><img style={{ border: 0 }} src="https://affiliate.kinguin.net/scripts/m0x0i41?r=filodream&amp;bid=bf4d8be1" width="1" height="1" alt="" />                        </Center>
                       }
                       {[3, 11, 19].includes(index) &&
