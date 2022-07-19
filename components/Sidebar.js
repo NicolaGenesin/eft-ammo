@@ -165,8 +165,8 @@ export default function Sidebar({ children }) {
               <Text fontSize={'xs'} fontWeight='bold'>Bitcoin Address: bc1qgc5jn7tj6jzs860zyaa3tg3cmac5y963naf7yw</Text>
             </HStack>
           </VStack> */}
-          <a href="https://deal.kinguin.net?r=filodream&amp;bid=5feb0bfc" target="_top"><img src="/5feb0bfc.jpeg" alt="Kinguin Best Deals" title="Kinguin Best Deals" width="728" height="90" /></a><img style={{ border: 0 }} src="/5feb0bfc.jpeg" width="1" height="1" alt="" />
-          <a href="https://deal.kinguin.net?r=filodream&amp;bid=5feb0bfc" target="_top"><img src="//affiliate.kinguin.net/accounts/default1/m0x0b41/5feb0bfc.jpg" alt="Kinguin Best Deals" title="Kinguin Best Deals" width="728" height="90" hidden /></a><img style={{ border: 0 }} src="https://affiliate.kinguin.net/scripts/m0x0i41?r=filodream&amp;bid=5feb0bfc" width="1" height="1" alt="" hidden />
+          {/* <a href="https://deal.kinguin.net?r=filodream&amp;bid=5feb0bfc" target="_top"><img src="/5feb0bfc.jpeg" alt="Kinguin Best Deals" title="Kinguin Best Deals" width="728" height="90" /></a><img style={{ border: 0 }} src="/5feb0bfc.jpeg" width="1" height="1" alt="" /> */}
+          {/* <a href="https://deal.kinguin.net?r=filodream&amp;bid=5feb0bfc" target="_top"><img src="//affiliate.kinguin.net/accounts/default1/m0x0b41/5feb0bfc.jpg" alt="Kinguin Best Deals" title="Kinguin Best Deals" width="728" height="90" hidden /></a><img style={{ border: 0 }} src="https://affiliate.kinguin.net/scripts/m0x0i41?r=filodream&amp;bid=5feb0bfc" width="1" height="1" alt="" hidden /> */}
           <Link href="https://www.buymeacoffee.com/filodream">
             <Button bg="yellow" color='black'>
               <Image src="/stew.png" width="30px" mr={2} />Support me with a can of condensed milk
