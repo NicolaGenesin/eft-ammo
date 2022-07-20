@@ -1,18 +1,99 @@
-import React, { useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import Head from "next/head";
-import Router from "next/router";
-import { Box, Center, Text, VStack } from "@chakra-ui/react";
+import {
+  HStack,
+  Skeleton,
+  useBreakpointValue,
+  VStack,
+  Flex,
+  Center,
+  Text,
+  Box,
+  Button,
+  Image,
+  Spacer
+} from "@chakra-ui/react";
 
-const Home = () => {
+import getResults from "../utils/getResults";
+import Legenda from "../components/Legenda";
+import { SocialButton } from "../components/SmallFooterWithSocial";
+import { FaTwitch } from "react-icons/fa";
+import fallback from "../utils/fallback";
+import { TwitchEmbed } from "react-twitch-embed";
+import CompareButton from "../components/CompareButton";
+import CompareModal from "../components/CompareModal";
+import TableWrapper from "../components/TableWrapper";
+import { useRouter, router } from "next/router";
+
+
+const App = ({ results, isFallback }) => {
+  const router = useRouter();
+  const [language, setLanguage] = useState('en');
+
   useEffect(() => {
-    const { pathname } = Router;
-    if (pathname == "/") {
-      Router.push("/nofoodaftermidnight");
-    }
+    if (!router.isReady) return;
+    const { l } = router.query;
+
+    setLanguage(l || 'en')
+  }, [router.isReady, router.query]);
+
+  const [componentState, setComponentState] = useState({
+    currentSearch: "",
+    results,
+    minimalView: true,
+    embed: (
+      <Center color="tarkovYellow.100">
+        <Box w={["375px", "450px", "600px"]}>
+          <Skeleton h="300px" />
+          <Center p="8px">
+            <Text fontSize="sm">Loading Stream...</Text>
+          </Center>
+        </Box>
+      </Center>
+    ),
+    selectedAmmos: [], // each element is an ammo object
+    showModal: false,
   });
 
+  console.log("isFallback", isFallback);
+
+  const isMobile = useBreakpointValue({ base: true, md: false });
+
+  useEffect(async () => {
+    let twitchId = "nofoodaftermidnight";
+
+    setTimeout(async () => {
+      try {
+        const res = await fetch(
+          "https://eft-ammo-embed-j5r9q.ondigitalocean.app/"
+        );
+        const data = await res.json();
+        twitchId = data.twitchId;
+      } catch (error) { }
+
+      setComponentState({
+        ...componentState,
+        embed: (
+          <TwitchEmbed
+            style={{ width: "100%", height: "100%" }}
+            channel={twitchId}
+            id={twitchId}
+            key={twitchId}
+            theme="dark"
+            autoplay
+            withChat={false}
+            muted={true}
+          />
+        ),
+      });
+    }, 1000);
+  }, []);
+
+  const rotation = useBreakpointValue({ base: "0", md: "10", lg: "15" });
+  const customTransform = { transform: `rotate(${rotation}deg)` };
+
   return (
-    <>
+    <Box>
       <Head>
         <title>EFT | Ammo and Armor Charts</title>
         <link rel="icon" href="/favicon.ico" />
@@ -63,20 +144,233 @@ const Home = () => {
           content="http://eft-ammo.com/assets/og-01.jpg"
         />
       </Head>
-      <Center bg="vulcan.1000" color="tarkovYellow.100" h="100vh">
-        <VStack px="24px" textAlign="center">
-          <Text fontSize="4xl">Loading...</Text>
-          <Box>
-            Here you will find all ammunition types in the chaos of Tarkov.{" "}
-            <br />
-            Varying opponents will require different types of ammunition to
-            tackle.
-            <br /> This page lists all ammunition types in Escape from Tarkov.
+      <HStack w={["100%", "95%"]} pt={8}>
+        <Spacer />
+        {language === 'en' && <Button
+          size="md"
+          borderRadius="0"
+          color="black"
+          onClick={() => {
+            router.push('/?l=es')
+          }}
+        >
+          🇪🇸 Español
+        </Button>}
+        {language === 'es' && <Button
+          size="md"
+          borderRadius="0"
+          color="black"
+          onClick={() => {
+            router.push('/')
+          }}
+        >
+          🇺🇸 English
+        </Button>}
+      </HStack>
+      <Box pb="48px">
+        <Center mb="24px">
+          <VStack>
+            <Text
+              textAlign="center"
+              color="tarkovYellow.100"
+              fontWeight="bold"
+              fontSize={["xl", "3xl"]}
+              mt="24px"
+              as="h1"
+            >
+              {language === 'en' ? "Escape from Tarkov Ammo and Armor Charts" : "Escape from Tarkov | Tablas de Munición y Blindaje"}
+            </Text>
+            <Text color="tarkovYellow.100" fontSize="sm">
+              {language === 'en' ? "Updated for" : "Aggiornado por"} v0.12.12.30
+            </Text>
+            <HStack>
+              <Center>
+                <Text
+                  textAlign="center"
+                  color="tarkovYellow.100"
+                  fontWeight="bold"
+                  fontSize={["lg", "xl"]}
+                  as="h1"
+                >
+                  <a href="https://www.twitch.tv/nofoodaftermidnight/">
+                    by{" "}
+                    <span
+                      style={{
+                        backgroundImage:
+                          "linear-gradient(120deg, #a15422 0%, #a15422 100%)",
+                        backgroundRepeat: "no-repeat",
+                        backgroundSize: "100% 0.4em",
+                        backgroundPosition: "0 88%",
+                        transition: "background-size 0.25s ease-in",
+                      }}
+                    >
+                      NoFoodAfterMidnight
+                    </span>{" "}
+                    | watch his stream{" "}
+                    <span
+                      style={{
+                        backgroundImage:
+                          "linear-gradient(120deg, #a15422 0%, #a15422 100%)",
+                        backgroundRepeat: "no-repeat",
+                        backgroundSize: "100% 0.4em",
+                        backgroundPosition: "0 88%",
+                        transition: "background-size 0.25s ease-in",
+                      }}
+                    >
+                      here
+                    </span>
+                  </a>
+                </Text>
+              </Center>
+              {!isMobile && (
+                <SocialButton
+                  size={12}
+                  label={"Twitch"}
+                  href={"https://www.twitch.tv/nofoodaftermidnight/"}
+                >
+                  <FaTwitch color="#a15422" size={28} />
+                </SocialButton>
+              )}
+            </HStack>
+            {isMobile && (
+              <SocialButton
+                size={12}
+                label={"Twitch"}
+                href={"https://www.twitch.tv/nofoodaftermidnight/"}
+              >
+                <FaTwitch color="orange" size={24} />
+              </SocialButton>
+            )}
+          </VStack>
+        </Center>
+        {/* <Center>
+          <Wrap justify="center" spacing="0">
+            <WrapItem>
+              <Link
+                href="https://forms.gle/ToTmLYiWoxuGsM2R6"
+                isExternal={true}
+                style={{ textDecoration: "none" }}
+              >
+                <Button
+                  colorScheme="orange"
+                  borderRadius="0"
+                  color="black"
+                  size="lg"
+                >
+                  🛠️ Feedback or Ideas? 🛠️
+                </Button>
+              </Link>
+            </WrapItem>
+            <WrapItem>
+              <Link
+                href="/builder"
+                isExternal={true}
+                style={{ textDecoration: "none" }}
+              >
+                <Button
+                  mt={["8px", "0"]}
+                  ml={["0", "8px"]}
+                  style={customTransform}
+                  colorScheme="orange"
+                  borderRadius="0"
+                  color="black"
+                  size="lg"
+                >
+                  ⚙️ New to the game? Try our
+                  <br />
+                  simple loadout builder 👷🚧
+                </Button>
+              </Link>
+            </WrapItem>
+          </Wrap>
+        </Center> */}
+        <Center>
+          <Flex pt="24px" px="8px" w={["100%", "75%"]}>
+            <Legenda isDesktop={!isMobile} language={language} />
+          </Flex>
+        </Center>
+        <Center w="100%" mt="48px" size="lg">
+          <Box w="100%">
+            <TableWrapper
+              language={language}
+              isMobile={isMobile}
+              componentState={componentState}
+              setComponentState={setComponentState}
+            />
           </Box>
-        </VStack>
-      </Center>
-    </>
+        </Center>
+        <Center>
+          <Box
+            w={["375px", "450px", "600px"]}
+            h={["300px", "400px", "400px"]}
+            pt="48px"
+            pb="64px"
+          >
+            <Text
+              textAlign="center"
+              color="tarkovYellow.100"
+              fontWeight="bold"
+              fontSize={["lg", "2xl"]}
+              as="h2"
+              mb="8px"
+            >
+              <a href="https://www.twitch.tv/nofoodaftermidnight/">
+                Watch NoFoodAfterMidnight's stream here:
+              </a>
+            </Text>
+            {componentState.embed}
+          </Box>
+        </Center>
+      </Box>
+      {componentState.selectedAmmos.length > 0 && (
+        <CompareButton
+          showModal={() => {
+            setComponentState({
+              ...componentState,
+              showModal: true,
+            });
+          }}
+        />
+      )}
+      {componentState.showModal && (
+        <CompareModal
+          selectedAmmos={componentState.selectedAmmos}
+          onClose={() => {
+            setComponentState({
+              ...componentState,
+              showModal: false,
+            });
+          }}
+        />
+      )}
+    </Box>
   );
 };
 
-export default Home;
+export async function getStaticProps() {
+  let results;
+  let isFallback = false;
+
+  try {
+    results = await (await getResults()).json();
+  } catch (error) {
+    results = fallback;
+    isFallback = true;
+
+    console.log("\n\n\n******************************");
+    console.log(
+      "\nWarning - Issue with API or not reachable, using fallback\n"
+    );
+    console.log("******************************\n\n\n");
+  }
+
+  return {
+    props: {
+      results,
+      isFallback,
+    },
+    revalidate: 900,
+  };
+}
+
+export default App;

@@ -32,7 +32,7 @@ import { VscGraphScatter } from "react-icons/vsc";
 import { useRouter } from "next/router";
 
 const LinkItems = [
-  { name: "Ammo Table", icon: GiShotgunRounds, path: "/nofoodaftermidnight" },
+  { name: "Ammo Table", icon: GiShotgunRounds, path: "/" },
   {
     name: "Ammo Graph",
     icon: VscGraphScatter,
@@ -152,28 +152,6 @@ export default function Sidebar({ children }) {
           onOpen={onOpen}
         />
       )}
-      <Center ml={isSidebarVisible ? { base: 0, xl: 60 } : 0} py={8}>
-        <VStack>
-          {/* <Text fontSize={'md'} fontWeight='semibold'>EFT-AMMO is free and operates at loss. Please consider supporting us. Thank you.</Text>
-          <VStack bg='#bbb' p={4} color='#000' spacing={1}>
-            <HStack>
-              <FaEthereum color="#434870" size={24} />
-              <Text fontSize={'xs'} fontWeight='bold'>Ethereum Address: 0x672EFB0af5c70466Cf18D48296164c87aA04c161</Text>
-            </HStack>
-            <HStack>
-              <FaBitcoin color="#ef8e1b" size={24} />
-              <Text fontSize={'xs'} fontWeight='bold'>Bitcoin Address: bc1qgc5jn7tj6jzs860zyaa3tg3cmac5y963naf7yw</Text>
-            </HStack>
-          </VStack> */}
-          {/* <a href="https://deal.kinguin.net?r=filodream&amp;bid=5feb0bfc" target="_top"><img src="/5feb0bfc.jpeg" alt="Kinguin Best Deals" title="Kinguin Best Deals" width="728" height="90" /></a><img style={{ border: 0 }} src="/5feb0bfc.jpeg" width="1" height="1" alt="" /> */}
-          {/* <a href="https://deal.kinguin.net?r=filodream&amp;bid=5feb0bfc" target="_top"><img src="//affiliate.kinguin.net/accounts/default1/m0x0b41/5feb0bfc.jpg" alt="Kinguin Best Deals" title="Kinguin Best Deals" width="728" height="90" hidden /></a><img style={{ border: 0 }} src="https://affiliate.kinguin.net/scripts/m0x0i41?r=filodream&amp;bid=5feb0bfc" width="1" height="1" alt="" hidden /> */}
-          <Link href="https://www.buymeacoffee.com/filodream">
-            <Button bg="yellow" color='black'>
-              <Image src="/stew.png" width="30px" mr={2} />Support me with a can of condensed milk
-            </Button>
-          </Link>
-        </VStack>
-      </Center >
       <Box ml={isSidebarVisible ? { base: 0, xl: 60 } : 0}>{children}</Box>
     </Box >
   );

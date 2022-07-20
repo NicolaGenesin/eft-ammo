@@ -1,0 +1,28 @@
+const categories = {
+  "12 Gauge Shot": { es: "Perdigones Calibre 12" },
+  "12 Gauge Slugs": { es: "Postas Calibre 12" },
+  "20 Gauge": { es: "Cartuchos Calibre 20" },
+  "23x75 mm": { es: "Cartuchos 23x75 mm" },
+  "9x18mm": {},
+  "7.62x25mm": {},
+  "9x19mm": {},
+  ".45": {},
+  "9x21mm": {},
+  ".357 Magnum": {},
+  "5.7x28 mm": {},
+  "4.6x30 mm": {},
+  "9x39mm": {},
+  ".366": {},
+  "5.45x39 mm": {},
+  "5.56x45 mm": {},
+  "7.62x39 mm": {},
+  ".300 blk": {},
+  "7.62x51 mm": {},
+  "7.62x54R": {},
+  "12.7x55 mm": {},
+  ".338 Lapua Magnum": {},
+  "Mounted Weapons": { es: "Armas Fijas" },
+  "Other": { es: "Otro" },
+};
+
+export default categories;
