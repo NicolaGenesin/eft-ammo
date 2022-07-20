@@ -36,7 +36,7 @@ const Footer = () => {
         >
           <VStack px="12px" pb={["24px", "0"]}>
             <ListHeader>Resources</ListHeader>
-            <Link href={"/nofoodaftermidnight"}>Home</Link>
+            <Link href={"/"}>Home</Link>
             <Link href={"/gun-builder"}>Gun Builder</Link>
             <Link href={"/builder"}>Loadout Builder</Link>
           </VStack>

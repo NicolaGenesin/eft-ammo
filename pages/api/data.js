@@ -137,7 +137,6 @@ const handler = async (req, res) => {
               en: { name: additionalSpecsForAmmo[2], note: ammoSpecs[14], secondNote: ammoSpecs[15] },
               es: { name: additionalSpecsForAmmo[6], note: additionalSpecsForAmmo[7] },
             },
-            name: additionalSpecsForAmmo[2],
             normalizedName: additionalSpecsForAmmo[3],
           };
           ammo.notAvailableOnFleaMarket = additionalSpecsForAmmo[4] === "FALSE";

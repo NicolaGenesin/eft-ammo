@@ -16,7 +16,7 @@ import MobileRow from "./MobileRow";
 import search from "../utils/search";
 import { InView } from "react-intersection-observer";
 
-const MobileTable = ({ componentState, keysFilteredByWeaponName }) => (
+const MobileTable = ({ componentState, keysFilteredByWeaponName, language }) => (
   <>
     <Accordion textAlign="center" defaultIndex={[0]} allowMultiple>
       {keysFilteredByWeaponName.map((key, index) => {
@@ -39,6 +39,7 @@ const MobileTable = ({ componentState, keysFilteredByWeaponName }) => (
                   <Fade in={true}>
                     <AccordionItem border="none">
                       <MobileRow
+                        language={language}
                         category={key}
                         allAmmosForCategory={allAmmosForCategory}
                         currentSearch={componentState.currentSearch}
@@ -61,6 +62,7 @@ const DesktopTable = ({
   keysFilteredByWeaponName,
   tableState,
   setTableState,
+  language
 }) => {
   const [expandedItems, setExpandedIndexes] = useState([
     ...Array(keysFilteredByWeaponName.length).keys(),
@@ -94,7 +96,7 @@ const DesktopTable = ({
                 ]);
               }}
             >
-              Show All
+              {language === 'en' ? "Show All" : "Mostrar todo"}
             </Button>
             <Button
               size="xs"
@@ -105,7 +107,7 @@ const DesktopTable = ({
                 setExpandedIndexes([]);
               }}
             >
-              Collapse All
+              {language === 'en' ? "Show All" : "Desplegar todo"}
             </Button>
           </HStack>
           <VStack>
@@ -130,6 +132,7 @@ const DesktopTable = ({
                         <Fade in={true}>
                           <AccordionItem border="none" w="100%">
                             <DesktopRow
+                              language={language}
                               category={key}
                               allAmmosForCategory={allAmmosForCategory}
                               minimalView={componentState.minimalView}
@@ -204,7 +207,7 @@ const DesktopTable = ({
   );
 };
 
-const TableWrapper = ({ isMobile, componentState, setComponentState }) => {
+const TableWrapper = ({ isMobile, componentState, setComponentState, language }) => {
   const [tableState, setTableState] = useState({
     sorting: {
       columnBeingSorted: null, // header name
@@ -256,7 +259,7 @@ const TableWrapper = ({ isMobile, componentState, setComponentState }) => {
           borderColor="#dbc59c"
           borderRadius="0"
           _focus={{ borderColor: "#dbc59c" }}
-          placeholder="Search by Category or Ammo type"
+          placeholder={language === 'en' ? "Search by Category or Ammo type" : "Buscar por categoría o tipo de munición"}
           _placeholder={{ color: "tarkovYellow.100", textAlign: "center" }}
           onChange={(e) => {
             setComponentState({
@@ -268,11 +271,13 @@ const TableWrapper = ({ isMobile, componentState, setComponentState }) => {
       </Center>
       {isMobile ? (
         <MobileTable
+          language={language}
           componentState={componentState}
           keysFilteredByWeaponName={keysFilteredByWeaponName}
         />
       ) : (
         <DesktopTable
+          language={language}
           componentState={componentState}
           setComponentState={setComponentState}
           keysFilteredByWeaponName={keysFilteredByWeaponName}
