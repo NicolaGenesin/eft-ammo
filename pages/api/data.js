@@ -118,8 +118,6 @@ const handler = async (req, res) => {
           class4: ammoSpecs[11],
           class5: ammoSpecs[12],
           class6: ammoSpecs[13],
-          note: ammoSpecs[14],
-          secondNote: ammoSpecs[15],
           category: category,
         };
 
@@ -135,6 +133,10 @@ const handler = async (req, res) => {
 
         if (additionalSpecsForAmmo) {
           ammo.standard = {
+            translations: {
+              en: { name: additionalSpecsForAmmo[2], note: ammoSpecs[14], secondNote: ammoSpecs[15] },
+              es: { name: additionalSpecsForAmmo[6], note: additionalSpecsForAmmo[7] },
+            },
             name: additionalSpecsForAmmo[2],
             normalizedName: additionalSpecsForAmmo[3],
           };
