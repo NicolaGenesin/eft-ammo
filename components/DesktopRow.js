@@ -20,7 +20,6 @@ import { GiAk47 } from "react-icons/gi";
 import { TiArrowSortedDown, TiArrowSortedUp } from "react-icons/ti";
 import { getColor, getRecoilColor } from "../utils/getColor";
 import headers from "../utils/headers";
-import categories from "../utils/categories";
 import search from "../utils/search";
 import gunsData from "../utils/gunsData";
 
@@ -33,7 +32,6 @@ const DesktopRow = ({
   setTableState,
   selectCallback,
   selectedAmmos,
-  language
 }) => {
   let maxCellHeight = "48px";
 
@@ -114,7 +112,7 @@ const DesktopRow = ({
               fontSize="xl"
               bg={categoryMatch ? "blue.600" : ""}
             >
-              {language !== 'en' ? categories[category][language] || category : category}
+              {category}
             </Text>
             <Center ml="8px">
               {gunsForCategory.length ? <GiAk47 mb="2px" size="20" /> : null}
@@ -125,9 +123,9 @@ const DesktopRow = ({
       <AccordionPanel pt={2} pb={0} px={0} mt="-32px" style={{ zIndex: 1 }}>
         <>
           <Flex>
-            <Box h={maxCellHeight} minW="315px" />
-            {Object.keys(headers[language || 'en']).map((headerLabel, index) => {
-              const headerProperty = headers[language || 'en'][headerLabel];
+            <Box h={maxCellHeight} minW="310px" />
+            {Object.keys(headers).map((headerLabel, index) => {
+              const headerProperty = headers[headerLabel];
               const isSortable = (index < 5 || index === 6) && tableState;
               let toolTipLabel = "";
 
@@ -223,17 +221,12 @@ const DesktopRow = ({
           {sortedAmmos.map((ammo, index) => {
             let toolTipLabel = undefined;
 
-            console.log(ammo.standard)
-
-            const note = ammo.standard.translations[language || 'en'].note
-            const secondNote = ammo.standard.translations[language || 'en'].secondNote
-
-            if (note) {
-              toolTipLabel = note;
-            } else if (secondNote) {
-              toolTipLabel = secondNote;
-            } else if (note && secondNote) {
-              toolTipLabel = `${note} ${secondNote}`;
+            if (ammo.note) {
+              toolTipLabel = ammo.note;
+            } else if (ammo.secondNote) {
+              toolTipLabel = ammo.secondNote;
+            } else if (ammo.note && ammo.secondNote) {
+              toolTipLabel = `${ammo.note} ${ammo.secondNote}`;
             }
 
             let imagePath = `${category || ammo.category}@${ammo.name}`;
@@ -282,10 +275,11 @@ const DesktopRow = ({
               <div key={`ammo-${index}`}>
                 <Flex
                   fontSize="md"
+                  fontWeight="normal"
                   bg={index % 2 === 0 ? "vulcan.900" : "vulcan.850"}
-                  fontWeight={"bold"}
+                  fontWeight="bold"
                 >
-                  <HStack minW="315px" py="2px" pr="8px">
+                  <HStack minW="310px" bg="vulcan.800" py="2px" pr="8px">
                     {selectCallback && (
                       <Checkbox
                         borderColor="tarkovYellow.100"
@@ -326,7 +320,7 @@ const DesktopRow = ({
                         isExternal
                         style={{ textDecoration: "underline" }}
                       >
-                        {ammo.standard.translations[language || 'en'].name.toUpperCase()}
+                        {ammo.name.toUpperCase()}
                       </Link>
                       {toolTipLabel && (
                         <Tooltip bg="#272712" label={toolTipLabel}>

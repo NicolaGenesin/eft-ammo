@@ -14,10 +14,8 @@ import {
 } from "@chakra-ui/react";
 import { getColor, getRecoilColor } from "../utils/getColor";
 import search from "../utils/search";
-import categories from "../utils/categories";
-import headers from "../utils/headers";
 
-const MobileRow = ({ category, allAmmosForCategory, currentSearch, language = 'en' }) => {
+const MobileRow = ({ category, allAmmosForCategory, currentSearch }) => {
   const categoryMatch =
     currentSearch.length &&
     search(
@@ -39,7 +37,7 @@ const MobileRow = ({ category, allAmmosForCategory, currentSearch, language = 'e
             }}
             bg={categoryMatch ? "blue.600" : ""}
           >
-            {language !== 'en' ? categories[category][language] || category : category}
+            {category}
           </Text>
         </Center>
         <Spacer />
@@ -84,8 +82,6 @@ const MobileRow = ({ category, allAmmosForCategory, currentSearch, language = 'e
               }
             }
 
-            const labels = Object.keys(headers[language])
-
             return (
               <Box key={`allAmmos-${index}`} bg="vulcan.800" mb="12px" p="8px">
                 <HStack>
@@ -112,7 +108,7 @@ const MobileRow = ({ category, allAmmosForCategory, currentSearch, language = 'e
                     fontWeight="semibold"
                     ml="8px"
                   >
-                    {ammo.standard.translations[language || 'en'].name.toUpperCase()}
+                    {ammo.name.toUpperCase()}
                   </Center>
                   <Spacer />
                   {ammo.notAvailableOnFleaMarket ? (
@@ -122,7 +118,9 @@ const MobileRow = ({ category, allAmmosForCategory, currentSearch, language = 'e
                       fontWeight="bold"
                       textAlign="center"
                     >
-                      {language === 'en' ? "Not on F.M." : "No en F.M."}
+                      <span>Not on</span>
+                      <br />
+                      <span>Flea M.</span>
                     </Text>
                   ) : (
                     <Text
@@ -131,7 +129,7 @@ const MobileRow = ({ category, allAmmosForCategory, currentSearch, language = 'e
                       fontWeight="bold"
                       textAlign="right"
                     >
-                      {language === 'en' ? "Last Low F.M." : "Último bajo F.M."}
+                      Last Low F.M.
                       <br />
                       {ammoPrice || "-"}
                     </Text>
@@ -147,7 +145,7 @@ const MobileRow = ({ category, allAmmosForCategory, currentSearch, language = 'e
                 >
                   <VStack spacing="0" w="100%">
                     <Center bg="#232314" p="2px" w="100%">
-                      {labels[0]}
+                      Damage
                     </Center>
                     <Center bg="#4E4E4C" w="100%">
                       {ammo.damage}
@@ -155,7 +153,7 @@ const MobileRow = ({ category, allAmmosForCategory, currentSearch, language = 'e
                   </VStack>
                   <VStack spacing="0" w="100%">
                     <Center bg="#232314" p="2px" w="100%">
-                      {labels[1]}
+                      Pen Value
                     </Center>
                     <Center bg="#4E4E4C" w="100%">
                       {ammo.penValue}
@@ -163,7 +161,7 @@ const MobileRow = ({ category, allAmmosForCategory, currentSearch, language = 'e
                   </VStack>
                   <VStack spacing="0" w="100%">
                     <Center bg="#232314" p="2px" w="100%">
-                      {labels[2]}
+                      Frag %
                     </Center>
                     <Center bg="#4E4E4C" w="100%">
                       {ammo.fragChange}
@@ -171,7 +169,7 @@ const MobileRow = ({ category, allAmmosForCategory, currentSearch, language = 'e
                   </VStack>
                   <VStack spacing="0" w="100%">
                     <Center bg="#232314" p="2px" w="100%">
-                      {labels[6]}
+                      Speed (m/s)
                     </Center>
                     <Center bg="#4E4E4C" w="100%">
                       {ammo.initialSpeed === ""
@@ -190,7 +188,7 @@ const MobileRow = ({ category, allAmmosForCategory, currentSearch, language = 'e
                 >
                   <VStack spacing="0" w="100%">
                     <Center bg="#232314" p="2px" w="100%">
-                      {labels[3]}
+                      Recoil
                     </Center>
                     <Center
                       color={
@@ -206,7 +204,7 @@ const MobileRow = ({ category, allAmmosForCategory, currentSearch, language = 'e
                   </VStack>
                   <VStack spacing="0" w="100%">
                     <Center bg="#232314" p="2px" w="100%">
-                      {labels[4]}
+                      Effective Distance
                     </Center>
                     <Center bg="#4E4E4C" w="100%">
                       {ammo.effDist === "" ? "No Data" : `${ammo.effDist}`}
@@ -214,7 +212,7 @@ const MobileRow = ({ category, allAmmosForCategory, currentSearch, language = 'e
                   </VStack>
                   <VStack spacing="0" w="100%">
                     <Center bg="#232314" p="2px" w="100%">
-                      {labels[5]}
+                      Max HS Distance
                     </Center>
                     <Center bg="#4E4E4C" w="100%">
                       {ammo.maxHsDist === "" ? "No Data" : `${ammo.maxHsDist}`}
@@ -223,12 +221,12 @@ const MobileRow = ({ category, allAmmosForCategory, currentSearch, language = 'e
                 </HStack>
                 <Divider my="8px" borderColor="vulcan.900" />
                 <Center color="tarkovYellow.100" fontSize="xs" mb="4px">
-                  {language === 'en' ? "Bullet effectiveness against armor class" : "Eficacia de la bala contra la clase de armadura"}
+                  Bullet effectiveness against armor class
                 </Center>
                 <HStack fontSize="xs" justify="space-around">
                   <VStack spacing="0" w="100%">
                     <Center bg="#232314" w="100%" p="1px">
-                      {labels[7]}
+                      Class 1
                     </Center>
                     <Center bg={getColor(ammo.class1)} color="black" w="100%">
                       {ammo.class1}
@@ -236,7 +234,7 @@ const MobileRow = ({ category, allAmmosForCategory, currentSearch, language = 'e
                   </VStack>
                   <VStack spacing="0" w="100%">
                     <Center bg="#232314" w="100%" p="1px">
-                      {labels[8]}
+                      Class 2
                     </Center>
                     <Center bg={getColor(ammo.class2)} color="black" w="100%">
                       {ammo.class2}
@@ -244,7 +242,7 @@ const MobileRow = ({ category, allAmmosForCategory, currentSearch, language = 'e
                   </VStack>
                   <VStack spacing="0" w="100%">
                     <Center bg="#232314" w="100%" p="1px">
-                      {labels[9]}
+                      Class 3
                     </Center>
                     <Center bg={getColor(ammo.class3)} color="black" w="100%">
                       {ammo.class3}
@@ -252,7 +250,7 @@ const MobileRow = ({ category, allAmmosForCategory, currentSearch, language = 'e
                   </VStack>
                   <VStack spacing="0" w="100%">
                     <Center bg="#232314" w="100%" p="1px">
-                      {labels[10]}
+                      Class 4
                     </Center>
                     <Center bg={getColor(ammo.class4)} color="black" w="100%">
                       {ammo.class4}
@@ -260,7 +258,7 @@ const MobileRow = ({ category, allAmmosForCategory, currentSearch, language = 'e
                   </VStack>
                   <VStack spacing="0" w="100%">
                     <Center bg="#232314" w="100%" p="1px">
-                      {labels[11]}
+                      Class 5
                     </Center>
                     <Center bg={getColor(ammo.class5)} color="black" w="100%">
                       {ammo.class5}
@@ -268,7 +266,7 @@ const MobileRow = ({ category, allAmmosForCategory, currentSearch, language = 'e
                   </VStack>
                   <VStack spacing="0" w="100%">
                     <Center bg="#232314" w="100%" p="1px">
-                      {labels[12]}
+                      Class 6
                     </Center>
                     <Center bg={getColor(ammo.class6)} color="black" w="100%">
                       {ammo.class6}
