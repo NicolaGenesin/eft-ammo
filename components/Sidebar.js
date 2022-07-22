@@ -203,10 +203,10 @@ const SidebarContent = ({ onClose, hideSidebar, selectedIndex, ...rest }) => {
           Hide Sidebar
         </Text>
       </Center>
-      <Box py={4}>
+      {/* <Box py={4}>
         <a href="https://deal.kinguin.net?r=filodream&amp;bid=f4000c3d" target="_top"><img src="/f4000c3d.jpeg" alt="Kinguin Best Deals" title="Kinguin Best Deals" width="300" height="100" /></a><img style={{ border: 0 }} src="/f4000c3d.jpeg" width="1" height="1" alt="" />
         <a href="https://deal.kinguin.net?r=filodream&amp;bid=f4000c3d" target="_top"><img src="//affiliate.kinguin.net/accounts/default1/m0x0b41/f4000c3d.jpg" alt="Kinguin Best Deals" title="Kinguin Best Deals" width="300" height="100" hidden /></a><img style={{ border: 0 }} src="https://affiliate.kinguin.net/scripts/m0x0i41?r=filodream&amp;bid=f4000c3d" width="1" height="1" alt="" hidden />
-      </Box>
+      </Box> */}
       <Text textAlign="center" fontSize="xs" opacity="0.4">
         CHANGELOG:
         <br />
