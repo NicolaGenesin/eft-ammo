@@ -211,6 +211,11 @@ const SidebarContent = ({ onClose, hideSidebar, selectedIndex, ...rest }) => {
         CHANGELOG:
         <br />
         <br />
+        July 20th 2022:
+        <br />
+        Spanish language added
+        <br />
+        <br />
         July 12th 2022:
         <br />
         Maps added
