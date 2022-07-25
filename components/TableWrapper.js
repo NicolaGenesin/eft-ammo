@@ -107,7 +107,7 @@ const DesktopTable = ({
                 setExpandedIndexes([]);
               }}
             >
-              {language === 'en' ? "Show All" : "Desplegar todo"}
+              {language === 'en' ? "Hide All" : "Desplegar todo"}
             </Button>
           </HStack>
           <VStack>
