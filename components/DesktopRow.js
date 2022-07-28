@@ -114,7 +114,7 @@ const DesktopRow = ({
               fontSize="xl"
               bg={categoryMatch ? "blue.600" : ""}
             >
-              {language !== 'en' ? categories[category][language] || category : category}
+              {language !== 'en' ? (category && categories[category] ? categories[category][language] : category) : category}
             </Text>
             <Center ml="8px">
               {gunsForCategory.length ? <GiAk47 mb="2px" size="20" /> : null}
@@ -222,8 +222,6 @@ const DesktopRow = ({
           </Flex>
           {sortedAmmos.map((ammo, index) => {
             let toolTipLabel = undefined;
-
-            console.log(ammo.standard)
 
             const note = ammo.standard.translations[language || 'en'].note
             const secondNote = ammo.standard.translations[language || 'en'].secondNote
